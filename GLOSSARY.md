@@ -69,3 +69,7 @@ _Avoid_: Toggle, control, setting
 **Option**:
 One value a Switch can take, such as "past" for a tense Switch. Some combinations of Options are not allowed.
 _Avoid_: Choice, value
+
+**Frame**:
+The fixed sentence shape a Switchboard is built on: intransitive ("I run"), transitive ("I eat the apple") or giving ("I give the apple to Minho"). Each verb fits some Frames and not others.
+_Avoid_: Template, pattern, sentence type
