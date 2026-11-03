@@ -1,0 +1,419 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Korean in 13 Sentences</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Noto+Sans+KR:wght@500;700;900&display=swap">
+<style>
+:root{
+  --bg:#F3F5F8; --surface:#FFFFFF; --surface-2:#EDF0F5; --ink:#171B24; --muted:#5A6272; --line:#D6DBE4;
+  --focus:#E0182D; --chip-ink:#141821; --scrim:rgba(17,20,26,.28);
+  --f-pron:#FFFFFF; --f-noun:#B5EE9C; --f-topic:#FFF3B0; --f-subj:#FFE04A; --f-obj:#FFC9B8;
+  --f-dat:#FFB870; --f-poss:#E6CBA2; --f-plur:#C3C8FF; --f-stem:#7DEFD3; --f-cop:#FFB8D2;
+  --f-conj:#EBC7FF; --f-time:#DDE3EC;
+  --t-infl:#D11F35; --t-pol:#D11F35; --t-tense:#2346D8;
+  --b1:#E0182D; --b2:#2447D6; --b3:#EE6A10; --b4:#7A2BD9; --b5:#1F9D55;
+  --shadow:0 1px 2px rgba(20,24,33,.06),0 4px 16px rgba(20,24,33,.05);
+  --sheet-shadow:0 -8px 30px rgba(20,24,33,.14);
+  --ko:"Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  --en:"Figtree",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#11141A; --surface:#1A1F28; --surface-2:#232A35; --ink:#E8ECF3; --muted:#9BA4B4; --line:#2E3644;
+    --focus:#FF4D5E; --f-pron:#DDE3EC; --f-time:#B9C3D2; --scrim:rgba(0,0,0,.5);
+    --t-infl:#FF6273; --t-pol:#FF6273; --t-tense:#86A3FF;
+    --b1:#FF4D5E; --b2:#6F8BFF; --b3:#FF8A3D; --b4:#B07BFF; --b5:#4CCB83;
+    --shadow:none; --sheet-shadow:0 -8px 30px rgba(0,0,0,.5);
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#11141A; --surface:#1A1F28; --surface-2:#232A35; --ink:#E8ECF3; --muted:#9BA4B4; --line:#2E3644;
+  --focus:#FF4D5E; --f-pron:#DDE3EC; --f-time:#B9C3D2; --scrim:rgba(0,0,0,.5);
+  --t-infl:#FF6273; --t-pol:#FF6273; --t-tense:#86A3FF;
+  --b1:#FF4D5E; --b2:#6F8BFF; --b3:#FF8A3D; --b4:#B07BFF; --b5:#4CCB83;
+  --shadow:none; --sheet-shadow:0 -8px 30px rgba(0,0,0,.5);
+}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--en);font-size:15px;line-height:1.5;margin:0;-webkit-tap-highlight-color:transparent}
+.wrap{max-width:860px;margin:0 auto;padding-inline:16px;padding-block:20px 120px;display:flex;flex-direction:column;gap:16px}
+
+header h1{font-weight:700;font-size:clamp(24px,6vw,34px);letter-spacing:-.01em;line-height:1.15;margin:0 0 6px;text-wrap:balance}
+header h1 .ko{font-family:var(--ko);font-weight:900}
+header p{margin:0;color:var(--muted);max-width:62ch}
+
+/* sticky jump strip */
+.jump{position:sticky;top:env(safe-area-inset-top,0px);z-index:6;background:var(--bg);margin-inline:-16px;padding:8px 16px;border-bottom:1px solid var(--line);overflow-x:auto;scrollbar-width:none}
+.jump::-webkit-scrollbar{display:none}
+.jump ol{list-style:none;margin:0;padding:0;display:flex;gap:6px;width:max-content}
+.jump a{display:grid;place-items:center;min-width:36px;height:36px;padding:0 8px;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--ink);font:600 14px var(--en);text-decoration:none;font-variant-numeric:tabular-nums}
+.jump a.cur{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+
+/* controls */
+.controls{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:10px 12px;display:flex;flex-direction:column;gap:8px}
+.row{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.label{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-right:2px}
+.pill{font:500 13px var(--en);padding:7px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--muted);cursor:pointer}
+.pill[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+details.key summary{cursor:pointer;font-size:13px;font-weight:600;color:var(--ink);list-style:none;display:flex;align-items:center;gap:6px;padding:4px 0}
+details.key summary::-webkit-details-marker{display:none}
+details.key summary::before{content:"▸";color:var(--muted);transition:transform .15s}
+details.key[open] summary::before{transform:rotate(90deg)}
+details.key summary span{font-weight:400;color:var(--muted)}
+.legend{display:flex;flex-wrap:wrap;gap:6px;padding-top:6px}
+.legend button{font:500 12.5px/1 var(--en);color:var(--chip-ink);border:1px solid transparent;border-radius:6px;padding:7px 8px;cursor:pointer;background:var(--c)}
+.legend button.txt{background:var(--surface);color:var(--c);border-color:var(--line);font-weight:700}
+.legend button[aria-pressed="true"]{outline:2px solid var(--focus);outline-offset:1px}
+
+/* cards */
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px 14px 14px;display:flex;flex-direction:column;gap:12px;box-shadow:var(--shadow);scroll-margin-top:calc(env(safe-area-inset-top,0px) + 64px)}
+.top{display:flex;gap:10px;align-items:baseline}
+.num{font:700 13px var(--en);color:var(--muted);font-variant-numeric:tabular-nums;flex:none;width:2ch}
+.en{font-size:clamp(18px,4.6vw,23px);font-weight:600;margin:0;line-height:1.25;text-wrap:balance}
+.stage{overflow-x:auto;padding:4px 0 2px;margin-inline:-4px;padding-inline:4px}
+.sentence{display:flex;flex-wrap:wrap;align-items:flex-start;gap:12px 6px}
+.word{display:flex;flex-direction:column;align-items:center;gap:5px}
+.box{display:flex;align-items:flex-end;padding:3px 4px 4px;border:2.5px solid transparent;border-radius:4px}
+body:not(.hide-box) .box[data-b]{border-color:var(--bc)}
+.cap{font-size:11.5px;line-height:1.25;color:var(--muted);text-align:center;max-width:13ch}
+body.hide-box .cap{display:none}
+.punct{font:700 clamp(28px,7.5vw,42px)/1 var(--ko);align-self:center;margin-top:8px}
+
+.morph{all:unset;display:flex;flex-direction:column;align-items:center;cursor:pointer;border-radius:4px;position:relative;transition:opacity .15s;min-height:44px}
+.morph:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.g{font-size:12px;line-height:1.2;padding:2px 3px;margin-bottom:3px;color:var(--chip-ink);background:var(--c,transparent);border-radius:3px;white-space:nowrap}
+.k{font:700 clamp(28px,7.5vw,42px)/1.15 var(--ko);color:var(--chip-ink);background:var(--c);padding:0 1px}
+.r{font-size:clamp(13px,3.4vw,16px);font-weight:600;line-height:1.2;margin-top:4px;padding:1px 2px;color:var(--chip-ink);background:var(--c);border-radius:3px;white-space:nowrap}
+.morph[data-t] .k,.morph[data-t] .r{background:transparent;color:var(--c)}
+.morph[data-t] .g{background:transparent;color:var(--c);font-weight:600}
+.morph[data-fn="pron"] .g,.morph[data-fn="time"] .g{background:transparent;color:var(--muted)}
+.morph[data-fn="neg"] .k,.morph[data-fn="neg"] .r,.morph[data-fn="neg"] .g{background:var(--ink);color:var(--bg)}
+body.hide-gloss .g{visibility:hidden}
+body.hide-rom .r{display:none}
+.morph.delta .k{outline:3px dashed var(--focus);outline-offset:2px}
+.morph.on .k{outline:3px solid var(--focus);outline-offset:2px}
+body[data-spot] .morph{opacity:.2}
+body[data-spot] .morph.lit{opacity:1}
+@media (hover:hover){
+  .morph:hover .k{filter:brightness(.94)}
+  .morph::after{content:attr(data-tip);position:absolute;bottom:calc(100% + 4px);left:50%;transform:translateX(-50%);background:var(--ink);color:var(--bg);font:500 12px/1.3 var(--en);padding:5px 8px;border-radius:6px;white-space:nowrap;pointer-events:none;opacity:0;transition:opacity .12s .2s;z-index:2}
+  .morph:hover::after{opacity:1}
+}
+
+.reveals{display:flex;flex-direction:column;gap:6px;background:var(--surface-2);border-radius:10px;padding:10px 12px}
+.reveals .lbl{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.reveals p{margin:0;max-width:62ch}
+.reveals .cmp{font-size:13px;color:var(--muted)}
+.reveals .cmp a{color:var(--ink);font-weight:600}
+
+/* summary card */
+.sum ul{margin:0;padding-left:1.1em;display:flex;flex-direction:column;gap:6px;max-width:64ch}
+.sum li::marker{color:var(--muted)}
+.sum a{color:inherit;font-weight:600}
+
+/* bottom sheet */
+.sheet{position:fixed;left:0;right:0;bottom:0;z-index:21;margin:0 auto;max-width:600px;background:var(--surface);border:1px solid var(--line);border-bottom:0;border-radius:18px 18px 0 0;box-shadow:var(--sheet-shadow);padding:10px 16px calc(16px + env(safe-area-inset-bottom,0px));transform:translateY(0);transition:transform .2s ease}
+.sheet[hidden]{display:block!important;transform:translateY(110%);visibility:hidden}
+.grab{width:40px;height:4px;border-radius:2px;background:var(--line);margin:0 auto 10px}
+.sh-top{display:flex;gap:12px;align-items:center}
+.big{font:900 38px/1 var(--ko);color:var(--chip-ink);background:var(--c,transparent);padding:4px 7px;border-radius:5px;flex:none}
+.big.t{background:transparent;color:var(--c)}
+.big.inv{background:var(--ink);color:var(--bg)}
+.sh-top h3{margin:0;font-size:17px;line-height:1.2}
+.sh-top .meta{font-size:13.5px;color:var(--muted)}
+.sheet p{margin:10px 0 0;max-width:62ch}
+.sheet .note{padding-top:8px;border-top:1px solid var(--line)}
+.sh-nav{display:flex;gap:8px;margin-top:14px}
+.sh-nav button{flex:1;font:600 14px var(--en);padding:11px;border-radius:10px;border:1px solid var(--line);background:var(--surface-2);color:var(--ink);cursor:pointer}
+.sh-nav button:disabled{opacity:.4;cursor:default}
+.sh-nav .close{flex:0 0 auto;padding-inline:16px}
+
+footer{font-size:12.5px;color:var(--muted);text-align:center}
+footer a{color:inherit}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="wrap">
+  <header>
+    <h1><span class="ko">한국어</span> in 13 Sentences</h1>
+    <p>Tim Ferriss's deconstruction sentences, translated into Korean and broken down piece by piece. Tap any piece of Korean to see what it does.</p>
+  </header>
+
+  <nav class="jump" aria-label="Jump to sentence"><ol id="jump"></ol></nav>
+
+  <div class="controls">
+    <div class="row" id="layers">
+      <span class="label">Show</span>
+      <button type="button" class="pill" id="opt-gloss" aria-pressed="true">Gloss</button>
+      <button type="button" class="pill" id="opt-rom" aria-pressed="true">Romanization</button>
+      <button type="button" class="pill" id="opt-box" aria-pressed="true">Phrase boxes</button>
+    </div>
+    <details class="key" id="key">
+      <summary>Color key <span>· tap one to spotlight it</span></summary>
+      <div class="legend" id="legend"></div>
+    </details>
+  </div>
+
+  <main id="cards" style="display:flex;flex-direction:column;gap:16px"></main>
+
+  <footer>Sentences from Tim Ferriss, <a href="https://tim.blog/2007/11/07/how-to-learn-but-not-master-any-language-in-1-hour-plus-a-favor/" target="_blank" rel="noopener">“How to Learn (But Not Master) Any Language in 1 Hour”</a>. Korean uses the informal polite level (-요) throughout.</footer>
+</div>
+
+<section class="sheet" id="sheet" hidden aria-live="polite" aria-label="Piece details">
+  <div class="grab"></div>
+  <div class="sh-top"><div class="big" id="sh-big"></div><div><h3 id="sh-name"></h3><div class="meta" id="sh-meta"></div></div></div>
+  <p id="sh-desc"></p>
+  <p class="note" id="sh-note"></p>
+  <div class="sh-nav">
+    <button type="button" id="sh-prev">‹ Previous</button>
+    <button type="button" id="sh-next">Next ›</button>
+    <button type="button" class="close" id="sh-close" aria-label="Close">✕</button>
+  </div>
+</section>
+
+<script>
+/* ---------- legend: one colour per grammatical job ---------- */
+const FN = {
+  pron:  {name:"Pronoun", c:"--f-pron", d:"I, he, she, it. Korean drops these whenever context makes them clear."},
+  noun:  {name:"Noun", c:"--f-noun", d:"A thing, person or place. Particles attach right after it."},
+  time:  {name:"Time word", c:"--f-time", d:"Words like 내일 (tomorrow) usually need no particle and sit near the front."},
+  topic: {name:"Topic marker", c:"--f-topic", d:"Marks what the sentence is about. 는 after a vowel, 은 after a consonant."},
+  subj:  {name:"Subject marker", c:"--f-subj", d:"Marks the subject, often new or emphasized. 가 after a vowel, 이 after a consonant."},
+  obj:   {name:"Object marker", c:"--f-obj", d:"Marks the direct object (the thing given, eaten). 를 after a vowel, 을 after a consonant."},
+  dat:   {name:"Recipient marker", c:"--f-dat", d:"에게 means 'to' a person or animal. 한테 is the casual spoken version."},
+  poss:  {name:"Possessive marker", c:"--f-poss", d:"의 works like English 's. It's usually pronounced 'e', not 'ui'."},
+  plur:  {name:"Plural marker", c:"--f-plur", d:"들 makes a noun plural. It's optional and often left out when context makes the number clear."},
+  stem:  {name:"Verb / adjective stem", c:"--f-stem", d:"The dictionary form with -다 removed. Adjectives like 'red' conjugate exactly like verbs."},
+  cop:   {name:"Copula 'to be'", c:"--f-cop", d:"이에요 after a consonant, 예요 after a vowel. Attaches straight onto a noun."},
+  conj:  {name:"Connecting ending", c:"--f-conj", d:"Links the main verb to a helper verb that adds meaning, like 'want to' or 'must'."},
+  neg:   {name:"Negation", c:"--ink", inv:1, d:"Sits right before the verb. 못 = can't (unable). 안 = don't (choose not to)."},
+  tense: {name:"Tense marker", c:"--t-tense", t:1, d:"았/었 marks past. ㄹ 거 marks future. They slot in before the ending."},
+  infl:  {name:"Informal ending", c:"--t-infl", t:1, d:"-아 after ㅏ/ㅗ stems, -어 after the rest. On its own this is casual speech."},
+  pol:   {name:"Polite suffix", c:"--t-pol", t:1, d:"요 on the end makes it informal polite, the safe default with most people."}
+};
+
+/* morph = [korean, romanization, gloss, fn, note]  note starting "*" = changed piece vs. the compared sentence */
+const P = {
+  I:    {b:"b1",cap:"I (topic)",m:[["나","na","I","pron","With -요 endings, many speakers use the humbler 저 (jeo) instead of 나."],["는","-neun","topic","topic"]]},
+  apple:(cap,b="b2")=>({b,cap,m:[["사과","sa-gwa","apple","noun"],["를","-leul","d.o.","obj"]]}),
+  it:   {b:"b2",cap:"the thing given",m:[["그것","geu-geos","it","pron","Literally 'that thing'. In speech it's often 그거 (geu-geo)."],["을","-eul","d.o.","obj"]]},
+  toJohn:{b:"b3",cap:"recipient",m:[["존","jon","John","noun"],["에게","-e-ge","to","dat"]]},
+  toHim:{b:"b3",cap:"recipient",m:[["그","geu","he","pron","그 for 'he' is mostly written. In speech people say 그 사람 (that person) or use the name."],["에게","-e-ge","to","dat"]]},
+  toHer:{b:"b3",cap:"recipient",m:[["그녀","geu-nyeo","she","pron","Like 그, 그녀 is mostly written Korean."],["에게","-e-ge","to","dat"]]},
+  give: {b:"b4",cap:"give",m:[["줘","jwo","give","stem","주다 'to give'. 주 + 어 contracts to 줘."],["요","-yo","pol","pol"]]},
+  red:  (d)=>({b:"b4",cap:"is red",m:[["빨개","ppal-gae","red","stem",(d?"":"")+"빨갛다 'to be red'. It's ㅎ-irregular: 빨갛 + 아 becomes 빨개."],["요","-yo","pol","pol"]]})
+};
+
+const CARDS = [
+  { en:"The apple is red.",
+    s:[{b:"b1",cap:"subject",m:[["사과","sa-gwa","apple","noun"],["가","-ga","subj","subj"]]}, P.red(), "."],
+    r:"Adjectives act like verbs, so 'is red' is one word. There are no articles, so no word for 'the'. The sentence ends with the verb." },
+
+  { en:"It is John's apple.",
+    s:[{b:"b1",cap:"topic",m:[["그것","geu-geos","it","pron","In speech 그것은 usually contracts to 그건 (geu-geon)."],["은","-eun","topic","topic"]]},
+       {b:"b2",cap:"owner",m:[["존","jon","John","noun"],["의","-ui","'s","poss"]]},
+       {b:"b4",cap:"apple + is",m:[["사과","sa-gwa","apple","noun"],["예요","-ye-yo","is","cop","사과 ends in a vowel, so the copula is 예요, not 이에요."]]}, "."],
+    r:"Possession works like English: owner + 의 + thing. 'Is' is the copula, glued directly onto the noun." },
+
+  { en:"I give John the apple.",
+    s:[P.I, P.toJohn, P.apple("the thing given"), P.give, "."],
+    r:"Giving uses two particles. 에게 marks who receives, 를 marks what is given. Their order can swap, because the particles carry the meaning." },
+
+  { en:"We give him the apple.",
+    s:[{b:"b1",cap:"we (topic)",m:[["우리","u-li","we","pron","*Changed from 나 (I). The verb 줘요 stays the same."],["는","-neun","topic","topic"]]}, P.toHim, P.apple("the thing given"), P.give, "."],
+    cmp:3, r:"Verbs don't change for person or number. I give, we give, he gives: all 줘요." },
+
+  { en:"He gives it to John.",
+    s:[{b:"b1",cap:"he (topic)",m:[["그","geu","he","pron","Mostly written. In speech: 그 사람 or the person's name."],["는","-neun","topic","topic"]]}, P.it, P.toJohn, P.give, "."],
+    r:"'It' is a full noun phrase (그것 + 을) that takes a particle like any other object." },
+
+  { en:"She gives it to him.",
+    s:[{b:"b1",cap:"she (topic)",m:[["그녀","geu-nyeo","she","pron"],["는","-neun","topic","topic"]]}, P.it, P.toHim, P.give, "."],
+    cmp:5, r:"Pronouns don't change form for subject or object (he/him, she/her). Only the particle changes: 그는 vs 그에게." },
+
+  { en:"Is the apple red?",
+    s:[{b:"b1",cap:"subject",m:[["사과","sa-gwa","apple","noun"],["가","-ga","subj","subj"]]},
+       {b:"b4",cap:"is red?",m:[["빨개","ppal-gae","red","stem"],["요","-yo","pol","pol","*Same word as the statement. Only the rising voice and the ? make it a question."]]}, "?"],
+    cmp:1, r:"In informal polite speech a yes/no question has the same form as the statement. You just raise your voice at the end." },
+
+  { en:"The apples are red.",
+    s:[{b:"b1",cap:"subject",m:[["사과","sa-gwa","apple","noun"],["들","-deul","pl.","plur","*Added. Without 들 the sentence still works and could mean one apple or many."],["이","-i","subj","subj","들 ends in a consonant, so the subject marker switches from 가 to 이."]]}, P.red(), "."],
+    cmp:1, r:"Plural is optional and marked with 들. The verb doesn't change. Adding 들 also switched 가 to 이, because 들 ends in a consonant." },
+
+  { en:"I must give it to him.",
+    s:[P.I, P.it, P.toHim,
+       {b:"b4",cap:"must give",m:[["줘","jwo","give","stem"],["야","-ya","must","conj","-어야/-아야 + 하다 = 'must'. Literally 'only if I give, it does'."],["해","hae","do","stem","하다 'to do' acts as the helper verb here. 하 + 여 contracts to 해."],["요","-yo","pol","pol"]]}, "."],
+    r:"Helper meanings like 'must' come after the main verb, not before it. The main verb takes a connecting ending (-야), then 하다 carries the tense and politeness." },
+
+  { en:"I want to give it to her.",
+    s:[P.I, P.it, P.toHer,
+       {b:"b4",cap:"want to give",m:[["주","ju","give","stem"],["고","-go","","conj","-고 싶다 = 'want to ~'. The main verb keeps its bare stem 주."],["싶","sip","want","stem"],["어","-eo","inf","infl"],["요","-yo","pol","pol"]]}, "."],
+    cmp:9, r:"Same pattern as 'must': main verb + connector + helper verb. Only the connector and the helper change (-고 싶다 instead of -야 하다)." },
+
+  { en:"I'm going to know tomorrow.",
+    s:[P.I, {b:"b5",cap:"when",m:[["내일","nae-il","tomorrow","time"]]},
+       {b:"b4",cap:"will know",m:[["알","al","know","stem","알다 'to know'. The stem already ends in ㄹ, so the future ㄹ merges into it."],["거","geo","will","tense","-(으)ㄹ 거예요 is the everyday future. Literally 'it's the thing that will ~'."],["예요","-ye-yo","is","cop"]]}, "."],
+    r:"The future is a pattern, not an ending: stem + ㄹ 거예요. Time words like 내일 sit near the front and need no particle. A closer match to 'come to know' is 알게 될 거예요." },
+
+  { en:"I can't eat the apple.",
+    s:[P.I, P.apple("thing eaten"),
+       {b:"b4",cap:"can't eat",m:[["못","mot","can't","neg","*Placed right before the verb. Swap in 안 (an) and it means 'don't / won't eat'."],["먹","meog","eat","stem","먹다 'to eat'. Its vowel is ㅓ, so it takes -어."],["어","-eo","inf","infl"],["요","-yo","pol","pol"]]}, "."],
+    r:"Negation goes right before the verb. Korean splits 'not' in two: 못 for can't and 안 for won't." },
+
+  { en:"I have eaten the apple.",
+    s:[P.I, P.apple("thing eaten"),
+       {b:"b4",cap:"ate",m:[["먹","meog","eat","stem"],["었","-eoss","past","tense","*Slotted in before the ending. 먹 has ㅓ, so it's 었, not 았."],["어","-eo","inf","infl"],["요","-yo","pol","pol"]]}, "."],
+    cmp:12, r:"There's no separate perfect tense. 'I ate' and 'I have eaten' are both 먹었어요." }
+];
+
+const SUMMARY = [
+  ["Word order is subject, object, verb, and the verb always comes last.",[1,3]],
+  ["Particles mark each noun's job, so the nouns can move around while the verb stays last.",[3]],
+  ["There are no articles. Plural 들 is optional.",[1,8]],
+  ["Verbs don't change for I / we / he. Pronouns don't change for he / him either. Only the particle changes.",[4,6]],
+  ["Adjectives are verbs, so 'is red' is one conjugated word.",[1]],
+  ["Questions use the statement form with a rising voice.",[7]],
+  ["'Must' and 'want to' are helper verbs that come after the main verb.",[9,10]],
+  ["Tense is marked inside the verb: 었 for past, ㄹ 거예요 for future. There's no separate perfect.",[11,13]],
+  ["Negation sits right before the verb: 못 means can't, 안 means won't.",[12]]
+];
+
+/* ---------- rendering ---------- */
+const $ = (t,cls,html)=>{const e=document.createElement(t); if(cls) e.className=cls; if(html!=null) e.innerHTML=html; return e;};
+const v = x=>`var(${x})`;
+
+function morphEl(m, list){
+  let [ko,rom,gloss,fn,note] = m;
+  const f=FN[fn], b=document.createElement("button");
+  b.type="button"; b.className="morph"; b.dataset.fn=fn;
+  if(note && note.startsWith("*")){ b.classList.add("delta"); note=note.slice(1); }
+  if(f.t) b.dataset.t="1";
+  b.style.setProperty("--c", v(f.c));
+  b.dataset.tip = f.name + (gloss?" · "+gloss:"");
+  b.setAttribute("aria-label",`${ko}, ${rom.replace(/^-/,"")}, ${f.name}`);
+  b.append($("span","g",gloss||"&nbsp;"),$("span","k",ko),$("span","r",rom));
+  b._d={ko,rom,gloss,fn,note};
+  b._list=list; list.push(b);
+  b.addEventListener("click",()=>open(b));
+  return b;
+}
+function sentenceEl(words){
+  const s=$("div","sentence"), list=[];
+  words.forEach(w=>{
+    if(typeof w==="string"){ s.append($("span","punct",w)); return; }
+    const wrap=$("div","word"), box=$("div","box");
+    if(w.b){ box.dataset.b=w.b; wrap.style.setProperty("--bc",v("--"+w.b)); }
+    w.m.forEach(m=>box.append(morphEl(m,list)));
+    wrap.append(box); if(w.cap) wrap.append($("div","cap",w.cap));
+    s.append(wrap);
+  });
+  return s;
+}
+
+/* ---------- bottom sheet ---------- */
+const sheet=document.getElementById("sheet");
+let cur=null;
+function open(b){
+  if(cur===b && !sheet.hidden){ close(); return; }
+  document.querySelectorAll(".morph.on").forEach(x=>x.classList.remove("on"));
+  cur=b; b.classList.add("on");
+  const d=b._d, f=FN[d.fn], big=document.getElementById("sh-big");
+  big.textContent=d.ko; big.className="big"+(f.t?" t":"")+(f.inv?" inv":""); big.style.setProperty("--c",v(f.c));
+  document.getElementById("sh-name").textContent=f.name;
+  document.getElementById("sh-meta").textContent=d.rom.replace(/^-/,"")+(d.gloss?` · “${d.gloss}”`:"");
+  document.getElementById("sh-desc").textContent=f.d;
+  const n=document.getElementById("sh-note"); n.textContent=d.note||""; n.hidden=!d.note;
+  const i=b._list.indexOf(b);
+  document.getElementById("sh-prev").disabled=i===0;
+  document.getElementById("sh-next").disabled=i===b._list.length-1;
+  sheet.hidden=false;
+  // keep the tapped piece visible above the sheet
+  requestAnimationFrame(()=>{
+    const r=b.getBoundingClientRect(), top=sheet.getBoundingClientRect().top;
+    if(r.bottom>top-12) window.scrollBy({top:r.bottom-top+24,behavior:"smooth"});
+  });
+}
+function close(){ sheet.hidden=true; if(cur) cur.classList.remove("on"); cur=null; }
+function step(dir){ if(!cur) return; const l=cur._list, i=l.indexOf(cur)+dir; if(l[i]) open(l[i]); }
+document.getElementById("sh-prev").onclick=()=>step(-1);
+document.getElementById("sh-next").onclick=()=>step(1);
+document.getElementById("sh-close").onclick=close;
+document.addEventListener("click",e=>{ if(!sheet.hidden && !e.target.closest(".sheet,.morph,[data-go]")) close(); });
+document.addEventListener("keydown",e=>{ if(e.key==="Escape") close(); if(!sheet.hidden&&e.key==="ArrowRight") step(1); if(!sheet.hidden&&e.key==="ArrowLeft") step(-1); });
+// swipe down to dismiss
+let y0=null; sheet.addEventListener("touchstart",e=>{y0=e.touches[0].clientY},{passive:true});
+sheet.addEventListener("touchend",e=>{ if(y0!=null && e.changedTouches[0].clientY-y0>60) close(); y0=null; });
+
+/* ---------- build ---------- */
+function build(){
+  const root=document.getElementById("cards"), jump=document.getElementById("jump");
+  CARDS.forEach((c,i)=>{
+    const n=i+1, card=$("section","card"); card.id="s"+n;
+    const top=$("div","top"); top.append($("span","num",String(n)),$("p","en",c.en));
+    const stage=$("div","stage"); stage.append(sentenceEl(c.s));
+    const rv=$("div","reveals"); rv.append($("span","lbl","What this shows"),$("p","",c.r));
+    if(c.cmp) rv.append($("p","cmp",`Compare with <a href="#s${c.cmp}" data-go="${c.cmp}">#${c.cmp} ${CARDS[c.cmp-1].en.replace(/[.?]$/,"")}</a>. The dashed box marks what changed.`));
+    card.append(top,stage,rv); root.append(card);
+    const li=$("li"), a=$("a","",String(n)); a.href="#s"+n; a.dataset.go=n; li.append(a); jump.append(li);
+  });
+  // summary
+  const s=$("section","card sum"); s.id="sum";
+  s.append($("div","top"));
+  s.firstChild.append($("span","num","★"),$("p","en","What the 13 sentences reveal"));
+  const ul=$("ul");
+  SUMMARY.forEach(([t,refs])=>ul.append($("li","",t+" "+refs.map(r=>`<a href="#s${r}" data-go="${r}">#${r}</a>`).join(" "))));
+  s.append(ul); root.append(s);
+  const li=$("li"), a=$("a","","★"); a.href="#sum"; a.dataset.go="sum"; a.setAttribute("aria-label","Summary"); li.append(a); jump.append(li);
+
+  document.addEventListener("click",e=>{
+    const a=e.target.closest("[data-go]"); if(!a) return;
+    e.preventDefault(); close();
+    const id=a.dataset.go==="sum"?"sum":"s"+a.dataset.go;
+    document.getElementById(id).scrollIntoView({behavior:matchMedia("(prefers-reduced-motion:reduce)").matches?"auto":"smooth",block:"start"});
+  });
+}
+
+/* current-sentence highlight in the jump strip */
+function watch(){
+  const links=[...document.querySelectorAll("#jump a")];
+  const io=new IntersectionObserver(es=>{
+    es.forEach(e=>{ if(e.isIntersecting){
+      const id=e.target.id; links.forEach(l=>{
+        const on=("s"+l.dataset.go===id)||(l.dataset.go==="sum"&&id==="sum");
+        l.classList.toggle("cur",on); if(on) l.scrollIntoView({inline:"nearest",block:"nearest"});
+      });
+    }});
+  },{rootMargin:"-40% 0px -55% 0px"});
+  document.querySelectorAll(".card").forEach(c=>io.observe(c));
+}
+
+/* ---------- legend spotlight ---------- */
+let spot=null;
+function applySpot(){
+  document.querySelectorAll(".morph").forEach(m=>m.classList.toggle("lit",m.dataset.fn===spot));
+  if(spot) document.body.dataset.spot=spot; else delete document.body.dataset.spot;
+}
+function buildLegend(){
+  const L=document.getElementById("legend");
+  Object.entries(FN).forEach(([k,f])=>{
+    const b=$("button",f.t?"txt":"",f.name); b.type="button"; b.style.setProperty("--c",v(f.c));
+    if(f.inv){ b.style.background="var(--ink)"; b.style.color="var(--bg)"; }
+    b.setAttribute("aria-pressed","false");
+    b.onclick=()=>{ spot=spot===k?null:k; L.querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed",x===b&&spot===k)); applySpot(); };
+    L.append(b);
+  });
+  if(matchMedia("(min-width:700px)").matches) document.getElementById("key").open=true;
+}
+
+/* ---------- layer toggles ---------- */
+[["opt-gloss","hide-gloss"],["opt-rom","hide-rom"],["opt-box","hide-box"]].forEach(([id,cls])=>{
+  const b=document.getElementById(id);
+  b.onclick=()=>{ const on=b.getAttribute("aria-pressed")!=="true"; b.setAttribute("aria-pressed",on); document.body.classList.toggle(cls,!on); };
+});
+
+buildLegend(); build(); watch();
+</script>
+
+</body></html>

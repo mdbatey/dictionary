@@ -1,0 +1,698 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>The Mandarin Dozen</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Work+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap">
+<style>
+:root{
+  --bg:#EFEDE4; --surface:#FFFFFF; --surface-2:#F7F5EC; --border:#DAD4C4;
+  --ink:#221F1A; --ink-dim:#635C4C; --ink-faint:#8A8270;
+  --jade:#2E6F5C; --jade-ink:#12463A;
+  --seal:#B3312C; --seal-ink:#7A1F1C; --seal-bg:#FBEAE8;
+  --accent:#2E6F5C;
+
+  --chip-noun-bg:#DCEAFB; --chip-noun-tx:#163A5F;
+  --chip-verb-bg:#DCF5E3; --chip-verb-tx:#1B4D34;
+  --chip-pron-bg:#EDE1FB; --chip-pron-tx:#4A2E7A;
+  --chip-ba-bg:#FCEBC9; --chip-ba-tx:#6B4A10;
+  --chip-modal-bg:#D2F3F0; --chip-modal-tx:#145C55;
+  --chip-dem-bg:#E3E2FB; --chip-dem-tx:#33308A;
+  --chip-time-bg:#FCF3C6; --chip-time-tx:#6B5A0C;
+  --chip-neg-bg:#2A1414; --chip-neg-tx:#FBDAD6;
+
+  --tx-poss:#A5670E; --tx-q:#C23572; --tx-mw:#7A5230; --tx-adv:#0E7C86; --tx-pl:#5B6B7A;
+
+  --box-subject:#2E6F5C; --box-verbphrase:#9A6423; --box-object:#B3312C; --box-modifier:#5B4B8A; --box-question:#C23572;
+
+  --sheet-bg:#FFFFFF; --scrim:rgba(20,18,14,0.38);
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#17150F; --surface:#211E17; --surface-2:#2A261D; --border:#3B3628;
+    --ink:#EDE8DB; --ink-dim:#B7AE97; --ink-faint:#8B8368;
+    --jade:#5FBF9E; --jade-ink:#8FDCC0;
+    --seal:#E2695F; --seal-ink:#F3B3AC; --seal-bg:#3A1E1B;
+    --accent:#5FBF9E;
+
+    --chip-noun-bg:#1E3A57; --chip-noun-tx:#BFDBFA;
+    --chip-verb-bg:#1D3F2C; --chip-verb-tx:#B7EFC9;
+    --chip-pron-bg:#382653; --chip-pron-tx:#DCC8FA;
+    --chip-ba-bg:#4A3612; --chip-ba-tx:#F6D89B;
+    --chip-modal-bg:#123C39; --chip-modal-tx:#A6EEE6;
+    --chip-dem-bg:#28275A; --chip-dem-tx:#C8C6FA;
+    --chip-time-bg:#4A3F0C; --chip-time-tx:#F5E79B;
+    --chip-neg-bg:#F0DAD5; --chip-neg-tx:#2A1414;
+
+    --tx-poss:#E3A94D; --tx-q:#EF7FAC; --tx-mw:#C79A73; --tx-adv:#5FD3DD; --tx-pl:#9BABBB;
+
+    --box-subject:#5FBF9E; --box-verbphrase:#D3A464; --box-object:#E2695F; --box-modifier:#9C8CE0; --box-question:#EF7FAC;
+
+    --sheet-bg:#211E17; --scrim:rgba(0,0,0,0.6);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#17150F; --surface:#211E17; --surface-2:#2A261D; --border:#3B3628;
+  --ink:#EDE8DB; --ink-dim:#B7AE97; --ink-faint:#8B8368;
+  --jade:#5FBF9E; --jade-ink:#8FDCC0;
+  --seal:#E2695F; --seal-ink:#F3B3AC; --seal-bg:#3A1E1B;
+  --accent:#5FBF9E;
+  --chip-noun-bg:#1E3A57; --chip-noun-tx:#BFDBFA;
+  --chip-verb-bg:#1D3F2C; --chip-verb-tx:#B7EFC9;
+  --chip-pron-bg:#382653; --chip-pron-tx:#DCC8FA;
+  --chip-ba-bg:#4A3612; --chip-ba-tx:#F6D89B;
+  --chip-modal-bg:#123C39; --chip-modal-tx:#A6EEE6;
+  --chip-dem-bg:#28275A; --chip-dem-tx:#C8C6FA;
+  --chip-time-bg:#4A3F0C; --chip-time-tx:#F5E79B;
+  --chip-neg-bg:#F0DAD5; --chip-neg-tx:#2A1414;
+  --tx-poss:#E3A94D; --tx-q:#EF7FAC; --tx-mw:#C79A73; --tx-adv:#5FD3DD; --tx-pl:#9BABBB;
+  --box-subject:#5FBF9E; --box-verbphrase:#D3A464; --box-object:#E2695F; --box-modifier:#9C8CE0; --box-question:#EF7FAC;
+  --sheet-bg:#211E17; --scrim:rgba(0,0,0,0.6);
+  color-scheme: dark;
+}
+
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Work Sans',system-ui,sans-serif;padding-inline:0;-webkit-tap-highlight-color:transparent}
+.wrap{max-width:760px;margin:0 auto;padding-inline:18px}
+h1,h2,h3{text-wrap:balance;font-family:'Work Sans',sans-serif}
+
+/* header */
+header.page{padding-top:calc(28px + env(safe-area-inset-top,0px));padding-bottom:20px;border-bottom:1px solid var(--border)}
+.eyebrow{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.10em;text-transform:uppercase;color:var(--seal);font-weight:600}
+h1.title{font-size:clamp(28px,7vw,40px);margin:8px 0 6px;letter-spacing:-.01em}
+.title .cn{font-family:'Noto Serif SC',serif;color:var(--accent)}
+.sub{color:var(--ink-dim);font-size:15px;line-height:1.55;max-width:60ch;margin:0}
+.sub b{color:var(--ink);font-weight:600}
+
+/* sticky strip */
+.stickynav{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:var(--bg);border-bottom:1px solid var(--border)}
+.stickynav-inner{max-width:760px;margin:0 auto;padding:10px 18px;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none}
+.stickynav-inner::-webkit-scrollbar{display:none}
+.navnum{flex:0 0 auto;width:34px;height:34px;border-radius:999px;border:1px solid var(--border);background:var(--surface);color:var(--ink-dim);font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:600;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:transform .15s ease}
+.navnum.active{background:var(--accent);color:var(--surface);border-color:var(--accent)}
+.navnum:active{transform:scale(.92)}
+.navsum{flex:0 0 auto;width:34px;height:34px;border-radius:999px;border:1px dashed var(--border);color:var(--ink-faint);font-size:16px;display:flex;align-items:center;justify-content:center;cursor:pointer}
+
+/* controls */
+.controls{display:flex;flex-wrap:wrap;gap:8px;padding:16px 0 6px}
+.pill{border:1px solid var(--border);background:var(--surface);color:var(--ink-dim);font-family:'Work Sans',sans-serif;font-size:13px;font-weight:600;padding:7px 14px;border-radius:999px;cursor:pointer;transition:.15s ease}
+.pill[aria-pressed="true"]{background:var(--jade-ink,var(--accent));background:var(--accent);color:var(--surface);border-color:var(--accent)}
+.pill:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+/* color key */
+.key{border:1px solid var(--border);border-radius:14px;background:var(--surface);margin:14px 0 24px;overflow:hidden}
+.key summary{list-style:none;cursor:pointer;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;font-weight:600;font-size:14px}
+.key summary::-webkit-details-marker{display:none}
+.key summary::after{content:'▾';color:var(--ink-faint);transition:transform .2s ease}
+.key[open] summary::after{transform:rotate(180deg)}
+.keygrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px;padding:0 16px 16px}
+.keyitem{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--ink-dim);border:1px solid transparent;border-radius:10px;padding:6px 8px;cursor:pointer;text-align:left;background:none}
+.keyitem:hover{background:var(--surface-2)}
+.keyitem.active{border-color:var(--accent);background:var(--surface-2);color:var(--ink)}
+.keyswatch{width:16px;height:16px;border-radius:5px;flex:0 0 auto;border:1px solid var(--border)}
+.keyswatch.inverted{background:var(--chip-neg-bg)}
+
+/* cards */
+.card{background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:20px 18px 18px;margin-bottom:18px;scroll-margin-top:calc(64px + env(safe-area-inset-top,0px))}
+.card-head{display:flex;align-items:baseline;gap:10px;margin-bottom:4px}
+.num{font-family:'JetBrains Mono',monospace;color:var(--seal);font-weight:700;font-size:14px}
+.en{font-size:17px;font-weight:600;color:var(--ink)}
+.pairnote{font-size:12.5px;color:var(--ink-faint);margin:0 0 14px}
+.pairnote a{color:var(--accent);font-weight:600;text-decoration:none;cursor:pointer}
+
+.sentrow{display:flex;flex-wrap:wrap;gap:14px 10px;align-items:flex-start;direction:ltr}
+.wordbox{border:1.5px solid var(--boxcolor);border-radius:12px;padding:8px 8px 6px;display:flex;flex-direction:column;gap:6px}
+.wordcap{font-size:10.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--boxcolor);font-weight:700;order:2;text-align:center}
+.wordboxes{display:flex;gap:4px;order:1}
+body:not(.show-boxes) .wordbox{border-color:transparent;padding:0}
+body:not(.show-boxes) .wordcap{display:none}
+
+.piece{background:none;border:2px solid transparent;border-radius:10px;padding:4px 6px 6px;display:flex;flex-direction:column;align-items:center;cursor:pointer;font:inherit;min-width:44px;min-height:44px;justify-content:center;transition:border-color .12s ease, transform .1s ease}
+.piece:active{transform:scale(.96)}
+.piece:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.piece.tapped{border-color:var(--seal)}
+.piece.changed{border:2px dashed var(--seal)}
+.piece.dim{opacity:.28}
+.piece.chip .cn{background:var(--chipbg);color:var(--chiptx);border-radius:7px;padding:2px 7px}
+.piece.inverted .cn{background:var(--chip-neg-bg);color:var(--chip-neg-tx);border-radius:7px;padding:2px 7px}
+.piece.text .cn{color:var(--txcolor)}
+
+.gloss{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--ink-faint);letter-spacing:.02em}
+body:not(.show-gloss) .gloss{display:none}
+.cn{font-family:'Noto Serif SC',serif;font-size:clamp(24px,7.5vw,30px);line-height:1.2;font-weight:600;margin:2px 0}
+.py{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--ink-dim)}
+body:not(.show-py) .py{display:none}
+
+.what{margin-top:16px;background:var(--surface-2);border-radius:12px;padding:12px 14px;font-size:13.5px;line-height:1.55;color:var(--ink-dim)}
+.what b{color:var(--ink);font-weight:700}
+
+/* tooltip (mouse) */
+.tooltip{position:fixed;background:var(--ink);color:var(--bg);font-size:11.5px;font-family:'Work Sans',sans-serif;padding:5px 9px;border-radius:8px;pointer-events:none;z-index:80;opacity:0;transition:opacity .1s ease;white-space:nowrap}
+.tooltip.show{opacity:1}
+
+/* bottom sheet */
+.sheetwrap{position:fixed;inset:0;z-index:100;pointer-events:none}
+.sheetwrap.open{pointer-events:auto}
+.scrim{position:absolute;inset:0;background:var(--scrim);opacity:0;transition:opacity .18s ease}
+.sheetwrap.open .scrim{opacity:1}
+.sheet{position:absolute;left:0;right:0;bottom:0;background:var(--sheet-bg);border-radius:20px 20px 0 0;padding:14px 18px calc(20px + env(safe-area-inset-bottom,0px));transform:translateY(105%);transition:transform .22s cubic-bezier(.32,.72,0,1);max-height:72vh;overflow-y:auto;box-shadow:0 -8px 30px rgba(0,0,0,.18)}
+.sheetwrap.open .sheet{transform:translateY(0)}
+.sheet-handle{width:36px;height:4px;background:var(--border);border-radius:99px;margin:0 auto 14px}
+.sheet-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.sheet-close{border:none;background:var(--surface-2);color:var(--ink-dim);width:32px;height:32px;border-radius:999px;font-size:16px;cursor:pointer;flex:0 0 auto}
+.sheet-cn{font-family:'Noto Serif SC',serif;font-size:44px;font-weight:700;margin:6px 0 2px}
+.sheet-py{font-family:'JetBrains Mono',monospace;font-size:15px;color:var(--ink-dim);margin-bottom:10px}
+.sheet-jobrow{display:flex;align-items:center;gap:8px;margin-bottom:12px}
+.sheet-job{font-size:12px;font-weight:700;letter-spacing:.03em;text-transform:uppercase;padding:4px 10px;border-radius:999px}
+.sheet-gloss{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--ink-faint)}
+.sheet-desc,.sheet-note{font-size:14.5px;line-height:1.6;color:var(--ink);margin:0 0 10px}
+.sheet-note{background:var(--surface-2);border-radius:10px;padding:10px 12px;color:var(--ink-dim)}
+.sheet-nav{display:flex;justify-content:space-between;gap:10px;margin-top:14px}
+.sheet-nav button{flex:1;padding:11px;border-radius:10px;border:1px solid var(--border);background:var(--surface);color:var(--ink);font-weight:600;font-size:14px;cursor:pointer}
+.sheet-nav button:disabled{opacity:.35;cursor:default}
+
+/* summary */
+.summary{background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:22px 20px;margin:8px 0 40px}
+.summary h2{font-size:19px;margin:0 0 14px}
+.summary ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:12px}
+.summary li{font-size:14.5px;line-height:1.6;color:var(--ink-dim);padding-left:0}
+.summary li b{color:var(--ink)}
+.summary li a{color:var(--accent);font-weight:600;text-decoration:none}
+.source{font-size:12px;color:var(--ink-faint);margin-top:26px;padding-top:16px;border-top:1px solid var(--border);line-height:1.6}
+.source a{color:var(--ink-faint)}
+
+@media (hover:hover){
+  .piece:hover .cn{filter:brightness(0.96)}
+}
+</style>
+
+<header class="page"><div class="wrap">
+  <div class="eyebrow">Deconstruction Dozen · Mandarin Chinese</div>
+  <h1 class="title">The Mandarin Dozen <span class="cn">十二句</span></h1>
+  <p class="sub">Tim Ferriss's twelve-sentence set, translated into natural, <b>informal register</b> Mandarin and taken apart piece by piece. Tap any word to see its job, its reading, and what it's doing in the sentence.</p>
+</div></header>
+
+<nav class="stickynav"><div class="stickynav-inner" id="stickynav"></div></nav>
+
+<div class="wrap">
+  <div class="controls">
+    <button class="pill" id="toggle-gloss" aria-pressed="true">Gloss</button>
+    <button class="pill" id="toggle-py" aria-pressed="true">Pronunciation</button>
+    <button class="pill" id="toggle-boxes" aria-pressed="true">Phrase boxes</button>
+  </div>
+
+  <details class="key" id="keydetails">
+    <summary>Color key</summary>
+    <div class="keygrid" id="keygrid"></div>
+  </details>
+
+  <div id="cards"></div>
+
+  <section class="summary" id="summary-card">
+    <h2>What these twelve sentences reveal</h2>
+    <ul id="summary-list"></ul>
+    <p class="source">Sentence set: Tim Ferriss's "Deconstruction Dozen," as commonly shared (12-sentence version, e.g. tim.blog and derivative language-learning resources). Mandarin translations, pinyin and grammar notes composed for this page at one consistent informal register.</p>
+  </section>
+</div>
+
+<div class="sheetwrap" id="sheetwrap">
+  <div class="scrim" id="scrim"></div>
+  <div class="sheet" id="sheet" role="dialog" aria-modal="true">
+    <div class="sheet-handle"></div>
+    <div class="sheet-top">
+      <div>
+        <div class="sheet-cn" id="sheet-cn"></div>
+        <div class="sheet-py" id="sheet-py"></div>
+      </div>
+      <button class="sheet-close" id="sheet-close" aria-label="Close">✕</button>
+    </div>
+    <div class="sheet-jobrow">
+      <span class="sheet-job" id="sheet-job"></span>
+      <span class="sheet-gloss" id="sheet-gloss"></span>
+    </div>
+    <p class="sheet-desc" id="sheet-desc"></p>
+    <p class="sheet-note" id="sheet-note"></p>
+    <div class="sheet-nav">
+      <button id="sheet-prev">← Previous</button>
+      <button id="sheet-next">Next →</button>
+    </div>
+  </div>
+</div>
+
+<div class="tooltip" id="tooltip"></div>
+
+<script>
+/* ---------- Job / color key metadata ---------- */
+const JOBS = {
+  noun:  {label:'Noun', kind:'chip', bg:'--chip-noun-bg', tx:'--chip-noun-tx', desc:'A thing, person or place. Chinese nouns take no article ("a"/"the") and don\'t change form for singular or plural.'},
+  verb:  {label:'Verb', kind:'chip', bg:'--chip-verb-bg', tx:'--chip-verb-tx', desc:'An action or state word. Chinese verbs never conjugate for person, number or tense — that work is done by separate time words and particles.'},
+  pron:  {label:'Pronoun', kind:'chip', bg:'--chip-pron-bg', tx:'--chip-pron-tx', desc:'A stand-in for a noun. 他 (he), 她 (she) and 它 (it) are written differently but all pronounced "tā" — the distinction is visual, not audible.'},
+  poss:  {label:'的 · possessive / descriptive', kind:'text', color:'--tx-poss', desc:'的 is one of the hardest-working words in Mandarin: after a noun it marks possession ("X的Y" = Y belonging to X); after an adjective-like word before 是, it turns it into a description.'},
+  q:     {label:'吗 · question particle', kind:'text', color:'--tx-q', desc:'Added to the very end of a statement, 吗 turns it into a yes/no question. Nothing else in the sentence changes.'},
+  ba:    {label:'把 · disposal marker', kind:'chip', bg:'--chip-ba-bg', tx:'--chip-ba-tx', desc:'把 pulls a specific, already-known object in front of the verb, instead of leaving it after: "把 [object] [verb]" roughly means "take [object] and [verb] it."'},
+  neg:   {label:'Negation', kind:'inverted', desc:'不 (and, for the verb "have," 没) negates whatever comes right after it — usually a verb or modal verb.'},
+  modal: {label:'Modal / helper verb', kind:'chip', bg:'--chip-modal-bg', tx:'--chip-modal-tx', desc:'Words like 必须 (must), 想 (want to), 能 (can) and 会 (will) sit directly before the main verb, with no auxiliary conjugation.'},
+  dem:   {label:'Demonstrative', kind:'chip', bg:'--chip-dem-bg', tx:'--chip-dem-tx', desc:'这 ("this") and 那 ("that") point at something specific. They combine with 个 or 些 before a noun.'},
+  mw:    {label:'个 · measure word', kind:'text', color:'--tx-mw', desc:'Chinese requires a measure word between a demonstrative or number and most nouns. 个 is the general-purpose one, used when a more specific measure word isn\'t needed.'},
+  time:  {label:'Time word', kind:'chip', bg:'--chip-time-bg', tx:'--chip-time-tx', desc:'Time expressions like 明天 (tomorrow) usually come right after the subject, before the verb — there\'s no future-tense verb ending to do this job instead.'},
+  adv:   {label:'Adverb', kind:'text', color:'--tx-adv', desc:'Short adverbs like 就 sit between the subject/time word and the verb, adding shades of meaning (immediacy, sequence, emphasis).'},
+  pl:    {label:'Plural marker', kind:'text', color:'--tx-pl', desc:'们 pluralizes a pronoun or person noun (我→我们). 些 does similar work after a demonstrative (这→这些). Ordinary nouns like 苹果 never change form themselves.'},
+};
+
+/* ---------- Sentence data ----------
+   piece = [script, pinyin, gloss, jobKey, note, changed(bool)]
+   word  = {cat, cap, m:[piece,...]}
+*/
+const S = [
+{ num:1, en:'The apple is red.',
+  words:[
+    {cat:'subject', cap:'subject', m:[
+      ['苹果','píngguǒ','apple','noun','The basic noun for this whole set. No article needed.']
+    ]},
+    {cat:'verbphrase', cap:'is red', m:[
+      ['是','shì','is','verb','The linking verb "to be," joining the subject to a description.'],
+      ['红色','hóngsè','red','noun','Literally "red color" — Chinese color words are often nouns, not adjectives.'],
+      ['的','de','—','poss','的 here nominalizes 红色 so that 是…的 reads as "is [a red one]," Chinese’s usual way of saying a simple description.']
+    ]}
+  ],
+  what:'Sets the baseline pattern <b>是 … 的</b> for "X is [description]" and introduces 苹果 and 红色, which every later sentence in the set reuses.'
+},
+{ num:2, en:"It is John's apple.",
+  words:[
+    {cat:'subject', cap:'subject', m:[
+      ['这','zhè','this / it','dem','A pointing word used here as the subject, standing in for "it."']
+    ]},
+    {cat:'verbphrase', cap:'is', m:[
+      ['是','shì','is','verb','Same linking verb as #1.']
+    ]},
+    {cat:'object', cap:"John's apple", m:[
+      ['约翰','Yuēhàn','John','noun','A phonetic transliteration of the English name — foreign names are usually rendered by sound, not meaning.'],
+      ['的','de',"'s",'poss','的 after a noun marks possession: 约翰的苹果 = "John’s apple."'],
+      ['苹果','píngguǒ','apple','noun','Same noun as #1.']
+    ]}
+  ],
+  what:'Shows 的 doing possessive work (X的Y = "Y that belongs to X") — a second job for the same particle seen in #1.'
+},
+{ num:3, en:'I give John the apple.',
+  words:[
+    {cat:'subject', cap:'subject', m:[['我','wǒ','I','pron','First-person pronoun.']]},
+    {cat:'verbphrase', cap:'give', m:[['给','gěi','give','verb','给 is a double-object verb: 给 + recipient + thing given, no preposition needed.']]},
+    {cat:'object', cap:'recipient', m:[['约翰','Yuēhàn','John','noun','The person receiving the apple.']]},
+    {cat:'object', cap:'thing given', m:[['苹果','píngguǒ','apple','noun','No "the" — definiteness is understood from context, not marked by an article.']]}
+  ],
+  what:'Introduces the basic double-object order: <b>subject + 给 + recipient + thing</b>, with no equivalent of "to."'
+},
+{ num:4, en:'We give him the apple.',
+  words:[
+    {cat:'subject', cap:'subject', m:[
+      ['我','wǒ','I','pron','The base pronoun "I."'],
+      ['们','men','[plural]','pl','们 attaches to a pronoun to pluralize it: 我(I)→我们(we).']
+    ]},
+    {cat:'verbphrase', cap:'give', m:[['给','gěi','give','verb','Same double-object verb as #3.']]},
+    {cat:'object', cap:'recipient', m:[['他','tā','him','pron','Third-person pronoun. Spoken "tā" is identical for he/she/it — only the character shows which.']]},
+    {cat:'object', cap:'thing given', m:[['苹果','píngguǒ','apple','noun','Same noun again.']]}
+  ],
+  what:'The only change from #3 is the subject, and it’s made plural with the suffix <b>们</b> rather than a new word — the verb 给 doesn’t change at all.'
+},
+{ num:5, en:'He gives it to John.',
+  words:[
+    {cat:'subject', cap:'subject', m:[['他','tā','he','pron','Third-person pronoun "he" — same sound as 她 (she) and 它 (it).']]},
+    {cat:'object', cap:'fronted object', m:[
+      ['把','bǎ','—','ba','把 pulls a definite, already-known object in front of the verb: 把它给 ≈ "[take] it [and] give."'],
+      ['它','tā','it','pron','Third-person pronoun for things — also "tā," disambiguated only in writing.']
+    ]},
+    {cat:'verbphrase', cap:'give to John', m:[
+      ['给','gěi','give (to)','verb','Same verb as #3–#4, now following the 把-fronted object instead of preceding a new noun.'],
+      ['约翰','Yuēhàn','John','noun','The recipient.']
+    ]}
+  ],
+  what:'Because "it" (the apple) is already known from context, it moves in front of the verb with <b>把</b> instead of trailing 给 the way 苹果 did in #3.',
+  pair:{with:3, label:'Compare with #3'}
+},
+{ num:6, en:'She gives it to him.',
+  words:[
+    {cat:'subject', cap:'subject', m:[['她','tā','she','pron','Third-person pronoun "she" — again pronounced "tā."', true]]},
+    {cat:'object', cap:'fronted object', m:[
+      ['把','bǎ','—','ba','Same 把 construction as #5.'],
+      ['它','tā','it','pron','"It" — same sound as 他/她 once more.']
+    ]},
+    {cat:'verbphrase', cap:'give to him', m:[
+      ['给','gěi','give (to)','verb','Same verb.'],
+      ['他','tā','him','pron','"Him" — the fourth "tā" in this short sentence.', true]
+    ]}
+  ],
+  what:'Subject and recipient swap (他↔她), but every one of the four pronouns in this sentence is still pronounced <b>tā</b> — Mandarin leans on characters, not sound, to keep them apart.',
+  pair:{with:5, label:'Compare with #5'}
+},
+{ num:7, en:'Is the apple red?',
+  words:[
+    {cat:'subject', cap:'subject', m:[['苹果','píngguǒ','apple','noun','Same noun as #1.']]},
+    {cat:'verbphrase', cap:'is red', m:[
+      ['是','shì','is','verb','Unchanged from #1.'],
+      ['红色','hóngsè','red','noun','Unchanged from #1.'],
+      ['的','de','—','poss','Unchanged from #1.']
+    ]},
+    {cat:'question', cap:'question', m:[['吗','ma','?','q','吗 turns a plain statement into a yes/no question when added to the very end — no word order change needed.', true]]}
+  ],
+  what:'The whole sentence is identical to #1; Mandarin makes a yes/no question just by adding <b>吗</b> at the end, unlike English’s subject–verb inversion.',
+  pair:{with:1, label:'Compare with #1'}
+},
+{ num:8, en:'The apples are red.',
+  words:[
+    {cat:'subject', cap:'these apples', m:[
+      ['这','zhè','this','dem','The demonstrative "this."'],
+      ['些','xiē','[plural]','pl','些 after 这 marks a plural, unspecified quantity: 这些 = "these."', true],
+      ['苹果','píngguǒ','apple(s)','noun','苹果 itself never changes form for plural — Mandarin nouns don\'t inflect for number.']
+    ]},
+    {cat:'verbphrase', cap:'is red', m:[
+      ['是','shì','is / are','verb','Same verb whether the subject is singular or plural — 是 never conjugates.'],
+      ['红色','hóngsè','red','noun','Unchanged.'],
+      ['的','de','—','poss','Unchanged.']
+    ]}
+  ],
+  what:'Going from "the apple" to "the apples" only changes the subject (苹果 → 这些苹果); the predicate 是红色的 is copied over untouched.',
+  pair:{with:1, label:'Compare with #1'}
+},
+{ num:9, en:'I must give it to him.',
+  words:[
+    {cat:'subject', cap:'subject', m:[['我','wǒ','I','pron','First-person pronoun.']]},
+    {cat:'modifier', cap:'must', m:[['必须','bìxū','must','modal','A modal verb placed directly before the main verb phrase — no auxiliary conjugation, no "to."']]},
+    {cat:'object', cap:'fronted object', m:[
+      ['把','bǎ','—','ba','Same 把 construction as #5–#6.'],
+      ['它','tā','it','pron','"It," referring back to the apple.']
+    ]},
+    {cat:'verbphrase', cap:'give to him', m:[
+      ['给','gěi','give (to)','verb','Same verb.'],
+      ['他','tā','him','pron','The recipient.']
+    ]}
+  ],
+  what:'Shows where a <b>modal verb</b> slots in: right before the main verb phrase, in front of the whole 把 construction, not attached to it.'
+},
+{ num:10, en:'I want to give it to her.',
+  words:[
+    {cat:'subject', cap:'subject', m:[['我','wǒ','I','pron','First-person pronoun.']]},
+    {cat:'modifier', cap:'want to', m:[['想','xiǎng','want to','modal','A different modal verb, filling the same slot as 必须 in #9.', true]]},
+    {cat:'object', cap:'fronted object', m:[
+      ['把','bǎ','—','ba','Same 把 construction.'],
+      ['它','tā','it','pron','"It."']
+    ]},
+    {cat:'verbphrase', cap:'give to her', m:[
+      ['给','gěi','give (to)','verb','Same verb.'],
+      ['她','tā','her','pron','The recipient — swapped from 他 in #9.', true]
+    ]}
+  ],
+  what:'Only the modal (必须→想) and the recipient pronoun (他→她) change from #9; the rest of the sentence, 把它给, carries over exactly.',
+  pair:{with:9, label:'Compare with #9'}
+},
+{ num:11, en:"I'm going to know tomorrow.",
+  words:[
+    {cat:'subject', cap:'subject', m:[['我','wǒ','I','pron','First-person pronoun.']]},
+    {cat:'modifier', cap:'tomorrow, then', m:[
+      ['明天','míngtiān','tomorrow','time','Time words usually sit right after the subject and before the verb — there\'s no future-tense verb ending to place it near instead.'],
+      ['就','jiù','then / right away','adv','就 signals that something follows soon or as a natural next step, reinforcing 明天 as a near, settled point in time.']
+    ]},
+    {cat:'verbphrase', cap:'will know', m:[
+      ['会','huì','will','modal','会 marks future likelihood. Since Chinese verbs don\'t conjugate for tense, a word like 会 carries that meaning instead.'],
+      ['知道','zhīdào','know','verb','The main verb.']
+    ]}
+  ],
+  what:'With no verb tense to lean on, futurity here is carried entirely by the time word <b>明天</b>, the adverb <b>就</b>, and the modal <b>会</b> — three separate words doing what "’m going to" does in one.'
+},
+{ num:12, en:"I can't eat the apple.",
+  words:[
+    {cat:'subject', cap:'subject', m:[['我','wǒ','I','pron','First-person pronoun.']]},
+    {cat:'modifier', cap:'cannot', m:[
+      ['不','bù','not','neg','不 negates whatever sits directly in front of it — here, the modal 能.'],
+      ['能','néng','can','modal','The modal "can / be able to," negated as 不能, "cannot."']
+    ]},
+    {cat:'verbphrase', cap:'eat', m:[['吃','chī','eat','verb','The main verb.']]},
+    {cat:'object', cap:'this apple', m:[
+      ['这','zhè','this','dem','The same demonstrative as #2 and #8.'],
+      ['个','gè','[measure]','mw','个 is the general-purpose measure word, required between a demonstrative and most nouns: 这个苹果 = "this [one] apple."'],
+      ['苹果','píngguǒ','apple','noun','Unchanged.']
+    ]}
+  ],
+  what:'不 negates the modal 能 directly, and the object needs its measure word 个 once it follows a demonstrative — a requirement that never came up while 苹果 stood alone in earlier sentences.'
+}
+];
+
+/* ---------- Build key ---------- */
+const keygrid = document.getElementById('keygrid');
+Object.entries(JOBS).forEach(([id,j])=>{
+  const btn = document.createElement('button');
+  btn.className = 'keyitem';
+  btn.dataset.job = id;
+  const sw = document.createElement('span');
+  sw.className = 'keyswatch' + (j.kind==='inverted' ? ' inverted' : '');
+  if(j.kind==='chip') sw.style.background = `var(${j.bg})`;
+  else if(j.kind==='text') sw.style.background = `var(${j.color})`;
+  btn.appendChild(sw);
+  const label = document.createElement('span');
+  label.textContent = j.label;
+  btn.appendChild(label);
+  btn.addEventListener('click', ()=> toggleKeyFilter(id));
+  keygrid.appendChild(btn);
+});
+if(window.matchMedia && window.matchMedia('(min-width: 720px)').matches){
+  document.getElementById('keydetails').open = true;
+}
+
+let activeFilter = null;
+function toggleKeyFilter(id){
+  activeFilter = (activeFilter === id) ? null : id;
+  document.querySelectorAll('.keyitem').forEach(el=> el.classList.toggle('active', el.dataset.job===activeFilter));
+  document.querySelectorAll('.piece').forEach(el=>{
+    if(!activeFilter){ el.classList.remove('dim'); return; }
+    el.classList.toggle('dim', el.dataset.job !== activeFilter);
+  });
+}
+
+/* ---------- Build cards ---------- */
+const cardsEl = document.getElementById('cards');
+const stickynav = document.getElementById('stickynav');
+
+S.forEach(sent=>{
+  const card = document.createElement('section');
+  card.className = 'card';
+  card.id = 'sent-'+sent.num;
+
+  const head = document.createElement('div');
+  head.className = 'card-head';
+  head.innerHTML = `<span class="num">#${sent.num}</span><span class="en">${sent.en}</span>`;
+  card.appendChild(head);
+
+  if(sent.pair){
+    const p = document.createElement('p');
+    p.className = 'pairnote';
+    p.innerHTML = `${sent.pair.label} <a data-goto="${sent.pair.with}">→ jump to #${sent.pair.with}</a>`;
+    card.appendChild(p);
+  } else {
+    const p = document.createElement('p');
+    p.className = 'pairnote';
+    p.textContent = ' ';
+    card.appendChild(p);
+  }
+
+  const row = document.createElement('div');
+  row.className = 'sentrow';
+
+  sent.words.forEach((w, wi)=>{
+    const wb = document.createElement('div');
+    wb.className = 'wordbox';
+    wb.style.setProperty('--boxcolor', `var(--box-${w.cat})`);
+    const capEl = document.createElement('div');
+    capEl.className = 'wordcap';
+    capEl.textContent = w.cap;
+    const piecesEl = document.createElement('div');
+    piecesEl.className = 'wordboxes';
+
+    w.m.forEach((p, pi)=>{
+      const [script, py, gloss, jobKey, note, changed] = p;
+      const job = JOBS[jobKey];
+      const btn = document.createElement('button');
+      btn.className = 'piece ' + (job.kind==='chip' ? 'chip' : job.kind==='inverted' ? 'inverted' : 'text');
+      if(changed) btn.classList.add('changed');
+      btn.dataset.job = jobKey;
+      btn.setAttribute('aria-label', `${script}, ${py}, ${gloss}, ${job.label}`);
+      if(job.kind==='chip'){ btn.style.setProperty('--chipbg', `var(${job.bg})`); btn.style.setProperty('--chiptx', `var(${job.tx})`); }
+      if(job.kind==='text'){ btn.style.setProperty('--txcolor', `var(${job.color})`); }
+      btn.innerHTML = `<span class="gloss">${gloss}</span><span class="cn">${script}</span><span class="py">${py}</span>`;
+      btn.addEventListener('click', ()=> openSheet(sent, wi, pi));
+      btn.addEventListener('mouseenter', (e)=> showTooltip(e, `${job.label} · ${gloss}`));
+      btn.addEventListener('mousemove', moveTooltip);
+      btn.addEventListener('mouseleave', hideTooltip);
+      piecesEl.appendChild(btn);
+    });
+
+    wb.appendChild(piecesEl);
+    wb.appendChild(capEl);
+    row.appendChild(wb);
+  });
+
+  card.appendChild(row);
+
+  const what = document.createElement('div');
+  what.className = 'what';
+  what.innerHTML = `<b>What this shows —</b> ${sent.what}`;
+  card.appendChild(what);
+
+  cardsEl.appendChild(card);
+
+  const navbtn = document.createElement('button');
+  navbtn.className = 'navnum';
+  navbtn.textContent = sent.num;
+  navbtn.dataset.target = 'sent-'+sent.num;
+  navbtn.addEventListener('click', ()=> document.getElementById('sent-'+sent.num).scrollIntoView({behavior:'smooth', block:'start'}));
+  stickynav.appendChild(navbtn);
+});
+
+const navsum = document.createElement('button');
+navsum.className = 'navsum';
+navsum.textContent = 'Σ';
+navsum.title = 'Summary';
+navsum.addEventListener('click', ()=> document.getElementById('summary-card').scrollIntoView({behavior:'smooth', block:'start'}));
+stickynav.appendChild(navsum);
+
+document.querySelectorAll('[data-goto]').forEach(a=>{
+  a.addEventListener('click', ()=> document.getElementById('sent-'+a.dataset.goto).scrollIntoView({behavior:'smooth', block:'start'}));
+});
+
+/* ---------- Summary ---------- */
+const SUMMARY = [
+  'No verb ever conjugates. 是, 给, 吃 and 知道 look identical whether the subject is 我, 我们, 他 or 她, and whether the action is past, present or future — time words (明天), adverbs (就) and modals (会, 能, 想, 必须) carry that information instead.',
+  'Definiteness moves the object. A general object trails the verb (<a data-goto="3">#3</a> 给约翰苹果), but a specific, already-known one is fronted with <b>把</b> (<a data-goto="5">#5</a> 把它给约翰) — English marks the same distinction with articles, Chinese with word order.',
+  '的 does two unrelated jobs: marking possession (<a data-goto="2">#2</a> 约翰的苹果) and turning a noun into a description after 是 (<a data-goto="1">#1</a> 是红色的).',
+  'Plurality is never on the noun. 苹果 is identical whether it means "apple" or "apples" (<a data-goto="1">#1</a> vs <a data-goto="8">#8</a>); plural is marked on pronouns with 们 and on demonstratives with 些.',
+  'A demonstrative needs a measure word before most nouns — 这个苹果, not 这苹果 (<a data-goto="12">#12</a>) — a small requirement with no English equivalent.',
+  'Three pronouns collapse to one sound. 他, 她 and 它 (he/she/it) are all pronounced "tā"; only the character on the page tells them apart (<a data-goto="5">#5</a>, <a data-goto="6">#6</a>).',
+  'A yes/no question is just a statement plus 吗 at the end — no auxiliary verb, no inversion (<a data-goto="1">#1</a> vs <a data-goto="7">#7</a>).'
+];
+const sl = document.getElementById('summary-list');
+SUMMARY.forEach(t=>{
+  const li = document.createElement('li');
+  li.innerHTML = t;
+  sl.appendChild(li);
+});
+document.querySelectorAll('#summary-list a').forEach(a=>{
+  a.addEventListener('click', ()=> document.getElementById('sent-'+a.dataset.goto).scrollIntoView({behavior:'smooth', block:'start'}));
+});
+
+/* ---------- Toggles ---------- */
+function wireToggle(btnId, cls){
+  const btn = document.getElementById(btnId);
+  btn.addEventListener('click', ()=>{
+    const on = document.body.classList.toggle(cls);
+    btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+  });
+}
+document.body.classList.add('show-gloss','show-py','show-boxes');
+wireToggle('toggle-gloss','show-gloss');
+wireToggle('toggle-py','show-py');
+wireToggle('toggle-boxes','show-boxes');
+
+/* ---------- Tooltip ---------- */
+const tooltip = document.getElementById('tooltip');
+function showTooltip(e, text){ tooltip.textContent = text; tooltip.classList.add('show'); moveTooltip(e); }
+function moveTooltip(e){ tooltip.style.left = (e.clientX + 14) + 'px'; tooltip.style.top = (e.clientY + 18) + 'px'; }
+function hideTooltip(){ tooltip.classList.remove('show'); }
+
+/* ---------- Bottom sheet ---------- */
+const sheetwrap = document.getElementById('sheetwrap');
+const scrim = document.getElementById('scrim');
+let sheetCtx = null; // {sent, flatPieces:[{word, piece, jobKey}], index}
+
+function flattenSentence(sent){
+  const flat = [];
+  sent.words.forEach(w=> w.m.forEach(p=> flat.push({piece:p})));
+  return flat;
+}
+
+function openSheet(sent, wi, pi){
+  const flat = flattenSentence(sent);
+  let idx = 0, count = 0;
+  sent.words.forEach((w, i)=>{
+    w.m.forEach((p, j)=>{
+      if(i===wi && j===pi) idx = count;
+      count++;
+    });
+  });
+  sheetCtx = { sent, flat, idx };
+  renderSheet();
+  sheetwrap.classList.add('open');
+  document.addEventListener('keydown', onSheetKey);
+}
+
+function renderSheet(){
+  const {flat, idx} = sheetCtx;
+  const [script, py, gloss, jobKey, note] = flat[idx].piece;
+  const job = JOBS[jobKey];
+  document.getElementById('sheet-cn').textContent = script;
+  document.getElementById('sheet-py').textContent = py;
+  const jobEl = document.getElementById('sheet-job');
+  jobEl.textContent = job.label;
+  jobEl.style.background = job.kind==='chip' ? `var(${job.bg})` : job.kind==='inverted' ? 'var(--chip-neg-bg)' : 'var(--surface-2)';
+  jobEl.style.color = job.kind==='chip' ? `var(${job.tx})` : job.kind==='inverted' ? 'var(--chip-neg-tx)' : (job.kind==='text' ? `var(${job.color})` : 'var(--ink)');
+  document.getElementById('sheet-gloss').textContent = gloss;
+  document.getElementById('sheet-desc').textContent = job.desc;
+  document.getElementById('sheet-note').textContent = note;
+
+  document.querySelectorAll('.piece').forEach(el=> el.classList.remove('tapped'));
+  const allPieces = document.querySelectorAll(`#sent-${sheetCtx.sent.num} .piece`);
+  if(allPieces[idx]){
+    allPieces[idx].classList.add('tapped');
+    allPieces[idx].scrollIntoView({behavior:'smooth', block:'center'});
+  }
+
+  document.getElementById('sheet-prev').disabled = idx===0;
+  document.getElementById('sheet-next').disabled = idx===flat.length-1;
+}
+
+function closeSheet(){
+  sheetwrap.classList.remove('open');
+  document.querySelectorAll('.piece.tapped').forEach(el=> el.classList.remove('tapped'));
+  document.removeEventListener('keydown', onSheetKey);
+  sheetCtx = null;
+}
+
+function onSheetKey(e){
+  if(e.key==='Escape') closeSheet();
+  if(e.key==='ArrowLeft') stepSheet(-1);
+  if(e.key==='ArrowRight') stepSheet(1);
+}
+function stepSheet(d){
+  if(!sheetCtx) return;
+  const n = sheetCtx.idx + d;
+  if(n<0 || n>=sheetCtx.flat.length) return;
+  sheetCtx.idx = n;
+  renderSheet();
+}
+
+document.getElementById('sheet-prev').addEventListener('click', ()=> stepSheet(-1));
+document.getElementById('sheet-next').addEventListener('click', ()=> stepSheet(1));
+document.getElementById('sheet-close').addEventListener('click', closeSheet);
+scrim.addEventListener('click', closeSheet);
+
+/* swipe down to close */
+let touchStartY = null;
+const sheetEl = document.getElementById('sheet');
+sheetEl.addEventListener('touchstart', (e)=>{ touchStartY = e.touches[0].clientY; }, {passive:true});
+sheetEl.addEventListener('touchend', (e)=>{
+  if(touchStartY===null) return;
+  const dy = e.changedTouches[0].clientY - touchStartY;
+  if(dy > 70) closeSheet();
+  touchStartY = null;
+}, {passive:true});
+
+/* ---------- Active sentence in sticky nav ---------- */
+const navButtons = Array.from(document.querySelectorAll('.navnum'));
+const observer = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      const id = entry.target.id;
+      navButtons.forEach(b=> b.classList.toggle('active', b.dataset.target===id));
+    }
+  });
+}, { rootMargin: '-30% 0px -60% 0px', threshold: 0 });
+document.querySelectorAll('.card').forEach(c=> observer.observe(c));
+</script>
+
+</body></html>

@@ -1,0 +1,452 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Korean Sentence Switchboard - old</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Noto+Sans+KR:wght@500;700;900&display=swap">
+<style>
+:root{
+  --bg:#F3F5F8; --surface:#FFFFFF; --surface-2:#EDF0F5; --ink:#171B24; --muted:#5A6272; --line:#D6DBE4;
+  --focus:#E0182D; --chip-ink:#141821;
+  --f-pron:#FFFFFF; --f-noun:#B5EE9C; --f-topic:#FFF3B0; --f-obj:#FFC9B8; --f-dat:#FFB870;
+  --f-stem:#7DEFD3; --f-cop:#FFB8D2;
+  --t-infl:#D11F35; --t-pol:#D11F35; --t-tense:#2346D8;
+  --b1:#E0182D; --b2:#EE6A10; --b3:#2447D6; --b4:#7A2BD9;
+  --shadow:0 1px 2px rgba(20,24,33,.06),0 4px 16px rgba(20,24,33,.05);
+  --sheet-shadow:0 -8px 30px rgba(20,24,33,.14);
+  --flash:rgba(224,24,45,.18);
+  --ko:"Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  --en:"Figtree",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#11141A; --surface:#1A1F28; --surface-2:#232A35; --ink:#E8ECF3; --muted:#9BA4B4; --line:#2E3644;
+    --focus:#FF4D5E; --f-pron:#DDE3EC;
+    --t-infl:#FF6273; --t-pol:#FF6273; --t-tense:#86A3FF;
+    --b1:#FF4D5E; --b2:#FF8A3D; --b3:#6F8BFF; --b4:#B07BFF;
+    --shadow:none; --sheet-shadow:0 -8px 30px rgba(0,0,0,.5); --flash:rgba(255,77,94,.22);
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#11141A; --surface:#1A1F28; --surface-2:#232A35; --ink:#E8ECF3; --muted:#9BA4B4; --line:#2E3644;
+  --focus:#FF4D5E; --f-pron:#DDE3EC;
+  --t-infl:#FF6273; --t-pol:#FF6273; --t-tense:#86A3FF;
+  --b1:#FF4D5E; --b2:#FF8A3D; --b3:#6F8BFF; --b4:#B07BFF;
+  --shadow:none; --sheet-shadow:0 -8px 30px rgba(0,0,0,.5); --flash:rgba(255,77,94,.22);
+}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--en);font-size:15px;line-height:1.5;margin:0;-webkit-tap-highlight-color:transparent}
+.wrap{max-width:860px;margin:0 auto;padding-inline:16px;padding-block:18px 140px;display:flex;flex-direction:column;gap:14px}
+header h1{font-weight:700;font-size:clamp(22px,5.6vw,32px);line-height:1.15;margin:0 0 4px;text-wrap:balance}
+header p{margin:0;color:var(--muted);max-width:62ch;font-size:14.5px}
+
+/* ---------- sticky stage: the sentence never leaves the screen ---------- */
+.dock{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;display:flex;flex-direction:column;gap:8px;background:var(--bg);margin-inline:-16px;padding:8px 16px 10px;border-bottom:1px solid var(--line)}
+.stage{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:10px 12px 8px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:8px}
+.en{font-size:clamp(15px,4.1vw,20px);font-weight:600;line-height:1.3;margin:0;min-height:2.6em;display:flex;align-items:center}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tag{font-size:11.5px;font-weight:600;letter-spacing:.04em;padding:3px 8px;border-radius:999px;background:var(--surface-2);color:var(--muted)}
+.tag.hot{background:var(--ink);color:var(--bg)}
+@media (max-width:560px){.tag.hint{display:none}}
+.tag.hint{background:transparent;padding-inline:0;font-weight:500;letter-spacing:0}
+
+.slots{display:grid;grid-template-columns:42% 1fr;grid-template-areas:"s r" "o v";gap:10px 8px;align-items:end}
+@media (min-width:720px){ .slots{grid-template-columns:.9fr 1.1fr .9fr 1.7fr;grid-template-areas:"s r o v"} }
+.slot{display:flex;flex-direction:column;align-items:flex-start;gap:4px;min-width:0}
+.slot[data-s="s"]{grid-area:s}.slot[data-s="r"]{grid-area:r}.slot[data-s="o"]{grid-area:o}.slot[data-s="v"]{grid-area:v}
+.box{display:flex;align-items:flex-end;padding:3px 4px 4px;border:2.5px solid var(--bc);border-radius:4px;min-height:80px}
+.cap{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--bc)}
+.punct{font:700 clamp(24px,6.4vw,40px)/1.15 var(--ko);align-self:center;margin:18px 0 0 2px;border-radius:3px}
+
+.morph{all:unset;display:flex;flex-direction:column;align-items:center;cursor:pointer;border-radius:4px;position:relative}
+.morph:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.g{font-size:11.5px;line-height:1.2;padding:2px 3px;margin-bottom:3px;color:var(--chip-ink);background:var(--c,transparent);border-radius:3px;white-space:nowrap}
+.k{font:700 clamp(24px,6.4vw,40px)/1.15 var(--ko);color:var(--chip-ink);background:var(--c);padding:0 1px}
+.r{font-size:clamp(12px,3.2vw,15px);font-weight:600;line-height:1.2;margin-top:4px;padding:1px 2px;color:var(--chip-ink);background:var(--c);border-radius:3px;white-space:nowrap}
+.morph[data-t] .k,.morph[data-t] .r{background:transparent;color:var(--c)}
+.morph[data-t] .g{background:transparent;color:var(--c);font-weight:600}
+.morph[data-fn="pron"] .g{background:transparent;color:var(--muted)}
+.morph[data-fn="neg"] .k,.morph[data-fn="neg"] .r,.morph[data-fn="neg"] .g{background:var(--ink);color:var(--bg)}
+.morph[data-fuse] .k{box-shadow:inset 0 -5px 0 var(--fc)}
+.morph.ghost .k{background:transparent;color:var(--muted);border:2px dashed var(--line);border-radius:4px;font-size:clamp(15px,4vw,20px);padding:6px 8px;font-family:var(--en);font-weight:600}
+.morph.ghost .g,.morph.ghost .r{background:transparent;color:var(--muted)}
+body.hide-gloss .g{visibility:hidden}
+body.hide-rom .r{display:none}
+.morph.chg .k,.punct.chg{outline:3px dashed var(--focus);outline-offset:2px}
+.morph.on .k{outline:3px solid var(--focus);outline-offset:2px}
+@keyframes pop{0%{background-color:var(--flash);transform:translateY(-4px)}100%{transform:none}}
+.morph.chg{animation:pop .45s ease-out}
+@media (hover:hover){
+  .morph::after{content:attr(data-tip);position:absolute;bottom:calc(100% + 4px);left:50%;transform:translateX(-50%);background:var(--ink);color:var(--bg);font:500 12px/1.3 var(--en);padding:5px 8px;border-radius:6px;white-space:nowrap;pointer-events:none;opacity:0;transition:opacity .12s .2s;z-index:3}
+  .morph:hover::after{opacity:1}
+}
+.before{font-size:12.5px;color:var(--muted);display:flex;gap:6px;align-items:baseline;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:6px}
+.before b{font-weight:600;font-size:11px;letter-spacing:.08em;text-transform:uppercase}
+.before .ko{font-family:var(--ko);font-weight:500;color:var(--ink)}
+
+/* ---------- what changed ---------- */
+.why{background:var(--surface-2);border-radius:10px;padding:8px 10px;display:flex;flex-direction:column;gap:4px;font-size:13.5px;line-height:1.4}
+.why .lbl{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.why p{margin:0;max-width:64ch}
+.diff{display:flex;flex-wrap:wrap;gap:6px;font-size:12.5px}
+.diff span{padding:3px 8px;border-radius:6px;border:1px solid var(--line);background:var(--surface)}
+.diff .c{border:1.5px dashed var(--focus);color:var(--focus);font-weight:600}
+.diff .u{color:var(--muted)}
+@media (max-width:560px){.diff{display:none}}
+
+/* ---------- switches ---------- */
+.switches{display:flex;flex-direction:column;gap:6px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:8px 10px}
+.sw{display:grid;grid-template-columns:4.4em 1fr;align-items:center;gap:8px;min-width:0}
+.sw h2{font-size:10.5px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);margin:0;line-height:1.2}
+.sw h2 span{text-transform:none;letter-spacing:0;font-weight:500}
+.seg{display:flex;flex-wrap:nowrap;gap:5px;overflow-x:auto;scrollbar-width:none;min-width:0;padding:1px}
+.seg::-webkit-scrollbar{display:none}
+.seg button{font:600 13.5px var(--en);padding:5px 10px;min-height:34px;border-radius:9px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer;display:flex;align-items:center;gap:5px;white-space:nowrap;flex:none}
+.seg button small{font-weight:500;font-size:11.5px;color:var(--muted);font-family:var(--ko)}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.seg button[aria-pressed="true"] small{color:var(--bg);opacity:.75}
+.hint{font-size:12.5px;color:var(--muted);margin:6px 0 0}
+.layers{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.pill{font:500 13px var(--en);padding:7px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--muted);cursor:pointer}
+.pill[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.label{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-right:2px}
+
+/* ---------- bottom sheet ---------- */
+.sheet{position:fixed;left:0;right:0;bottom:0;z-index:21;margin:0 auto;max-width:600px;background:var(--surface);border:1px solid var(--line);border-bottom:0;border-radius:18px 18px 0 0;box-shadow:var(--sheet-shadow);padding:10px 16px calc(16px + env(safe-area-inset-bottom,0px));transition:transform .2s ease}
+.sheet[hidden]{display:block!important;transform:translateY(110%);visibility:hidden}
+.grab{width:40px;height:4px;border-radius:2px;background:var(--line);margin:0 auto 10px}
+.sh-top{display:flex;gap:12px;align-items:center}
+.big{font:900 36px/1 var(--ko);color:var(--chip-ink);background:var(--c,transparent);padding:4px 7px;border-radius:5px;flex:none}
+.big.t{background:transparent;color:var(--c)}
+.big.inv{background:var(--ink);color:var(--bg)}
+.big.gh{background:transparent;color:var(--muted);border:2px dashed var(--line);font:600 18px var(--en);padding:8px 10px}
+.sh-top h3{margin:0;font-size:17px;line-height:1.2}
+.sh-top .meta{font-size:13.5px;color:var(--muted)}
+.sheet p{margin:10px 0 0;max-width:62ch}
+.sheet .note{padding-top:8px;border-top:1px solid var(--line)}
+.sh-nav{display:flex;gap:8px;margin-top:14px}
+.sh-nav button{flex:1;font:600 14px var(--en);padding:11px;border-radius:10px;border:1px solid var(--line);background:var(--surface-2);color:var(--ink);cursor:pointer}
+.sh-nav button:disabled{opacity:.4;cursor:default}
+.sh-nav .close{flex:0 0 auto;padding-inline:16px}
+
+footer{font-size:12.5px;color:var(--muted);text-align:center}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<div class="wrap">
+  <header>
+    <h1>Korean Sentence Switchboard - old</h1>
+    <p>One sentence, six switches. Flip a switch and only the pieces it affects change, outlined in red. The switches and the sentence stay pinned together at the top. Tap any piece to see why it looks the way it does.</p>
+  </header>
+
+  <div class="dock">
+    <section class="switches" id="switches" aria-label="Switches"></section>
+    <section class="stage" aria-label="Current sentence">
+      <p class="en" id="en"></p>
+      <div class="tags" id="tags"></div>
+      <div class="slots" id="slots"></div>
+      <div class="before" id="before"></div>
+      <div class="why" aria-live="polite">
+        <span class="lbl" id="why-lbl">What changed</span>
+        <p id="why"></p>
+        <div class="diff" id="diff"></div>
+      </div>
+    </section>
+  </div>
+
+  <div class="layers" id="layers"></div>
+
+  <footer>Prototype. The Korean forms are generated from rules plus a small table of fused spellings. All 48 verb forms (and their negated versions) were checked for this sentence.</footer>
+</div>
+
+<section class="sheet" id="sheet" hidden aria-live="polite" aria-label="Piece details">
+  <div class="grab"></div>
+  <div class="sh-top"><div class="big" id="sh-big"></div><div><h3 id="sh-name"></h3><div class="meta" id="sh-meta"></div></div></div>
+  <p id="sh-desc"></p>
+  <p class="note" id="sh-note"></p>
+  <div class="sh-nav">
+    <button type="button" id="sh-prev">‹ Previous</button>
+    <button type="button" id="sh-next">Next ›</button>
+    <button type="button" class="close" id="sh-close" aria-label="Close">✕</button>
+  </div>
+</section>
+
+<script>
+/* ================= grammar jobs (colour key) ================= */
+const FN = {
+  pron:  {name:"Pronoun", c:"--f-pron", d:"Who is doing it. Korean drops pronouns whenever context makes them clear."},
+  noun:  {name:"Noun", c:"--f-noun", d:"A person or thing. Particles attach right after it."},
+  topic: {name:"Topic marker", c:"--f-topic", d:"Marks what the sentence is about. 는 after a vowel, 은 after a consonant."},
+  obj:   {name:"Object marker", c:"--f-obj", d:"Marks the thing being given. 를 after a vowel, 을 after a consonant."},
+  dat:   {name:"Recipient marker", c:"--f-dat", d:"'To' a person. 에게 is neutral, 한테 is casual speech, 께 is honorific (for elders)."},
+  stem:  {name:"Verb stem", c:"--f-stem", d:"The core of the verb. The speech-level ending attaches after it, and sometimes fuses into the same syllable block."},
+  neg:   {name:"Negation", c:"--ink", inv:1, d:"A separate word right before the verb. 안 = don't/won't (by choice). 못 = can't (unable)."},
+  tense: {name:"Tense marker", c:"--t-tense", t:1, d:"Past 었 and future ㄹ 거 go between the stem and the ending."},
+  cop:   {name:"'Is' (copula)", c:"--f-cop", d:"The future is literally 'it is the thing that will ~'. This piece is the 'is'. Its form follows the speech level."},
+  infl:  {name:"Casual / plain ending", c:"--t-infl", t:1, d:"The bare ending: 어 (casual), 다 (plain statement), 니 (plain question)."},
+  pol:   {name:"Polite / formal ending", c:"--t-pol", t:1, d:"요 makes casual speech polite. -ㅂ니다 / -습니다 is formal polite. It becomes -니까 in questions."}
+};
+
+/* ================= switches ================= */
+const SW = [
+  {id:"who", label:"Who", opts:[["me","I"],["you","You"],["he","He"],["she","She"],["we","We"],["they","They"]]},
+  {id:"lvl", label:"Level", opts:[["cas","Casual","반말"],["pol","Polite","해요체"],["fml","Formal","합쇼체"],["pln","Plain","해라체"]],
+    hint:{cas:"Close friends, siblings, people younger than you.",pol:"The everyday safe default: coworkers, shop staff, acquaintances.",fml:"First meetings, customers, presentations, the news.",pln:"Written Korean (books, diaries, articles), or adults speaking to children."}},
+  {id:"tns", label:"Tense", opts:[["pst","Past"],["prs","Present"],["fut","Future"]]},
+  {id:"neg", label:"Negate", opts:[["no","None"],["an","Don't","안"],["mot","Can't","못"]]},
+  {id:"q",   label:"Type", opts:[["st","Statement"],["q","Question"]]},
+  {id:"rec", label:"To", opts:[["friend","Minho","a friend"],["elder","Grandma","an elder"]]}
+];
+const state = {who:"me",lvl:"pol",tns:"prs",neg:"no",q:"st",rec:"friend"};
+
+/* ================= Korean generator ================= */
+// verb table: fused syllable blocks for each form
+const VERB = {
+  friend:{dict:"주다", base:["주","ju"], inf:["줘","jwo"], past:["줬","jwoss"], fut:["줄","jul"], fml:["줍","jub"], pln:["준","jun"],
+          nb:"주다 'to give'."},
+  elder: {dict:"드리다", base:["드리","deu-li"], inf:["드려","deu-lyeo"], past:["드렸","deu-lyeoss"], fut:["드릴","deu-lil"], fml:["드립","deu-lib"], pln:["드린","deu-lin"],
+          nb:"드리다 is the humble verb for giving to someone older or higher in status. It replaces 주다 completely."}
+};
+const humble = lvl => lvl==="pol"||lvl==="fml";
+
+function subject(s){
+  const w=s.who, h=humble(s.lvl);
+  const T=(ko,rom,g,note,cons)=>[[ko,rom,g,"pron",note],[cons?"은":"는",cons?"-eun":"-neun","topic",
+     "topic",cons?"The word ends in a consonant, so 은 instead of 는.":null]];
+  if(w==="me")  return h? T("저","jeo","I (humble)","저 is the humble 'I', expected in polite and formal speech.")
+                         : T("나","na","I","나 is the plain 'I', used in casual and plain speech.");
+  if(w==="we")  return h? T("저희","jeo-hui","we (humble)","저희 is the humble 'we'. Use it with people outside your group.")
+                         : T("우리","u-li","we","우리 is the plain 'we'.");
+  if(w==="you") return h? [["(you)","—","dropped","ghost","Koreans avoid saying 'you' in polite speech. Leave it out when it's obvious, or use the person's name or title (민수 씨는, 선생님은)."]]
+                         : T("너","neo","you","너 is only for close friends and people younger than you. It's rude anywhere else.");
+  if(w==="he")  return T("그","geu","he","그 for 'he' is mostly written. In speech people say 그 사람 (that person) or use the name.");
+  if(w==="she") return T("그녀","geu-nyeo","she","그녀 is mostly written. In speech: 그 사람 or the name.");
+  if(w==="they")return T("그들","geu-deul","they","그들 = 그 (he/that) + 들 (plural). Mostly written.",true);
+}
+function receiver(s){
+  return s.rec==="elder"
+    ? [["할머니","hal-meo-ni","grandma","noun"],["께","-kke","to (hon.)","dat","께 is the honorific version of 에게. Use it for people you show respect to."]]
+    : [["민호","min-ho","Minho","noun"],["에게","-e-ge","to","dat",s.lvl==="cas"?"In casual speech most people say 한테 (-han-te) instead.":null]];
+}
+function object(){ return [["사과","sa-gwa","apple","noun"],["를","-leul","d.o.","obj"]]; }
+
+function verb(s){
+  const V=VERB[s.rec], q=s.q==="q", out=[];
+  if(s.neg!=="no") out.push(s.neg==="an"
+     ? ["안","an","not","neg","안 = don't / won't. It's a choice not to give."]
+     : ["못","mot","can't","neg","못 = can't. Something prevents it. Pronounced a bit tense before ㅈ/ㄷ: mot-jjwo."]);
+  const P=(pair,g,fn,note,fuse)=>{const m=[pair[0],pair[1],g,fn,note]; if(fuse) m.fuse=fuse; return m;};
+
+  if(s.tns==="prs"){
+    if(s.lvl==="cas"){ out.push(P(V.inf,"give","stem",`${V.nb} Stem + casual ending 어 contract into ${V.inf[0]}.`,"infl")); }
+    if(s.lvl==="pol"){ out.push(P(V.inf,"give","stem",`${V.nb} Stem + 어 contract into ${V.inf[0]}.`,"infl"), ["요","-yo","pol","pol","요 turns the casual form into polite speech. The questions use the same form with rising intonation."]); }
+    if(s.lvl==="fml"){ out.push(P(V.fml,"give","stem",`${V.nb} The ㅂ of the formal ending tucks under the stem: ${V.base[0]} + ㅂ → ${V.fml[0]}. Pronounced with an m sound.`,"pol"),
+                               q?["니까","-ni-kka","?(fml)","pol","The formal question ending. Statements end in 니다 instead."]:["니다","-ni-da","fml","pol","The formal polite statement ending."]); }
+    if(s.lvl==="pln"){ if(q) out.push(P(V.base,"give","stem",V.nb), ["니","-ni","?","infl","Plain question ending, typically adult → child."]);
+                       else out.push(P(V.pln,"give","stem",`${V.nb} Present plain statements add ㄴ다 after a vowel: ${V.base[0]} + ㄴ → ${V.pln[0]}.`,"infl"),["다","-da","plain","infl","The plain (written) statement ending."]); }
+  }
+  if(s.tns==="pst"){
+    out.push(P(V.past,"gave","stem",`${V.nb} Stem + past 었 contract into ${V.past[0]}. The blue underline marks the tense fused inside the block.`,"tense"));
+    if(s.lvl==="cas") out.push(["어","-eo","","infl","Casual ending after the past marker."]);
+    if(s.lvl==="pol") out.push(["어","-eo","","infl"],["요","-yo","pol","pol"]);
+    if(s.lvl==="fml") out.push(q?["습니까","-seum-ni-kka","?(fml)","pol","After a consonant (the ㅆ of 었) the formal ending is 습니까."]:["습니다","-seum-ni-da","fml","pol","After a consonant (the ㅆ of 었) the formal ending is 습니다, not ㅂ니다."]);
+    if(s.lvl==="pln") out.push(q?["니","-ni","?","infl"]:["다","-da","plain","infl","In the past, the plain ending is just 다."]);
+  }
+  if(s.tns==="fut"){
+    out.push(P(V.fut,"give","stem",`${V.nb} Stem + ㄹ ('will') → ${V.fut[0]}. The blue underline marks the future ㄹ.`,"tense"));
+    if(s.lvl==="cas") out.push(["거","geo","thing","tense","거 = 것 'thing'. -ㄹ 거 = 'the thing that will…', the everyday future."],["야","-ya","is","cop","Casual 'is'."]);
+    if(s.lvl==="pol") out.push(["거","geo","thing","tense","거 = 것 'thing'. -ㄹ 거 = 'the thing that will…'."],["예요","-ye-yo","is","cop","Polite 'is' after a vowel."]);
+    if(s.lvl==="fml") out.push(q?["겁니까","geom-ni-kka","thing+is?","cop","것 + 입니까 contracted. Formal question."]:["겁니다","geom-ni-da","thing+is","cop","것 + 입니다 contracted. Formal statement."]);
+    if(s.lvl==="pln") out.push(q?["거","geo","thing","tense"]:["것","geos","thing","tense","In writing the full 것 is used, not 거."], q?["니","-ni","?","infl","Plain question."]:["이다","-i-da","is","cop","Plain 'is': the dictionary form of the copula."]);
+  }
+  return out;
+}
+
+/* ================= English generator ================= */
+function english(s){
+  const S={me:"I",you:"you",he:"he",she:"she",we:"we",they:"they"}[s.who];
+  const third = s.who==="he"||s.who==="she";
+  const O = s.rec==="elder"?"Grandma":"Minho";
+  const cap = x=>x[0].toUpperCase()+x.slice(1);
+  let aux, main="give", q=s.q==="q";
+  const key=s.tns+"-"+s.neg;
+  const T={
+    "prs-no": q?[third?"does":"do",null]:[null,third?"gives":"give"],
+    "prs-an": [third?"doesn't":"don't"], "prs-mot":["can't"],
+    "pst-no": q?["did",null]:[null,"gave"], "pst-an":["didn't"], "pst-mot":["couldn't"],
+    "fut-no": ["will"], "fut-an":["won't"], "fut-mot":["won't",null,"be able to give"]
+  }[key];
+  aux=T[0]; if(T[1]!==undefined && T[1]!==null) main=T[1]; if(T[2]) main=T[2];
+  let txt;
+  if(q) txt = `${cap(aux)} ${S} ${main} ${O} the apple?`;
+  else  txt = aux? `${cap(S)} ${aux} ${main} ${O} the apple.` : `${cap(S)} ${main} ${O} the apple.`;
+  return txt.replace(/^i /,"I ");
+}
+
+/* ================= explanations for each switch ================= */
+function explain(id, s){
+  const lv=s.lvl;
+  switch(id){
+    case "who":
+      if(s.who==="you"&&humble(lv)) return "'You' disappears. Polite Korean avoids pronouns for the listener, so the slot is empty. The verb doesn't change for person.";
+      if((s.who==="me"||s.who==="we")&&humble(lv)) return "Only the subject changed. In polite and formal speech 'I/we' take humble forms (저, 저희). The verb stays the same whoever is giving.";
+      return "Only the subject changed. Korean verbs don't change for I / you / he / we. English has to change 'give' to 'gives'; Korean doesn't.";
+    case "lvl":
+      return "The speech level lives in the ending of the verb. " + (humble(lv)?"Polite and formal speech also switch 나/우리 to the humble 저/저희. ":"") +
+        ({cas:"Casual drops 요.",pol:"Polite adds 요 to the casual form.",fml:"Formal uses a separate ending, -ㅂ니다 / -습니다.",pln:"Plain is the written style: -ㄴ다 / -다."}[lv]);
+    case "tns":
+      return ({pst:"Past: 었 slots between the stem and the ending and fuses with the stem (주 + 었 → 줬).",prs:"Present: no tense marker. The ending attaches straight to the stem.",fut:"Future: ㄹ attaches to the stem, then 'the thing that will…' + 'is' (-ㄹ 거예요)."}[s.tns]) + " The rest of the sentence is untouched.";
+    case "neg":
+      return s.neg==="no"?"Negation removed. Nothing else changed.":"Negation is a separate word placed right before the verb. Nothing else in the sentence changes, including the ending.";
+    case "q":
+      return (lv==="cas"||lv==="pol")
+        ? "In casual and polite speech the words stay identical. Only the ? changes, and your voice rises at the end."
+        : "In formal and plain speech the ending itself changes for questions (니다 → 니까, 다 → 니).";
+    case "rec":
+      return s.rec==="elder"
+        ? "Giving to an elder changes three things: the noun, the particle (에게 → 께) and the verb itself (주다 → 드리다). This is Korean honorific speech."
+        : "Back to a friend: 께 → 에게 and 드리다 → 주다.";
+  }
+}
+
+/* ================= render ================= */
+const $=(t,c,h)=>{const e=document.createElement(t); if(c) e.className=c; if(h!=null) e.innerHTML=h; return e;};
+const v=x=>`var(${x})`;
+const SLOTS=[["s","Subject","--b1"],["r","Receiver","--b2"],["o","Object","--b3"],["v","Verb","--b4"]];
+let prev=null, prevText="", pieces=[];
+
+function build(s){
+  return {s:subject(s), r:receiver(s), o:object(), v:verb(s), p:s.q==="q"?"?":"."};
+}
+const ko = parts => parts.filter(m=>m[3]!=="ghost").map(m=>m[0]).join("");
+// verb display text: join pieces, keep a space after 안/못 and before 거/것/겁
+function verbText(v){ let t=""; v.forEach((m,i)=>{ const k=m[0]; if(i>0 && (["거","것","겁니다","겁니까"].includes(k)||["안","못"].includes(v[i-1][0]))) t+=" "; t+=k; }); return t; }
+function fullText(b){ return [ko(b.s),ko(b.r),ko(b.o),verbText(b.v)].filter(Boolean).join(" ")+b.p; }
+
+function morphEl(m, changed){
+  const [k,rom,gloss,fn,note]=m, ghost=fn==="ghost", f=ghost?{name:"Dropped subject",c:"--muted"}:FN[fn];
+  const b=document.createElement("button"); b.type="button"; b.className="morph"+(ghost?" ghost":"");
+  b.dataset.fn=fn; if(f.t) b.dataset.t="1";
+  b.style.setProperty("--c",v(f.c));
+  if(m.fuse){ b.dataset.fuse=m.fuse; b.style.setProperty("--fc",v(FN[m.fuse].c)); }
+  b.dataset.tip=f.name+(gloss?" · "+gloss:"");
+  b.setAttribute("aria-label",`${k}, ${rom}, ${f.name}`);
+  b.append($("span","g",gloss||"&nbsp;"),$("span","k",k),$("span","r",rom));
+  if(changed) b.classList.add("chg");
+  b._d={k,rom,gloss,fn,note,fuse:m.fuse,ghost};
+  b.addEventListener("click",()=>openSheet(b));
+  pieces.push(b);
+  return b;
+}
+
+function render(changedId){
+  closeSheet(); pieces=[];
+  const b=build(state), host=document.getElementById("slots"); host.innerHTML="";
+  const changedSlots=[], sameSlots=[];
+  SLOTS.forEach(([id,cap,col])=>{
+    const slot=$("div","slot"); slot.dataset.s=id; slot.style.setProperty("--bc",v(col));
+    const box=$("div","box");
+    const prevKos = prev? prev[id].map(m=>m[0]) : null;
+    const pool = prevKos? [...prevKos] : null;
+    let any=false;
+    b[id].forEach(m=>{
+      let ch=false;
+      if(pool){ const i=pool.indexOf(m[0]); if(i>-1) pool.splice(i,1); else ch=true; }
+      if(pool && pool.length && !ch && prevKos.length!==b[id].length) {} // removal handled below
+      any = any||ch;
+      box.append(morphEl(m,ch));
+    });
+    if(pool && pool.length) any=true; // something was removed
+    if(id==="v"){ const p=$("span","punct",b.p); if(prev && prev.p!==b.p){ p.classList.add("chg"); any=true; } box.append(p); }
+    slot.append(box,$("span","cap",cap));
+    host.append(slot);
+    if(prev) (any?changedSlots:sameSlots).push(cap);
+  });
+
+  document.getElementById("en").textContent=english(state);
+  const lv=SW[1].opts.find(o=>o[0]===state.lvl);
+  const tags=document.getElementById("tags"); tags.innerHTML="";
+  tags.append($("span","tag"+(changedId==="lvl"?" hot":""),`${lv[1]} · ${lv[2]}`));
+  if(state.rec==="elder") tags.append($("span","tag"+(changedId==="rec"?" hot":""),"Honorific: to an elder"));
+  tags.append($("span","tag hint",SW[1].hint[state.lvl]));
+
+  const bef=document.getElementById("before");
+  const now=fullText(b);
+  bef.innerHTML = prevText && prevText!==now ? `<b>Before</b><span class="ko">${prevText}</span><span>→</span><span class="ko">${now}</span>` : `<b>Now</b><span class="ko">${now}</span>`;
+
+  const why=document.getElementById("why"), diff=document.getElementById("diff"), lbl=document.getElementById("why-lbl");
+  diff.innerHTML="";
+  if(!changedId){
+    lbl.textContent="Start here";
+    why.textContent="This is the base sentence. Flip any switch above and watch which boxes change. The explanation of each change appears here.";
+  } else {
+    const sw=SW.find(x=>x.id===changedId), opt=sw.opts.find(o=>o[0]===state[changedId]);
+    lbl.textContent=`${sw.label} → ${opt[1]}`;
+    why.textContent=explain(changedId,state);
+    changedSlots.forEach(c=>diff.append($("span","c","Changed: "+c)));
+    sameSlots.forEach(c=>diff.append($("span","u","Same: "+c)));
+  }
+  prev=b; prevText=now;
+}
+
+/* ================= switches UI ================= */
+function buildSwitches(){
+  const host=document.getElementById("switches");
+  SW.forEach(sw=>{
+    const box=$("div","sw"), h=$("h2","",sw.label);
+    const seg=$("div","seg"); seg.setAttribute("role","group"); seg.setAttribute("aria-label",sw.label);
+    sw.opts.forEach(([val,lab,sub])=>{
+      const b=$("button","",lab+(sub?`<small>${sub}</small>`:"")); b.type="button"; b.dataset.v=val;
+      b.onclick=()=>{ if(state[sw.id]===val) return; state[sw.id]=val; sync(); render(sw.id); };
+      seg.append(b);
+    });
+    box.append(h,seg); box._sync=()=>{
+      seg.querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.v===state[sw.id]));
+    };
+    host.append(box);
+  });
+  const L=$("div","layers"); L.id="layers"; L.append($("span","label","Show"));
+  [["Gloss","hide-gloss"],["Romanization","hide-rom"]].forEach(([t,cls])=>{
+    const p=$("button","pill",t); p.type="button"; p.setAttribute("aria-pressed","true");
+    p.onclick=()=>{const on=p.getAttribute("aria-pressed")!=="true"; p.setAttribute("aria-pressed",on); document.body.classList.toggle(cls,!on);};
+    L.append(p);
+  });
+  const r=$("button","pill","Reset"); r.type="button";
+  r.onclick=()=>{Object.assign(state,{who:"me",lvl:"pol",tns:"prs",neg:"no",q:"st",rec:"friend"}); prev=null; prevText=""; sync(); render(null);};
+  L.append(r);
+  document.getElementById("layers").replaceWith(L);
+}
+function sync(){ document.querySelectorAll(".sw").forEach(x=>x._sync()); }
+
+/* ================= bottom sheet ================= */
+const sheet=document.getElementById("sheet"); let cur=null;
+function openSheet(b){
+  if(cur===b && !sheet.hidden){ closeSheet(); return; }
+  pieces.forEach(x=>x.classList.remove("on")); cur=b; b.classList.add("on");
+  const d=b._d, f=d.ghost?{name:"Dropped subject",d:"The subject slot is empty on purpose."}:FN[d.fn], big=document.getElementById("sh-big");
+  big.textContent=d.k; big.className="big"+(f.t?" t":"")+(f.inv?" inv":"")+(d.ghost?" gh":""); big.style.setProperty("--c",v(f.c||"--muted"));
+  if(d.fuse) big.style.boxShadow=`inset 0 -6px 0 ${v(FN[d.fuse].c)}`; else big.style.boxShadow="";
+  document.getElementById("sh-name").textContent=f.name+(d.fuse?` + ${FN[d.fuse].name.toLowerCase()} (fused)`:"");
+  document.getElementById("sh-meta").textContent=d.rom.replace(/^-/,"")+(d.gloss?` · “${d.gloss}”`:"");
+  document.getElementById("sh-desc").textContent=f.d;
+  const n=document.getElementById("sh-note"); n.textContent=d.note||""; n.hidden=!d.note;
+  const i=pieces.indexOf(b);
+  document.getElementById("sh-prev").disabled=i===0; document.getElementById("sh-next").disabled=i===pieces.length-1;
+  sheet.hidden=false;
+}
+function closeSheet(){ sheet.hidden=true; if(cur) cur.classList.remove("on"); cur=null; }
+function step(dir){ if(!cur) return; const i=pieces.indexOf(cur)+dir; if(pieces[i]) openSheet(pieces[i]); }
+document.getElementById("sh-prev").onclick=()=>step(-1);
+document.getElementById("sh-next").onclick=()=>step(1);
+document.getElementById("sh-close").onclick=closeSheet;
+document.addEventListener("click",e=>{ if(!sheet.hidden && !e.target.closest(".sheet,.morph")) closeSheet(); });
+document.addEventListener("keydown",e=>{ if(e.key==="Escape") closeSheet(); if(!sheet.hidden&&e.key==="ArrowRight") step(1); if(!sheet.hidden&&e.key==="ArrowLeft") step(-1); });
+let y0=null; sheet.addEventListener("touchstart",e=>{y0=e.touches[0].clientY},{passive:true});
+sheet.addEventListener("touchend",e=>{ if(y0!=null && e.changedTouches[0].clientY-y0>60) closeSheet(); y0=null; });
+
+buildSwitches(); sync(); render(null);
+</script>
+
+</body></html>

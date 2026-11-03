@@ -1,0 +1,534 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Mandarin Sentence Switchboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Noto+Sans:wght@500;600&family=Noto+Sans+SC:wght@500;700;900&display=swap">
+<style>
+:root{
+  --bg:#F3F5F8; --surface:#FFFFFF; --surface-2:#EDF0F5; --ink:#171B24; --muted:#5A6272; --line:#D6DBE4;
+  --focus:#E0182D; --chip-ink:#141821;
+  --f-pron:#FFFFFF; --f-noun:#B5EE9C; --f-topic:#FFF3B0; --f-obj:#FFC9B8; --f-dat:#FFB870;
+  --f-stem:#7DEFD3; --f-cop:#FFB8D2;
+  --t-infl:#D11F35; --t-pol:#D11F35; --t-tense:#2346D8;
+  --b1:#E0182D; --b2:#EE6A10; --b3:#2447D6; --b4:#7A2BD9;
+  --shadow:0 1px 2px rgba(20,24,33,.06),0 4px 16px rgba(20,24,33,.05);
+  --sheet-shadow:0 -8px 30px rgba(20,24,33,.14);
+  --flash:rgba(224,24,45,.18);
+  --ko:"Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif;
+  --py:"Noto Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-plur:#C3C8FF; --f-num:#FFF3B0; --f-mw:#FFB870;
+  --tone1:#C2410C; --tone2:#2B8A3E; --tone3:#1C64C8; --tone4:#9C36B5; --tone5:#7A8290;
+  --en:"Figtree",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --tone1:#FF8A4C; --tone2:#5CD27A; --tone3:#6EA8FF; --tone4:#D58BFF; --tone5:#9BA4B4;
+    --bg:#11141A; --surface:#1A1F28; --surface-2:#232A35; --ink:#E8ECF3; --muted:#9BA4B4; --line:#2E3644;
+    --focus:#FF4D5E; --f-pron:#DDE3EC;
+    --t-infl:#FF6273; --t-pol:#FF6273; --t-tense:#86A3FF;
+    --b1:#FF4D5E; --b2:#FF8A3D; --b3:#6F8BFF; --b4:#B07BFF;
+    --shadow:none; --sheet-shadow:0 -8px 30px rgba(0,0,0,.5); --flash:rgba(255,77,94,.22);
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+    --tone1:#FF8A4C; --tone2:#5CD27A; --tone3:#6EA8FF; --tone4:#D58BFF; --tone5:#9BA4B4;
+  --bg:#11141A; --surface:#1A1F28; --surface-2:#232A35; --ink:#E8ECF3; --muted:#9BA4B4; --line:#2E3644;
+  --focus:#FF4D5E; --f-pron:#DDE3EC;
+  --t-infl:#FF6273; --t-pol:#FF6273; --t-tense:#86A3FF;
+  --b1:#FF4D5E; --b2:#FF8A3D; --b3:#6F8BFF; --b4:#B07BFF;
+  --shadow:none; --sheet-shadow:0 -8px 30px rgba(0,0,0,.5); --flash:rgba(255,77,94,.22);
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+@media (min-height:600px){body{overflow:hidden}}
+body{background:var(--bg);color:var(--ink);font-family:var(--en);font-size:15px;line-height:1.5;margin:0;-webkit-tap-highlight-color:transparent}
+.app{height:100%;max-width:860px;margin:0 auto;padding-inline:16px;padding-block:10px;display:flex;flex-direction:column;gap:8px}
+.bar h1{font-size:17px;font-weight:700;margin:0;line-height:1.2}
+@media (max-width:560px){.bar{display:none}.app{gap:6px;padding-block:8px}}
+.switches,.stage,.bottom{flex:none}
+header h1{font-weight:700;font-size:clamp(22px,5.6vw,32px);line-height:1.15;margin:0 0 4px;text-wrap:balance}
+header p{margin:0;color:var(--muted);max-width:62ch;font-size:14.5px}
+
+/* ---------- sticky stage: the sentence never leaves the screen ---------- */
+.stage{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:10px 12px 8px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:8px}
+.en{font-size:clamp(15px,4.1vw,20px);font-weight:600;line-height:1.3;margin:0;min-height:2.6em;display:flex;align-items:center}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tag{font-size:11.5px;font-weight:600;letter-spacing:.04em;padding:3px 8px;border-radius:999px;background:var(--surface-2);color:var(--muted)}
+.tag.hot{background:var(--ink);color:var(--bg)}
+@media (max-width:560px){.tag.hint{display:none}}
+.tag.hint{background:transparent;padding-inline:0;font-weight:500;letter-spacing:0}
+
+.slots{display:grid;grid-template-columns:34% 1fr;grid-template-areas:"s v" "r o";gap:10px 8px;align-items:end}
+@media (min-width:720px){ .slots{grid-template-columns:.7fr 1.6fr 1fr 1.7fr;grid-template-areas:"s v r o"} }
+.slot{display:flex;flex-direction:column;align-items:flex-start;gap:4px;min-width:0}
+.slot[data-s="s"]{grid-area:s}.slot[data-s="r"]{grid-area:r}.slot[data-s="o"]{grid-area:o}.slot[data-s="v"]{grid-area:v}
+.box{display:flex;align-items:flex-end;padding:3px 4px 4px;border:2.5px solid var(--bc);border-radius:4px}
+.cap .rm{margin-left:6px;color:var(--focus);text-transform:none;letter-spacing:0;font-weight:600}
+.cap .rm s{font-family:var(--ko);text-decoration-thickness:2px;opacity:.75;margin-left:3px}
+.cap{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--bc)}
+.punct{font:700 clamp(24px,6.4vw,40px)/1.15 var(--ko);align-self:center;margin:18px 0 0 2px;border-radius:3px}
+
+.morph{all:unset;display:flex;flex-direction:column;align-items:center;cursor:pointer;border-radius:4px;position:relative}
+.morph:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.g{font-size:11.5px;line-height:1.2;padding:2px 3px;margin-bottom:3px;color:var(--chip-ink);background:var(--c,transparent);border-radius:3px;white-space:nowrap}
+.k{font:700 clamp(24px,6.4vw,40px)/1.15 var(--ko);color:var(--chip-ink);background:var(--c);padding:0 1px}
+.r{font-family:var(--py);font-size:clamp(12px,3.2vw,15px);font-weight:600;line-height:1.2;margin-top:4px;padding:1px 2px;color:var(--chip-ink);background:var(--c);border-radius:3px;white-space:nowrap}
+.morph[data-t] .k,.morph[data-t] .r{background:transparent;color:var(--c)}
+.morph[data-t] .g{background:transparent;color:var(--c);font-weight:600}
+.morph[data-fn="pron"] .g{background:transparent;color:var(--muted)}
+.morph[data-fn="neg"] .k,.morph[data-fn="neg"] .r,.morph[data-fn="neg"] .g{background:var(--ink);color:var(--bg)}
+.morph[data-fuse] .k{box-shadow:inset 0 -5px 0 var(--fc)}
+.morph.ghost .k{background:transparent;color:var(--muted);border:2px dashed var(--line);border-radius:4px;font-size:clamp(15px,4vw,20px);padding:6px 8px;font-family:var(--en);font-weight:600}
+.morph.ghost .g,.morph.ghost .r{background:transparent;color:var(--muted)}
+body.hide-gloss .g{visibility:hidden}
+body.hide-rom .r{display:none}
+body.tones .r{background:transparent!important}
+body.tones .r .t1{color:var(--tone1)}body.tones .r .t2{color:var(--tone2)}body.tones .r .t3{color:var(--tone3)}body.tones .r .t4{color:var(--tone4)}body.tones .r .t5{color:var(--tone5)}
+.gone{align-self:center;margin:16px 2px 0;font:700 clamp(18px,4.8vw,28px)/1 var(--ko);color:var(--focus);text-decoration:line-through;text-decoration-thickness:2px;opacity:.6}
+.seg button:disabled{opacity:.35;cursor:not-allowed}
+.bottom{display:flex;flex-direction:column;gap:4px}
+.tonekey{font-size:12px;color:var(--muted);display:none;gap:8px;flex-wrap:wrap}
+body.tones .tonekey{display:flex}
+.tonekey b{font-family:var(--py)}
+.morph.chg .k,.punct.chg{outline:3px dashed var(--focus);outline-offset:2px}
+.morph.on .k{outline:3px solid var(--focus);outline-offset:2px}
+@keyframes pop{0%{background-color:var(--flash);transform:translateY(-4px)}100%{transform:none}}
+.morph.chg{animation:pop .45s ease-out}
+@media (hover:hover){
+  .morph::after{content:attr(data-tip);position:absolute;bottom:calc(100% + 4px);left:50%;transform:translateX(-50%);background:var(--ink);color:var(--bg);font:500 12px/1.3 var(--en);padding:5px 8px;border-radius:6px;white-space:nowrap;pointer-events:none;opacity:0;transition:opacity .12s .2s;z-index:3}
+  .morph:hover::after{opacity:1}
+}
+.before{font-size:12.5px;color:var(--muted);display:flex;gap:6px;align-items:baseline;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:6px}
+.before b{font-weight:600;font-size:11px;letter-spacing:.08em;text-transform:uppercase}
+.before .ko{font-family:var(--ko);font-weight:500;color:var(--ink)}
+
+/* ---------- what changed ---------- */
+.why{flex:1;min-height:72px;overflow-y:auto;overscroll-behavior:contain;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:10px 12px;display:flex;flex-direction:column;gap:6px;font-size:14px;line-height:1.45}
+.why .fine{font-size:12px;color:var(--muted);margin-top:auto;padding-top:6px}
+.why .lbl{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.why p{margin:0;max-width:64ch}
+.diff{display:flex;flex-wrap:wrap;gap:6px;font-size:12.5px}
+.diff span{padding:3px 8px;border-radius:6px;border:1px solid var(--line);background:var(--surface)}
+.diff .c{border:1.5px dashed var(--focus);color:var(--focus);font-weight:600}
+.diff .u{color:var(--muted)}
+@media (max-width:560px){.diff{display:none}}
+
+/* ---------- switches ---------- */
+.switches{display:flex;flex-direction:column;gap:6px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:8px 10px}
+.switches{display:grid!important;grid-template-columns:1fr 1fr;gap:8px 10px!important}
+@media (min-width:720px){.switches{grid-template-columns:repeat(5,1fr)}}
+.sw{display:flex;flex-direction:column;gap:3px;min-width:0}
+.sw.just .sel select,.sw.just .seg{box-shadow:0 0 0 2px var(--focus);border-radius:9px}
+.sel{position:relative}
+.sel::after{content:"▾";position:absolute;right:10px;top:50%;transform:translateY(-50%);color:var(--muted);pointer-events:none;font-size:13px}
+.sel select{appearance:none;-webkit-appearance:none;width:100%;font:600 15px var(--en);color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:9px;padding:8px 28px 8px 10px;min-height:40px;cursor:pointer}
+.sel select:focus-visible{outline:2px solid var(--ink);outline-offset:1px}
+.seg button{flex:1;justify-content:center}
+.sw h2{font-size:10.5px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);margin:0;line-height:1.2}
+.sw h2 span{text-transform:none;letter-spacing:0;font-weight:500}
+.seg{display:flex;gap:5px;min-width:0}
+.seg::-webkit-scrollbar{display:none}
+.seg button{font:600 13.5px var(--en);padding:4px 9px;min-height:40px;border-radius:9px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer;display:flex;align-items:center;gap:5px;white-space:nowrap;flex:none}
+.seg button b{font:600 15px var(--ko)}
+.seg button small{font-weight:500;font-size:12px;color:var(--muted)}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.seg button[aria-pressed="true"] small{color:var(--bg);opacity:.75}
+.hint{font-size:12.5px;color:var(--muted);margin:6px 0 0}
+.layers{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.pill{font:500 13px var(--en);padding:7px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--muted);cursor:pointer}
+.pill[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.label{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-right:2px}
+
+/* ---------- bottom sheet ---------- */
+.sheet{position:fixed;left:0;right:0;bottom:0;z-index:21;margin:0 auto;max-width:600px;background:var(--surface);border:1px solid var(--line);border-bottom:0;border-radius:18px 18px 0 0;box-shadow:var(--sheet-shadow);padding:10px 16px calc(16px + env(safe-area-inset-bottom,0px));transition:transform .2s ease}
+.sheet[hidden]{display:block!important;transform:translateY(110%);visibility:hidden}
+.grab{width:40px;height:4px;border-radius:2px;background:var(--line);margin:0 auto 10px}
+.sh-top{display:flex;gap:12px;align-items:center}
+.big{font:900 36px/1 var(--ko);color:var(--chip-ink);background:var(--c,transparent);padding:4px 7px;border-radius:5px;flex:none}
+.big.t{background:transparent;color:var(--c)}
+.big.inv{background:var(--ink);color:var(--bg)}
+.big.gh{background:transparent;color:var(--muted);border:2px dashed var(--line);font:600 18px var(--en);padding:8px 10px}
+.sh-top h3{margin:0;font-size:17px;line-height:1.2}
+.sh-top .meta{font-size:13.5px;color:var(--muted)}
+.sheet p{margin:10px 0 0;max-width:62ch}
+.sheet .note{padding-top:8px;border-top:1px solid var(--line)}
+.sh-nav{display:flex;gap:8px;margin-top:14px}
+.sh-nav button{flex:1;font:600 14px var(--en);padding:11px;border-radius:10px;border:1px solid var(--line);background:var(--surface-2);color:var(--ink);cursor:pointer}
+.sh-nav button:disabled{opacity:.4;cursor:default}
+.sh-nav .close{flex:0 0 auto;padding-inline:16px}
+
+footer{font-size:12.5px;color:var(--muted);text-align:center}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<div class="app">
+  <header class="bar"><h1>Mandarin Sentence Switchboard</h1></header>
+
+  <section class="switches" id="switches" aria-label="Switches"></section>
+
+  <section class="stage" aria-label="Current sentence">
+    <p class="en" id="en"></p>
+    <div class="tags" id="tags"></div>
+    <div class="slots" id="slots"></div>
+    <div class="before" id="before"></div>
+  </section>
+
+  <section class="why" aria-live="polite">
+    <span class="lbl" id="why-lbl">What changed</span>
+    <p id="why"></p>
+    <div class="diff" id="diff"></div>
+    <p class="fine">Simplified characters with Hanyu Pinyin. The pinyin shows the tones as spoken, including tone changes (tone sandhi). Every combination of switches was generated and checked.</p>
+  </section>
+
+  <div class="bottom">
+    <div class="layers" id="layers"></div>
+    <div class="tonekey"><span>Tones:</span><b style="color:var(--tone1)">1st ā</b><b style="color:var(--tone2)">2nd á</b><b style="color:var(--tone3)">3rd ǎ</b><b style="color:var(--tone4)">4th à</b><b style="color:var(--tone5)">neutral a</b></div>
+  </div>
+</div>
+
+<section class="sheet" id="sheet" hidden aria-live="polite" aria-label="Piece details">
+  <div class="grab"></div>
+  <div class="sh-top"><div class="big" id="sh-big"></div><div><h3 id="sh-name"></h3><div class="meta" id="sh-meta"></div></div></div>
+  <p id="sh-desc"></p>
+  <p class="note" id="sh-note"></p>
+  <div class="sh-nav">
+    <button type="button" id="sh-prev">‹ Previous</button>
+    <button type="button" id="sh-next">Next ›</button>
+    <button type="button" class="close" id="sh-close" aria-label="Close">✕</button>
+  </div>
+</section>
+
+<script>
+/* ================= grammar jobs (colour key) ================= */
+const FN = {
+  pron: {name:"Pronoun", c:"--f-pron", d:"Who is doing it. Pronouns never change form: 我 is both 'I' and 'me'."},
+  plur: {name:"Plural suffix", c:"--f-plur", d:"们 makes pronouns and words for people plural. It's never used for things: 'two apples' is still 苹果."},
+  noun: {name:"Noun", c:"--f-noun", d:"People and things. Nouns never change for singular or plural."},
+  verb: {name:"Verb", c:"--f-stem", d:"Mandarin verbs never change form. Time, completion and negation are shown by separate words around the verb."},
+  aux:  {name:"Helper verb", c:"--f-cop", d:"Words like 会 (will), 有 (have) and 是 (be) that sit before the main verb and add meaning."},
+  asp:  {name:"Aspect marker", c:"--t-tense", t:1, d:"了 (completed), 过 (experienced) and 在 (in progress) show how the action unfolds, not when it happens."},
+  neg:  {name:"Negation", c:"--ink", inv:1, d:"不 negates habits, choices and the future. 没 negates things that happened or were happening."},
+  num:  {name:"Number / this, that", c:"--f-num", d:"一, 两, 这 and 那 come before the measure word, never directly before the noun."},
+  mw:   {name:"Measure word", c:"--f-mw", d:"Required between a number (or this/that) and a noun. 个 is the general-purpose one. Many nouns have their own, like 本 for books and 张 for paper."},
+  qp:   {name:"Question particle", c:"--t-pol", t:1, d:"吗 at the end turns any statement into a yes/no question. Nothing else moves."}
+};
+
+/* ================= switches ================= */
+const SW = [
+  {id:"who", label:"Who", opts:[["me","我","I"],["you","你","you"],["youp","您","you (polite)"],["he","他","he"],["she","她","she"],["we","我们","we"],["they","他们","they"]]},
+  {id:"asp", label:"Time", opts:[["hab","","habit"],["le","了","did"],["guo","过","ever"],["zai","在","now"],["hui","会","will"]],
+    hint:{hab:"No marker: habits and general statements.",le:"了 after the verb: the action was completed.",guo:"过 after the verb: it has happened at least once.",zai:"在 before the verb: happening right now.",hui:"会 before the verb: will / is likely to."}},
+  {id:"neg", label:"Negate", opts:[["no","","no"],["yes","不/没","not"]]},
+  {id:"q",   label:"Type", opts:[["st","","statement"],["ma","吗","question"],["ann","A不A","question"]]},
+  {id:"obj", label:"Object", opts:[["one","一个","an"],["this","这个","this"],["that","那个","that"],["two","两个","two"],["bare","","apples"]]}
+];
+const DEFAULT = {who:"me",asp:"hab",neg:"no",q:"st",obj:"one"};
+const state = {...DEFAULT};
+
+/* ================= Mandarin generator ================= */
+const SANDHI3 = "给 gěi and 小 xiǎo are both 3rd tone. When two 3rd tones meet, the first is spoken rising: gěi Xiǎo sounds like géi Xiǎo. Pinyin normally keeps the written tone, so it's written gěi here.";
+
+function subject(s){
+  const P=(h,py,g,note)=>[h,py,g,"pron",note];
+  switch(s.who){
+    case "me":  return [P("我","wǒ","I")];
+    case "you": return [P("你","nǐ","you","你 is the everyday 'you' for friends and equals.")];
+    case "youp":return [P("您","nín","you (polite)","您 is the respectful 'you' for elders, teachers and customers. Mandarin has no polite verb forms. Only the pronoun changes.")];
+    case "he":  return [P("他","tā","he","他 (he) and 她 (she) sound identical: tā. Only the written character differs.")];
+    case "she": return [P("她","tā","she","她 and 他 are both pronounced tā. You can only tell them apart in writing.")];
+    case "we":  return [P("我","wǒ","I"),["们","men","pl.","plur","们 is neutral tone: short and light."]];
+    case "they":return [P("他","tā","he"),["们","men","pl.","plur","他们 is used for any group that includes a man. 她们 is only for all-female groups."]];
+  }
+}
+
+function verb(s){
+  const out=[], G=(note)=>["给","gěi","give","verb",note];
+  if(s.q==="ann"){
+    switch(s.asp){
+      case "hab": out.push(G(), ["不","bu","not","neg","In A-not-A questions 不 is unstressed and neutral tone."], G()); break;
+      case "le":  out.push(["有","yǒu","have","aux","有没有 + verb asks whether something happened."],["没","méi","not","neg"],["有","yǒu","have","aux"],G("了 drops out in A-not-A questions. 有没有 already asks 'did it happen?'")); break;
+      case "guo": out.push(["有","yǒu","have","aux"],["没","méi","not","neg"],["有","yǒu","have","aux"],G(),["过","guo","ever","asp","过 stays: 'have you ever given…?'"]); break;
+      case "zai": out.push(["是","shì","is","aux","是不是 ('is it or isn't it') can wrap around almost any statement to make a question."],["不","bu","not","neg"],["是","shì","is","aux"],["在","zài","-ing","asp"],G()); break;
+      case "hui": out.push(["会","huì","will","aux","The helper verb is doubled, not 给."],["不","bu","not","neg","Unstressed in A-not-A, so no tone change."],["会","huì","will","aux"],G()); break;
+    }
+    return out;
+  }
+  const neg = s.neg==="yes";
+  const nextRisesNote = (s.asp==="guo"||(s.asp==="le"&&!neg)) ? null : SANDHI3;
+  if(neg){
+    if(s.asp==="hab") out.push(["不","bù","not","neg","不 for habits and choices: 'I don't give him apples.' It stays 4th tone because 给 is 3rd tone."]);
+    if(s.asp==="le")  out.push(["没","méi","not","neg","没 (short for 没有) says it didn't happen. It replaces 了, so 了 disappears."]);
+    if(s.asp==="guo") out.push(["没","méi","not","neg","没 + verb + 过 = 'have never'. Unlike 了, 过 stays."]);
+    if(s.asp==="zai") out.push(["没","méi","not","neg","没在 = 'isn't (in the middle of) doing'. 不在 would mean 'isn't here'."]);
+    if(s.asp==="hui") out.push(["不","bú","not","neg","不 changes from 4th tone (bù) to 2nd tone (bú) before another 4th tone. 会 is huì, so it's bú huì."]);
+  }
+  if(s.asp==="zai") out.push(["在","zài","-ing","asp","在 before the verb means the action is in progress. It's the same character as 'at/in' a place."]);
+  if(s.asp==="hui") out.push(["会","huì","will","aux","会 = will / likely to. It also means 'can' for learned skills (我会说中文, I can speak Chinese)."]);
+  out.push(G(nextRisesNote));
+  if(s.asp==="le" && !neg) out.push(["了","le","done","asp","了 right after the verb marks the action as completed. It isn't a past tense. It says the action finished, whenever that was."]);
+  if(s.asp==="guo") out.push(["过","guo","ever","asp","过 after the verb means it has happened at least once: 'have given before'."]);
+  return out;
+}
+
+function receiver(){ return [["小明","Xiǎo Míng","Xiao Ming","noun","小明 is a stock name, like 'Johnny' in English textbooks. 小 (little) is a common affectionate prefix."]]; }
+
+function object(s){
+  const neg = s.neg==="yes" && s.q!=="ann";
+  let o = s.obj;
+  const out=[];
+  const apple = (note)=>["苹果","píng guǒ","apple","noun",note||"The noun is the same for one apple or many. There's no plural ending."];
+  if(o==="one" && neg){
+    out.push(apple("Negative sentences usually drop 一个. You didn't give 'an apple', you didn't give apples at all."));
+  } else {
+    if(o==="one")  out.push(["一","yí","one","num","一 is yī on its own but becomes yí before a 4th tone like 个 gè."],["个","gè","(mw)","mw","The general measure word. It's required between 一 and 苹果."]);
+    if(o==="this") out.push(["这","zhè","this","num"],["个","ge","(mw)","mw","In 这个 / 那个 the 个 is usually unstressed (neutral tone)."]);
+    if(o==="that") out.push(["那","nà","that","num"],["个","ge","(mw)","mw"]);
+    if(o==="two")  out.push(["两","liǎng","two","num","Use 两 (liǎng), not 二 (èr), for 'two' before a measure word."],["个","ge","(mw)","mw"]);
+    const bareLe = o==="bare" && s.asp==="le" && s.q!=="ann" && !neg;
+    out.push(apple(bareLe ? "With a bare noun, 了 right after the verb sounds unfinished. Native speakers would add a number (一个) or end the sentence with 了." :
+                   o==="bare" ? "With no number or measure word, 苹果 means apples in general." : null));
+  }
+  if(s.q==="ma") out.push(["吗","ma","?","qp","吗 is neutral tone. Add it to the end of a statement and it becomes a yes/no question."]);
+  return out;
+}
+
+/* ================= English generator ================= */
+function english(s){
+  const S={me:"I",you:"you",youp:"you",he:"he",she:"she",we:"we",they:"they"}[s.who];
+  const third = s.who==="he"||s.who==="she";
+  const be = s.who==="me"?"am":third?"is":"are";
+  const have = third?"has":"have";
+  const O={one:"an apple",this:"this apple",that:"that apple",two:"two apples",bare:"apples"}[s.obj];
+  const q = s.q!=="st", neg = s.neg==="yes" && s.q!=="ann";
+  const Oneg = (neg && s.obj==="one") ? "any apples" : O;
+  const cap = x=>x[0].toUpperCase()+x.slice(1);
+  const R="Xiao Ming";
+  let t;
+  switch(s.asp){
+    case "hab":
+      if(!q) t = neg? `${S} ${third?"doesn't":"don't"} give ${R} ${neg?Oneg:O}.` : `${S} ${third?"gives":"give"} ${R} ${neg?Oneg:O}.`;
+      else   t = `${neg?(third?"Doesn't":"Don't"):(third?"Does":"Do")} ${S} give ${R} ${neg?Oneg:O}?`; break;
+    case "le":
+      if(!q) t = neg? `${S} didn't give ${R} ${neg?Oneg:O}.` : `${S} gave ${R} ${neg?Oneg:O}.`;
+      else   t = `${neg?"Didn't":"Did"} ${S} give ${R} ${neg?Oneg:O}?`; break;
+    case "guo":
+      if(!q) t = neg? `${S} ${have} never given ${R} ${neg?Oneg:O}.` : `${S} ${have} given ${R} ${neg?Oneg:O} before.`;
+      else   t = neg? `${cap(have)}n't ${S} ever given ${R} ${neg?Oneg:O}?` : `${cap(have)} ${S} ever given ${R} ${neg?Oneg:O}?`; break;
+    case "zai":
+      if(!q) t = neg? `${S} ${be} not giving ${R} ${neg?Oneg:O}.` : `${S} ${be} giving ${R} ${neg?Oneg:O}.`;
+      else   t = neg? `${s.who==="me"?"Aren't":cap(be)+"n't"} ${S} giving ${R} ${neg?Oneg:O}?` : `${cap(be)} ${S} giving ${R} ${neg?Oneg:O}?`; break;
+    case "hui":
+      if(!q) t = neg? `${S} won't give ${R} ${neg?Oneg:O}.` : `${S} will give ${R} ${neg?Oneg:O}.`;
+      else   t = `${neg?"Won't":"Will"} ${S} give ${R} ${neg?Oneg:O}?`; break;
+  }
+  t = cap(t);
+  return t.replace(/ i /g," I ");
+}
+
+/* ================= explanations for each switch ================= */
+function explain(id, s){
+  const neg = s.neg==="yes" && s.q!=="ann";
+  switch(id){
+    case "who":
+      if(s.who==="youp") return "Only the pronoun changed. 您 is the polite 'you', and that's the whole politeness system: no verb endings change.";
+      if(s.who==="we"||s.who==="they") return "The subject gained 们 (plural). The verb 给 didn't change. Mandarin verbs never agree with the subject.";
+      if(s.who==="he"||s.who==="she") return "Only the subject changed. English switches give → gives. Mandarin keeps 给. 他 and 她 even sound the same (tā).";
+      return "Only the subject changed. Mandarin verbs never change for I / you / he / we.";
+    case "asp": {
+      const base = {hab:"No marker at all. Without 了, 过 or 在, the sentence reads as a habit or general statement.",
+        le:"了 slots in right after the verb. There's no past tense in Mandarin: 了 marks the action as finished.",
+        guo:"过 slots in right after the verb: it has happened at least once.",
+        zai:"在 goes before the verb: the action is happening right now.",
+        hui:"会 goes before the verb: will / likely to."}[s.asp];
+      const extra = neg ? (s.asp==="le"?" Because the sentence is negative, 没 is used and 了 disappears.":
+                           (s.asp==="hab"||s.asp==="hui")?" The negation switched to 不.":" The negation switched to 没.") : "";
+      return base + extra + " 给 itself never changes.";
+    }
+    case "neg":
+      if(!neg) return "Negation removed." + (s.asp==="le"?" 了 comes back after the verb.":"") + (s.obj==="one"?" 一个 comes back too.":"");
+      return ({hab:"不 goes before the verb for habits and choices.",
+               le:"没 goes before the verb for things that didn't happen, and 了 drops out: 没 already says it didn't happen.",
+               guo:"没 + verb + 过 means 'have never'. 过 stays.",
+               zai:"没 goes before 在.",
+               hui:"不 goes before 会 and changes to 2nd tone (bú huì)."}[s.asp]) +
+             (s.obj==="one"?" 一个 is dropped too. Negative sentences don't usually count the thing they deny.":"") +
+             " You don't choose between 不 and 没. The time setting chooses for you.";
+    case "q":
+      if(s.q==="st") return "Back to a statement: the 吗 or the doubled verb is gone.";
+      if(s.q==="ma") return "吗 was added to the end. The word order stays exactly the same as the statement. That's the easiest way to ask a yes/no question.";
+      return "A-not-A: say the verb (or its helper) twice, with 不 or 没 between them: 给不给 = 'give or not give?'. There's no 吗. It can't also be negative, so the Not switch is turned off.";
+    case "obj":
+      return ({one:"一 + 个 + noun. A measure word is required between the number and the noun.",
+               this:"这 + 个 + noun. 'This' also needs the measure word.",
+               that:"那 + 个 + noun.",
+               two:"两 + 个 + noun. 'Two' is 两, not 二, before a measure word. 苹果 doesn't change for plural.",
+               bare:"No number and no measure word: just 苹果, apples in general."}[s.obj]) +
+             (s.obj==="one"&&neg?" In negative sentences the 一个 drops out anyway.":"");
+  }
+}
+
+/* ================= helpers ================= */
+const $=(t,c,h)=>{const e=document.createElement(t); if(c) e.className=c; if(h!=null) e.innerHTML=h; return e;};
+const v=x=>`var(${x})`;
+const TONE=[["āēīōūǖ",1],["áéíóúǘ",2],["ǎěǐǒǔǚ",3],["àèìòùǜ",4]];
+function toneOf(syl){ for(const [set,n] of TONE) for(const ch of syl) if(set.includes(ch)) return n; return 5; }
+function pinyinHTML(py){ return py.split(" ").map(x=>`<span class="t${toneOf(x)}">${x}</span>`).join(" "); }
+
+const SLOTS=[["s","Subject","--b1"],["v","Verb","--b4"],["r","Receiver","--b2"],["o","Object","--b3"]];
+let prev=null, prevText="", pieces=[];
+
+function build(s){ return {s:subject(s), v:verb(s), r:receiver(s), o:object(s), p:s.q==="st"?"。":"？"}; }
+function fullText(b){ return ["s","v","r","o"].map(k=>b[k].map(m=>m[0]).join("")).join("")+b.p; }
+
+function morphEl(m, changed){
+  const [k,py,gloss,fn,note]=m, f=FN[fn];
+  const b=document.createElement("button"); b.type="button"; b.className="morph";
+  b.dataset.fn=fn; if(f.t) b.dataset.t="1";
+  b.style.setProperty("--c",v(f.c));
+  b.dataset.tip=f.name+(gloss?" · "+gloss:"");
+  b.setAttribute("aria-label",`${k}, ${py}, ${f.name}`);
+  b.append($("span","g",gloss||"&nbsp;"),$("span","k",k),$("span","r",pinyinHTML(py)));
+  if(changed) b.classList.add("chg");
+  b._d={k,py,gloss,fn,note};
+  b.addEventListener("click",()=>openSheet(b));
+  pieces.push(b);
+  return b;
+}
+
+function render(changedId){
+  closeSheet(); pieces=[];
+  const b=build(state), host=document.getElementById("slots"); host.innerHTML="";
+  const changedSlots=[], sameSlots=[];
+  SLOTS.forEach(([id,cap,col])=>{
+    const slot=$("div","slot"); slot.dataset.s=id; slot.style.setProperty("--bc",v(col));
+    const box=$("div","box");
+    const pool = prev? prev[id].map(m=>m[0]) : null;
+    let any=false, removed=[];
+    b[id].forEach(m=>{
+      let ch=false;
+      if(pool){ const i=pool.indexOf(m[0]); if(i>-1) pool.splice(i,1); else ch=true; }
+      any=any||ch;
+      box.append(morphEl(m,ch));
+    });
+    if(pool && pool.length){
+      any=true;
+      // show removed pieces, crossed out, where they used to be
+      removed = pool.slice();
+    }
+    if(id==="o"){ const p=$("span","punct",b.p); if(prev && prev.p!==b.p){ p.classList.add("chg"); any=true; } box.append(p); }
+    const capEl=$("span","cap",cap);
+    if(removed.length) capEl.append($("span","rm",`removed<s>${removed.join(" ")}</s>`));
+    slot.append(box,capEl);
+    host.append(slot);
+    if(prev) (any?changedSlots:sameSlots).push(cap);
+  });
+
+  document.getElementById("en").textContent=english(state);
+  const tags=document.getElementById("tags"); tags.innerHTML="";
+  const asp=SW[1].opts.find(o=>o[0]===state.asp);
+  tags.append($("span","tag"+(changedId==="asp"?" hot":""),asp[1]?`${asp[1]} · ${asp[2]}`:"No time marker · habit"));
+  if(state.q==="ann") tags.append($("span","tag"+(changedId==="q"?" hot":""),"A-not-A question"));
+  if(state.who==="youp") tags.append($("span","tag"+(changedId==="who"?" hot":""),"Polite 您"));
+  tags.append($("span","tag hint",SW[1].hint[state.asp]));
+
+  const bef=document.getElementById("before"), now=fullText(b);
+  bef.innerHTML = prevText && prevText!==now ? `<b>Before</b><span class="ko">${prevText}</span><span>→</span><span class="ko">${now}</span>` : `<b>Now</b><span class="ko">${now}</span>`;
+
+  const why=document.getElementById("why"), diff=document.getElementById("diff"), lbl=document.getElementById("why-lbl");
+  diff.innerHTML="";
+  if(!changedId){
+    lbl.textContent="Start here";
+    why.textContent="One sentence, five switches. Flip a switch above: pieces it adds get a red outline, and pieces it removes are listed under their box. Tap any piece to see why it looks the way it does.";
+  } else {
+    const sw=SW.find(x=>x.id===changedId), opt=sw.opts.find(o=>o[0]===state[changedId]);
+    lbl.textContent=`${sw.label} → ${opt[1]?opt[1]+" ":""}${opt[2]}`;
+    why.textContent=explain(changedId,state);
+    changedSlots.forEach(c=>diff.append($("span","c","Changed: "+c)));
+    sameSlots.forEach(c=>diff.append($("span","u","Same: "+c)));
+  }
+  prev=b; prevText=now;
+}
+
+/* ================= switches UI ================= */
+function buildSwitches(){
+  const host=document.getElementById("switches");
+  SW.forEach(sw=>{
+    const box=$("div","sw"), h=$("h2","",sw.label);
+    box.dataset.id=sw.id;
+    let ctl;
+    const choose=val=>{
+      if(state[sw.id]===val) return;
+      state[sw.id]=val;
+      if(sw.id==="q" && val==="ann") state.neg="no";
+      sync(); render(sw.id);
+      document.querySelectorAll(".sw.just").forEach(x=>x.classList.remove("just"));
+      box.classList.add("just");
+    };
+    if(sw.id==="neg"){
+      ctl=$("div","seg"); ctl.setAttribute("role","group"); ctl.setAttribute("aria-label",sw.label);
+      sw.opts.forEach(([val,zh,en])=>{
+        const b=$("button","",(zh?`<b>${zh}</b>`:"")+`<small>${en}</small>`); b.type="button"; b.dataset.v=val;
+        b.onclick=()=>{ if(!b.disabled) choose(val); };
+        ctl.append(b);
+      });
+      box._sync=()=>ctl.querySelectorAll("button").forEach(b=>{
+        b.setAttribute("aria-pressed",b.dataset.v===state.neg);
+        b.disabled = state.q==="ann" && b.dataset.v==="yes";
+      });
+    } else {
+      ctl=$("div","sel"); const sel=document.createElement("select"); sel.id="sw-"+sw.id; sel.setAttribute("aria-label",sw.label);
+      sw.opts.forEach(([val,zh,en])=>{ const o=document.createElement("option"); o.value=val; o.textContent=zh?`${zh}  ${en}`:en; sel.append(o); });
+      sel.onchange=()=>choose(sel.value);
+      ctl.append(sel);
+      box._sync=()=>{ sel.value=state[sw.id]; };
+    }
+    box.append(h,ctl);
+    host.append(box);
+  });
+  const L=$("div","layers"); L.id="layers"; L.append($("span","label","Show"));
+  [["Gloss","hide-gloss",true],["Pinyin","hide-rom",true],["Tone colors","tones",false]].forEach(([t,cls,on])=>{
+    const p=$("button","pill",t); p.type="button"; p.setAttribute("aria-pressed",String(on));
+    p.onclick=()=>{const nowOn=p.getAttribute("aria-pressed")!=="true"; p.setAttribute("aria-pressed",nowOn);
+      if(cls==="tones") document.body.classList.toggle("tones",nowOn); else document.body.classList.toggle(cls,!nowOn);};
+    L.append(p);
+  });
+  const r=$("button","pill","Reset"); r.type="button";
+  r.onclick=()=>{Object.assign(state,DEFAULT); prev=null; prevText=""; document.querySelectorAll(".sw.just").forEach(x=>x.classList.remove("just")); sync(); render(null);};
+  L.append(r);
+  document.getElementById("layers").replaceWith(L);
+}
+function sync(){ document.querySelectorAll(".sw").forEach(x=>x._sync()); }
+
+/* ================= bottom sheet ================= */
+const sheet=document.getElementById("sheet"); let cur=null;
+function openSheet(b){
+  if(cur===b && !sheet.hidden){ closeSheet(); return; }
+  pieces.forEach(x=>x.classList.remove("on")); cur=b; b.classList.add("on");
+  const d=b._d, f=FN[d.fn], big=document.getElementById("sh-big");
+  big.textContent=d.k; big.className="big"+(f.t?" t":"")+(f.inv?" inv":""); big.style.setProperty("--c",v(f.c)); big.style.boxShadow="";
+  document.getElementById("sh-name").textContent=f.name;
+  const tn=d.py.split(" ").map(toneOf).map(n=>n===5?"neutral":["","1st","2nd","3rd","4th"][n]).join(" + ");
+  document.getElementById("sh-meta").innerHTML=`<span style="font-family:var(--py)">${d.py}</span> · ${tn} tone${d.gloss?` · “${d.gloss}”`:""}`;
+  document.getElementById("sh-desc").textContent=f.d;
+  const n=document.getElementById("sh-note"); n.textContent=d.note||""; n.hidden=!d.note;
+  const i=pieces.indexOf(b);
+  document.getElementById("sh-prev").disabled=i===0; document.getElementById("sh-next").disabled=i===pieces.length-1;
+  sheet.hidden=false;
+}
+function closeSheet(){ sheet.hidden=true; if(cur) cur.classList.remove("on"); cur=null; }
+function step(dir){ if(!cur) return; const i=pieces.indexOf(cur)+dir; if(pieces[i]) openSheet(pieces[i]); }
+document.getElementById("sh-prev").onclick=()=>step(-1);
+document.getElementById("sh-next").onclick=()=>step(1);
+document.getElementById("sh-close").onclick=closeSheet;
+document.addEventListener("click",e=>{ if(!sheet.hidden && !e.target.closest(".sheet,.morph")) closeSheet(); });
+document.addEventListener("keydown",e=>{ if(e.key==="Escape") closeSheet(); if(!sheet.hidden&&e.key==="ArrowRight") step(1); if(!sheet.hidden&&e.key==="ArrowLeft") step(-1); });
+let y0=null; sheet.addEventListener("touchstart",e=>{y0=e.touches[0].clientY},{passive:true});
+sheet.addEventListener("touchend",e=>{ if(y0!=null && e.changedTouches[0].clientY-y0>60) closeSheet(); y0=null; });
+
+buildSwitches(); sync(); render(null);
+</script>
+
+</body></html>

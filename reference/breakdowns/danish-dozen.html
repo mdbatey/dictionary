@@ -1,0 +1,655 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>The Danish Dozen</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;600;700&family=Work+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap">
+<style>
+:root{
+  --bg:#EFEDE4; --surface:#FFFFFF; --surface-2:#F7F5EC; --border:#DAD4C4;
+  --ink:#221F1A; --ink-dim:#635C4C; --ink-faint:#8A8270;
+  --jade:#2E6F5C; --jade-ink:#12463A;
+  --seal:#B3312C; --seal-ink:#7A1F1C; --seal-bg:#FBEAE8;
+  --accent:#2E6F5C;
+
+  --chip-noun-bg:#DCEAFB; --chip-noun-tx:#163A5F;
+  --chip-verb-bg:#DCF5E3; --chip-verb-tx:#1B4D34;
+  --chip-pron-bg:#EDE1FB; --chip-pron-tx:#4A2E7A;
+  --chip-adj-bg:#FCEBC9; --chip-adj-tx:#6B4A10;
+  --chip-modal-bg:#D2F3F0; --chip-modal-tx:#145C55;
+  --chip-time-bg:#FCF3C6; --chip-time-tx:#6B5A0C;
+  --chip-neg-bg:#2A1414; --chip-neg-tx:#FBDAD6;
+
+  --tx-def:#A5670E; --tx-poss:#0E7C86; --tx-prep:#5B6B7A;
+
+  --box-subject:#2E6F5C; --box-verbphrase:#9A6423; --box-object:#B3312C; --box-modifier:#5B4B8A; --box-question:#C23572;
+
+  --sheet-bg:#FFFFFF; --scrim:rgba(20,18,14,0.38);
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#17150F; --surface:#211E17; --surface-2:#2A261D; --border:#3B3628;
+    --ink:#EDE8DB; --ink-dim:#B7AE97; --ink-faint:#8B8368;
+    --jade:#5FBF9E; --jade-ink:#8FDCC0;
+    --seal:#E2695F; --seal-ink:#F3B3AC; --seal-bg:#3A1E1B;
+    --accent:#5FBF9E;
+
+    --chip-noun-bg:#1E3A57; --chip-noun-tx:#BFDBFA;
+    --chip-verb-bg:#1D3F2C; --chip-verb-tx:#B7EFC9;
+    --chip-pron-bg:#382653; --chip-pron-tx:#DCC8FA;
+    --chip-adj-bg:#4A3612; --chip-adj-tx:#F6D89B;
+    --chip-modal-bg:#123C39; --chip-modal-tx:#A6EEE6;
+    --chip-time-bg:#4A3F0C; --chip-time-tx:#F5E79B;
+    --chip-neg-bg:#F0DAD5; --chip-neg-tx:#2A1414;
+
+    --tx-def:#E3A94D; --tx-poss:#5FD3DD; --tx-prep:#9BABBB;
+
+    --box-subject:#5FBF9E; --box-verbphrase:#D3A464; --box-object:#E2695F; --box-modifier:#9C8CE0; --box-question:#EF7FAC;
+
+    --sheet-bg:#211E17; --scrim:rgba(0,0,0,0.6);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#17150F; --surface:#211E17; --surface-2:#2A261D; --border:#3B3628;
+  --ink:#EDE8DB; --ink-dim:#B7AE97; --ink-faint:#8B8368;
+  --jade:#5FBF9E; --jade-ink:#8FDCC0;
+  --seal:#E2695F; --seal-ink:#F3B3AC; --seal-bg:#3A1E1B;
+  --accent:#5FBF9E;
+  --chip-noun-bg:#1E3A57; --chip-noun-tx:#BFDBFA;
+  --chip-verb-bg:#1D3F2C; --chip-verb-tx:#B7EFC9;
+  --chip-pron-bg:#382653; --chip-pron-tx:#DCC8FA;
+  --chip-adj-bg:#4A3612; --chip-adj-tx:#F6D89B;
+  --chip-modal-bg:#123C39; --chip-modal-tx:#A6EEE6;
+  --chip-time-bg:#4A3F0C; --chip-time-tx:#F5E79B;
+  --chip-neg-bg:#F0DAD5; --chip-neg-tx:#2A1414;
+  --tx-def:#E3A94D; --tx-poss:#5FD3DD; --tx-prep:#9BABBB;
+  --box-subject:#5FBF9E; --box-verbphrase:#D3A464; --box-object:#E2695F; --box-modifier:#9C8CE0; --box-question:#EF7FAC;
+  --sheet-bg:#211E17; --scrim:rgba(0,0,0,0.6);
+  color-scheme: dark;
+}
+
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Work Sans',system-ui,sans-serif;padding-inline:0;-webkit-tap-highlight-color:transparent}
+.wrap{max-width:760px;margin:0 auto;padding-inline:18px}
+h1,h2,h3{text-wrap:balance;font-family:'Work Sans',sans-serif}
+
+header.page{padding-top:calc(28px + env(safe-area-inset-top,0px));padding-bottom:20px;border-bottom:1px solid var(--border)}
+.eyebrow{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.10em;text-transform:uppercase;color:var(--seal);font-weight:600}
+h1.title{font-size:clamp(28px,7vw,40px);margin:8px 0 6px;letter-spacing:-.01em}
+.title .cn{font-family:'Noto Serif',serif;color:var(--accent)}
+.sub{color:var(--ink-dim);font-size:15px;line-height:1.55;max-width:60ch;margin:0}
+.sub b{color:var(--ink);font-weight:600}
+
+.stickynav{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:var(--bg);border-bottom:1px solid var(--border)}
+.stickynav-inner{max-width:760px;margin:0 auto;padding:10px 18px;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none}
+.stickynav-inner::-webkit-scrollbar{display:none}
+.navnum{flex:0 0 auto;width:34px;height:34px;border-radius:999px;border:1px solid var(--border);background:var(--surface);color:var(--ink-dim);font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:600;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:transform .15s ease}
+.navnum.active{background:var(--accent);color:var(--surface);border-color:var(--accent)}
+.navnum:active{transform:scale(.92)}
+.navsum{flex:0 0 auto;width:34px;height:34px;border-radius:999px;border:1px dashed var(--border);color:var(--ink-faint);font-size:16px;display:flex;align-items:center;justify-content:center;cursor:pointer}
+
+.controls{display:flex;flex-wrap:wrap;gap:8px;padding:16px 0 6px}
+.pill{border:1px solid var(--border);background:var(--surface);color:var(--ink-dim);font-family:'Work Sans',sans-serif;font-size:13px;font-weight:600;padding:7px 14px;border-radius:999px;cursor:pointer;transition:.15s ease}
+.pill[aria-pressed="true"]{background:var(--accent);color:var(--surface);border-color:var(--accent)}
+.pill:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+.key{border:1px solid var(--border);border-radius:14px;background:var(--surface);margin:14px 0 24px;overflow:hidden}
+.key summary{list-style:none;cursor:pointer;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;font-weight:600;font-size:14px}
+.key summary::-webkit-details-marker{display:none}
+.key summary::after{content:'▾';color:var(--ink-faint);transition:transform .2s ease}
+.key[open] summary::after{transform:rotate(180deg)}
+.keygrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px;padding:0 16px 16px}
+.keyitem{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--ink-dim);border:1px solid transparent;border-radius:10px;padding:6px 8px;cursor:pointer;text-align:left;background:none}
+.keyitem:hover{background:var(--surface-2)}
+.keyitem.active{border-color:var(--accent);background:var(--surface-2);color:var(--ink)}
+.keyswatch{width:16px;height:16px;border-radius:5px;flex:0 0 auto;border:1px solid var(--border)}
+.keyswatch.inverted{background:var(--chip-neg-bg)}
+
+.card{background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:20px 18px 18px;margin-bottom:18px;scroll-margin-top:calc(64px + env(safe-area-inset-top,0px))}
+.card-head{display:flex;align-items:baseline;gap:10px;margin-bottom:4px}
+.num{font-family:'JetBrains Mono',monospace;color:var(--seal);font-weight:700;font-size:14px}
+.en{font-size:17px;font-weight:600;color:var(--ink)}
+.pairnote{font-size:12.5px;color:var(--ink-faint);margin:0 0 14px}
+.pairnote a{color:var(--accent);font-weight:600;text-decoration:none;cursor:pointer}
+
+.sentrow{display:flex;flex-wrap:wrap;gap:14px 10px;align-items:flex-start}
+.wordbox{border:1.5px solid var(--boxcolor);border-radius:12px;padding:8px 8px 6px;display:flex;flex-direction:column;gap:6px}
+.wordcap{font-size:10.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--boxcolor);font-weight:700;order:2;text-align:center}
+.wordboxes{display:flex;gap:4px;order:1}
+body:not(.show-boxes) .wordbox{border-color:transparent;padding:0}
+body:not(.show-boxes) .wordcap{display:none}
+
+.piece{background:none;border:2px solid transparent;border-radius:10px;padding:4px 6px 6px;display:flex;flex-direction:column;align-items:center;cursor:pointer;font:inherit;min-width:44px;min-height:44px;justify-content:center;transition:border-color .12s ease, transform .1s ease}
+.piece:active{transform:scale(.96)}
+.piece:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.piece.tapped{border-color:var(--seal)}
+.piece.changed{border:2px dashed var(--seal)}
+.piece.dim{opacity:.28}
+.piece.chip .cn{background:var(--chipbg);color:var(--chiptx);border-radius:7px;padding:2px 7px}
+.piece.inverted .cn{background:var(--chip-neg-bg);color:var(--chip-neg-tx);border-radius:7px;padding:2px 7px}
+.piece.text .cn{color:var(--txcolor)}
+
+.gloss{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--ink-faint);letter-spacing:.02em}
+body:not(.show-gloss) .gloss{display:none}
+.cn{font-family:'Noto Serif',serif;font-size:clamp(21px,6.5vw,27px);line-height:1.2;font-weight:600;margin:2px 0}
+.py{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink-dim)}
+body:not(.show-py) .py{display:none}
+
+.what{margin-top:16px;background:var(--surface-2);border-radius:12px;padding:12px 14px;font-size:13.5px;line-height:1.55;color:var(--ink-dim)}
+.what b{color:var(--ink);font-weight:700}
+
+.tooltip{position:fixed;background:var(--ink);color:var(--bg);font-size:11.5px;font-family:'Work Sans',sans-serif;padding:5px 9px;border-radius:8px;pointer-events:none;z-index:80;opacity:0;transition:opacity .1s ease;white-space:nowrap}
+.tooltip.show{opacity:1}
+
+.sheetwrap{position:fixed;inset:0;z-index:100;pointer-events:none}
+.sheetwrap.open{pointer-events:auto}
+.scrim{position:absolute;inset:0;background:var(--scrim);opacity:0;transition:opacity .18s ease}
+.sheetwrap.open .scrim{opacity:1}
+.sheet{position:absolute;left:0;right:0;bottom:0;background:var(--sheet-bg);border-radius:20px 20px 0 0;padding:14px 18px calc(20px + env(safe-area-inset-bottom,0px));transform:translateY(105%);transition:transform .22s cubic-bezier(.32,.72,0,1);max-height:72vh;overflow-y:auto;box-shadow:0 -8px 30px rgba(0,0,0,.18)}
+.sheetwrap.open .sheet{transform:translateY(0)}
+.sheet-handle{width:36px;height:4px;background:var(--border);border-radius:99px;margin:0 auto 14px}
+.sheet-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.sheet-close{border:none;background:var(--surface-2);color:var(--ink-dim);width:32px;height:32px;border-radius:999px;font-size:16px;cursor:pointer;flex:0 0 auto}
+.sheet-cn{font-family:'Noto Serif',serif;font-size:38px;font-weight:700;margin:6px 0 2px}
+.sheet-py{font-family:'JetBrains Mono',monospace;font-size:15px;color:var(--ink-dim);margin-bottom:10px}
+.sheet-jobrow{display:flex;align-items:center;gap:8px;margin-bottom:12px}
+.sheet-job{font-size:12px;font-weight:700;letter-spacing:.03em;text-transform:uppercase;padding:4px 10px;border-radius:999px}
+.sheet-gloss{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--ink-faint)}
+.sheet-desc,.sheet-note{font-size:14.5px;line-height:1.6;color:var(--ink);margin:0 0 10px}
+.sheet-note{background:var(--surface-2);border-radius:10px;padding:10px 12px;color:var(--ink-dim)}
+.sheet-nav{display:flex;justify-content:space-between;gap:10px;margin-top:14px}
+.sheet-nav button{flex:1;padding:11px;border-radius:10px;border:1px solid var(--border);background:var(--surface);color:var(--ink);font-weight:600;font-size:14px;cursor:pointer}
+.sheet-nav button:disabled{opacity:.35;cursor:default}
+
+.summary{background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:22px 20px;margin:8px 0 40px}
+.summary h2{font-size:19px;margin:0 0 14px}
+.summary ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:12px}
+.summary li{font-size:14.5px;line-height:1.6;color:var(--ink-dim);padding-left:0}
+.summary li b{color:var(--ink)}
+.summary li a{color:var(--accent);font-weight:600;text-decoration:none}
+.source{font-size:12px;color:var(--ink-faint);margin-top:26px;padding-top:16px;border-top:1px solid var(--border);line-height:1.6}
+.source a{color:var(--ink-faint)}
+
+@media (hover:hover){
+  .piece:hover .cn{filter:brightness(0.96)}
+}
+</style>
+
+<header class="page"><div class="wrap">
+  <div class="eyebrow">Deconstruction Dozen · Danish</div>
+  <h1 class="title">The Danish Dozen <span class="cn">tolv sætninger</span></h1>
+  <p class="sub">The same twelve-sentence set in natural, everyday Danish. Tap any word to see its job and what it's doing. Pronunciation is shown as a simplified English-based respelling, not IPA — Danish spelling notoriously doesn't match how the words sound.</p>
+</div></header>
+
+<nav class="stickynav"><div class="stickynav-inner" id="stickynav"></div></nav>
+
+<div class="wrap">
+  <div class="controls">
+    <button class="pill" id="toggle-gloss" aria-pressed="true">Gloss</button>
+    <button class="pill" id="toggle-py" aria-pressed="false">Pronunciation</button>
+    <button class="pill" id="toggle-boxes" aria-pressed="true">Phrase boxes</button>
+  </div>
+
+  <details class="key" id="keydetails">
+    <summary>Color key</summary>
+    <div class="keygrid" id="keygrid"></div>
+  </details>
+
+  <div id="cards"></div>
+
+  <section class="summary" id="summary-card">
+    <h2>What these twelve sentences reveal</h2>
+    <ul id="summary-list"></ul>
+    <p class="source">Sentence set: Tim Ferriss's "Deconstruction Dozen," as commonly shared (12-sentence version). Danish translations, respellings and grammar notes composed for this page at one consistent everyday spoken register.</p>
+  </section>
+</div>
+
+<div class="sheetwrap" id="sheetwrap">
+  <div class="scrim" id="scrim"></div>
+  <div class="sheet" id="sheet" role="dialog" aria-modal="true">
+    <div class="sheet-handle"></div>
+    <div class="sheet-top">
+      <div>
+        <div class="sheet-cn" id="sheet-cn"></div>
+        <div class="sheet-py" id="sheet-py"></div>
+      </div>
+      <button class="sheet-close" id="sheet-close" aria-label="Close">✕</button>
+    </div>
+    <div class="sheet-jobrow">
+      <span class="sheet-job" id="sheet-job"></span>
+      <span class="sheet-gloss" id="sheet-gloss"></span>
+    </div>
+    <p class="sheet-desc" id="sheet-desc"></p>
+    <p class="sheet-note" id="sheet-note"></p>
+    <div class="sheet-nav">
+      <button id="sheet-prev">← Previous</button>
+      <button id="sheet-next">Next →</button>
+    </div>
+  </div>
+</div>
+
+<div class="tooltip" id="tooltip"></div>
+
+<script>
+/* ---------- Job / color key metadata ---------- */
+const JOBS = {
+  noun:  {label:'Noun', kind:'chip', bg:'--chip-noun-bg', tx:'--chip-noun-tx', desc:'A thing, person or place.'},
+  verb:  {label:'Verb', kind:'chip', bg:'--chip-verb-bg', tx:'--chip-verb-tx', desc:'An action or state word. Danish verbs don’t change for person or number (jeg giver, vi giver — same form), only for tense.'},
+  pron:  {label:'Pronoun', kind:'chip', bg:'--chip-pron-bg', tx:'--chip-pron-tx', desc:'A stand-in for a noun. Danish has fully separate subject and object pronouns (han/ham, hun/hende), unlike the invariant nouns around them.'},
+  def:   {label:'Definite suffix ("the")', kind:'text', color:'--tx-def', desc:'Danish usually has no separate word for "the." Instead a suffix attaches to the end of the noun: -t/-et for a singular neuter (et-) noun, -en for common (en-) nouns, -erne for a definite plural.'},
+  poss:  {label:'-s · possessive', kind:'text', color:'--tx-poss', desc:'An -s glued straight onto the possessor, no apostrophe: Johns æble, "John’s apple."'},
+  adj:   {label:'Adjective', kind:'chip', bg:'--chip-adj-bg', tx:'--chip-adj-tx', desc:'Danish adjectives agree with their noun: an extra -t appears with a neuter (et-) noun, and every plural noun takes -e regardless of gender.'},
+  modal: {label:'Modal verb', kind:'chip', bg:'--chip-modal-bg', tx:'--chip-modal-tx', desc:'Words like skal, vil and kan sit before the main verb and often do double duty, standing in for both a modal meaning and Danish’s missing future tense.'},
+  neg:   {label:'Negation', kind:'inverted', desc:'ikke ("not") occupies one fixed slot in a Danish main clause: right after the finite verb, never attached to it.'},
+  prep:  {label:'Preposition', kind:'text', color:'--tx-prep', desc:'A linking word like til ("to") that introduces a phrase — used here when the recipient follows a pronoun object instead of the bare double-object order.'},
+  time:  {label:'Time word', kind:'chip', bg:'--chip-time-bg', tx:'--chip-time-tx', desc:'A time expression like i morgen ("tomorrow"). With no dedicated future tense, Danish often lets a time word plus the plain present tense do the job.'},
+};
+
+/* ---------- Sentence data ---------- */
+const S = [
+{ num:1, en:'The apple is red.',
+  words:[
+    {cat:'subject', cap:'subject', m:[
+      ['æble','EH-bluh','apple','noun','The base noun, used throughout this set.'],
+      ['t','(soft d)','the','def','A definite suffix, not a separate word: æble ("an apple") → æblet ("the apple"). æble is an et-word (neuter), which is why the ending is -t.']
+    ]},
+    {cat:'verbphrase', cap:'is red', m:[
+      ['er','air','is','verb','The verb "to be" — invariant regardless of subject.'],
+      ['rødt','rurt','red','adj','Rød is the plain form of "red." It gains a -t here to agree with the neuter noun æble — a common-gender (en-) noun would instead use bare rød.']
+    ]}
+  ],
+  what:'Introduces two hallmarks of Danish at once: the <b>postpositive definite article</b> (æble+t, not a separate word "the"), and <b>adjective agreement</b> (rødt takes -t because æble is a neuter/et-word).'
+},
+{ num:2, en:"It is John's apple.",
+  words:[
+    {cat:'subject', cap:'subject', m:[['Det','deh','it / that','pron','A neutral pronoun for "it/that" — its silent t is typical of common short Danish words.']]},
+    {cat:'verbphrase', cap:'is', m:[['er','air','is','verb','Same verb as #1.']]},
+    {cat:'object', cap:"John's apple", m:[
+      ['John','jon','John','noun','English names are kept as spelled — no transliteration needed in a Latin-script language.'],
+      ['s','s','’s','poss','-s attaches directly to the possessor, with no apostrophe in speech and none needed in writing either.'],
+      ['æble','EH-bluh','apple','noun','Notice: no -t here. Once a noun already has an ’s-possessor, that alone marks it as definite, so the suffix from #1 is dropped.']
+    ]}
+  ],
+  what:'The genitive -s attaches straight to John, and the possessed noun drops back to its plain, indefinite form — <b>Johns æble</b>, never Johns æblet.'
+},
+{ num:3, en:'I give John the apple.',
+  words:[
+    {cat:'subject', cap:'subject', m:[['Jeg','yai','I','pron','First-person pronoun.']]},
+    {cat:'verbphrase', cap:'give', m:[['giver','GEE-ver','give','verb','Present tense of at give, "to give." Same form no matter the subject.']]},
+    {cat:'object', cap:'recipient', m:[['John','jon','John','noun','The recipient, placed directly after the verb.']]},
+    {cat:'object', cap:'thing given', m:[
+      ['æble','EH-bluh','apple','noun','Same noun as #1.'],
+      ['t','(soft d)','the','def','Same definite suffix as #1.']
+    ]}
+  ],
+  what:'The basic double-object order — <b>subject + verb + recipient + thing</b> — with no preposition, the same shape as English "I give John the apple."'
+},
+{ num:4, en:'We give him the apple.',
+  words:[
+    {cat:'subject', cap:'subject', m:[['Vi','vee','we','pron','A completely separate word from jeg ("I") — Danish pronouns don’t build "we" out of "I" plus a suffix.']]},
+    {cat:'verbphrase', cap:'give', m:[['giver','GEE-ver','give','verb','Same verb, same form.']]},
+    {cat:'object', cap:'recipient', m:[['ham','ham','him','pron','The object form of "he." Danish keeps subject and object pronouns distinct (han/ham).']]},
+    {cat:'object', cap:'thing given', m:[
+      ['æble','EH-bluh','apple','noun','Same noun.'],
+      ['t','(soft d)','the','def','Same suffix.']
+    ]}
+  ],
+  what:'Only the subject changes from #3 — and it changes to an entirely different word, vi, rather than a modified form of jeg.'
+},
+{ num:5, en:'He gives it to John.',
+  words:[
+    {cat:'subject', cap:'subject', m:[['Han','han','he','pron','Subject-form third-person pronoun.']]},
+    {cat:'verbphrase', cap:'give', m:[['giver','GEE-ver','give','verb','Same verb.']]},
+    {cat:'object', cap:'thing given', m:[['det','deh','it','pron','"It," referring back to the apple.']]},
+    {cat:'object', cap:'recipient', m:[
+      ['til','til','to','prep','Once the thing given is a pronoun, Danish commonly shifts the recipient into a prepositional phrase with til ("to") instead of the bare double-object order.'],
+      ['John','jon','John','noun','The recipient.']
+    ]}
+  ],
+  what:'With a pronoun object (det, "it") instead of a full noun, the recipient often moves into a <b>til</b> ("to") phrase rather than sitting bare after the verb the way John did in #3.'
+},
+{ num:6, en:'She gives it to him.',
+  words:[
+    {cat:'subject', cap:'subject', m:[['Hun','hoon','she','pron','Subject-form third-person pronoun — a different word from han, unlike Chinese’s identical-sounding 他/她.', true]]},
+    {cat:'verbphrase', cap:'give', m:[['giver','GEE-ver','give','verb','Same verb.']]},
+    {cat:'object', cap:'thing given', m:[['det','deh','it','pron','Same as #5.']]},
+    {cat:'object', cap:'recipient', m:[
+      ['til','til','to','prep','Same construction as #5.'],
+      ['ham','ham','him','pron','Object-form pronoun — swapped in for John.', true]
+    ]}
+  ],
+  what:'Swap #5’s subject and recipient and the sentence keeps exactly the same shape — only <b>han→hun</b> and <b>John→ham</b> change.',
+  pair:{with:5, label:'Compare with #5'}
+},
+{ num:7, en:'Is the apple red?',
+  words:[
+    {cat:'question', cap:'verb (fronted)', m:[['Er','air','is','verb','Moved to the very front of the sentence to form a yes/no question — no auxiliary "do" needed.', true]]},
+    {cat:'subject', cap:'subject', m:[
+      ['æble','EH-bluh','apple','noun','Same noun as #1.'],
+      ['t','(soft d)','the','def','Same suffix as #1.']
+    ]},
+    {cat:'verbphrase', cap:'predicate', m:[['rødt','rurt','red','adj','Unchanged from #1.']]}
+  ],
+  what:'Yes/no questions are made simply by moving the verb to the very front (<b>verb-first</b> word order) — compare the fixed verb-second position of the statement in #1.',
+  pair:{with:1, label:'Compare with #1'}
+},
+{ num:8, en:'The apples are red.',
+  words:[
+    {cat:'subject', cap:'the apples', m:[
+      ['æble','EH-bluh','apple','noun','The same stem noun.'],
+      ['erne','uh-nuh','the [plural]','def','A fused ending: -er marks plural and -ne marks "the," combined into one suffix, æbler ("apples") → æblerne ("the apples").', true]
+    ]},
+    {cat:'verbphrase', cap:'is red', m:[
+      ['er','air','is / are','verb','Same verb whether the subject is singular or plural.'],
+      ['røde','RUR-eh','red','adj','Plural adjective ending -e replaces rødt’s gender-marked -t — in the plural, Danish adjectives stop distinguishing gender.', true]
+    ]}
+  ],
+  what:'Plural and definite fuse into one ending, <b>-erne</b>; and in the plural, the adjective’s gender distinction disappears — røde works no matter what gender æble is.',
+  pair:{with:1, label:'Compare with #1'}
+},
+{ num:9, en:'I must give it to him.',
+  words:[
+    {cat:'subject', cap:'subject', m:[['Jeg','yai','I','pron','First-person pronoun.']]},
+    {cat:'modifier', cap:'must', m:[['skal','sgal','must','modal','Marks obligation here, but skal is also Danish’s everyday future auxiliary — the same word can mean "shall/must" or "is going to," told apart only by context.']]},
+    {cat:'verbphrase', cap:'give', m:[['give','GEE-uh','give','verb','The plain infinitive, used after a modal like skal with no "to."']]},
+    {cat:'object', cap:'recipient', m:[['ham','ham','him','pron','Object-form pronoun.']]},
+    {cat:'object', cap:'thing given', m:[['det','deh','it','pron','"It," placed after the recipient here.']]}
+  ],
+  what:'Shows a modal verb’s slot, right before the plain infinitive give — and that <b>skal</b> quietly carries two jobs, obligation and future tense, at once.'
+},
+{ num:10, en:'I want to give it to her.',
+  words:[
+    {cat:'subject', cap:'subject', m:[['Jeg','yai','I','pron','First-person pronoun.']]},
+    {cat:'modifier', cap:'want to', m:[['vil','vil','want to','modal','Fills the same slot as skal in #9, but vil has its own double life: the identical word also marks the simple future, "will."', true]]},
+    {cat:'verbphrase', cap:'give', m:[['give','GEE-uh','give','verb','Same infinitive as #9.']]},
+    {cat:'object', cap:'recipient', m:[['hende','HEN-eh','her','pron','Object-form pronoun, swapped in for ham.', true]]},
+    {cat:'object', cap:'thing given', m:[['det','deh','it','pron','Same as #9.']]}
+  ],
+  what:'Only the modal (skal→vil) and the recipient pronoun (ham→hende) change from #9 — and vil is exactly as double-duty as skal was, meaning either "want to" or plain "will."',
+  pair:{with:9, label:'Compare with #9'}
+},
+{ num:11, en:"I'm going to know tomorrow.",
+  words:[
+    {cat:'subject', cap:'subject', m:[['Jeg','yai','I','pron','First-person pronoun.']]},
+    {cat:'verbphrase', cap:'know', m:[['ved','veth','know','verb','Present tense of at vide, "to know" — no modal or future ending attached at all.']]},
+    {cat:'object', cap:'it', m:[['det','deh','it','pron','What will be known.']]},
+    {cat:'modifier', cap:'tomorrow', m:[['i morgen','ee MORN','tomorrow','time','With no dedicated future tense, Danish can lean on the plain present tense plus a time word like this to talk about the future — much like English’s "I leave tomorrow."']]}
+  ],
+  what:'Unlike #9 and #10, no modal appears at all: the <b>plain present tense</b> (ved) plus the time word <b>i morgen</b> is enough to place the action in the future.'
+},
+{ num:12, en:"I can't eat the apple.",
+  words:[
+    {cat:'subject', cap:'subject', m:[['Jeg','yai','I','pron','First-person pronoun.']]},
+    {cat:'modifier', cap:"can't", m:[
+      ['kan','kan','can','modal','The modal "can/be able to."'],
+      ['ikke','IG-guh','not','neg','Negation lands in a fixed slot right after the finite verb kan — never attached to the main verb spise the way "not" glues onto "can’t" in English.']
+    ]},
+    {cat:'verbphrase', cap:'eat', m:[['spise','SPEE-seh','eat','verb','The plain infinitive, used after kan.']]},
+    {cat:'object', cap:'the apple', m:[
+      ['æble','EH-bluh','apple','noun','Same noun.'],
+      ['t','(soft d)','the','def','Same definite suffix as #1.']
+    ]}
+  ],
+  what:'ikke has one fixed address in the sentence — right after the finite verb — regardless of which modal or main verb surrounds it.'
+}
+];
+
+/* ---------- Build key ---------- */
+const keygrid = document.getElementById('keygrid');
+Object.entries(JOBS).forEach(([id,j])=>{
+  const btn = document.createElement('button');
+  btn.className = 'keyitem';
+  btn.dataset.job = id;
+  const sw = document.createElement('span');
+  sw.className = 'keyswatch' + (j.kind==='inverted' ? ' inverted' : '');
+  if(j.kind==='chip') sw.style.background = `var(${j.bg})`;
+  else if(j.kind==='text') sw.style.background = `var(${j.color})`;
+  btn.appendChild(sw);
+  const label = document.createElement('span');
+  label.textContent = j.label;
+  btn.appendChild(label);
+  btn.addEventListener('click', ()=> toggleKeyFilter(id));
+  keygrid.appendChild(btn);
+});
+if(window.matchMedia && window.matchMedia('(min-width: 720px)').matches){
+  document.getElementById('keydetails').open = true;
+}
+
+let activeFilter = null;
+function toggleKeyFilter(id){
+  activeFilter = (activeFilter === id) ? null : id;
+  document.querySelectorAll('.keyitem').forEach(el=> el.classList.toggle('active', el.dataset.job===activeFilter));
+  document.querySelectorAll('.piece').forEach(el=>{
+    if(!activeFilter){ el.classList.remove('dim'); return; }
+    el.classList.toggle('dim', el.dataset.job !== activeFilter);
+  });
+}
+
+/* ---------- Build cards ---------- */
+const cardsEl = document.getElementById('cards');
+const stickynav = document.getElementById('stickynav');
+
+S.forEach(sent=>{
+  const card = document.createElement('section');
+  card.className = 'card';
+  card.id = 'sent-'+sent.num;
+
+  const head = document.createElement('div');
+  head.className = 'card-head';
+  head.innerHTML = `<span class="num">#${sent.num}</span><span class="en">${sent.en}</span>`;
+  card.appendChild(head);
+
+  if(sent.pair){
+    const p = document.createElement('p');
+    p.className = 'pairnote';
+    p.innerHTML = `${sent.pair.label} <a data-goto="${sent.pair.with}">→ jump to #${sent.pair.with}</a>`;
+    card.appendChild(p);
+  } else {
+    const p = document.createElement('p');
+    p.className = 'pairnote';
+    p.textContent = ' ';
+    card.appendChild(p);
+  }
+
+  const row = document.createElement('div');
+  row.className = 'sentrow';
+
+  sent.words.forEach((w, wi)=>{
+    const wb = document.createElement('div');
+    wb.className = 'wordbox';
+    wb.style.setProperty('--boxcolor', `var(--box-${w.cat})`);
+    const capEl = document.createElement('div');
+    capEl.className = 'wordcap';
+    capEl.textContent = w.cap;
+    const piecesEl = document.createElement('div');
+    piecesEl.className = 'wordboxes';
+
+    w.m.forEach((p, pi)=>{
+      const [script, py, gloss, jobKey, note, changed] = p;
+      const job = JOBS[jobKey];
+      const btn = document.createElement('button');
+      btn.className = 'piece ' + (job.kind==='chip' ? 'chip' : job.kind==='inverted' ? 'inverted' : 'text');
+      if(changed) btn.classList.add('changed');
+      btn.dataset.job = jobKey;
+      btn.setAttribute('aria-label', `${script}, ${py}, ${gloss}, ${job.label}`);
+      if(job.kind==='chip'){ btn.style.setProperty('--chipbg', `var(${job.bg})`); btn.style.setProperty('--chiptx', `var(${job.tx})`); }
+      if(job.kind==='text'){ btn.style.setProperty('--txcolor', `var(${job.color})`); }
+      btn.innerHTML = `<span class="gloss">${gloss}</span><span class="cn">${script}</span><span class="py">${py}</span>`;
+      btn.addEventListener('click', ()=> openSheet(sent, wi, pi));
+      btn.addEventListener('mouseenter', (e)=> showTooltip(e, `${job.label} · ${gloss}`));
+      btn.addEventListener('mousemove', moveTooltip);
+      btn.addEventListener('mouseleave', hideTooltip);
+      piecesEl.appendChild(btn);
+    });
+
+    wb.appendChild(piecesEl);
+    wb.appendChild(capEl);
+    row.appendChild(wb);
+  });
+
+  card.appendChild(row);
+
+  const what = document.createElement('div');
+  what.className = 'what';
+  what.innerHTML = `<b>What this shows —</b> ${sent.what}`;
+  card.appendChild(what);
+
+  cardsEl.appendChild(card);
+
+  const navbtn = document.createElement('button');
+  navbtn.className = 'navnum';
+  navbtn.textContent = sent.num;
+  navbtn.dataset.target = 'sent-'+sent.num;
+  navbtn.addEventListener('click', ()=> document.getElementById('sent-'+sent.num).scrollIntoView({behavior:'smooth', block:'start'}));
+  stickynav.appendChild(navbtn);
+});
+
+const navsum = document.createElement('button');
+navsum.className = 'navsum';
+navsum.textContent = 'Σ';
+navsum.title = 'Summary';
+navsum.addEventListener('click', ()=> document.getElementById('summary-card').scrollIntoView({behavior:'smooth', block:'start'}));
+stickynav.appendChild(navsum);
+
+document.querySelectorAll('[data-goto]').forEach(a=>{
+  a.addEventListener('click', ()=> document.getElementById('sent-'+a.dataset.goto).scrollIntoView({behavior:'smooth', block:'start'}));
+});
+
+/* ---------- Summary ---------- */
+const SUMMARY = [
+  '"The" is a suffix, not a word. æble→æblet, æbler→æblerne (<a data-goto="1">#1</a>, <a data-goto="8">#8</a>) — but that suffix disappears once a noun already has an ’s-possessor: Johns æble, not Johns æblet (<a data-goto="2">#2</a>).',
+  'Adjectives agree with gender, only in the singular. rødt (neuter/et-word) vs. plain rød (common/en-word); in the plural that distinction vanishes and every adjective takes -e — røde regardless of gender (<a data-goto="1">#1</a> vs <a data-goto="8">#8</a>).',
+  'Yes/no questions move the verb to the very front. Er æblet rødt? vs. the fixed verb-second statement Æblet er rødt (<a data-goto="1">#1</a>, <a data-goto="7">#7</a>) — no auxiliary "do" required.',
+  'There’s no dedicated future tense. Danish reaches for modals that do double duty — skal (<a data-goto="9">#9</a>) is both "must" and "going to," vil (<a data-goto="10">#10</a>) is both "want to" and "will" — or simply the present tense plus a time word (<a data-goto="11">#11</a> Jeg ved det i morgen).',
+  'Negation has one fixed address. ikke always sits right after the finite verb in a main clause (<a data-goto="12">#12</a> kan ikke spise), never glued onto the main verb the way "not" attaches to "can’t."',
+  'The double-object order bends around pronouns. A full noun recipient follows the verb directly (<a data-goto="3">#3</a> giver John æblet), but once the thing given is a pronoun, the recipient often shifts into a til ("to") phrase instead (<a data-goto="5">#5</a> giver det til John).',
+  'Pronouns are separate words for every role, not suffixes. vi ("we") isn’t built from jeg ("I"), and han/ham, hun/hende each have distinct subject and object forms (<a data-goto="4">#4</a>, <a data-goto="6">#6</a>).'
+];
+const sl = document.getElementById('summary-list');
+SUMMARY.forEach(t=>{
+  const li = document.createElement('li');
+  li.innerHTML = t;
+  sl.appendChild(li);
+});
+document.querySelectorAll('#summary-list a').forEach(a=>{
+  a.addEventListener('click', ()=> document.getElementById('sent-'+a.dataset.goto).scrollIntoView({behavior:'smooth', block:'start'}));
+});
+
+/* ---------- Toggles ---------- */
+function wireToggle(btnId, cls){
+  const btn = document.getElementById(btnId);
+  btn.addEventListener('click', ()=>{
+    const on = document.body.classList.toggle(cls);
+    btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+  });
+}
+document.body.classList.add('show-gloss','show-boxes');
+wireToggle('toggle-gloss','show-gloss');
+wireToggle('toggle-py','show-py');
+wireToggle('toggle-boxes','show-boxes');
+
+/* ---------- Tooltip ---------- */
+const tooltip = document.getElementById('tooltip');
+function showTooltip(e, text){ tooltip.textContent = text; tooltip.classList.add('show'); moveTooltip(e); }
+function moveTooltip(e){ tooltip.style.left = (e.clientX + 14) + 'px'; tooltip.style.top = (e.clientY + 18) + 'px'; }
+function hideTooltip(){ tooltip.classList.remove('show'); }
+
+/* ---------- Bottom sheet ---------- */
+const sheetwrap = document.getElementById('sheetwrap');
+const scrim = document.getElementById('scrim');
+let sheetCtx = null;
+
+function flattenSentence(sent){
+  const flat = [];
+  sent.words.forEach(w=> w.m.forEach(p=> flat.push({piece:p})));
+  return flat;
+}
+
+function openSheet(sent, wi, pi){
+  const flat = flattenSentence(sent);
+  let idx = 0, count = 0;
+  sent.words.forEach((w, i)=>{
+    w.m.forEach((p, j)=>{
+      if(i===wi && j===pi) idx = count;
+      count++;
+    });
+  });
+  sheetCtx = { sent, flat, idx };
+  renderSheet();
+  sheetwrap.classList.add('open');
+  document.addEventListener('keydown', onSheetKey);
+}
+
+function renderSheet(){
+  const {flat, idx} = sheetCtx;
+  const [script, py, gloss, jobKey, note] = flat[idx].piece;
+  const job = JOBS[jobKey];
+  document.getElementById('sheet-cn').textContent = script;
+  document.getElementById('sheet-py').textContent = py;
+  const jobEl = document.getElementById('sheet-job');
+  jobEl.textContent = job.label;
+  jobEl.style.background = job.kind==='chip' ? `var(${job.bg})` : job.kind==='inverted' ? 'var(--chip-neg-bg)' : 'var(--surface-2)';
+  jobEl.style.color = job.kind==='chip' ? `var(${job.tx})` : job.kind==='inverted' ? 'var(--chip-neg-tx)' : (job.kind==='text' ? `var(${job.color})` : 'var(--ink)');
+  document.getElementById('sheet-gloss').textContent = gloss;
+  document.getElementById('sheet-desc').textContent = job.desc;
+  document.getElementById('sheet-note').textContent = note;
+
+  document.querySelectorAll('.piece').forEach(el=> el.classList.remove('tapped'));
+  const allPieces = document.querySelectorAll(`#sent-${sheetCtx.sent.num} .piece`);
+  if(allPieces[idx]){
+    allPieces[idx].classList.add('tapped');
+    allPieces[idx].scrollIntoView({behavior:'smooth', block:'center'});
+  }
+
+  document.getElementById('sheet-prev').disabled = idx===0;
+  document.getElementById('sheet-next').disabled = idx===flat.length-1;
+}
+
+function closeSheet(){
+  sheetwrap.classList.remove('open');
+  document.querySelectorAll('.piece.tapped').forEach(el=> el.classList.remove('tapped'));
+  document.removeEventListener('keydown', onSheetKey);
+  sheetCtx = null;
+}
+
+function onSheetKey(e){
+  if(e.key==='Escape') closeSheet();
+  if(e.key==='ArrowLeft') stepSheet(-1);
+  if(e.key==='ArrowRight') stepSheet(1);
+}
+function stepSheet(d){
+  if(!sheetCtx) return;
+  const n = sheetCtx.idx + d;
+  if(n<0 || n>=sheetCtx.flat.length) return;
+  sheetCtx.idx = n;
+  renderSheet();
+}
+
+document.getElementById('sheet-prev').addEventListener('click', ()=> stepSheet(-1));
+document.getElementById('sheet-next').addEventListener('click', ()=> stepSheet(1));
+document.getElementById('sheet-close').addEventListener('click', closeSheet);
+scrim.addEventListener('click', closeSheet);
+
+let touchStartY = null;
+const sheetEl = document.getElementById('sheet');
+sheetEl.addEventListener('touchstart', (e)=>{ touchStartY = e.touches[0].clientY; }, {passive:true});
+sheetEl.addEventListener('touchend', (e)=>{
+  if(touchStartY===null) return;
+  const dy = e.changedTouches[0].clientY - touchStartY;
+  if(dy > 70) closeSheet();
+  touchStartY = null;
+}, {passive:true});
+
+/* ---------- Active sentence in sticky nav ---------- */
+const navButtons = Array.from(document.querySelectorAll('.navnum'));
+const observer = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      const id = entry.target.id;
+      navButtons.forEach(b=> b.classList.toggle('active', b.dataset.target===id));
+    }
+  });
+}, { rootMargin: '-30% 0px -60% 0px', threshold: 0 });
+document.querySelectorAll('.card').forEach(c=> observer.observe(c));
+</script>
+
+</body></html>

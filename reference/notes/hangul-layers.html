@@ -1,0 +1,341 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Hangul Layers</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Noto+Sans+KR:wght@500;700;900&display=swap">
+<style>
+:root{
+  --bg:#F3F5F8; --surface:#FFFFFF; --surface-2:#EDF0F5; --ink:#171B24; --muted:#5A6272; --line:#D6DBE4;
+  --focus:#E0182D; --chip-ink:#141821;
+  /* function colours (pastel chips, same ink in both themes) */
+  --f-topic:#FFF3B0; --f-subj:#FFE04A; --f-obj:#FFC9B8; --f-noun:#B5EE9C; --f-stem:#7DEFD3;
+  --f-conn:#A6D8FF; --f-conj:#E4CCFF; --f-demo:#F6A8EE; --f-cop:#FFB8D2; --f-pron:#FFFFFF;
+  /* text-only functions */
+  --t-infl:#D11F35; --t-pol:#D11F35; --t-tense:#2346D8;
+  /* phrase box borders */
+  --b1:#E0182D; --b2:#2447D6; --b3:#EE6A10; --b4:#7A2BD9; --b5:#1F9D55;
+  --shadow:0 1px 2px rgba(20,24,33,.06),0 4px 16px rgba(20,24,33,.05);
+  --ko:"Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  --en:"Figtree",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#11141A; --surface:#1A1F28; --surface-2:#232A35; --ink:#E8ECF3; --muted:#9BA4B4; --line:#2E3644;
+    --focus:#FF4D5E; --f-pron:#DDE3EC;
+    --t-infl:#FF6273; --t-pol:#FF6273; --t-tense:#86A3FF;
+    --b1:#FF4D5E; --b2:#6F8BFF; --b3:#FF8A3D; --b4:#B07BFF; --b5:#4CCB83;
+    --shadow:none;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#11141A; --surface:#1A1F28; --surface-2:#232A35; --ink:#E8ECF3; --muted:#9BA4B4; --line:#2E3644;
+  --focus:#FF4D5E; --f-pron:#DDE3EC;
+  --t-infl:#FF6273; --t-pol:#FF6273; --t-tense:#86A3FF;
+  --b1:#FF4D5E; --b2:#6F8BFF; --b3:#FF8A3D; --b4:#B07BFF; --b5:#4CCB83;
+  --shadow:none;
+}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--en);font-size:15px;line-height:1.5;margin:0}
+.wrap{max-width:900px;margin:0 auto;padding-inline:16px;padding-block:28px 64px;display:flex;flex-direction:column;gap:20px}
+
+header h1{font-family:var(--en);font-weight:700;font-size:clamp(26px,5vw,34px);letter-spacing:-.01em;margin:0 0 4px;text-wrap:balance}
+header h1 .ko{font-family:var(--ko);font-weight:900;margin-right:.3em}
+header p{margin:0;color:var(--muted);max-width:62ch}
+
+/* toolbar */
+@media (min-width:760px){ .toolbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5} }
+.toolbar{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px 14px;display:flex;flex-direction:column;gap:10px;box-shadow:var(--shadow)}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.label{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-right:4px}
+.toggle{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:500;padding:5px 10px;border:1px solid var(--line);border-radius:999px;cursor:pointer;user-select:none;background:var(--surface)}
+.toggle input{accent-color:var(--ink);margin:0}
+.legend button{font:500 12.5px/1 var(--en);color:var(--chip-ink);border:1px solid transparent;border-radius:6px;padding:6px 8px;cursor:pointer;background:var(--c)}
+.legend button.txt{background:var(--surface);color:var(--c);border-color:var(--line);font-weight:700}
+.legend button[aria-pressed="true"]{outline:2px solid var(--focus);outline-offset:1px}
+.legend .hint{font-size:12px;color:var(--muted)}
+
+/* cards */
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px 18px;display:flex;flex-direction:column;gap:14px;box-shadow:var(--shadow)}
+.eyebrow{font-size:11px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+.en{font-size:clamp(19px,3.4vw,24px);font-weight:600;margin:0;text-wrap:balance}
+.en em{font-style:normal;color:var(--focus)}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:10px;overflow:hidden;align-self:flex-start}
+.seg button{font:600 13px var(--en);padding:7px 14px;border:0;background:var(--surface);color:var(--muted);cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+
+/* the sentence */
+.stage{overflow-x:auto;padding:6px 2px 4px}
+.sentence{display:flex;flex-wrap:wrap;align-items:flex-start;gap:14px 8px}
+.word{display:flex;flex-direction:column;align-items:center;gap:6px}
+.box{display:flex;align-items:flex-end;padding:4px 5px 5px;border:2.5px solid transparent;border-radius:4px}
+body:not(.hide-box) .box[data-b]{border-color:var(--bc)}
+.cap{font-size:12px;line-height:1.3;color:var(--muted);text-align:center;max-width:14ch;border-top:2px solid var(--bc);padding-top:3px}
+body.hide-box .cap{display:none}
+.punct{font:700 clamp(30px,6vw,44px)/1 var(--ko);align-self:center;margin-top:10px}
+
+.morph{all:unset;display:flex;flex-direction:column;align-items:center;cursor:pointer;border-radius:4px;position:relative;transition:opacity .15s}
+.morph:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.g{font-size:12.5px;line-height:1.2;padding:2px 3px;margin-bottom:3px;color:var(--chip-ink);background:var(--c,transparent);border-radius:3px;white-space:nowrap}
+.k{font:700 clamp(30px,6vw,44px)/1.15 var(--ko);color:var(--chip-ink);background:var(--c);padding:0 1px}
+.r{font-size:clamp(13px,2.2vw,16px);font-weight:600;line-height:1.2;margin-top:4px;padding:1px 2px;color:var(--chip-ink);background:var(--c);border-radius:3px;white-space:nowrap}
+.morph[data-t] .k,.morph[data-t] .r{background:transparent;color:var(--c)}
+.morph[data-t] .g{background:transparent;color:var(--c);font-weight:600}
+.morph[data-fn="pron"] .g{background:transparent;color:var(--muted)}
+body.hide-gloss .g{visibility:hidden}
+body.hide-rom .r{display:none}
+.morph.on .k{outline:3px solid var(--focus);outline-offset:1px;border-radius:2px}
+.morph.delta .k{outline:3px solid var(--focus);outline-offset:1px}
+body[data-spot] .morph{opacity:.22}
+body[data-spot] .morph.lit{opacity:1}
+@media (hover:hover){
+  .morph:hover .k{filter:brightness(.95)}
+  .morph::after{content:attr(data-tip);position:absolute;bottom:calc(100% + 4px);left:50%;transform:translateX(-50%);background:var(--ink);color:var(--bg);font:500 12px/1.3 var(--en);padding:5px 8px;border-radius:6px;white-space:nowrap;pointer-events:none;opacity:0;transition:opacity .12s .15s}
+  .morph:hover::after{opacity:1}
+}
+
+/* before -> after */
+.pairs{display:flex;flex-direction:column;gap:18px}
+.pair{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px}
+.arrow{font:700 28px/1 var(--en);color:var(--focus)}
+.pair .tr{font-size:13px;color:var(--muted);flex-basis:100%}
+
+/* info panel */
+.info{background:var(--surface-2);border-radius:12px;padding:12px 14px;display:flex;gap:14px;align-items:flex-start;min-height:64px}
+.info .big{font:900 34px/1 var(--ko);color:var(--chip-ink);background:var(--c,transparent);padding:4px 6px;border-radius:4px;flex:none}
+.info .big.t{background:transparent;color:var(--c)}
+.info .big.none{display:none}
+.info h3{margin:0 0 2px;font-size:15px;font-weight:700}
+.info .meta{font-size:13px;color:var(--muted);margin-bottom:4px}
+.info p{margin:0;max-width:62ch}
+.info p+p{margin-top:4px}
+
+/* speech levels */
+.levels{display:grid;grid-template-columns:auto 1fr;gap:10px 18px;align-items:center}
+.levels .lv{font-weight:700;color:var(--focus);font-size:15px}
+.levels .lv small{display:block;color:var(--muted);font-weight:400;font-size:12.5px;max-width:34ch}
+.levels .sentence{gap:0}
+@media (max-width:520px){ .levels{grid-template-columns:1fr} .levels .lv{margin-top:6px} }
+
+footer{font-size:12.5px;color:var(--muted);text-align:center}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="wrap">
+  <header>
+    <h1><span class="ko">한글</span>Hangul Layers</h1>
+    <p>Proof of concept for the Langfocus-style breakdown. Each word shows a literal gloss on top, the Korean in the middle and romanization below. Tap any piece to see what it does. Hover on desktop for a quick label.</p>
+  </header>
+
+  <div class="toolbar" role="region" aria-label="Display options">
+    <div class="row">
+      <span class="label">Layers</span>
+      <label class="toggle"><input type="checkbox" id="opt-gloss" checked> Gloss</label>
+      <label class="toggle"><input type="checkbox" id="opt-rom" checked> Romanization</label>
+      <label class="toggle"><input type="checkbox" id="opt-box" checked> Phrase boxes</label>
+    </div>
+    <div class="row legend" id="legend"><span class="label">Spotlight</span></div>
+  </div>
+
+  <main id="cards" style="display:flex;flex-direction:column;gap:20px"></main>
+
+  <footer>Examples adapted from the Langfocus Korean overview. Colors follow one fixed legend across every card.</footer>
+</div>
+
+<script>
+/* ---------- the legend: one colour per grammatical job ---------- */
+const FN = {
+  pron:  {name:"Pronoun", c:"--f-pron", d:"A person or thing word such as 나 (I) or 그녀 (she)."},
+  noun:  {name:"Noun", c:"--f-noun", d:"A thing, place or idea. Particles attach right after it."},
+  topic: {name:"Topic marker", c:"--f-topic", d:"Marks what the sentence is about. 는 after a vowel, 은 after a consonant."},
+  subj:  {name:"Subject marker", c:"--f-subj", d:"Marks new or emphasized information. 가 after a vowel, 이 after a consonant."},
+  obj:   {name:"Object marker", c:"--f-obj", d:"Marks the direct object. 를 after a vowel, 을 after a consonant."},
+  stem:  {name:"Verb / adjective stem", c:"--f-stem", d:"The dictionary form with -다 removed. Endings attach here."},
+  cop:   {name:"Copula", c:"--f-cop", d:"이다 means 'to be' and attaches to a noun. Its negative is the separate verb 아니다."},
+  conn:  {name:"Modifier connector", c:"--f-conn", d:"-은 / -ㄴ lets an adjective or a whole clause sit in front of the noun it describes."},
+  conj:  {name:"Connective", c:"--f-conj", d:"Joins clauses or verbs, like 'but' or 'want to'."},
+  demo:  {name:"Demonstrative", c:"--f-demo", d:"Points at something: 이 this, 그 that."},
+  tense: {name:"Past tense affix", c:"--t-tense", t:1, d:"았 after ㅏ/ㅗ stems, 었 after the rest. Slots in before the ending."},
+  infl:  {name:"Informal ending", c:"--t-infl", t:1, d:"-아 after ㅏ/ㅗ stems, -어 after the rest. On its own this is informal non-polite."},
+  pol:   {name:"Polite suffix", c:"--t-pol", t:1, d:"요 added to the informal ending makes it informal polite."}
+};
+
+/* morph = [korean, romanization, gloss, fn, note?] ; word = {b:boxColor, cap:caption, m:[morphs]} */
+const CARDS = [
+  { eyebrow:"Word order · SOV", en:"I play baseball.",
+    note:"Korean is verb-final: Subject, Object, Verb. Particles after each noun say which job it has, so the order can flex without losing meaning.",
+    s:[ {b:"b1",cap:"S · subject",m:[["나","na","I","pron"],["는","-neun","topic","topic"]]},
+        {b:"b2",cap:"O · object",m:[["야구","ya-gu","baseball","noun"],["를","-leul","d.o.","obj"]]},
+        {b:"b3",cap:"V · verb",m:[["해","hae","do/play","stem","해 is 하다 (to do) with its ending already fused in: 하 + 여 → 해."],["요","-yo","pol","pol"]]}, "." ] },
+
+  { eyebrow:"Copula · minimal pair", pair:true,
+    variants:{
+      yes:{ en:"She is a good student.",
+        note:"이다 ('to be') attaches straight onto the noun: 학생 + 이에요.",
+        s:[ {b:"b1",cap:"topic",m:[["그녀","geu-nyeo","she","pron"],["는","-neun","topic","topic"]]},
+            {b:"b3",cap:"modifier",m:[["좋","joh","good","stem"],["은","-eun","con","conn","좋다 'good' needs the connector 은 to sit before a noun."]]},
+            {b:"b5",cap:"noun + 'is'",m:[["학생","hag-saeng","student","noun"],["이","-i","is","cop","The copula 이다. After a vowel it shrinks: 의사예요 'is a doctor'."],["에요","-e-yo","pol","pol","Polite present ending of 이다."]]}, "." ]},
+      no:{ en:"She is <em>not</em> a good student.",
+        note:"The negative uses a separate verb, 아니다, and the noun takes the subject marker 이 instead of the copula. Only a couple of verbs work this way.",
+        s:[ {b:"b1",cap:"topic",m:[["그녀","geu-nyeo","she","pron"],["는","-neun","topic","topic"]]},
+            {b:"b3",cap:"modifier",m:[["좋","joh","good","stem"],["은","-eun","con","conn","좋다 'good' needs the connector 은 to sit before a noun."]]},
+            {b:"b5",cap:"subject",m:[["학생","hag-saeng","student","noun"],["이","-i","subj","subj","Same syllable as the copula, different job: here it marks the subject of 아니다."]]},
+            {b:"b4",cap:"'is not'",m:[["아니","a-ni","is not","cop","From 아니다, the negative of 이다."],["에요","-e-yo","pol","pol","Standard spelling is 아니에요. You will also see 아니예요, which is common but nonstandard."]]}, "." ]}
+    }},
+
+  { eyebrow:"Possession · 있다 / 없다", en:"I have a bicycle, but I don't have a car.",
+    note:"Korean has no verb 'to have'. You say the thing exists (있다) or doesn't (없다) for you. The topic 나는 is dropped in the second clause because it's already clear.",
+    s:[ {b:"b1",cap:"possessor",m:[["나","na","I","pron"],["는","-neun","topic","topic"]]},
+        {b:"b2",cap:"possessed",m:[["자전거","ja-jeon-geo","bicycle","noun"],["가","-ga","subj","subj"]]},
+        {b:"b3",cap:"there is",m:[["있","iss","exist","stem","있다: 'there is / to have'."],["어","-eo","inf","infl"],["요","-yo","pol","pol"]]}, ".",
+        {b:"b4",cap:"but",m:[["하지만","ha-ji-man","but","conj","Starts a new sentence and contrasts it with the last one."]]},
+        {b:"b2",cap:"not possessed",m:[["차","cha","car","noun"],["가","-ga","subj","subj"]]},
+        {b:"b3",cap:"there isn't",m:[["없","eops","not exist","stem","없다: 'there isn't / to not have'."],["어","-eo","inf","infl"],["요","-yo","pol","pol"]]}, "." ] },
+
+  { eyebrow:"Past tense · before → after", transform:true,
+    note:"Past tense = present form with 았/었 slotted in before the ending. The red box marks the only part that changed.",
+    pairs:[
+      { tr:"The mountain is tall → The mountain was tall.",
+        a:[{m:[["산","san","mtn.","noun"],["이","-i","subj","subj"]]},{m:[["높","nop","tall","stem","높다 'tall'. Adjectives conjugate exactly like verbs."],["아","-a","inf","infl"],["요","-yo","pol","pol"]]}],
+        b:[{m:[["산","san","mtn.","noun"],["이","-i","subj","subj"]]},{m:[["높","nop","tall","stem"],["았","-ass","past","tense","*"],["어","-eo","inf","infl"],["요","-yo","pol","pol"]]}] },
+      { tr:"He sleeps → He slept.",
+        a:[{m:[["그","keu","he","pron"],["는","-neun","topic","topic"]]},{m:[["자","ja","sleep","stem","자다 'to sleep'. 자 + 아 merges into 자."],["요","-yo","pol","pol"]]}],
+        b:[{m:[["그","keu","he","pron"],["는","-neun","topic","topic"]]},{m:[["잤","jass","sleep+past","tense","*자 + 았 fuse into one syllable, 잤. The stem and the past affix share a block."],["어","-eo","inf","infl"],["요","-yo","pol","pol"]]}] }
+    ]},
+
+  { eyebrow:"Modifiers come first", en:"A mountain I want to climb.",
+    note:"A whole clause can sit in front of a noun, like saying 'an I-want-to-climb mountain'. Korean has no relative pronoun and no 'a' or 'the'.",
+    s:[ {b:"b4",cap:"the modifying clause",m:[["내","nae","I","pron"],["가","-ga","subj","subj"],["오르","o-leu","climb","stem"],["고","-go","","conj","-고 싶다 = 'want to ~'."],["싶","sip","want","stem"],["은","-eun","conn","conn"]]},
+        {b:"b5",cap:"the noun",m:[["산","san","mountain","noun"]]} ] },
+
+  { eyebrow:"Speech levels · 말다 'to stop'", levels:true,
+    note:"One verb, four levels. Informal non-polite is just informal polite with 요 dropped. The formal levels use their own endings.",
+    rows:[
+      ["Informal polite","Friends, acquaintances, colleagues, shop staff",[["말","mar","stop","stem"],["아","-a","inf","infl"],["요","-yo","pol","pol"]]],
+      ["Informal non-polite","Close friends, siblings, people younger than you",[["말","mar","stop","stem"],["아","-a","inf","infl"]]],
+      ["Formal polite","Higher status, people you're meeting for the first time",[["맙","mam","stop","stem","말 loses its ㄹ before -ㅂ니다, giving 맙."],["니다","-ni-da","formal pol","pol","-ㅂ니다 / -습니다: the formal polite ending."]]],
+      ["Formal non-polite","Neutral writing, or friends the same age",[["만","man","stop","stem","말 loses its ㄹ before -ㄴ다, giving 만."],["다","-da","formal","infl","-ㄴ다 / -는다: the plain formal ending."]]]
+    ]}
+];
+
+/* ---------- rendering ---------- */
+const $ = (t,cls,html)=>{const e=document.createElement(t); if(cls) e.className=cls; if(html!=null) e.innerHTML=html; return e;};
+const cssVar = v=>`var(${v})`;
+
+function morphEl(m, card){
+  let [ko,rom,gloss,fn,note] = m;
+  const f = FN[fn], b = document.createElement("button");
+  b.type="button"; b.className="morph"; b.dataset.fn=fn;
+  if(note && note.startsWith("*")){ b.classList.add("delta"); note = note.slice(1)||null; }
+  if(f.t) b.dataset.t="1";
+  b.style.setProperty("--c", cssVar(f.c));
+  b.dataset.tip = f.name + (gloss ? " · " + gloss : "");
+  b.setAttribute("aria-label", `${ko}, ${rom.replace(/^-/,"")}, ${f.name}`);
+  b.append($("span","g",gloss||"&nbsp;"), $("span","k",ko), $("span","r",rom));
+  b.addEventListener("click",()=>select(card,b,{ko,rom,gloss,fn,note}));
+  return b;
+}
+function sentenceEl(words, card){
+  const s = $("div","sentence");
+  words.forEach(w=>{
+    if(typeof w==="string"){ s.append($("span","punct",w)); return; }
+    const wrap=$("div","word"), box=$("div","box");
+    if(w.b){ box.dataset.b=w.b; wrap.style.setProperty("--bc",cssVar("--"+w.b)); }
+    w.m.forEach(m=>box.append(morphEl(m,card)));
+    wrap.append(box);
+    if(w.cap) wrap.append($("div","cap",w.cap));
+    s.append(wrap);
+  });
+  return s;
+}
+function showNote(card){
+  const i=card._info; i.innerHTML="";
+  const big=$("div","big none"); const body=$("div");
+  body.append($("h3","","About this example"), $("p","",card._note));
+  i.append(big,body);
+}
+function select(card, btn, d){
+  document.querySelectorAll(".morph.on").forEach(x=>{ if(x!==btn) x.classList.remove("on"); });
+  if(btn.classList.toggle("on")===false){ showNote(card); return; }
+  const f=FN[d.fn], i=card._info; i.innerHTML="";
+  const big=$("div","big"+(f.t?" t":""),d.ko); big.style.setProperty("--c",cssVar(f.c));
+  const body=$("div");
+  body.append($("h3","",f.name),
+    $("div","meta",`${d.rom.replace(/^-/,"")}${d.gloss?" · literally “"+d.gloss+"”":""}`),
+    $("p","",f.d));
+  if(d.note) body.append($("p","",d.note));
+  i.append(big,body);
+}
+
+function build(){
+  const root=document.getElementById("cards");
+  CARDS.forEach(c=>{
+    const card=$("section","card"); card._note=c.note;
+    card.append($("div","eyebrow",c.eyebrow));
+    const en=$("p","en"), stage=$("div","stage"), info=$("div","info"); info.setAttribute("aria-live","polite");
+    card._info=info;
+
+    if(c.pair){
+      const seg=$("div","seg"); seg.setAttribute("role","group"); seg.setAttribute("aria-label","Affirmative or negative");
+      const draw=k=>{
+        const v=c.variants[k]; en.innerHTML=v.en; card._note=v.note;
+        stage.innerHTML=""; stage.append(sentenceEl(v.s,card)); showNote(card);
+        seg.querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.k===k));
+        applySpot();
+      };
+      [["yes","Is"],["no","Is not"]].forEach(([k,l])=>{const b=$("button","",l); b.type="button"; b.dataset.k=k; b.onclick=()=>draw(k); seg.append(b);});
+      card.append(en,seg,stage,info); draw("yes");
+    } else if(c.transform){
+      en.textContent="Present → past"; const pairs=$("div","pairs");
+      c.pairs.forEach(p=>{
+        const row=$("div","pair");
+        row.append(sentenceEl(p.a,card), $("span","arrow","→"), sentenceEl(p.b,card), $("div","tr",p.tr));
+        pairs.append(row);
+      });
+      stage.append(pairs); card.append(en,stage,info); showNote(card);
+    } else if(c.levels){
+      en.textContent="Same verb, four levels";
+      const g=$("div","levels");
+      c.rows.forEach(([lv,who,m])=>{
+        const l=$("div","lv",lv); l.append($("small","",who));
+        g.append(l, sentenceEl([{m}],card));
+      });
+      stage.append(g); card.append(en,stage,info); showNote(card);
+    } else {
+      en.innerHTML=c.en; stage.append(sentenceEl(c.s,card)); card.append(en,stage,info); showNote(card);
+    }
+    root.append(card);
+  });
+}
+
+/* ---------- legend spotlight ---------- */
+let spot=null;
+function applySpot(){
+  document.querySelectorAll(".morph").forEach(m=>m.classList.toggle("lit",m.dataset.fn===spot));
+  if(spot) document.body.dataset.spot=spot; else delete document.body.dataset.spot;
+}
+function buildLegend(){
+  const L=document.getElementById("legend");
+  Object.entries(FN).forEach(([k,f])=>{
+    const b=$("button",f.t?"txt":"",f.name); b.type="button"; b.style.setProperty("--c",cssVar(f.c));
+    b.setAttribute("aria-pressed","false");
+    b.onclick=()=>{ spot = spot===k?null:k;
+      L.querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed",x===b&&spot===k));
+      applySpot(); };
+    L.append(b);
+  });
+}
+
+/* ---------- layer toggles ---------- */
+[["opt-gloss","hide-gloss"],["opt-rom","hide-rom"],["opt-box","hide-box"]].forEach(([id,cls])=>{
+  const el=document.getElementById(id);
+  const sync=()=>document.body.classList.toggle(cls,!el.checked);
+  el.addEventListener("change",sync); sync();
+});
+
+buildLegend(); build();
+</script>
+
+</body></html>
