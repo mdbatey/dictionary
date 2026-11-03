@@ -1,8 +1,10 @@
-# Roadmap draft
+# v1: Base
 
-**Status:** draft. The tickets below have not been created as GitHub issues yet. Once they exist, delete this file.
+**Goal:** rebuild everything the old pages in `reference/` already do on one shared base: data-driven Breakdowns, Switchboards built on Frames and Words, one set of design tokens, published on GitHub Pages.
 
-- **Source spec:** [#1](https://github.com/mdbatey/dictionary/issues/1)
+**Status:** planned. These 12 tickets are drafts; none have been created as GitHub issues yet.
+
+- **Spec:** [#1](https://github.com/mdbatey/dictionary/issues/1)
 - **Vocabulary:** `GLOSSARY.md`
 - **Architecture:** `docs/adr/`
 
@@ -13,13 +15,12 @@
 
 When the tickets are created, add a comment on #1 noting both changes. Don't edit the spec itself.
 
-## How issues will be set up
+## When the tickets are created
 
-- Every issue gets a version label: `v1`, `v2`, `v3` or `v4`.
-- v1 tickets get `ready-for-agent` and native "blocked by" links, and are sub-issues of #1.
-- v2–v4 items become placeholder issues labelled `needs-triage`. Each version gets its own grilling and spec before it's built.
+- Each becomes a GitHub issue labelled `v1` and `ready-for-agent`, as a sub-issue of #1, with native "blocked by" links.
+- Once all 12 exist, replace the ticket details below with links to the issues.
 
-## v1: Base (rebuild what already exists)
+## Tickets
 
 Every ticket is a thin, end-to-end slice that can be seen working on its own.
 
@@ -181,26 +182,3 @@ Every ticket is a thin, end-to-end slice that can be seen working on its own.
 - [ ] All allowed combinations build; disallowed ones are disabled with a reason
 - [ ] Sample combinations captured from the old Cantonese Switchboard match it exactly
 - [ ] Who and the object are Word Switches
-
-## Later versions (placeholders; each gets its own grilling and spec)
-
-### v2: More Switchboards (grow what Words can do)
-
-- Korean "Who + Verb" Switchboard: intransitive Frame; 가다, 자다, 달리다, 춤추다, 쉬다, 일하다, 걷다, 울다
-- "Who + Verb" Switchboards for Mandarin, Cantonese and Danish
-- Danish giving Switchboard
-- Danish IPA and other Danish content improvements
-- Adjective Frames ("I eat the big apple", "The apple is big")
-
-### v3: Explore words (find and connect vocabulary)
-
-- A page for each Word: all its Forms and links
-- Tapping a Breakdown Piece shows its Word
-- Word search: type "sleep" → 자다, with its Forms, the Sentences using it, and the Switchboards it fits. Comes after the two items above.
-- Home page
-
-### v4: Practice (study, not just look)
-
-- Flashcards
-- Audio / text-to-speech
-- Keyboard arrows and swipe-to-close in the detail panel
