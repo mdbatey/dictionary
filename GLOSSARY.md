@@ -62,9 +62,9 @@ _Avoid_: Conjugation, inflection, variant
 A labeled link from one Word to another Word that it replaces when speaking to or about someone honored, such as 드리다 "give (to someone honored)" → 주다 "give". It is a separate Word, not a Form.
 _Avoid_: Synonym, alternate form
 
-**Word Switch**:
-A Switch whose Options are Words from the Language's word list, such as the verb or the recipient. It automatically offers every Word that fits the Switchboard's Frame.
-_Avoid_: Vocab slot, word picker
+**Tag**:
+A simple label on a Word that a Frame's slot can require, such as **person** (for a recipient) or **thing** (for an object).
+_Avoid_: Category, type, semantic class
 
 ## Views
 
@@ -77,17 +77,25 @@ A named, ordered group of Sentences in one Language, with links between Sentence
 _Avoid_: Dozen, deck, lesson
 
 **Switchboard**:
-The view built around one Sentence whose grammar the learner changes by flipping Switches. Only the Pieces affected by a change are replaced.
+The view built around one Sentence whose grammar the learner changes by flipping Switches. Only the Pieces affected by a change are replaced. Each Switchboard is built on one Frame and states which Words it starts with and which Switches it shows.
 _Avoid_: Generator, conjugator
 
 **Switch**:
-One grammatical dimension of a Switchboard that the learner can change, such as person, tense, politeness or negation. It has a fixed list of Options.
+One thing the learner can change on a Switchboard. It has a label and a fixed or Word-based list of Options. Every Switch looks the same to the learner; there are two kinds behind the scenes.
 _Avoid_: Toggle, control, setting
+
+**Grammar Switch**:
+A Switch that changes how the Sentence is said, such as tense, politeness, negation, or statement vs question.
+_Avoid_: Mode
+
+**Word Switch**:
+A Switch that changes which Word fills a slot in the Frame, such as who, the verb, the object or the recipient. It automatically offers every Word in the Language's word list that fits the slot's word class and Tags. The Word's grammar facts can change other Pieces too (e.g. "he" changes the verb's Form; "Grandma" brings in an honorific verb).
+_Avoid_: Vocab slot, word picker
 
 **Option**:
 One value a Switch can take, such as "past" for a tense Switch. Some combinations of Options are not allowed.
 _Avoid_: Choice, value
 
 **Frame**:
-The fixed sentence shape a Switchboard is built on: intransitive ("I run"), transitive ("I eat the apple") or giving ("I give the apple to Minho"). Each verb fits some Frames and not others.
+A reusable sentence shape with named slots, such as intransitive ("I run"), transitive ("I eat the apple") or giving ("I give the apple to Minho"). Each slot takes a word class and may require Tags. Each verb fits some Frames and not others. Many Switchboards can share one Frame.
 _Avoid_: Template, pattern, sentence type
