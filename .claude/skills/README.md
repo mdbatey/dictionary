@@ -22,3 +22,5 @@ Not sure which one to use? Run `/ask-matt`.
 | ask-matt | Explains which skill fits your situation |
 
 To remove one, delete its folder.
+
+**Local change:** `disable-model-invocation: true` was removed from `to-spec`, `to-tickets` and `implement`. That lets Claude start them partway through a session (newly added slash commands only appear in a new session). It also means Claude may start them on its own when a request clearly calls for one.
