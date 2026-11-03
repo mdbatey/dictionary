@@ -13,7 +13,7 @@ The site is built in versions. Each version has a theme and ends with something 
 
 1. **`/grill-with-docs`** settles the design and updates `GLOSSARY.md` and the ADRs.
 2. **`/to-spec`** publishes the spec as a GitHub issue.
-3. **`/to-tickets`** splits it into tickets: GitHub issues labelled with the version (`v1`…`v4`), linked by "blocked by".
+3. **`/to-tickets`** splits it into tickets: GitHub issues titled with the version (e.g. "v1.3 …"), with a "Blocked by" list.
 4. **`/implement`** builds one ticket per session, test-first.
 
 v1 has finished steps 1–3. Its tickets are issues #2–#13, listed in `v1-base.md`.
