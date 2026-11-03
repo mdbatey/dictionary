@@ -1,7 +1,7 @@
 # Issue tracker: GitHub
 
-
 > **How to reach GitHub:** in Claude Code cloud sessions, use the GitHub connection tools (`issue_write`, `issue_read`, `list_issues`, `add_issue_comment`, `sub_issue_write`) for every operation below, because the `gh` CLI there can only search. The `gh` commands apply when working locally.
+
 Issues and specs for this repo live as GitHub issues. Use the `gh` CLI for all operations.
 
 ## Conventions
