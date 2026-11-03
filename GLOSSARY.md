@@ -48,6 +48,24 @@ _Avoid_: What, notes
 A way of writing how a Piece sounds, such as Pinyin, Jyutping, Yale, Revised Romanization or IPA. Each Language lists the systems it supports and which one it shows by default.
 _Avoid_: Romanization (it is only one kind), sound mode
 
+## Vocabulary
+
+**Word**:
+One dictionary entry in one Language: its dictionary form, Pronunciation, English meaning, word class, and the grammar facts the rules need (such as a noun's gender or "is honorific"). Each Language has its own word list. Anything that can be written on its own is a Word, including grammar words such as "will", 会 and 了. Endings that are always attached are not Words.
+_Avoid_: Entry, lemma, vocab item, term
+
+**Form**:
+One written word that belongs to a Word, labeled by the grammar it expresses using the same names as Switch Options (e.g. "went" is the past Form of "go", and "habla" is the he/she + present Form of "hablar"). Regular Forms are worked out by the rules, and only irregular ones are stored, but every Form belongs to exactly one Word. The same spelling can be a Form of two different Words. Anything written as separate words is two Words, not one Form.
+_Avoid_: Conjugation, inflection, variant
+
+**Honorific Link**:
+A labeled link from one Word to another Word that it replaces when speaking to or about someone honored, such as 드리다 "give (to someone honored)" → 주다 "give". It is a separate Word, not a Form.
+_Avoid_: Synonym, alternate form
+
+**Word Switch**:
+A Switch whose Options are Words from the Language's word list, such as the verb or the recipient. It automatically offers every Word that fits the Switchboard's Frame.
+_Avoid_: Vocab slot, word picker
+
 ## Views
 
 **Breakdown**:
