@@ -31,5 +31,6 @@ v1 has finished steps 1–3. Its tickets are issues #2–#13, listed in `v1-base
   - **Prepositional phrase:** a preposition with its noun ("**to John**", "**i morgen**").
   - **Clauses, independent and dependent:** a Sentence with more than one clause ("I eat **because I'm hungry**"). Unlike the others, this means Phrases grouped inside a clause, so it changes the shape of a Sentence, not just its list of Phrase Types. It needs its own design pass.
 
-- **New Languages, such as Spanish or French.** The design already allows this: a new Language is content plus Frame code. Person/number agreement (hablo / hablas / habla) is handled by Forms labelled with the "who" Option.
+- **Danish** (#9) was deferred out of v1, to be the first Language added with `docs/guides/adding-a-language.md`. Its old page is ready to import.
+- **New Languages, such as Spanish or French.** The design already allows this: a new Language is content plus Frame code. See `docs/guides/`. Person/number agreement (hablo / hablas / habla) is handled by Forms labelled with the "who" Option.
 - **Not planned:** an on-site editing form, user accounts, and syncing progress between devices. GitHub Pages has no server; revisit only if that changes.
