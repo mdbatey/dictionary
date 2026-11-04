@@ -93,3 +93,8 @@ export interface Content {
 export function isPhrase(part: Phrase | string): part is Phrase {
   return typeof part !== 'string';
 }
+
+/** Every Piece in a Sentence, in reading order. */
+export function piecesOf(sentence: Sentence): Piece[] {
+  return sentence.parts.flatMap((part) => (isPhrase(part) ? part.pieces : []));
+}
