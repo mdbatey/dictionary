@@ -1,4 +1,4 @@
-import { derivedPron } from './derive';
+import { derivedPron, hasSourceFor } from './derive';
 import { frames } from './frames';
 import { optionsFor, wordsForSlot } from './switchboard';
 import { splitSyllables, syllableCharacters } from './tones';
@@ -50,16 +50,18 @@ export function checkContent(content: Content): Problem[] {
           for (const piece of part.pieces) {
             const defaultSystem = language.pronunciationSystems.find((ps) => ps.id === language.defaultPronunciation);
             // A derived default (e.g. Yale) needs its source stored; bad source text is reported by the derivation check below.
-            if (!piece.pron[defaultSystem?.derive?.from ?? language.defaultPronunciation]) {
+            if (!(defaultSystem ? hasSourceFor(piece, defaultSystem) : piece.pron[language.defaultPronunciation])) {
               problems.push({
                 where: `${language.name} › ${set.name} › Sentence ${sentence.id} › ${piece.script}`,
                 message: `Missing a pronunciation in ${defaultSystem?.label ?? language.defaultPronunciation}, ${language.name}'s default`,
               });
             }
+            let syllablesMisaligned = false;
             if (language.tones) {
               const characters = syllableCharacters(piece.script);
               const spoken = piece.pron[language.tones.system] ?? '';
               if (characters.length > 0 && !splitSyllables(spoken, characters.length, language.tones.style)) {
+                syllablesMisaligned = true;
                 const systemLabel = language.pronunciationSystems.find((ps) => ps.id === language.tones!.system)?.label ?? language.tones.system;
                 problems.push({
                   where: `${language.name} › ${set.name} › Sentence ${sentence.id} › ${piece.script}`,
@@ -67,12 +69,14 @@ export function checkContent(content: Content): Problem[] {
                 });
               }
             }
-            const underivable = language.pronunciationSystems.filter((ps) => ps.derive && piece.pron[ps.derive.from] && !derivedPron(piece.pron, ps));
+            // Skipped when the syllables are already reported: that's the root cause of anything derived from them failing.
+            const underivable = syllablesMisaligned ? [] : language.pronunciationSystems.filter((ps) => ps.derive && hasSourceFor(piece, ps) && !derivedPron(piece, ps));
             if (underivable.length) {
-              const from = language.pronunciationSystems.find((ps) => ps.id === underivable[0]!.derive!.from);
+              const fromId = underivable[0]!.derive!.from;
+              const fromLabel = fromId === 'script' ? 'the script' : language.pronunciationSystems.find((ps) => ps.id === fromId)?.label ?? fromId;
               problems.push({
                 where: `${language.name} › ${set.name} › Sentence ${sentence.id} › ${piece.script}`,
-                message: `${underivable.map((ps) => ps.label).join(' and ')} can't be worked out from ${from?.label ?? underivable[0]!.derive!.from} "${piece.pron[underivable[0]!.derive!.from]}"`,
+                message: `${underivable.map((ps) => ps.label).join(' and ')} can't be worked out from ${fromLabel} "${fromId === 'script' ? piece.script : piece.pron[fromId]}"`,
               });
             }
             if (!Object.hasOwn(language.roles, piece.role)) {
