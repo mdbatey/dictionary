@@ -1,7 +1,7 @@
 import { content } from './content';
 import { h } from './dom';
 import { fitToOneLine } from './fit';
-import type { Language, Switchboard } from './model';
+import type { Language, Piece, Switchboard } from './model';
 import { openPiecePanel } from './panel';
 import { renderParts } from './render';
 import { isPhrase } from './model';
@@ -55,11 +55,11 @@ export function renderSwitchboard(switchboard: Switchboard, language: Language):
       ]);
     }));
   };
-  // The toolbar's colour key and Sound picker cover every Piece this Switchboard can show.
-  const everyPiece = allSettings(switchboard, language)
-    .flatMap((settings) => showSwitchboard(switchboard, language, settings).parts)
-    .flatMap((part) => (isPhrase(part) ? part.pieces : []));
-  const toolbar = renderToolbar(board, everyPiece, language, content, () => fit?.refit(), draw);
+  // The Sound picker only needs the current Sentence (every Piece here has the same Pronunciation Systems).
+  // The colour key lists every Role the Switchboard can show; that's worked out when the key is first
+  // opened, then remembered, so opening a Switchboard never waits for it.
+  const current = showSwitchboard(switchboard, language, settings).parts.flatMap((part) => (isPhrase(part) ? part.pieces : []));
+  const toolbar = renderToolbar(board, current, language, content, () => fit?.refit(), draw, () => everyPiece(switchboard, language));
 
   const reset = h('button', { class: 'toggle reset', type: 'button' }, ['Reset']);
   reset.addEventListener('click', () => {
@@ -76,4 +76,18 @@ export function renderSwitchboard(switchboard: Switchboard, language: Language):
     switchesArea,
   );
   return board;
+}
+
+const everyPieceCache = new WeakMap<Switchboard, Piece[]>();
+
+/** Every Piece a Switchboard can show, across all allowed combinations. Built once per Switchboard, then remembered. */
+function everyPiece(switchboard: Switchboard, language: Language): Piece[] {
+  let pieces = everyPieceCache.get(switchboard);
+  if (!pieces) {
+    pieces = allSettings(switchboard, language)
+      .flatMap((settings) => showSwitchboard(switchboard, language, settings).parts)
+      .flatMap((part) => (isPhrase(part) ? part.pieces : []));
+    everyPieceCache.set(switchboard, pieces);
+  }
+  return pieces;
 }
