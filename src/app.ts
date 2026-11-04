@@ -5,7 +5,7 @@ import { piecesOf, type Language } from './model';
 import { openPiecePanel } from './panel';
 import { renderSentence, renderSentenceChips, renderSummary } from './render';
 import { resolveRoute, type Screen } from './route';
-import { readLastPlace, saveLastPlace } from './storage';
+import { readLastIn, readLastPlace, saveLastIn, saveLastPlace } from './storage';
 import { renderSwitchboard } from './switchboard-screen';
 import { renderToolbar } from './toolbar';
 
@@ -19,13 +19,26 @@ function header(language: Language | undefined, view: 'breakdowns' | 'switchboar
     ]),
   ]);
   if (!language) return h('header', { class: 'site-header' }, [top]);
+  // Each tab returns to the Set / Switchboard last used in this Language (if it still exists), else the first.
+  const lastIn = (id: 'breakdowns' | 'switchboards') => {
+    const last = readLastIn(language.id, id);
+    const exists = id === 'breakdowns' ? language.sets.some((x) => x.id === last) : language.switchboards.some((x) => x.id === last);
+    return last && exists ? `/${last}` : '';
+  };
   const tab = (id: 'breakdowns' | 'switchboards', label: string) =>
-    h('a', { class: 'tab', href: `#/${language.id}/${id}`, ...(view === id && { 'aria-current': 'page' }) }, [label]);
+    h('a', { class: 'tab', href: `#/${language.id}/${id}${lastIn(id)}`, ...(view === id && { 'aria-current': 'page' }) }, [label]);
   return h('header', { class: 'site-header' }, [
     top,
     h('nav', { class: 'tabs', 'aria-label': 'Views' }, [tab('breakdowns', 'Breakdowns'), tab('switchboards', 'Switchboards')]),
     ...(extra ? [extra] : []),
   ]);
+}
+
+/** A row of named buttons for choosing between a Language's Sets or Switchboards; nothing when there's only one. */
+function picker(label: string, items: { id: string; name: string; href: string }[], current: string): HTMLElement[] {
+  if (items.length < 2) return [];
+  return [h('nav', { class: 'picker', 'aria-label': label }, items.map((item) =>
+    h('a', { class: 'toggle picker-item', href: item.href, ...(item.id === current && { 'aria-current': 'page' }) }, [item.name])))];
 }
 
 function footer(): HTMLElement {
@@ -61,6 +74,7 @@ function breakdownsScreen(language: Language, setId: string, sentenceId?: string
     title: `${set.name} · ${SITE}`,
     extra: renderSentenceChips(set, addressOf, sentenceId),
     body: [
+      ...picker('Sets', language.sets.map((x) => ({ id: x.id, name: x.name, href: `#/${language.id}/breakdowns/${x.id}` })), set.id),
       h('h1', { class: 'page-title' }, [set.name]),
       renderToolbar(sentences, set.sentences.flatMap(piecesOf), language, content, refitAll, redraw),
       sentences,
@@ -84,7 +98,11 @@ function oneSwitchboardScreen(language: Language, switchboardId: string): Screen
   const sb = language.switchboards.find((s) => s.id === switchboardId)!;
   return {
     title: `${sb.name} · ${SITE}`,
-    body: [h('h1', { class: 'page-title' }, [sb.name]), renderSwitchboard(sb, language)],
+    body: [
+      ...picker('Switchboards', language.switchboards.map((x) => ({ id: x.id, name: x.name, href: `#/${language.id}/switchboards/${x.id}` })), sb.id),
+      h('h1', { class: 'page-title' }, [sb.name]),
+      renderSwitchboard(sb, language),
+    ],
   };
 }
 
@@ -152,6 +170,8 @@ function show(screen: Screen): void {
     window.scrollTo(0, 0);
   }
   if (view) saveLastPlace(location.hash);
+  if (screen.kind === 'breakdowns') saveLastIn(screen.languageId, 'breakdowns', screen.setId);
+  if (screen.kind === 'switchboard') saveLastIn(screen.languageId, 'switchboards', screen.switchboardId);
 }
 
 function route(): void {

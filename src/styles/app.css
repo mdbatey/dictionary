@@ -370,3 +370,9 @@ main {
 
 .switch-option:disabled { opacity: 0.4; cursor: not-allowed; }
 .switch-reason { margin: 0; font-size: 13px; color: var(--muted); }
+
+/* Set / Switchboard picker (shown only when a Language has more than one) */
+.picker { display: flex; gap: var(--space-2); overflow-x: auto; scrollbar-width: none; margin-bottom: var(--space-3); padding-bottom: 2px; }
+.picker::-webkit-scrollbar { display: none; }
+.picker-item { flex: none; display: inline-flex; align-items: center; text-decoration: none; white-space: nowrap; }
+.picker-item[aria-current='page'] { background: var(--ink); border-color: var(--ink); color: var(--bg); }

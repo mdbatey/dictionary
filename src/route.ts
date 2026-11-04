@@ -30,7 +30,11 @@ export function resolveRoute(hash: string, content: Content, lastPlace: string |
 
   if (!view) return { redirect: `${base}/breakdowns` };
   if (view === 'switchboards') {
-    if (!setId) return { show: { kind: 'switchboards', languageId: language.id } };
+    if (!setId) {
+      // Like Breakdowns opening its first Set: go straight to the first Switchboard, or show "none yet".
+      const first = language.switchboards[0];
+      return first ? { redirect: `${base}/switchboards/${first.id}` } : { show: { kind: 'switchboards', languageId: language.id } };
+    }
     const sb = language.switchboards.find((s) => s.id === setId);
     return sb ? { show: { kind: 'switchboard', languageId: language.id, switchboardId: sb.id } } : { redirect: `${base}/switchboards` };
   }

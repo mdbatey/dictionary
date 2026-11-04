@@ -18,10 +18,13 @@ export function applyHighlight(scope: HTMLElement): void {
 /**
  * The layer toggles and the color key for one screen. Layers hide or show the gloss, pronunciation and
  * Phrase outlines on `scope`; tapping a Role in the color key highlights its Pieces and dims the rest.
- * `onLayout` runs after anything that changes how wide a Sentence is.
+ * `onLayout` runs after anything that changes how wide a Sentence is. `keyPieces`, if given, supplies the
+ * Pieces for the colour key only when it's first opened (Switchboards use it to avoid building every
+ * combination up front).
  */
 export function renderToolbar(
   scope: HTMLElement, pieces: Piece[], language: Language, content: Content, onLayout: () => void, onRedraw: () => void,
+  keyPieces?: () => Piece[],
 ): HTMLElement {
   const layers = readLayers();
   let tones = readTones();
@@ -43,7 +46,7 @@ export function renderToolbar(
   });
 
   let highlighted: string | null = null;
-  const roleButtons = rolesUsed(pieces, language, content).map((role) => {
+  const makeRoleButtons = (from: Piece[]) => rolesUsed(from, language, content).map((role) => {
     const button = h('button', {
       class: `key-role style-${role.style}`, type: 'button', 'aria-pressed': 'false', '--role-color': `var(--role-${role.id})`,
     }, [role.label]);
@@ -56,6 +59,8 @@ export function renderToolbar(
     });
     return button;
   });
+  let roleButtons: HTMLElement[] = keyPieces ? [] : makeRoleButtons(pieces);
+  const keyRoles = h('div', { class: 'key-roles' }, roleButtons);
 
   // Tone colours: only for tonal Languages.
   // Tone marks (Mandarin): tones 1–4 plus neutral. Tone numbers (Cantonese): tones 1–6.
@@ -93,15 +98,24 @@ export function renderToolbar(
     ])
     : null;
 
+  const colorKey = h('details', { class: 'color-key' }, [
+    h('summary', {}, ['Color key']),
+    h('p', { class: 'key-hint' }, ['Tap a Role to highlight it.']),
+    keyRoles,
+  ]);
+  if (keyPieces) {
+    colorKey.addEventListener('toggle', () => {
+      if (!(colorKey as HTMLDetailsElement).open || roleButtons.length) return;
+      roleButtons = makeRoleButtons(keyPieces());
+      keyRoles.replaceChildren(...roleButtons);
+    });
+  }
+
   queueMicrotask(applyLayers);
   return h('div', { class: 'toolbar' }, [
     h('div', { class: 'toggles', role: 'group', 'aria-label': 'Layers' }, toggles),
     ...(soundPicker ? [soundPicker] : []),
     ...(language.tones ? [toneKey] : []),
-    h('details', { class: 'color-key' }, [
-      h('summary', {}, ['Color key']),
-      h('p', { class: 'key-hint' }, ['Tap a Role to highlight it.']),
-      h('div', { class: 'key-roles' }, roleButtons),
-    ]),
+    colorKey,
   ]);
 }

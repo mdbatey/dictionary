@@ -84,4 +84,8 @@ describe('resolveRoute', () => {
   it("sends a Switchboard that no longer exists to the Language's Switchboards", () => {
     expect(resolveRoute('#/ko/switchboards/gone', content, null)).toEqual({ redirect: '#/ko/switchboards' });
   });
+
+  it("sends a Language's Switchboards straight to its first Switchboard", () => {
+    expect(resolveRoute('#/ko/switchboards', content, null)).toEqual({ redirect: '#/ko/switchboards/giving' });
+  });
 });
