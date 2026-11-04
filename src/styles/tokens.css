@@ -52,7 +52,7 @@
   /* Phrase Types: the outline around a Phrase */
   --phrase-subject: light-dark(#E0182D, #FF4D5E);
   --phrase-object: light-dark(#2447D6, #6F8BFF);
-  --phrase-recipient: light-dark(#C25400, #FF8A3D);
+  --phrase-indirect-object: light-dark(#C25400, #FF8A3D);
   --phrase-verb-phrase: light-dark(#7A2BD9, #B07BFF);
   --phrase-modifier: light-dark(#1F7A45, #4CCB83);
   --phrase-question: light-dark(#0C6E82, #3BC9DB);

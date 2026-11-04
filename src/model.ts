@@ -20,7 +20,7 @@ export interface LanguageRole {
   label?: string;
 }
 
-export type PhraseType = 'subject' | 'object' | 'recipient' | 'verb-phrase' | 'modifier' | 'question';
+export type PhraseType = 'subject' | 'object' | 'indirect-object' | 'verb-phrase' | 'modifier' | 'question';
 
 /** One morpheme or word in a Sentence. */
 export interface Piece {

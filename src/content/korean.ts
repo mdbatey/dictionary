@@ -38,7 +38,7 @@ export const korean: Language = {
               ],
             },
             {
-              type: 'recipient',
+              type: 'indirect-object',
               caption: 'recipient',
               pieces: [
                 { script: '존', pron: { rom: 'jon' }, gloss: 'John', role: 'noun' },

@@ -19,7 +19,7 @@ const styleNames: Record<RoleStyle, string> = { chip: 'Chip', text: 'Colored tex
 const phraseTypes: { type: PhraseType; label: string; sample: string; note?: string }[] = [
   { type: 'subject', label: 'Subject', sample: '나는' },
   { type: 'object', label: 'Object', sample: '사과를' },
-  { type: 'recipient', label: 'Recipient', sample: '존에게', note: 'Proposed sixth type' },
+  { type: 'indirect-object', label: 'Indirect object', sample: '존에게' },
   { type: 'verb-phrase', label: 'Verb phrase', sample: '줘요' },
   { type: 'modifier', label: 'Modifier', sample: '빨간' },
   { type: 'question', label: 'Question', sample: '뭐예요?' },
