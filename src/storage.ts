@@ -69,3 +69,14 @@ export function readTones(): boolean {
 export function saveTones(on: boolean): void {
   try { localStorage.setItem(TONES, on ? 'on' : 'off'); } catch { /* a convenience only */ }
 }
+
+const LAST_IN = 'dictionary-layers:last-in:';
+
+/** The last Set (view 'breakdowns') or Switchboard (view 'switchboards') used in a Language, if any. */
+export function readLastIn(languageId: string, view: 'breakdowns' | 'switchboards'): string | null {
+  try { return localStorage.getItem(`${LAST_IN}${languageId}:${view}`); } catch { return null; }
+}
+
+export function saveLastIn(languageId: string, view: 'breakdowns' | 'switchboards', id: string): void {
+  try { localStorage.setItem(`${LAST_IN}${languageId}:${view}`, id); } catch { /* a convenience only */ }
+}
