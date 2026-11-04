@@ -1,6 +1,7 @@
 import { h } from './dom';
 import type { Content, Language, Piece } from './model';
 import { rolesUsed } from './roles';
+import { hasSourceFor } from './derive';
 import { pronSystem } from './render';
 import { readLayers, readTones, saveLayers, savePronChoice, saveTones, type Layers } from './storage';
 
@@ -78,7 +79,7 @@ export function renderToolbar(
   }
 
   // Sound picker: only the systems this page's Pieces actually have, and only when there's a choice.
-  const systems = language.pronunciationSystems.filter((ps) => pieces.some((p) => p.pron[ps.derive?.from ?? ps.id]));
+  const systems = language.pronunciationSystems.filter((ps) => pieces.some((p) => hasSourceFor(p, ps)));
   // The chosen system if this page has it, otherwise the first one it has (e.g. Korean Switchboards have no Romanization).
   const current = systems.some((ps) => ps.id === pronSystem(language)) ? pronSystem(language) : systems[0]?.id;
   const soundPicker = systems.length > 1

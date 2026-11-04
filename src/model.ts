@@ -147,8 +147,12 @@ export interface Switchboard {
 export interface PronunciationSystem {
   id: string;
   label: string;
-  /** For a system worked out from another one instead of stored, e.g. Yale from Jyutping. */
-  derive?: { from: string; rule: 'jyutping-to-yale' | 'jyutping-to-ipa' };
+  /**
+   * For a system worked out instead of stored, e.g. Yale from Jyutping, or Korean IPA from the Hangul itself.
+   * `from` is another Pronunciation System's id, or 'script'. `suffixFrom` names a system whose leading dash
+   * (e.g. "-neun") marks an attached ending, so the worked-out text gets one too. A stored value always wins.
+   */
+  derive?: { from: string; rule: 'jyutping-to-yale' | 'jyutping-to-ipa' | 'hangul-to-ipa' | 'pinyin-to-ipa'; suffixFrom?: string };
 }
 
 export interface Language {

@@ -29,11 +29,11 @@ export function pronSystem(language: Language): string {
 }
 
 /** A Piece's pronunciation in the chosen (or default) system, or else the first system it has. */
-export function pronOf(piece: { pron: Record<string, string> }, language: Language): string {
+export function pronOf(piece: Pick<Piece, 'script' | 'pron'>, language: Language): string {
   const chosen = language.pronunciationSystems.find((ps) => ps.id === pronSystem(language));
   // Not available for this Piece? Use the first system it has, in the Language's order (the Sound picker's order too).
-  return (chosen && derivedPron(piece.pron, chosen))
-    ?? language.pronunciationSystems.map((ps) => derivedPron(piece.pron, ps)).find((p) => p)
+  return (chosen && derivedPron(piece, chosen))
+    ?? language.pronunciationSystems.map((ps) => derivedPron(piece, ps)).find((p) => p)
     ?? Object.values(piece.pron)[0] ?? '';
 }
 

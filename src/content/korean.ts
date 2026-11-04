@@ -31,7 +31,8 @@ export const korean: Language = {
   pronunciationSystems: [
     { id: 'rom', label: 'Romanization' },
     { id: 'rr', label: 'Revised Romanization' },
-    { id: 'ipa', label: 'IPA' },
+    // Stored on Switchboard Pieces (from the old page); on other Pieces worked out from the Hangul, syllable by syllable.
+    { id: 'ipa', label: 'IPA', derive: { from: 'script', rule: 'hangul-to-ipa', suffixFrom: 'rom' } },
   ],
   defaultPronunciation: 'rom',
   sets: [
