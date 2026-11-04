@@ -15,6 +15,7 @@
 | Danish giving Switchboard | Danish has Breakdowns but no Switchboard after v1. |
 | Danish IPA and other content improvements | v1 moved the Danish content over as-is, with respelling only. |
 | Adjective Frames | "I eat the **big** apple" / "The apple is **big**". |
+| Searchable list for Word Switches with many Words | Moved from v1 (#11): only matters once the word lists grow. |
 
 ## Already decided (from the v1 grilling)
 

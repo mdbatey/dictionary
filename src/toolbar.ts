@@ -6,6 +6,14 @@ import { readLayers, readTones, saveLayers, savePronChoice, saveTones, type Laye
 
 const layerLabels: Record<keyof Layers, string> = { gloss: 'Gloss', pron: 'Pronunciation', phrases: 'Phrases' };
 
+/** Dims every Piece in `scope` except those with the highlighted Role. Call again after redrawing Pieces. */
+export function applyHighlight(scope: HTMLElement): void {
+  const highlighted = scope.dataset['highlight'];
+  scope.querySelectorAll<HTMLElement>('.piece').forEach((p) => {
+    p.classList.toggle('is-dimmed', highlighted !== undefined && p.dataset['role'] !== highlighted);
+  });
+}
+
 /**
  * The layer toggles and the color key for one screen. Layers hide or show the gloss, pronunciation and
  * Phrase outlines on `scope`; tapping a Role in the color key highlights its Pieces and dims the rest.
@@ -42,9 +50,8 @@ export function renderToolbar(
       highlighted = highlighted === role.id ? null : role.id;
       roleButtons.forEach((b) => b.setAttribute('aria-pressed', 'false'));
       if (highlighted) button.setAttribute('aria-pressed', 'true');
-      scope.querySelectorAll<HTMLElement>('.piece').forEach((p) => {
-        p.classList.toggle('is-dimmed', highlighted !== null && p.dataset['role'] !== highlighted);
-      });
+      if (highlighted) scope.dataset['highlight'] = highlighted; else delete scope.dataset['highlight'];
+      applyHighlight(scope);
     });
     return button;
   });
@@ -72,7 +79,8 @@ export function renderToolbar(
 
   // Sound picker: only the systems this page's Pieces actually have, and only when there's a choice.
   const systems = language.pronunciationSystems.filter((ps) => pieces.some((p) => p.pron[ps.derive?.from ?? ps.id]));
-  const current = pronSystem(language);
+  // The chosen system if this page has it, otherwise the first one it has (e.g. Korean Switchboards have no Romanization).
+  const current = systems.some((ps) => ps.id === pronSystem(language)) ? pronSystem(language) : systems[0]?.id;
   const soundPicker = systems.length > 1
     ? h('div', { class: 'sound-picker', role: 'group', 'aria-label': 'Sound' }, [
       h('span', { class: 'sound-label' }, ['Sound']),
