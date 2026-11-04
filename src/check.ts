@@ -1,3 +1,4 @@
+import { derivedPron } from './derive';
 import { frames } from './frames';
 import { optionsFor, wordsForSlot } from './switchboard';
 import { splitSyllables, syllableCharacters } from './tones';
@@ -48,7 +49,8 @@ export function checkContent(content: Content): Problem[] {
           if (!isPhrase(part)) continue;
           for (const piece of part.pieces) {
             const defaultSystem = language.pronunciationSystems.find((ps) => ps.id === language.defaultPronunciation);
-            if (!piece.pron[language.defaultPronunciation]) {
+            // A derived default (e.g. Yale) needs its source stored; bad source text is reported by the derivation check below.
+            if (!piece.pron[defaultSystem?.derive?.from ?? language.defaultPronunciation]) {
               problems.push({
                 where: `${language.name} › ${set.name} › Sentence ${sentence.id} › ${piece.script}`,
                 message: `Missing a pronunciation in ${defaultSystem?.label ?? language.defaultPronunciation}, ${language.name}'s default`,
@@ -64,6 +66,14 @@ export function checkContent(content: Content): Problem[] {
                   message: `${systemLabel} "${spoken}" does not split into one syllable for each of its ${characters.length} characters`,
                 });
               }
+            }
+            const underivable = language.pronunciationSystems.filter((ps) => ps.derive && piece.pron[ps.derive.from] && !derivedPron(piece.pron, ps));
+            if (underivable.length) {
+              const from = language.pronunciationSystems.find((ps) => ps.id === underivable[0]!.derive!.from);
+              problems.push({
+                where: `${language.name} › ${set.name} › Sentence ${sentence.id} › ${piece.script}`,
+                message: `${underivable.map((ps) => ps.label).join(' and ')} can't be worked out from ${from?.label ?? underivable[0]!.derive!.from} "${piece.pron[underivable[0]!.derive!.from]}"`,
+              });
             }
             if (!Object.hasOwn(language.roles, piece.role)) {
               problems.push({

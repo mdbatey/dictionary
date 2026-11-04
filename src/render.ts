@@ -1,5 +1,6 @@
 import { h, inlineMarkdown } from './dom';
 import { isPhrase, type Content, type Language, type Phrase, type Piece, type Sentence, type SentenceSet } from './model';
+import { derivedPron } from './derive';
 import { shownRole } from './roles';
 import { readPronChoice } from './storage';
 import { splitSyllables, syllableCharacters, toneOf } from './tones';
@@ -29,13 +30,14 @@ export function pronSystem(language: Language): string {
 
 /** A Piece's pronunciation in the chosen (or default) system, or else the first system it has. */
 export function pronOf(piece: { pron: Record<string, string> }, language: Language): string {
-  return piece.pron[pronSystem(language)] ?? piece.pron[language.defaultPronunciation] ?? Object.values(piece.pron)[0] ?? '';
+  const chosen = language.pronunciationSystems.find((ps) => ps.id === pronSystem(language));
+  return (chosen && derivedPron(piece.pron, chosen)) ?? piece.pron[language.defaultPronunciation] ?? Object.values(piece.pron)[0] ?? '';
 }
 
 /** A Piece's pronunciation as text, with each syllable carrying its tone when it's the tone-bearing system. */
 function pronElement(piece: Piece, language: Language): (Node | string)[] {
   const t = tonesOf(piece, language);
-  if (!t || !piece.pron[pronSystem(language)] || pronSystem(language) !== language.tones?.system) return [pronOf(piece, language)];
+  if (!t || pronSystem(language) !== language.tones?.system || !piece.pron[language.tones.system]) return [pronOf(piece, language)];
   // Keep the spacing the pronunciation was written with ("píngguǒ" vs "píng guǒ"); numbered tones are always spaced.
   const sep = language.tones.style === 'numbers' || /\s/.test(pronOf(piece, language)) ? ' ' : '';
   return t.syllables.flatMap((s, i) => [...(i && sep ? [sep] : []), h('span', { 'data-tone': String(t.tones[i]) }, [s])]);
