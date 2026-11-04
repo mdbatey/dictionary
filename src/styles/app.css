@@ -13,7 +13,9 @@ body {
   border-bottom: 1px solid var(--line);
   padding: max(12px, env(safe-area-inset-top)) 16px 12px;
 }
-.site-title { margin: 0; font-size: 17px; font-weight: 700; }
+.site-title { margin: 0; font-size: 17px; font-weight: 700; color: inherit; text-decoration: none; }
+.site-footer { max-width: 720px; margin: 0 auto; padding: 0 16px 32px; font-size: 14px; }
+.site-footer a { color: var(--muted); }
 
 main {
   max-width: 720px;
@@ -48,7 +50,7 @@ main {
 
 .phrase {
   border: 2px solid var(--phrase-color);
-  border-radius: 12px;
+  border-radius: var(--radius-phrase);
   padding: calc(3px * var(--fit, 1)) calc(5px * var(--fit, 1)) calc(5px * var(--fit, 1));
   display: flex;
   flex-direction: column;

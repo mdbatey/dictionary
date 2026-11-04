@@ -15,6 +15,7 @@ app.append(
     h('h1', { class: 'set-title' }, [set.name]),
     ...set.sentences.map((sentence) => renderSentence(sentence, language, content)),
   ]),
+  h('footer', { class: 'site-footer' }, [h('a', { href: './colors.html' }, ['Color key'])]),
 );
 
 app.querySelectorAll<HTMLElement>('.parts').forEach(fitToOneLine);

@@ -1,50 +1,83 @@
-/* Design tokens: every colour the site uses is defined here, once, with a light and a dark value.
-   Starting palette from the mockup review (see issue #3). */
-:root {
-  --bg: #F3F5F8;
-  --surface: #FFFFFF;
-  --ink: #171B24;
-  --muted: #5A6272;
-  --line: #D6DBE4;
-  --chip-ink: #141821;
+/* Design tokens: every colour the site uses is defined here, once.
+   Each token gives its light and dark value together: light-dark(<light>, <dark>).
+   Change a value here and it changes everywhere it's used.
+   Starting palette from the mockup review (issue #3). Text and chip contrast is at least 4.5:1 in both modes. */
+:root { color-scheme: light dark; }
 
-  --role-pronoun: #DDE3EC;
+/* The tokens are also declared on .theme-light/.theme-dark so a forced-mode area re-reads them in its own mode. */
+:root, .theme-light, .theme-dark {
+  /* Surfaces and text */
+  --bg: light-dark(#F3F5F8, #11141A);
+  --surface: light-dark(#FFFFFF, #1A1F28);
+  --surface-2: light-dark(#EDF0F5, #232A35);
+  --ink: light-dark(#171B24, #E8ECF3);
+  --muted: light-dark(#5A6272, #9BA4B4);
+  --line: light-dark(#D6DBE4, #2E3644);
+  --chip-ink: #141821; /* text on every Role chip, in both modes */
+  --focus: light-dark(#E0182D, #FF4D5E); /* red is only for temporary emphasis ("just changed") */
+
+  /* Roles drawn as chips (filled background) */
+  --role-pronoun: light-dark(#DDE3EC, #FFFFFF);
   --role-noun: #B5EE9C;
+  --role-verb: #7DEFD3;
+  --role-adjective: #A5D8FF;
+  --role-demonstrative: #FFD8A8;
+  --role-time: light-dark(#B9C3D2, #DDE3EC);
+  --role-subject: #FFE04A;
   --role-topic: #FFF3B0;
   --role-object: #FFC9B8;
   --role-recipient: #FFB870;
-  --role-stem: #7DEFD3;
-  --role-polite: #0B7285;
+  --role-possessive: #E6CBA2;
+  --role-copula: #FFB8D2;
+  --role-connect: #EBC7FF;
+  --role-measure: #C3C8FF;
+  --role-ba: #FFA8A8;
+  --role-modal: #FFEC99;
+  --role-final-particle: #E5DBFF;
 
-  --phrase-subject: #E0182D;
-  --phrase-object: #2447D6;
-  --phrase-recipient: #C25400;
-  --phrase-verb-phrase: #7A2BD9;
-  --phrase-modifier: #1F7A45;
-  --phrase-question: #0C6E82;
+  /* Roles drawn as coloured text */
+  --role-tense: light-dark(#C2255C, #FF8FB1);
+  --role-polite: light-dark(#0B7285, #66D9E8);
+  --role-informal: light-dark(#2346D8, #86A3FF);
+  --role-plural: light-dark(#5F3DC4, #B197FC);
+  --role-adverb: light-dark(#B54708, #FFA94D);
+  --role-question: light-dark(#087F5B, #38D9A9);
+  --role-potential: light-dark(#5C7F0A, #A9E34B);
+  --role-definite: light-dark(#862E9C, #E599F7);
+  --role-preposition: light-dark(#495057, #CED4DA);
 
+  /* Roles drawn inverted (dark chip, light text) */
+  --role-negation: var(--ink);
+
+  /* Phrase Types: the outline around a Phrase */
+  --phrase-subject: light-dark(#E0182D, #FF4D5E);
+  --phrase-object: light-dark(#2447D6, #6F8BFF);
+  --phrase-recipient: light-dark(#C25400, #FF8A3D);
+  --phrase-verb-phrase: light-dark(#7A2BD9, #B07BFF);
+  --phrase-modifier: light-dark(#1F7A45, #4CCB83);
+  --phrase-question: light-dark(#0C6E82, #3BC9DB);
+
+  /* Tones (Mandarin uses 1–4 and neutral; Cantonese uses 1–6) */
+  --tone-1: light-dark(#C2410C, #FF8A4C);
+  --tone-2: light-dark(#2B8A3E, #69DB7C);
+  --tone-3: light-dark(#1971C2, #74C0FC);
+  --tone-4: light-dark(#9C36B5, #E599F7);
+  --tone-5: light-dark(#0B7285, #66D9E8);
+  --tone-6: light-dark(#A61E4D, #FF8FB1);
+  --tone-neutral: light-dark(#5A6272, #9BA4B4);
+
+  /* Type, shape and spacing */
   --font-ui: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-  --font-script: 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', system-ui, sans-serif;
+  --font-script: 'Apple SD Gothic Neo', 'Noto Sans KR', 'PingFang SC', 'Noto Sans SC', 'Noto Sans TC', 'Malgun Gothic', system-ui, sans-serif;
   --radius-card: 16px;
+  --radius-phrase: 12px;
   --radius-chip: 7px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #11141A;
-    --surface: #1A1F28;
-    --ink: #E8ECF3;
-    --muted: #9BA4B4;
-    --line: #2E3644;
-
-    --role-pronoun: #FFFFFF;
-    --role-polite: #66D9E8;
-
-    --phrase-subject: #FF4D5E;
-    --phrase-object: #6F8BFF;
-    --phrase-recipient: #FF8A3D;
-    --phrase-verb-phrase: #B07BFF;
-    --phrase-modifier: #4CCB83;
-    --phrase-question: #3BC9DB;
-  }
-}
+/* Force a mode for one part of a page (used by the colour key preview). */
+.theme-light { color-scheme: light; }
+.theme-dark { color-scheme: dark; }

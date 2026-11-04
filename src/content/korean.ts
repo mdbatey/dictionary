@@ -6,7 +6,16 @@ export const korean: Language = {
   nativeName: '한국어',
   name: 'Korean',
   tag: 'ko',
-  roles: ['pronoun', 'noun', 'topic', 'object', 'recipient', 'stem', 'polite'],
+  // Rules from reference/breakdowns/korean-13-sentences.html. Roles used by the rest of the Set arrive in #6.
+  roles: {
+    pronoun: { rule: 'I, he, she, it. Korean drops these whenever context makes them clear.' },
+    noun: { rule: 'A thing, person or place. Particles attach right after it.' },
+    topic: { rule: 'Marks what the sentence is about. 는 after a vowel, 은 after a consonant.' },
+    object: { rule: 'Marks the direct object (the thing given, eaten). 를 after a vowel, 을 after a consonant.' },
+    recipient: { rule: "에게 means 'to' a person or animal. 한테 is the casual spoken version." },
+    verb: { label: 'Verb / adjective stem', rule: "The dictionary form with -다 removed. Adjectives like 'red' conjugate exactly like verbs." },
+    polite: { rule: '요 on the end makes it informal polite, the safe default with most people.' },
+  },
   pronunciationSystems: [{ id: 'rom', label: 'Romanization' }],
   defaultPronunciation: 'rom',
   sets: [
@@ -48,7 +57,7 @@ export const korean: Language = {
               type: 'verb-phrase',
               caption: 'give',
               pieces: [
-                { script: '줘', pron: { rom: 'jwo' }, gloss: 'give', role: 'stem', note: "주다 'to give'. 주 + 어 contracts to 줘." },
+                { script: '줘', pron: { rom: 'jwo' }, gloss: 'give', role: 'verb', note: "주다 'to give'. 주 + 어 contracts to 줘." },
                 { script: '요', pron: { rom: '-yo' }, gloss: 'pol', role: 'polite' },
               ],
             },

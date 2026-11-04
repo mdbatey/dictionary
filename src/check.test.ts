@@ -24,7 +24,7 @@ describe('checkContent', () => {
 
   it('reports a Language that lists a Role missing from the site-wide Role list', () => {
     const broken = structuredClone(content);
-    broken.languages[0]!.roles.push('topik');
+    broken.languages[0]!.roles['topik'] = { rule: 'A misspelt Role.' };
     expect(checkContent(broken)).toEqual([
       { where: 'Korean', message: 'Role "topik" is not in the site-wide Role list' },
     ]);
