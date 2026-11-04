@@ -67,4 +67,5 @@ export const korean: Language = {
       ],
     },
   ],
+  switchboards: [],
 };
