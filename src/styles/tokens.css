@@ -4,8 +4,7 @@
    Starting palette from the mockup review (issue #3). Text and chip contrast is at least 4.5:1 in both modes. */
 :root { color-scheme: light dark; }
 
-/* The tokens are also declared on .theme-light/.theme-dark so a forced-mode area re-reads them in its own mode. */
-:root, .theme-light, .theme-dark {
+:root {
   /* Surfaces and text */
   --bg: light-dark(#F3F5F8, #11141A);
   --surface: light-dark(#FFFFFF, #1A1F28);
@@ -80,7 +79,3 @@
   --space-3: 12px;
   --space-4: 16px;
 }
-
-/* Force a mode for one part of a page (used by the colour key preview). */
-.theme-light { color-scheme: light; }
-.theme-dark { color-scheme: dark; }
