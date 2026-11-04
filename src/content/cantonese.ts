@@ -1,4 +1,6 @@
 import type { Language } from '../model';
+import { cantoneseSwitchboards } from './cantonese-switchboards';
+import { cantoneseWords } from './cantonese-words';
 
 // Moved over as-is from reference/breakdowns/cantonese-dozen.html ("The Cantonese Dozen").
 // Intended changes only: site-wide colours, and Markdown instead of HTML. Only Jyutping is stored;
@@ -22,6 +24,10 @@ export const cantonese: Language = {
     negation: { rule: "唔 negates whatever comes right after it. Doubled around a verb (V唔V), it also builds a yes/no question." },
     potential: { rule: "到, added after a verb and 唔, builds \"cannot manage to [verb]\" — 食唔到 = \"can’t eat [it].\" This whole pattern has no single-word equivalent in English." },
     time: { rule: "Time expressions like 聽日 (tomorrow) sit right after the subject, before the verb — there's no future-tense verb ending to place instead." },
+    // From reference/switchboards/cantonese-switchboard.html (used by the giving Switchboard):
+    tense: { label: "Aspect marker", rule: "咗 (done), 過 (ever) and 緊 (in progress) attach right after the verb. They show how the action unfolds, not when." },
+    number: { label: "Number", rule: "一 and 兩 come before the measure word." },
+    question: { label: "Question particle", rule: "嗎 turns a statement into a yes/no question. It sounds bookish in Cantonese; A-not-A questions are the everyday choice." },
     adverb: { rule: "Short adverbs like 就 sit between the time word and the verb, adding shades of immediacy or sequence." },
   },
   pronunciationSystems: [
@@ -282,6 +288,6 @@ export const cantonese: Language = {
       ],
     },
   ],
-  words: [],
-  switchboards: [],
+  words: cantoneseWords,
+  switchboards: cantoneseSwitchboards,
 };

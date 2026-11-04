@@ -1,0 +1,2560 @@
+{
+ "source": "reference/switchboards/cantonese-switchboard.html, recorded by running its grammar code",
+ "roleNote": "Old 'Number / this, that' Pieces map to Number (一, 兩) and Demonstrative (呢, 嗰).",
+ "samples": [
+  {
+   "settings": {
+    "who": "i",
+    "time": "habit",
+    "negate": "none",
+    "type": "statement",
+    "object": "the",
+    "ending": "plain"
+   },
+   "pieces": [
+    [
+     "我",
+     "ngo5",
+     "I",
+     "pronoun"
+    ],
+    [
+     "畀",
+     "bei2",
+     "give",
+     "verb"
+    ],
+    [
+     "個",
+     "go3",
+     "(mw)",
+     "measure"
+    ],
+    [
+     "蘋果",
+     "ping4 gwo2",
+     "apple",
+     "noun"
+    ],
+    [
+     "阿明",
+     "aa3 ming4",
+     "Ah Ming",
+     "noun"
+    ]
+   ],
+   "punctuation": "。",
+   "translation": "I give Ah Ming the apple."
+  },
+  {
+   "settings": {
+    "who": "i",
+    "time": "habit",
+    "negate": "none",
+    "type": "statement",
+    "object": "the",
+    "ending": "plain"
+   },
+   "pieces": [
+    [
+     "我",
+     "ngo5",
+     "I",
+     "pronoun"
+    ],
+    [
+     "畀",
+     "bei2",
+     "give",
+     "verb"
+    ],
+    [
+     "個",
+     "go3",
+     "(mw)",
+     "measure"
+    ],
+    [
+     "蘋果",
+     "ping4 gwo2",
+     "apple",
+     "noun"
+    ],
+    [
+     "阿明",
+     "aa3 ming4",
+     "Ah Ming",
+     "noun"
+    ]
+   ],
+   "punctuation": "。",
+   "translation": "I give Ah Ming the apple."
+  },
+  {
+   "settings": {
+    "who": "you",
+    "time": "habit",
+    "negate": "none",
+    "type": "statement",
+    "object": "one",
+    "ending": "gaa"
+   },
+   "pieces": [
+    [
+     "你",
+     "nei5",
+     "you",
+     "pronoun"
+    ],
+    [
+     "畀",
+     "bei2",
+     "give",
+     "verb"
+    ],
+    [
+     "一",
+     "jat1",
+     "one",
+     "number"
+    ],
+    [
+     "個",
+     "go3",
+     "(mw)",
+     "measure"
+    ],
+    [
+     "蘋果",
+     "ping4 gwo2",
+     "apple",
+     "noun"
+    ],
+    [
+     "阿明",
+     "aa3 ming4",
+     "Ah Ming",
+     "noun"
+    ],
+    [
+     "㗎",
+     "gaa3",
+     "(explaining)",
+     "final-particle"
+    ]
+   ],
+   "punctuation": "。",
+   "translation": "You give Ah Ming an apple."
+  },
+  {
+   "settings": {
+    "who": "he-she",
+    "time": "habit",
+    "negate": "none",
+    "type": "statement",
+    "object": "this",
+    "ending": "laa"
+   },
+   "pieces": [
+    [
+     "佢",
+     "keoi5",
+     "he/she",
+     "pronoun"
+    ],
+    [
+     "畀",
+     "bei2",
+     "give",
+     "verb"
+    ],
+    [
+     "呢",
+     "ni1",
+     "this",
+     "demonstrative"
+    ],
+    [
+     "個",
+     "go3",
+     "(mw)",
+     "measure"
+    ],
+    [
+     "蘋果",
+     "ping4 gwo2",
+     "apple",
+     "noun"
+    ],
+    [
+     "阿明",
+     "aa3 ming4",
+     "Ah Ming",
+     "noun"
+    ],
+    [
+     "喇",
+     "laa3",
+     "(now/already)",
+     "final-particle"
+    ]
+   ],
+   "punctuation": "。",
+   "translation": "He/she gives Ah Ming this apple."
+  },
+  {
+   "settings": {
+    "who": "we",
+    "time": "habit",
+    "negate": "not",
+    "type": "statement",
+    "object": "that",
+    "ending": "plain"
+   },
+   "pieces": [
+    [
+     "我",
+     "ngo5",
+     "I",
+     "pronoun"
+    ],
+    [
+     "哋",
+     "dei6",
+     "pl.",
+     "plural"
+    ],
+    [
+     "唔",
+     "m4",
+     "not",
+     "negation"
+    ],
+    [
+     "畀",
+     "bei2",
+     "give",
+     "verb"
+    ],
+    [
+     "嗰",
+     "go2",
+     "that",
+     "demonstrative"
+    ],
+    [
+     "個",
+     "go3",
+     "(mw)",
+     "measure"
+    ],
+    [
+     "蘋果",
+     "ping4 gwo2",
+     "apple",
+     "noun"
+    ],
+    [
+     "阿明",
+     "aa3 ming4",
+     "Ah Ming",
+     "noun"
+    ]
+   ],
+   "punctuation": "。",
+   "translation": "We don't give Ah Ming that apple."
+  },
+  {
+   "settings": {
+    "who": "you-all",
+    "time": "habit",
+    "negate": "not",
+    "type": "statement",
+    "object": "two",
+    "ending": "gaa"
+   },
+   "pieces": [
+    [
+     "你",
+     "nei5",
+     "you",
+     "pronoun"
+    ],
+    [
+     "哋",
+     "dei6",
+     "pl.",
+     "plural"
+    ],
+    [
+     "唔",
+     "m4",
+     "not",
+     "negation"
+    ],
+    [
+     "畀",
+     "bei2",
+     "give",
+     "verb"
+    ],
+    [
+     "兩",
+     "loeng5",
+     "two",
+     "number"
+    ],
+    [
+     "個",
+     "go3",
+     "(mw)",
+     "measure"
+    ],
+    [
+     "蘋果",
+     "ping4 gwo2",
+     "apple",
+     "noun"
+    ],
+    [
+     "阿明",
+     "aa3 ming4",
+     "Ah Ming",
+     "noun"
+    ],
+    [
+     "㗎",
+     "gaa3",
+     "(explaining)",
+     "final-particle"
+    ]
+   ],
+   "punctuation": "。",
+   "translation": "You all don't give Ah Ming two apples."
+  },
+  {
+   "settings": {
+    "who": "they",
+    "time": "habit",
+    "negate": "not",
+    "type": "statement",
+    "object": "the",
+    "ending": "laa"
+   },
+   "pieces": [
+    [
+     "佢",
+     "keoi5",
+     "he/she",
+     "pronoun"
+    ],
+    [
+     "哋",
+     "dei6",
+     "pl.",
+     "plural"
+    ],
+    [
+     "唔",
+     "m4",
+     "not",
+     "negation"
+    ],
+    [
+     "畀",
+     "bei2",
+     "give",
+     "verb"
+    ],
+    [
+     "個",
+     "go3",
+     "(mw)",
+     "measure"
+    ],
+    [
+     "蘋果",
+     "ping4 gwo2",
+     "apple",
+     "noun"
+    ],
+    [
+     "阿明",
+     "aa3 ming4",
+     "Ah Ming",
+     "noun"
+    ],
+    [
+     "喇",
+     "laa3",
+     "(now/already)",
+     "final-particle"
+    ]
+   ],
+   "punctuation": "。",
+   "translation": "They don't give Ah Ming the apple."
+  },
+  {
+   "settings": {
+    "who": "i",
+    "time": "habit",
+    "negate": "none",
+    "type": "a-not-a",
+    "object": "one",
+    "ending": "plain"
+   },
+   "pieces": [
+    [
+     "我",
+     "ngo5",
+     "I",
+     "pronoun"
+    ],
+    [
+     "畀",
+     "bei2",
+     "give",
+     "verb"
+    ],
+    [
+     "唔",
+     "m4",
+     "not",
+     "negation"
+    ],
+    [
+     "畀",
+     "bei2",
+     "give",
+     "verb"
+    ],
+    [
+     "一",
+     "jat1",
+     "one",
+     "number"
+    ],
+    [
+     "個",
+     "go3",
+     "(mw)",
+     "measure"
+    ],
+    [
+     "蘋果",
+     "ping4 gwo2",
+     "apple",
+     "noun"
+    ],
+    [
+     "阿明",
+     "aa3 ming4",
+     "Ah Ming",
+     "noun"
+    ]
+   ],
+   "punctuation": "？",
+   "translation": "Do I give Ah Ming an apple?"
+  },
+  {
+   "settings": {
+    "who": "you",
+    "time": "habit",
+    "negate": "none",
+    "type": "maa",
+    "object": "this",
+    "ending": "plain"
+   },
+   "pieces": [
+    [
+     "你",
+     "nei5",
+     "you",
+     "pronoun"
+    ],
+    [
+     "畀",
+     "bei2",
+     "give",
+     "verb"
+    ],
+    [
+     "呢",
+     "ni1",
+     "this",
+     "demonstrative"
+    ],
+    [
+     "個",
+     "go3",
+     "(mw)",
+     "measure"
+    ],
+    [
+     "蘋果",
+     "ping4 gwo2",
+     "apple",
+     "noun"
+    ],
+    [
+     "阿明",
+     "aa3 ming4",
+     "Ah Ming",
+     "noun"
+    ],
+    [
+     "嗎",
+     "maa3",
+     "?",
+     "question"
+    ]
+   ],
+   "punctuation": "？",
+   "translation": "Do you give Ah Ming this apple?"
+  },
+  {
+   "settings": {
+    "who": "he-she",
+    "time": "habit",
+    "negate": "not",
+    "type": "maa",
+    "object": "that",
+    "ending": "plain"
+   },
+   "pieces": [
+    [
+     "佢",
+     "keoi5",
+     "he/she",
+     "pronoun"
+    ],
+    [
+     "唔",
+     "m4",
+     "not",
+     "negation"
+    ],
+    [
+     "畀",
+     "bei2",
+     "give",
+     "verb"
+    ],
+    [
+     "嗰",
+     "go2",
+     "that",
+     "demonstrative"
+    ],
+    [
+     "個",
+     "go3",
+     "(mw)",
+     "measure"
+    ],
+    [
+     "蘋果",
+     "ping4 gwo2",
+     "apple",
+     "noun"
+    ],
+    [
+     "阿明",
+     "aa3 ming4",
+     "Ah Ming",
+     "noun"
+    ],
+    [
+     "嗎",
+     "maa3",
+     "?",
+     "question"
+    ]
+   ],
+   "punctuation": "？",
+   "translation": "Doesn't he/she give Ah Ming that apple?"
+  },
+  {
+   "settings": {
+    "who": "we",
+    "time": "zo",
+    "negate": "none",
+    "type": "statement",
+    "object": "two",
+    "ending": "plain"
+   },
+   "pieces": [
+    [
+     "我",
+     "ngo5",
+     "I",
+     "pronoun"
+    ],
+    [
+     "哋",
+     "dei6",
+     "pl.",
+     "plural"
+    ],
+    [
+     "畀",
+     "bei2",
+     "give",
+     "verb"
+    ],
+    [
+     "咗",
+     "zo2",
+     "done",
+     "tense"
+    ],
+    [
+     "兩",
+     "loeng5",
+     "two",
+     "number"
+    ],
+    [
+     "個",
+     "go3",
+     "(mw)",
+     "measure"
+    ],
+    [
+     "蘋果",
+     "ping4 gwo2",
+     "apple",
+     "noun"
+    ],
+    [
+     "阿明",
+     "aa3 ming4",
+     "Ah Ming",
+     "noun"
+    ]
+   ],
+   "punctuation": "。",
+   "translation": "We gave Ah Ming two apples."
+  },
+  {
+   "settings": {
+    "who": "you-all",
+    "time": "zo",
+    "negate": "none",
+    "type": "statement",
+    "object": "the",
+    "ending": "gaa"
+   },
+   "pieces": [
+    [
+     "你",
+     "nei5",
+     "you",
+     "pronoun"
+    ],
+    [
+     "哋",
+     "dei6",
+     "pl.",
+     "plural"
+    ],
+    [
+     "畀",
+     "bei2",
+     "give",
+     "verb"
+    ],
+    [
+     "咗",
+     "zo2",
+     "done",
+     "tense"
+    ],
+    [
+     "個",
+     "go3",
+     "(mw)",
+     "measure"
+    ],
+    [
+     "蘋果",
+     "ping4 gwo2",
+     "apple",
+     "noun"
+    ],
+    [
+     "阿明",
+     "aa3 ming4",
+     "Ah Ming",
+     "noun"
+    ],
+    [
+     "㗎",
+     "gaa3",
+     "(explaining)",
+     "final-particle"
+    ]
+   ],
+   "punctuation": "。",
+   "translation": "You all gave Ah Ming the apple."
+  },
+  {
+   "settings": {
+    "who": "they",
+    "time": "zo",
+    "negate": "none",
+    "type": "statement",
+    "object": "one",
+    "ending": "laa"
+   },
+   "pieces": [
+    [
+     "佢",
+     "keoi5",
+     "he/she",
+     "pronoun"
+    ],
+    [
+     "哋",
+     "dei6",
+     "pl.",
+     "plural"
+    ],
+    [
+     "畀",
+     "bei2",
+     "give",
+     "verb"
+    ],
+    [
+     "咗",
+     "zo2",
+     "done",
+     "tense"
+    ],
+    [
+     "一",
+     "jat1",
+     "one",
+     "number"
+    ],
+    [
+     "個",
+     "go3",
+     "(mw)",
+     "measure"
+    ],
+    [
+     "蘋果",
+     "ping4 gwo2",
+     "apple",
+     "noun"
+    ],
+    [
+     "阿明",
+     "aa3 ming4",
+     "Ah Ming",
+     "noun"
+    ],
+    [
+     "喇",
+     "laa3",
+     "(now/already)",
+     "final-particle"
+    ]
+   ],
+   "punctuation": "。",
+   "translation": "They gave Ah Ming an apple."
+  },
+  {
+   "settings": {
+    "who": "i",
+    "time": "zo",
+    "negate": "not",
+    "type": "statement",
+    "object": "this",
+    "ending": "plain"
+   },
+   "pieces": [
+    [
+     "我",
+     "ngo5",
+     "I",
+     "pronoun"
+    ],
+    [
+     "冇",
+     "mou5",
+     "not have",
+     "negation"
+    ],
+    [
+     "畀",
+     "bei2",
+     "give",
+     "verb"
+    ],
+    [
+     "呢",
+     "ni1",
+     "this",
+     "demonstrative"
+    ],
+    [
+     "個",
+     "go3",
+     "(mw)",
+     "measure"
+    ],
+    [
+     "蘋果",
+     "ping4 gwo2",
+     "apple",
+     "noun"
+    ],
+    [
+     "阿明",
+     "aa3 ming4",
+     "Ah Ming",
+     "noun"
+    ]
+   ],
+   "punctuation": "。",
+   "translation": "I didn't give Ah Ming this apple."
+  },
+  {
+   "settings": {
+    "who": "you",
+    "time": "zo",
+    "negate": "not",
+    "type": "statement",
+    "object": "that",
+    "ending": "gaa"
+   },
+   "pieces": [
+    [
+     "你",
+     "nei5",
+     "you",
+     "pronoun"
+    ],
+    [
+     "冇",
+     "mou5",
+     "not have",
+     "negation"
+    ],
+    [
+     "畀",
+     "bei2",
+     "give",
+     "verb"
+    ],
+    [
+     "嗰",
+     "go2",
+     "that",
+     "demonstrative"
+    ],
+    [
+     "個",
+     "go3",
+     "(mw)",
+     "measure"
+    ],
+    [
+     "蘋果",
+     "ping4 gwo2",
+     "apple",
+     "noun"
+    ],
+    [
+     "阿明",
+     "aa3 ming4",
+     "Ah Ming",
+     "noun"
+    ],
+    [
+     "㗎",
+     "gaa3",
+     "(explaining)",
+     "final-particle"
+    ]
+   ],
+   "punctuation": "。",
+   "translation": "You didn't give Ah Ming that apple."
+  },
+  {
+   "settings": {
+    "who": "he-she",
+    "time": "zo",
+    "negate": "none",
+    "type": "a-not-a",
+    "object": "two",
+    "ending": "plain"
+   },
+   "pieces": [
+    [
+     "佢",
+     "keoi5",
+     "he/she",
+     "pronoun"
+    ],
+    [
+     "有",
+     "jau5",
+     "have",
+     "modal"
+    ],
+    [
+     "冇",
+     "mou5",
+     "not have",
+     "negation"
+    ],
+    [
+     "畀",
+     "bei2",
+     "give",
+     "verb"
+    ],
+    [
+     "兩",
+     "loeng5",
+     "two",
+     "number"
+    ],
+    [
+     "個",
+     "go3",
+     "(mw)",
+     "measure"
+    ],
+    [
+     "蘋果",
+     "ping4 gwo2",
+     "apple",
+     "noun"
+    ],
+    [
+     "阿明",
+     "aa3 ming4",
+     "Ah Ming",
+     "noun"
+    ]
+   ],
+   "punctuation": "？",
+   "translation": "Did he/she give Ah Ming two apples?"
+  },
+  {
+   "settings": {
+    "who": "we",
+    "time": "zo",
+    "negate": "none",
+    "type": "maa",
+    "object": "the",
+    "ending": "plain"
+   },
+   "pieces": [
+    [
+     "我",
+     "ngo5",
+     "I",
+     "pronoun"
+    ],
+    [
+     "哋",
+     "dei6",
+     "pl.",
+     "plural"
+    ],
+    [
+     "畀",
+     "bei2",
+     "give",
+     "verb"
+    ],
+    [
+     "咗",
+     "zo2",
+     "done",
+     "tense"
+    ],
+    [
+     "個",
+     "go3",
+     "(mw)",
+     "measure"
+    ],
+    [
+     "蘋果",
+     "ping4 gwo2",
+     "apple",
+     "noun"
+    ],
+    [
+     "阿明",
+     "aa3 ming4",
+     "Ah Ming",
+     "noun"
+    ],
+    [
+     "嗎",
+     "maa3",
+     "?",
+     "question"
+    ]
+   ],
+   "punctuation": "？",
+   "translation": "Did we give Ah Ming the apple?"
+  },
+  {
+   "settings": {
+    "who": "you-all",
+    "time": "zo",
+    "negate": "not",
+    "type": "maa",
+    "object": "one",
+    "ending": "plain"
+   },
+   "pieces": [
+    [
+     "你",
+     "nei5",
+     "you",
+     "pronoun"
+    ],
+    [
+     "哋",
+     "dei6",
+     "pl.",
+     "plural"
+    ],
+    [
+     "冇",
+     "mou5",
+     "not have",
+     "negation"
+    ],
+    [
+     "畀",
+     "bei2",
+     "give",
+     "verb"
+    ],
+    [
+     "蘋果",
+     "ping4 gwo2",
+     "apple",
+     "noun"
+    ],
+    [
+     "阿明",
+     "aa3 ming4",
+     "Ah Ming",
+     "noun"
+    ],
+    [
+     "嗎",
+     "maa3",
+     "?",
+     "question"
+    ]
+   ],
+   "punctuation": "？",
+   "translation": "Didn't you all give Ah Ming any apples?"
+  },
+  {
+   "settings": {
+    "who": "they",
+    "time": "gwo",
+    "negate": "none",
+    "type": "statement",
+    "object": "this",
+    "ending": "plain"
+   },
+   "pieces": [
+    [
+     "佢",
+     "keoi5",
+     "he/she",
+     "pronoun"
+    ],
+    [
+     "哋",
+     "dei6",
+     "pl.",
+     "plural"
+    ],
+    [
+     "畀",
+     "bei2",
+     "give",
+     "verb"
+    ],
+    [
+     "過",
+     "gwo3",
+     "ever",
+     "tense"
+    ],
+    [
+     "呢",
+     "ni1",
+     "this",
+     "demonstrative"
+    ],
+    [
+     "個",
+     "go3",
+     "(mw)",
+     "measure"
+    ],
+    [
+     "蘋果",
+     "ping4 gwo2",
+     "apple",
+     "noun"
+    ],
+    [
+     "阿明",
+     "aa3 ming4",
+     "Ah Ming",
+     "noun"
+    ]
+   ],
+   "punctuation": "。",
+   "translation": "They have given Ah Ming this apple before."
+  },
+  {
+   "settings": {
+    "who": "i",
+    "time": "gwo",
+    "negate": "none",
+    "type": "statement",
+    "object": "that",
+    "ending": "gaa"
+   },
+   "pieces": [
+    [
+     "我",
+     "ngo5",
+     "I",
+     "pronoun"
+    ],
+    [
+     "畀",
+     "bei2",
+     "give",
+     "verb"
+    ],
+    [
+     "過",
+     "gwo3",
+     "ever",
+     "tense"
+    ],
+    [
+     "嗰",
+     "go2",
+     "that",
+     "demonstrative"
+    ],
+    [
+     "個",
+     "go3",
+     "(mw)",
+     "measure"
+    ],
+    [
+     "蘋果",
+     "ping4 gwo2",
+     "apple",
+     "noun"
+    ],
+    [
+     "阿明",
+     "aa3 ming4",
+     "Ah Ming",
+     "noun"
+    ],
+    [
+     "㗎",
+     "gaa3",
+     "(explaining)",
+     "final-particle"
+    ]
+   ],
+   "punctuation": "。",
+   "translation": "I have given Ah Ming that apple before."
+  },
+  {
+   "settings": {
+    "who": "you",
+    "time": "gwo",
+    "negate": "not",
+    "type": "statement",
+    "object": "two",
+    "ending": "plain"
+   },
+   "pieces": [
+    [
+     "你",
+     "nei5",
+     "you",
+     "pronoun"
+    ],
+    [
+     "冇",
+     "mou5",
+     "not have",
+     "negation"
+    ],
+    [
+     "畀",
+     "bei2",
+     "give",
+     "verb"
+    ],
+    [
+     "過",
+     "gwo3",
+     "ever",
+     "tense"
+    ],
+    [
+     "兩",
+     "loeng5",
+     "two",
+     "number"
+    ],
+    [
+     "個",
+     "go3",
+     "(mw)",
+     "measure"
+    ],
+    [
+     "蘋果",
+     "ping4 gwo2",
+     "apple",
+     "noun"
+    ],
+    [
+     "阿明",
+     "aa3 ming4",
+     "Ah Ming",
+     "noun"
+    ]
+   ],
+   "punctuation": "。",
+   "translation": "You have never given Ah Ming two apples."
+  },
+  {
+   "settings": {
+    "who": "he-she",
+    "time": "gwo",
+    "negate": "not",
+    "type": "statement",
+    "object": "the",
+    "ending": "gaa"
+   },
+   "pieces": [
+    [
+     "佢",
+     "keoi5",
+     "he/she",
+     "pronoun"
+    ],
+    [
+     "冇",
+     "mou5",
+     "not have",
+     "negation"
+    ],
+    [
+     "畀",
+     "bei2",
+     "give",
+     "verb"
+    ],
+    [
+     "過",
+     "gwo3",
+     "ever",
+     "tense"
+    ],
+    [
+     "個",
+     "go3",
+     "(mw)",
+     "measure"
+    ],
+    [
+     "蘋果",
+     "ping4 gwo2",
+     "apple",
+     "noun"
+    ],
+    [
+     "阿明",
+     "aa3 ming4",
+     "Ah Ming",
+     "noun"
+    ],
+    [
+     "㗎",
+     "gaa3",
+     "(explaining)",
+     "final-particle"
+    ]
+   ],
+   "punctuation": "。",
+   "translation": "He/she has never given Ah Ming the apple."
+  },
+  {
+   "settings": {
+    "who": "we",
+    "time": "gwo",
+    "negate": "none",
+    "type": "a-not-a",
+    "object": "one",
+    "ending": "plain"
+   },
+   "pieces": [
+    [
+     "我",
+     "ngo5",
+     "I",
+     "pronoun"
+    ],
+    [
+     "哋",
+     "dei6",
+     "pl.",
+     "plural"
+    ],
+    [
+     "有",
+     "jau5",
+     "have",
+     "modal"
+    ],
+    [
+     "冇",
+     "mou5",
+     "not have",
+     "negation"
+    ],
+    [
+     "畀",
+     "bei2",
+     "give",
+     "verb"
+    ],
+    [
+     "過",
+     "gwo3",
+     "ever",
+     "tense"
+    ],
+    [
+     "一",
+     "jat1",
+     "one",
+     "number"
+    ],
+    [
+     "個",
+     "go3",
+     "(mw)",
+     "measure"
+    ],
+    [
+     "蘋果",
+     "ping4 gwo2",
+     "apple",
+     "noun"
+    ],
+    [
+     "阿明",
+     "aa3 ming4",
+     "Ah Ming",
+     "noun"
+    ]
+   ],
+   "punctuation": "？",
+   "translation": "Have we ever given Ah Ming an apple?"
+  },
+  {
+   "settings": {
+    "who": "you-all",
+    "time": "gwo",
+    "negate": "none",
+    "type": "maa",
+    "object": "this",
+    "ending": "plain"
+   },
+   "pieces": [
+    [
+     "你",
+     "nei5",
+     "you",
+     "pronoun"
+    ],
+    [
+     "哋",
+     "dei6",
+     "pl.",
+     "plural"
+    ],
+    [
+     "畀",
+     "bei2",
+     "give",
+     "verb"
+    ],
+    [
+     "過",
+     "gwo3",
+     "ever",
+     "tense"
+    ],
+    [
+     "呢",
+     "ni1",
+     "this",
+     "demonstrative"
+    ],
+    [
+     "個",
+     "go3",
+     "(mw)",
+     "measure"
+    ],
+    [
+     "蘋果",
+     "ping4 gwo2",
+     "apple",
+     "noun"
+    ],
+    [
+     "阿明",
+     "aa3 ming4",
+     "Ah Ming",
+     "noun"
+    ],
+    [
+     "嗎",
+     "maa3",
+     "?",
+     "question"
+    ]
+   ],
+   "punctuation": "？",
+   "translation": "Have you all ever given Ah Ming this apple?"
+  },
+  {
+   "settings": {
+    "who": "they",
+    "time": "gwo",
+    "negate": "not",
+    "type": "maa",
+    "object": "that",
+    "ending": "plain"
+   },
+   "pieces": [
+    [
+     "佢",
+     "keoi5",
+     "he/she",
+     "pronoun"
+    ],
+    [
+     "哋",
+     "dei6",
+     "pl.",
+     "plural"
+    ],
+    [
+     "冇",
+     "mou5",
+     "not have",
+     "negation"
+    ],
+    [
+     "畀",
+     "bei2",
+     "give",
+     "verb"
+    ],
+    [
+     "過",
+     "gwo3",
+     "ever",
+     "tense"
+    ],
+    [
+     "嗰",
+     "go2",
+     "that",
+     "demonstrative"
+    ],
+    [
+     "個",
+     "go3",
+     "(mw)",
+     "measure"
+    ],
+    [
+     "蘋果",
+     "ping4 gwo2",
+     "apple",
+     "noun"
+    ],
+    [
+     "阿明",
+     "aa3 ming4",
+     "Ah Ming",
+     "noun"
+    ],
+    [
+     "嗎",
+     "maa3",
+     "?",
+     "question"
+    ]
+   ],
+   "punctuation": "？",
+   "translation": "Haven't they ever given Ah Ming that apple?"
+  },
+  {
+   "settings": {
+    "who": "i",
+    "time": "gan",
+    "negate": "none",
+    "type": "statement",
+    "object": "two",
+    "ending": "plain"
+   },
+   "pieces": [
+    [
+     "我",
+     "ngo5",
+     "I",
+     "pronoun"
+    ],
+    [
+     "畀",
+     "bei2",
+     "give",
+     "verb"
+    ],
+    [
+     "緊",
+     "gan2",
+     "-ing",
+     "tense"
+    ],
+    [
+     "兩",
+     "loeng5",
+     "two",
+     "number"
+    ],
+    [
+     "個",
+     "go3",
+     "(mw)",
+     "measure"
+    ],
+    [
+     "蘋果",
+     "ping4 gwo2",
+     "apple",
+     "noun"
+    ],
+    [
+     "阿明",
+     "aa3 ming4",
+     "Ah Ming",
+     "noun"
+    ]
+   ],
+   "punctuation": "。",
+   "translation": "I am giving Ah Ming two apples."
+  },
+  {
+   "settings": {
+    "who": "you",
+    "time": "gan",
+    "negate": "none",
+    "type": "statement",
+    "object": "the",
+    "ending": "gaa"
+   },
+   "pieces": [
+    [
+     "你",
+     "nei5",
+     "you",
+     "pronoun"
+    ],
+    [
+     "畀",
+     "bei2",
+     "give",
+     "verb"
+    ],
+    [
+     "緊",
+     "gan2",
+     "-ing",
+     "tense"
+    ],
+    [
+     "個",
+     "go3",
+     "(mw)",
+     "measure"
+    ],
+    [
+     "蘋果",
+     "ping4 gwo2",
+     "apple",
+     "noun"
+    ],
+    [
+     "阿明",
+     "aa3 ming4",
+     "Ah Ming",
+     "noun"
+    ],
+    [
+     "㗎",
+     "gaa3",
+     "(explaining)",
+     "final-particle"
+    ]
+   ],
+   "punctuation": "。",
+   "translation": "You are giving Ah Ming the apple."
+  },
+  {
+   "settings": {
+    "who": "he-she",
+    "time": "gan",
+    "negate": "not",
+    "type": "statement",
+    "object": "one",
+    "ending": "plain"
+   },
+   "pieces": [
+    [
+     "佢",
+     "keoi5",
+     "he/she",
+     "pronoun"
+    ],
+    [
+     "冇",
+     "mou5",
+     "not have",
+     "negation"
+    ],
+    [
+     "畀",
+     "bei2",
+     "give",
+     "verb"
+    ],
+    [
+     "緊",
+     "gan2",
+     "-ing",
+     "tense"
+    ],
+    [
+     "蘋果",
+     "ping4 gwo2",
+     "apple",
+     "noun"
+    ],
+    [
+     "阿明",
+     "aa3 ming4",
+     "Ah Ming",
+     "noun"
+    ]
+   ],
+   "punctuation": "。",
+   "translation": "He/she is not giving Ah Ming any apples."
+  },
+  {
+   "settings": {
+    "who": "we",
+    "time": "gan",
+    "negate": "not",
+    "type": "statement",
+    "object": "this",
+    "ending": "gaa"
+   },
+   "pieces": [
+    [
+     "我",
+     "ngo5",
+     "I",
+     "pronoun"
+    ],
+    [
+     "哋",
+     "dei6",
+     "pl.",
+     "plural"
+    ],
+    [
+     "冇",
+     "mou5",
+     "not have",
+     "negation"
+    ],
+    [
+     "畀",
+     "bei2",
+     "give",
+     "verb"
+    ],
+    [
+     "緊",
+     "gan2",
+     "-ing",
+     "tense"
+    ],
+    [
+     "呢",
+     "ni1",
+     "this",
+     "demonstrative"
+    ],
+    [
+     "個",
+     "go3",
+     "(mw)",
+     "measure"
+    ],
+    [
+     "蘋果",
+     "ping4 gwo2",
+     "apple",
+     "noun"
+    ],
+    [
+     "阿明",
+     "aa3 ming4",
+     "Ah Ming",
+     "noun"
+    ],
+    [
+     "㗎",
+     "gaa3",
+     "(explaining)",
+     "final-particle"
+    ]
+   ],
+   "punctuation": "。",
+   "translation": "We are not giving Ah Ming this apple."
+  },
+  {
+   "settings": {
+    "who": "you-all",
+    "time": "gan",
+    "negate": "none",
+    "type": "a-not-a",
+    "object": "that",
+    "ending": "plain"
+   },
+   "pieces": [
+    [
+     "你",
+     "nei5",
+     "you",
+     "pronoun"
+    ],
+    [
+     "哋",
+     "dei6",
+     "pl.",
+     "plural"
+    ],
+    [
+     "係",
+     "hai6",
+     "is",
+     "modal"
+    ],
+    [
+     "唔",
+     "m4",
+     "not",
+     "negation"
+    ],
+    [
+     "係",
+     "hai6",
+     "is",
+     "modal"
+    ],
+    [
+     "畀",
+     "bei2",
+     "give",
+     "verb"
+    ],
+    [
+     "緊",
+     "gan2",
+     "-ing",
+     "tense"
+    ],
+    [
+     "嗰",
+     "go2",
+     "that",
+     "demonstrative"
+    ],
+    [
+     "個",
+     "go3",
+     "(mw)",
+     "measure"
+    ],
+    [
+     "蘋果",
+     "ping4 gwo2",
+     "apple",
+     "noun"
+    ],
+    [
+     "阿明",
+     "aa3 ming4",
+     "Ah Ming",
+     "noun"
+    ]
+   ],
+   "punctuation": "？",
+   "translation": "Are you all giving Ah Ming that apple?"
+  },
+  {
+   "settings": {
+    "who": "they",
+    "time": "gan",
+    "negate": "none",
+    "type": "maa",
+    "object": "two",
+    "ending": "plain"
+   },
+   "pieces": [
+    [
+     "佢",
+     "keoi5",
+     "he/she",
+     "pronoun"
+    ],
+    [
+     "哋",
+     "dei6",
+     "pl.",
+     "plural"
+    ],
+    [
+     "畀",
+     "bei2",
+     "give",
+     "verb"
+    ],
+    [
+     "緊",
+     "gan2",
+     "-ing",
+     "tense"
+    ],
+    [
+     "兩",
+     "loeng5",
+     "two",
+     "number"
+    ],
+    [
+     "個",
+     "go3",
+     "(mw)",
+     "measure"
+    ],
+    [
+     "蘋果",
+     "ping4 gwo2",
+     "apple",
+     "noun"
+    ],
+    [
+     "阿明",
+     "aa3 ming4",
+     "Ah Ming",
+     "noun"
+    ],
+    [
+     "嗎",
+     "maa3",
+     "?",
+     "question"
+    ]
+   ],
+   "punctuation": "？",
+   "translation": "Are they giving Ah Ming two apples?"
+  },
+  {
+   "settings": {
+    "who": "i",
+    "time": "gan",
+    "negate": "not",
+    "type": "maa",
+    "object": "the",
+    "ending": "plain"
+   },
+   "pieces": [
+    [
+     "我",
+     "ngo5",
+     "I",
+     "pronoun"
+    ],
+    [
+     "冇",
+     "mou5",
+     "not have",
+     "negation"
+    ],
+    [
+     "畀",
+     "bei2",
+     "give",
+     "verb"
+    ],
+    [
+     "緊",
+     "gan2",
+     "-ing",
+     "tense"
+    ],
+    [
+     "個",
+     "go3",
+     "(mw)",
+     "measure"
+    ],
+    [
+     "蘋果",
+     "ping4 gwo2",
+     "apple",
+     "noun"
+    ],
+    [
+     "阿明",
+     "aa3 ming4",
+     "Ah Ming",
+     "noun"
+    ],
+    [
+     "嗎",
+     "maa3",
+     "?",
+     "question"
+    ]
+   ],
+   "punctuation": "？",
+   "translation": "Aren't I giving Ah Ming the apple?"
+  },
+  {
+   "settings": {
+    "who": "you",
+    "time": "wui",
+    "negate": "none",
+    "type": "statement",
+    "object": "one",
+    "ending": "plain"
+   },
+   "pieces": [
+    [
+     "你",
+     "nei5",
+     "you",
+     "pronoun"
+    ],
+    [
+     "會",
+     "wui5",
+     "will",
+     "modal"
+    ],
+    [
+     "畀",
+     "bei2",
+     "give",
+     "verb"
+    ],
+    [
+     "一",
+     "jat1",
+     "one",
+     "number"
+    ],
+    [
+     "個",
+     "go3",
+     "(mw)",
+     "measure"
+    ],
+    [
+     "蘋果",
+     "ping4 gwo2",
+     "apple",
+     "noun"
+    ],
+    [
+     "阿明",
+     "aa3 ming4",
+     "Ah Ming",
+     "noun"
+    ]
+   ],
+   "punctuation": "。",
+   "translation": "You will give Ah Ming an apple."
+  },
+  {
+   "settings": {
+    "who": "he-she",
+    "time": "wui",
+    "negate": "none",
+    "type": "statement",
+    "object": "this",
+    "ending": "gaa"
+   },
+   "pieces": [
+    [
+     "佢",
+     "keoi5",
+     "he/she",
+     "pronoun"
+    ],
+    [
+     "會",
+     "wui5",
+     "will",
+     "modal"
+    ],
+    [
+     "畀",
+     "bei2",
+     "give",
+     "verb"
+    ],
+    [
+     "呢",
+     "ni1",
+     "this",
+     "demonstrative"
+    ],
+    [
+     "個",
+     "go3",
+     "(mw)",
+     "measure"
+    ],
+    [
+     "蘋果",
+     "ping4 gwo2",
+     "apple",
+     "noun"
+    ],
+    [
+     "阿明",
+     "aa3 ming4",
+     "Ah Ming",
+     "noun"
+    ],
+    [
+     "㗎",
+     "gaa3",
+     "(explaining)",
+     "final-particle"
+    ]
+   ],
+   "punctuation": "。",
+   "translation": "He/she will give Ah Ming this apple."
+  },
+  {
+   "settings": {
+    "who": "we",
+    "time": "wui",
+    "negate": "none",
+    "type": "statement",
+    "object": "that",
+    "ending": "laa"
+   },
+   "pieces": [
+    [
+     "我",
+     "ngo5",
+     "I",
+     "pronoun"
+    ],
+    [
+     "哋",
+     "dei6",
+     "pl.",
+     "plural"
+    ],
+    [
+     "會",
+     "wui5",
+     "will",
+     "modal"
+    ],
+    [
+     "畀",
+     "bei2",
+     "give",
+     "verb"
+    ],
+    [
+     "嗰",
+     "go2",
+     "that",
+     "demonstrative"
+    ],
+    [
+     "個",
+     "go3",
+     "(mw)",
+     "measure"
+    ],
+    [
+     "蘋果",
+     "ping4 gwo2",
+     "apple",
+     "noun"
+    ],
+    [
+     "阿明",
+     "aa3 ming4",
+     "Ah Ming",
+     "noun"
+    ],
+    [
+     "喇",
+     "laa3",
+     "(now/already)",
+     "final-particle"
+    ]
+   ],
+   "punctuation": "。",
+   "translation": "We will give Ah Ming that apple."
+  },
+  {
+   "settings": {
+    "who": "you-all",
+    "time": "wui",
+    "negate": "not",
+    "type": "statement",
+    "object": "two",
+    "ending": "plain"
+   },
+   "pieces": [
+    [
+     "你",
+     "nei5",
+     "you",
+     "pronoun"
+    ],
+    [
+     "哋",
+     "dei6",
+     "pl.",
+     "plural"
+    ],
+    [
+     "唔",
+     "m4",
+     "not",
+     "negation"
+    ],
+    [
+     "會",
+     "wui5",
+     "will",
+     "modal"
+    ],
+    [
+     "畀",
+     "bei2",
+     "give",
+     "verb"
+    ],
+    [
+     "兩",
+     "loeng5",
+     "two",
+     "number"
+    ],
+    [
+     "個",
+     "go3",
+     "(mw)",
+     "measure"
+    ],
+    [
+     "蘋果",
+     "ping4 gwo2",
+     "apple",
+     "noun"
+    ],
+    [
+     "阿明",
+     "aa3 ming4",
+     "Ah Ming",
+     "noun"
+    ]
+   ],
+   "punctuation": "。",
+   "translation": "You all won't give Ah Ming two apples."
+  },
+  {
+   "settings": {
+    "who": "they",
+    "time": "wui",
+    "negate": "not",
+    "type": "statement",
+    "object": "the",
+    "ending": "gaa"
+   },
+   "pieces": [
+    [
+     "佢",
+     "keoi5",
+     "he/she",
+     "pronoun"
+    ],
+    [
+     "哋",
+     "dei6",
+     "pl.",
+     "plural"
+    ],
+    [
+     "唔",
+     "m4",
+     "not",
+     "negation"
+    ],
+    [
+     "會",
+     "wui5",
+     "will",
+     "modal"
+    ],
+    [
+     "畀",
+     "bei2",
+     "give",
+     "verb"
+    ],
+    [
+     "個",
+     "go3",
+     "(mw)",
+     "measure"
+    ],
+    [
+     "蘋果",
+     "ping4 gwo2",
+     "apple",
+     "noun"
+    ],
+    [
+     "阿明",
+     "aa3 ming4",
+     "Ah Ming",
+     "noun"
+    ],
+    [
+     "㗎",
+     "gaa3",
+     "(explaining)",
+     "final-particle"
+    ]
+   ],
+   "punctuation": "。",
+   "translation": "They won't give Ah Ming the apple."
+  },
+  {
+   "settings": {
+    "who": "i",
+    "time": "wui",
+    "negate": "not",
+    "type": "statement",
+    "object": "one",
+    "ending": "laa"
+   },
+   "pieces": [
+    [
+     "我",
+     "ngo5",
+     "I",
+     "pronoun"
+    ],
+    [
+     "唔",
+     "m4",
+     "not",
+     "negation"
+    ],
+    [
+     "會",
+     "wui5",
+     "will",
+     "modal"
+    ],
+    [
+     "畀",
+     "bei2",
+     "give",
+     "verb"
+    ],
+    [
+     "蘋果",
+     "ping4 gwo2",
+     "apple",
+     "noun"
+    ],
+    [
+     "阿明",
+     "aa3 ming4",
+     "Ah Ming",
+     "noun"
+    ],
+    [
+     "喇",
+     "laa3",
+     "(now/already)",
+     "final-particle"
+    ]
+   ],
+   "punctuation": "。",
+   "translation": "I won't give Ah Ming any apples."
+  },
+  {
+   "settings": {
+    "who": "you",
+    "time": "wui",
+    "negate": "none",
+    "type": "a-not-a",
+    "object": "this",
+    "ending": "plain"
+   },
+   "pieces": [
+    [
+     "你",
+     "nei5",
+     "you",
+     "pronoun"
+    ],
+    [
+     "會",
+     "wui5",
+     "will",
+     "modal"
+    ],
+    [
+     "唔",
+     "m4",
+     "not",
+     "negation"
+    ],
+    [
+     "會",
+     "wui5",
+     "will",
+     "modal"
+    ],
+    [
+     "畀",
+     "bei2",
+     "give",
+     "verb"
+    ],
+    [
+     "呢",
+     "ni1",
+     "this",
+     "demonstrative"
+    ],
+    [
+     "個",
+     "go3",
+     "(mw)",
+     "measure"
+    ],
+    [
+     "蘋果",
+     "ping4 gwo2",
+     "apple",
+     "noun"
+    ],
+    [
+     "阿明",
+     "aa3 ming4",
+     "Ah Ming",
+     "noun"
+    ]
+   ],
+   "punctuation": "？",
+   "translation": "Will you give Ah Ming this apple?"
+  },
+  {
+   "settings": {
+    "who": "he-she",
+    "time": "wui",
+    "negate": "none",
+    "type": "maa",
+    "object": "that",
+    "ending": "plain"
+   },
+   "pieces": [
+    [
+     "佢",
+     "keoi5",
+     "he/she",
+     "pronoun"
+    ],
+    [
+     "會",
+     "wui5",
+     "will",
+     "modal"
+    ],
+    [
+     "畀",
+     "bei2",
+     "give",
+     "verb"
+    ],
+    [
+     "嗰",
+     "go2",
+     "that",
+     "demonstrative"
+    ],
+    [
+     "個",
+     "go3",
+     "(mw)",
+     "measure"
+    ],
+    [
+     "蘋果",
+     "ping4 gwo2",
+     "apple",
+     "noun"
+    ],
+    [
+     "阿明",
+     "aa3 ming4",
+     "Ah Ming",
+     "noun"
+    ],
+    [
+     "嗎",
+     "maa3",
+     "?",
+     "question"
+    ]
+   ],
+   "punctuation": "？",
+   "translation": "Will he/she give Ah Ming that apple?"
+  },
+  {
+   "settings": {
+    "who": "we",
+    "time": "wui",
+    "negate": "not",
+    "type": "maa",
+    "object": "two",
+    "ending": "plain"
+   },
+   "pieces": [
+    [
+     "我",
+     "ngo5",
+     "I",
+     "pronoun"
+    ],
+    [
+     "哋",
+     "dei6",
+     "pl.",
+     "plural"
+    ],
+    [
+     "唔",
+     "m4",
+     "not",
+     "negation"
+    ],
+    [
+     "會",
+     "wui5",
+     "will",
+     "modal"
+    ],
+    [
+     "畀",
+     "bei2",
+     "give",
+     "verb"
+    ],
+    [
+     "兩",
+     "loeng5",
+     "two",
+     "number"
+    ],
+    [
+     "個",
+     "go3",
+     "(mw)",
+     "measure"
+    ],
+    [
+     "蘋果",
+     "ping4 gwo2",
+     "apple",
+     "noun"
+    ],
+    [
+     "阿明",
+     "aa3 ming4",
+     "Ah Ming",
+     "noun"
+    ],
+    [
+     "嗎",
+     "maa3",
+     "?",
+     "question"
+    ]
+   ],
+   "punctuation": "？",
+   "translation": "Won't we give Ah Ming two apples?"
+  }
+ ]
+}

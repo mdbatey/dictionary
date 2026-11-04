@@ -46,7 +46,7 @@ export function renderSwitchboard(switchboard: Switchboard, language: Language):
           });
           return button;
         })),
-        ...Object.values(reasons).map((r) => h('p', { class: 'switch-reason' }, [r])),
+        ...[...new Set(Object.values(reasons))].map((r) => h('p', { class: 'switch-reason' }, [r])),
       ]);
     }));
   };
