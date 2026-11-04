@@ -1,0 +1,5 @@
+{"id":"yue","var":"cantonese","nativeName":"廣東話","name":"Cantonese","tag":"yue-Hant","source":"reference/breakdowns/cantonese-dozen.html (\"The Cantonese Dozen\")",
+ "tones":{"system":"jyutping","style":"numbers"},
+ "roles":{"noun":"noun","verb":"verb","pron":"pronoun","pl":"plural","poss":"possessive","mw":"measure","dem":"demonstrative","sfp":"final-particle","modal":"modal","neg":"negation","pot":"potential","time":"time","adv":"adverb"},
+ "siteLabels":{"noun":"Noun","verb":"Verb","pronoun":"Pronoun","plural":"Plural marker","possessive":"Possessive","measure":"Measure word","demonstrative":"Demonstrative","final-particle":"Sentence-final particle","modal":"Modal / helper verb","negation":"Negation","potential":"Potential complement","time":"Time word","adverb":"Adverb"},
+ "systems":[{"id":"jyutping","label":"Jyutping"}],"setId":"cantonese-dozen","setName":"The Cantonese Dozen"}

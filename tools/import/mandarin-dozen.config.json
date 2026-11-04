@@ -1,0 +1,5 @@
+{"id":"zh","var":"mandarin","nativeName":"中文","name":"Mandarin","tag":"zh-Hans","source":"reference/breakdowns/mandarin-dozen.html (\"The Mandarin Dozen\")",
+ "tones":{"system":"pinyin","style":"marks"},
+ "roles":{"noun":"noun","verb":"verb","pron":"pronoun","poss":"possessive","q":"question","ba":"ba","neg":"negation","modal":"modal","dem":"demonstrative","mw":"measure","time":"time","adv":"adverb","pl":"plural"},
+ "siteLabels":{"noun":"Noun","verb":"Verb","pronoun":"Pronoun","possessive":"Possessive","question":"Question particle","ba":"把 · disposal marker","negation":"Negation","modal":"Modal / helper verb","demonstrative":"Demonstrative","measure":"Measure word","time":"Time word","adverb":"Adverb","plural":"Plural marker"},
+ "systems":[{"id":"pinyin","label":"Pinyin"}],"setId":"mandarin-dozen","setName":"The Mandarin Dozen"}

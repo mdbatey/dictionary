@@ -6,6 +6,7 @@ A GitHub Pages site (repo: `dictionary`, live at mdbatey.github.io/dictionary) f
 
 - **One branch and one pull request per ticket.** The owner reviews and merges. Never commit ticket work directly to `main`, because every push to `main` publishes the live site. The PR body says `Closes #N` for its ticket.
 - **The roadmap is in `docs/plan/`.** v1's tickets are GitHub issues #2–#13, sub-issues of the spec, #1.
+- **Adding content follows `docs/guides/`.** When asked to add a Language, a Set of Sentences, a Switchboard or Words, read and follow the matching guide. Import scripts for old pages are in `tools/import/`.
 
 ## Agent skills
 
