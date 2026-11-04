@@ -2,7 +2,7 @@
 
 **Goal:** rebuild everything the old pages in `reference/` already do on one shared base: data-driven Breakdowns, Switchboards built on Frames and Words, one set of design tokens, published on GitHub Pages.
 
-**Status:** planned. All 12 tickets are GitHub issues (sub-issues of #1). The issues are the source of truth, so update them rather than this file.
+**Status: complete.** 11 tickets shipped and the spec (#1) is closed. Danish (#9) moved out of v1, to be the first Language added with `docs/guides/adding-a-language.md`. #1's closing comment lists what shipped and what changed from the plan.
 
 - **Spec:** [#1](https://github.com/mdbatey/dictionary/issues/1)
 - **Vocabulary:** `GLOSSARY.md`
@@ -28,7 +28,7 @@ The site is titled **Dictionary Layers**. Each ticket is built on its own branch
 | 5. The Korean Dozen as the first Korean Set | [#6](https://github.com/mdbatey/dictionary/issues/6) | #2, #3 |
 | 6. The Mandarin Dozen, the sound picker and tone colours | [#7](https://github.com/mdbatey/dictionary/issues/7) | #6 |
 | 7. The Cantonese Dozen with Jyutping, Yale and IPA | [#8](https://github.com/mdbatey/dictionary/issues/8) | #7 |
-| 8. The Danish Dozen | [#9](https://github.com/mdbatey/dictionary/issues/9) | #6 |
+| ~~8. The Danish Dozen~~ (moved out of v1) | [#9](https://github.com/mdbatey/dictionary/issues/9) | — |
 | 9. Korean giving Switchboard built on Words | [#10](https://github.com/mdbatey/dictionary/issues/10) | #3 |
 | 10. Switchboard controls and feedback | [#11](https://github.com/mdbatey/dictionary/issues/11) | #10, #5, #7 |
 | 11. Mandarin giving Switchboard | [#12](https://github.com/mdbatey/dictionary/issues/12) | #10, #7 |
