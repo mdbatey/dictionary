@@ -54,7 +54,7 @@ main {
   padding: 16px max(16px, env(safe-area-inset-right)) 32px max(16px, env(safe-area-inset-left));
 }
 .page-title, .set-title { margin: 0 0 12px; font-size: 20px; font-weight: 700; }
-main > .sentence + .sentence { margin-top: var(--space-3); }
+.sentences { display: flex; flex-direction: column; gap: var(--space-3); }
 .sentence { scroll-margin-top: 112px; }
 .sentence.is-target { border-color: var(--ink); }
 .sentence-number { align-self: flex-start; font-size: 13px; font-weight: 600; color: var(--muted); text-decoration: none; }
@@ -113,7 +113,30 @@ main > .sentence + .sentence { margin-top: var(--space-3); }
 .phrase-caption { font-size: calc(11px * var(--fit, 1)); font-weight: 600; color: var(--phrase-color); white-space: nowrap; }
 .phrase-pieces { display: flex; align-items: flex-end; gap: calc(3px * var(--fit, 1)); }
 
-.piece { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+.piece {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  min-width: 24px;
+  min-height: 44px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  border-radius: var(--radius-chip);
+  transition: opacity 0.15s;
+}
+.piece:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+.piece.is-dimmed { opacity: 0.22; }
+
+/* Layer toggles */
+.hide-gloss .piece-gloss,
+.hide-pron .piece-pron { display: none; }
+.hide-phrases .phrase { border-color: transparent; }
+.hide-phrases .phrase-caption { visibility: hidden; }
 .piece-gloss { font-size: calc(11px * var(--fit, 1)); color: var(--muted); white-space: nowrap; }
 .piece-pron { font-size: calc(12px * var(--fit, 1)); color: var(--muted); white-space: nowrap; }
 .piece-script {
@@ -133,3 +156,106 @@ main > .sentence + .sentence { margin-top: var(--space-3); }
   main { padding-inline: max(12px, env(safe-area-inset-left)); }
   .sentence { padding: 14px 12px; }
 }
+
+/* Toolbar: layer toggles and color key */
+.toolbar { display: flex; flex-direction: column; gap: var(--space-2); margin-bottom: var(--space-3); }
+.toggles { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+.toggle {
+  min-height: 44px;
+  padding: 0 16px;
+  border-radius: 22px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--ink);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.toggle[aria-pressed='true'] { background: var(--ink); border-color: var(--ink); color: var(--bg); }
+
+.color-key { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-card); padding: 0 var(--space-4); }
+.color-key summary { min-height: 44px; display: flex; align-items: center; font-size: 15px; font-weight: 600; cursor: pointer; }
+.key-hint { margin: 0 0 var(--space-2); font-size: 13px; color: var(--muted); }
+.key-roles { display: flex; flex-wrap: wrap; gap: var(--space-2); padding-bottom: var(--space-3); }
+.key-role {
+  min-height: 40px;
+  padding: 0 12px;
+  border-radius: var(--radius-chip);
+  border: 2px solid transparent;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.key-role.style-chip { background: var(--role-color); color: var(--chip-ink); }
+.key-role.style-text { background: var(--surface); color: var(--role-color); border-color: var(--line); }
+.key-role.style-inverted { background: var(--ink); color: var(--bg); }
+.key-role[aria-pressed='true'] { border-color: var(--ink); box-shadow: 0 0 0 2px var(--surface) inset; }
+
+/* Detail panel: a bottom sheet on phones, a centred card on wide screens */
+.sheet {
+  margin: auto auto 0;
+  width: 100%;
+  max-width: 560px;
+  max-height: 85vh;
+  overflow-y: auto;
+  border: 1px solid var(--line);
+  border-bottom: 0;
+  border-radius: 20px 20px 0 0;
+  padding: var(--space-2) 20px max(20px, env(safe-area-inset-bottom));
+  background: var(--surface);
+  color: var(--ink);
+  font-family: var(--font-ui);
+}
+.sheet::backdrop { background: rgb(0 0 0 / 0.45); }
+.sheet[open] { animation: sheet-up 0.2s ease-out; }
+@keyframes sheet-up { from { transform: translateY(24px); opacity: 0; } }
+@media (min-width: 720px) {
+  .sheet { margin: auto; border-bottom: 1px solid var(--line); border-radius: 20px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sheet[open] { animation: none; }
+  .piece { transition: none; }
+}
+.sheet-grip { width: 40px; height: 5px; border-radius: 3px; background: var(--line); margin: 0 auto var(--space-3); }
+.sheet-head { display: flex; align-items: flex-start; gap: var(--space-4); }
+.sheet-script.piece-script { font-size: 56px; line-height: 1.1; padding: 4px 14px; border-radius: 14px; }
+.sheet-script.style-text { padding-inline: 0; }
+.sheet-facts { display: flex; flex-direction: column; gap: 6px; flex: 1; min-width: 0; }
+.role-tag { align-self: flex-start; font-size: 13px; font-weight: 600; border-radius: 6px; padding: 3px 8px; }
+.role-tag.style-chip { background: var(--role-color); color: var(--chip-ink); }
+.role-tag.style-text { color: var(--role-color); border: 1px solid var(--line); }
+.role-tag.style-inverted { background: var(--ink); color: var(--bg); }
+.sheet-gloss { font-size: 22px; font-weight: 600; }
+.sheet-pron { font-size: 15px; color: var(--muted); }
+.sheet-close {
+  width: 44px;
+  height: 44px;
+  flex: none;
+  border: 0;
+  border-radius: 22px;
+  background: var(--surface-2);
+  color: var(--ink);
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+}
+.sheet-section { margin-top: var(--space-4); }
+.sheet-section h3 { margin: 0 0 6px; font-size: 12px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: var(--muted); }
+.sheet-section p { margin: 0; font-size: 15px; line-height: 1.5; }
+.sheet-rule { color: var(--muted); }
+.sheet-steps { display: flex; gap: var(--space-2); margin-top: 20px; }
+.sheet-step {
+  flex: 1;
+  min-height: 48px;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: var(--surface-2);
+  color: var(--ink);
+  font: inherit;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.sheet-step:disabled { opacity: 0.4; cursor: default; }

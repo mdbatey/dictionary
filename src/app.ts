@@ -1,10 +1,12 @@
 import { content } from './content';
 import { h } from './dom';
 import { fitToOneLine } from './fit';
-import type { Language } from './model';
+import { piecesOf, type Language } from './model';
+import { openPiecePanel } from './panel';
 import { renderSentence } from './render';
 import { resolveRoute, type Screen } from './route';
 import { readLastPlace, saveLastPlace } from './storage';
+import { renderToolbar } from './toolbar';
 
 const SITE = 'Dictionary Layers';
 
@@ -47,12 +49,15 @@ function pickerScreen(): { title: string; body: HTMLElement[] } {
 
 function breakdownsScreen(language: Language, setId: string): { title: string; body: HTMLElement[] } {
   const set = language.sets.find((s) => s.id === setId)!;
+  const sentences = h('div', { class: 'sentences' }, set.sentences.map((sentence) =>
+    renderSentence(sentence, language, content, `#/${language.id}/breakdowns/${set.id}/${sentence.id}`,
+      (index) => openPiecePanel(sentence, index, language, content))));
   return {
     title: `${set.name} · ${SITE}`,
     body: [
       h('h1', { class: 'page-title' }, [set.name]),
-      ...set.sentences.map((sentence) =>
-        renderSentence(sentence, language, content, `#/${language.id}/breakdowns/${set.id}/${sentence.id}`)),
+      renderToolbar(sentences, set.sentences.flatMap(piecesOf), language, content, refitAll),
+      sentences,
     ],
   };
 }
@@ -77,7 +82,11 @@ function notFoundScreen(): { title: string; body: HTMLElement[] } {
   };
 }
 
-let stopFitting: (() => void)[] = [];
+let fitted: { refit: () => void; stop: () => void }[] = [];
+
+function refitAll(): void {
+  fitted.forEach((f) => f.refit());
+}
 
 function show(screen: Screen): void {
   const language = 'languageId' in screen ? content.languages.find((l) => l.id === screen.languageId) : undefined;
@@ -88,11 +97,11 @@ function show(screen: Screen): void {
     : screen.kind === 'not-found' ? notFoundScreen()
     : pickerScreen();
 
-  stopFitting.forEach((stop) => stop());
+  fitted.forEach((f) => f.stop());
   const app = document.querySelector<HTMLElement>('#app')!;
   app.replaceChildren(header(language, view), h('main', {}, body), footer());
   document.title = title;
-  stopFitting = [...app.querySelectorAll<HTMLElement>('.parts')].map(fitToOneLine);
+  fitted = [...app.querySelectorAll<HTMLElement>('.parts')].map(fitToOneLine);
 
   if (screen.kind === 'breakdowns' && screen.sentenceId) {
     const target = document.getElementById(`sentence-${screen.sentenceId}`);
