@@ -1,6 +1,6 @@
 import type { Language } from '../model';
 
-// Source: reference/breakdowns/korean-13-sentences.html (Sentence 3).
+// Source: reference/breakdowns/korean-13-sentences.html (Sentence 3). Renamed "The Korean Dozen" to match the other Sets.
 export const korean: Language = {
   id: 'ko',
   nativeName: '한국어',
@@ -11,8 +11,8 @@ export const korean: Language = {
   defaultPronunciation: 'rom',
   sets: [
     {
-      id: 'korean-13',
-      name: 'Korean in 13 Sentences',
+      id: 'korean-dozen',
+      name: 'The Korean Dozen',
       sentences: [
         {
           id: '3',

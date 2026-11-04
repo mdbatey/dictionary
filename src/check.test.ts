@@ -18,7 +18,7 @@ describe('checkContent', () => {
 
   it('reports a Piece whose Role its Language does not use', () => {
     expect(checkContent(withFirstKoreanPieceRole('tense'))).toEqual([
-      { where: 'Korean › Korean in 13 Sentences › Sentence 3 › 나', message: 'Role "tense" is not one of Korean\'s Roles' },
+      { where: 'Korean › The Korean Dozen › Sentence 3 › 나', message: 'Role "tense" is not one of Korean\'s Roles' },
     ]);
   });
 

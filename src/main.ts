@@ -2,6 +2,7 @@ import './styles/tokens.css';
 import './styles/app.css';
 import { content } from './content';
 import { h } from './dom';
+import { fitToOneLine } from './fit';
 import { renderSentence } from './render';
 
 const app = document.querySelector<HTMLDivElement>('#app')!;
@@ -15,3 +16,5 @@ app.append(
     ...set.sentences.map((sentence) => renderSentence(sentence, language, content)),
   ]),
 );
+
+app.querySelectorAll<HTMLElement>('.parts').forEach(fitToOneLine);

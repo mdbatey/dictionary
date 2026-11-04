@@ -34,31 +34,47 @@ main {
 .translation { margin: 0; font-size: 18px; font-weight: 600; }
 .explanation { margin: 0; font-size: 15px; line-height: 1.5; }
 
-.parts { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 10px 8px; }
-.punct { font-family: var(--font-script); font-size: 24px; font-weight: 700; padding-bottom: 22px; }
+.parts {
+  display: flex;
+  flex-wrap: nowrap; /* a Sentence always reads as one line */
+  align-items: flex-end;
+  gap: calc(6px * var(--fit, 1));
+  overflow-x: auto; /* sentences too long for the screen scroll sideways instead of wrapping */
+  overscroll-behavior-x: contain;
+  scrollbar-width: thin;
+  padding-bottom: 4px;
+}
+.punct { font-family: var(--font-script); font-size: calc(21px * var(--fit, 1)); font-weight: 700; padding-bottom: calc(20px * var(--fit, 1)); flex: none; }
 
 .phrase {
   border: 2px solid var(--phrase-color);
   border-radius: 12px;
-  padding: 4px 8px 6px;
+  padding: calc(3px * var(--fit, 1)) calc(5px * var(--fit, 1)) calc(5px * var(--fit, 1));
   display: flex;
   flex-direction: column;
   gap: 2px;
+  flex: none;
 }
-.phrase-caption { font-size: 11px; font-weight: 600; color: var(--phrase-color); }
-.phrase-pieces { display: flex; align-items: flex-end; gap: 4px; }
+.phrase-caption { font-size: calc(11px * var(--fit, 1)); font-weight: 600; color: var(--phrase-color); white-space: nowrap; }
+.phrase-pieces { display: flex; align-items: flex-end; gap: calc(3px * var(--fit, 1)); }
 
-.piece { display: flex; flex-direction: column; align-items: center; gap: 3px; }
-.piece-gloss { font-size: 11px; color: var(--muted); }
-.piece-pron { font-size: 12px; color: var(--muted); }
+.piece { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+.piece-gloss { font-size: calc(11px * var(--fit, 1)); color: var(--muted); white-space: nowrap; }
+.piece-pron { font-size: calc(12px * var(--fit, 1)); color: var(--muted); white-space: nowrap; }
 .piece-script {
   font-family: var(--font-script);
-  font-size: 24px;
+  font-size: calc(24px * var(--fit, 1));
   font-weight: 700;
   line-height: 1.3;
   border-radius: var(--radius-chip);
-  padding: 1px 6px;
+  padding: 1px calc(4px * var(--fit, 1));
+  white-space: nowrap;
 }
 .piece-script.style-chip { background: var(--role-color); color: var(--chip-ink); }
 .piece-script.style-text { color: var(--role-color); padding-inline: 0; }
 .piece-script.style-inverted { background: var(--ink); color: var(--bg); }
+
+@media (max-width: 480px) {
+  main { padding-inline: max(12px, env(safe-area-inset-left)); }
+  .sentence { padding: 14px 12px; }
+}
