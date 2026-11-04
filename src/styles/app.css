@@ -1,4 +1,6 @@
 * { box-sizing: border-box; }
+/* No grey/blue tap flash on iPhone: buttons and links show their own pressed state. */
+button, a, summary { -webkit-tap-highlight-color: transparent; }
 
 body {
   margin: 0;

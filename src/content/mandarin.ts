@@ -28,7 +28,11 @@ export const mandarin: Language = {
     number: { label: "Number", rule: "一 and 两 come before the measure word, never directly before the noun." },
     plural: { rule: "们 pluralizes a pronoun or person noun (我→我们). 些 does similar work after a demonstrative (这→这些). Ordinary nouns like 苹果 never change form themselves." },
   },
-  pronunciationSystems: [{ id: "pinyin", label: "Pinyin" }],
+  pronunciationSystems: [
+    { id: "pinyin", label: "Pinyin" },
+    // Worked out from the pinyin, syllable by syllable.
+    { id: "ipa", label: "IPA", derive: { from: "pinyin", rule: "pinyin-to-ipa" } },
+  ],
   defaultPronunciation: "pinyin",
   sets: [
     {
