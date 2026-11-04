@@ -121,4 +121,14 @@ describe('checkContent', () => {
       { where: 'Mandarin › The Mandarin Dozen › Sentence 2', message: 'Links to Sentence 40, which is not in this Set' },
     ]);
   });
+
+  it('reports a pronunciation that its derived systems cannot be worked out from', () => {
+    const broken = structuredClone(content);
+    const cantonese = broken.languages.find((l) => l.id === 'yue')!;
+    const piece = (cantonese.sets[0]!.sentences[0]!.parts[0] as Phrase).pieces[0]!;
+    piece.pron['jyutping'] = piece.pron['jyutping']!.replace(/^ping4/, 'pxng4');
+    expect(checkContent(broken)).toEqual([
+      { where: `Cantonese › The Cantonese Dozen › Sentence 1 › ${piece.script}`, message: `Yale and IPA can't be worked out from Jyutping "${piece.pron['jyutping']}"` },
+    ]);
+  });
 });

@@ -50,10 +50,13 @@ export function renderToolbar(
   });
 
   // Tone colours: only for tonal Languages.
+  // Tone marks (Mandarin): tones 1–4 plus neutral. Tone numbers (Cantonese): tones 1–6.
+  const ordinal = (n: number) => `${n}${['st', 'nd', 'rd'][n - 1] ?? 'th'}`;
+  const toneNumbers = language.tones?.style === 'numbers' ? [1, 2, 3, 4, 5, 6] : [1, 2, 3, 4];
   const toneKey = h('div', { class: 'tone-key', 'aria-hidden': String(!tones) }, [
     'Tones: ',
-    ...[1, 2, 3, 4].map((n) => h('span', { 'data-tone': String(n) }, [`${n}${['st', 'nd', 'rd', 'th'][n - 1]}`])),
-    h('span', { 'data-tone': '0' }, ['neutral']),
+    ...toneNumbers.map((n) => h('span', { 'data-tone': String(n) }, [ordinal(n)])),
+    ...(language.tones?.style === 'numbers' ? [] : [h('span', { 'data-tone': '0' }, ['neutral'])]),
   ]);
   if (language.tones) {
     const toneButton = h('button', { class: 'toggle', type: 'button', 'aria-pressed': String(tones) }, ['Tone colors']);
@@ -68,7 +71,7 @@ export function renderToolbar(
   }
 
   // Sound picker: only the systems this page's Pieces actually have, and only when there's a choice.
-  const systems = language.pronunciationSystems.filter((ps) => pieces.some((p) => p.pron[ps.id]));
+  const systems = language.pronunciationSystems.filter((ps) => pieces.some((p) => p.pron[ps.derive?.from ?? ps.id]));
   const current = pronSystem(language);
   const soundPicker = systems.length > 1
     ? h('div', { class: 'sound-picker', role: 'group', 'aria-label': 'Sound' }, [

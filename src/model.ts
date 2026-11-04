@@ -147,6 +147,8 @@ export interface Switchboard {
 export interface PronunciationSystem {
   id: string;
   label: string;
+  /** For a system worked out from another one instead of stored, e.g. Yale from Jyutping. */
+  derive?: { from: string; rule: 'jyutping-to-yale' | 'jyutping-to-ipa' };
 }
 
 export interface Language {
