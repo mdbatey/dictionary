@@ -62,8 +62,8 @@ export interface Sentence {
 export interface SummaryPoint {
   /** Markdown. */
   text: string;
-  /** Ids of Sentences in the same Set. */
-  sentences: string[];
+  /** Ids of Sentences in the same Set, listed after the text. (Points can also link inline: [#3](sentence:3).) */
+  sentences?: string[];
 }
 
 /** A named, ordered group of Sentences in one Language. */
@@ -161,6 +161,8 @@ export interface Language {
   roles: Record<string, LanguageRole>;
   pronunciationSystems: PronunciationSystem[];
   defaultPronunciation: string;
+  /** For tonal Languages: the Pronunciation System whose syllables carry the tones (tone marks or tone numbers). */
+  tones?: { system: string; style: 'marks' | 'numbers' };
   sets: SentenceSet[];
   words: Word[];
   switchboards: Switchboard[];

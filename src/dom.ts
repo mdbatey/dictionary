@@ -12,9 +12,16 @@ export function h(tag: string, props: Record<string, string> = {}, children: Chi
   return el;
 }
 
-/** Renders the small subset of Markdown used so far (**bold**) as safe DOM nodes. */
-export function inlineMarkdown(text: string): Child[] {
-  return text.split(/(\*\*[^*]+\*\*)/).filter(Boolean).map((chunk) =>
-    chunk.startsWith('**') && chunk.endsWith('**') ? h('strong', {}, [chunk.slice(2, -2)]) : chunk,
-  );
+/**
+ * Renders the small subset of Markdown the content uses as safe DOM nodes: **bold**, and links to other
+ * Sentences in the same Set written [text](sentence:N). `sentenceHref` turns a Sentence id into an address;
+ * without it, links render as plain text.
+ */
+export function inlineMarkdown(text: string, sentenceHref?: (id: string) => string): Child[] {
+  return text.split(/(\*\*[^*]+\*\*|\[[^\]]+\]\(sentence:[^)\s]+\))/).filter(Boolean).map((chunk) => {
+    if (chunk.startsWith('**') && chunk.endsWith('**')) return h('strong', {}, [chunk.slice(2, -2)]);
+    const link = /^\[([^\]]+)\]\(sentence:([^)\s]+)\)$/.exec(chunk);
+    if (link) return sentenceHref ? h('a', { class: 'sentence-link', href: sentenceHref(link[2]!) }, [link[1]!]) : link[1]!;
+    return chunk;
+  });
 }
