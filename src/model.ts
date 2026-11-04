@@ -34,6 +34,10 @@ export interface Piece {
   note?: string;
   /** True when this Piece differs from the Sentence this one is compared with. */
   changed?: boolean;
+  /** A second Role fused into the same syllable block (e.g. past 었 inside 줬). Drawn as an underline. */
+  fuse?: string;
+  /** True for a Piece that is left unsaid, such as "you" in polite Korean. Drawn faded. */
+  dropped?: boolean;
 }
 
 /** A group of adjacent Pieces forming one unit of meaning, outlined in its Phrase Type's colour. */
@@ -70,10 +74,74 @@ export interface SentenceSet {
   summary?: SummaryPoint[];
 }
 
-/** The Switchboards a Language offers. Filled in from #10 onwards. */
-export interface SwitchboardSummary {
+/** One written form of a Word, such as 저 (the polite Form of the Word "I"). */
+export interface WordForm {
+  script: string;
+  pron: Record<string, string>;
+  /** Literal gloss for this Form, if it differs from the Word's (e.g. "I (humble)"). */
+  gloss?: string;
+  note?: string;
+  /** Extra note for the particle that follows this Form (e.g. how 들's ㄹ slides onto 은). */
+  particleNote?: string;
+  /** For a Form that is left unsaid in this register (e.g. "you" in polite Korean). */
+  dropped?: boolean;
+}
+
+/** One dictionary entry in one Language (see GLOSSARY.md). */
+export interface Word {
+  id: string;
+  /** The dictionary form, e.g. 주다. */
+  script: string;
+  /** English meaning, e.g. "give", "Minho". */
+  meaning: string;
+  /** Literal gloss shown above the Word in a Sentence, if it differs from the meaning (e.g. "grandma"). */
+  gloss?: string;
+  /** Pronunciation of the dictionary form, keyed by Pronunciation System. */
+  pron?: Record<string, string>;
+  wordClass: 'pronoun' | 'noun' | 'verb';
+  /** A note about the Word itself, shown on Pieces made from it. */
+  note?: string;
+  /** Grammar facts the rules need. */
+  facts?: {
+    person?: 1 | 2 | 3;
+    number?: 'singular' | 'plural';
+    honorific?: boolean;
+  };
+  /** Tags a Frame's slot can require, e.g. "person", "thing". */
+  tags?: string[];
+  /** For verbs: the Frames this verb fits. */
+  frames?: string[];
+  /** The id of the Word this one replaces when speaking to or about someone honoured (the Honorific Link). */
+  honorificOf?: string;
+  /** Stored Forms, keyed by name. */
+  forms?: Record<string, WordForm>;
+}
+
+export interface GrammarOption {
+  id: string;
+  label: string;
+  /** A short native-language name, e.g. 해요체. */
+  sub?: string;
+  /** When to use it, shown as the register hint. */
+  hint?: string;
+}
+
+/** A Grammar Switch changes how the Sentence is said; a Word Switch changes which Word fills a Frame slot. */
+export type SwitchDef =
+  | { id: string; label: string; kind: 'grammar'; options: GrammarOption[] }
+  | { id: string; label: string; kind: 'word'; slot: string };
+
+/** A Switchboard is data on top of a Frame (ADR 0001). */
+export interface Switchboard {
   id: string;
   name: string;
+  /** The Frame id, e.g. "ko-giving". */
+  frame: string;
+  /** Word ids for slots that have no Word Switch, e.g. { verb: 'give', object: 'apple' }. */
+  words: Record<string, string>;
+  switches: SwitchDef[];
+  /** Starting setting for every Switch: a Grammar Option id or a Word id. */
+  start: Record<string, string>;
 }
 
 export interface PronunciationSystem {
@@ -94,7 +162,8 @@ export interface Language {
   pronunciationSystems: PronunciationSystem[];
   defaultPronunciation: string;
   sets: SentenceSet[];
-  switchboards: SwitchboardSummary[];
+  words: Word[];
+  switchboards: Switchboard[];
 }
 
 export interface Content {

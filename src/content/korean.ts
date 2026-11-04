@@ -1,4 +1,6 @@
 import type { Language } from '../model';
+import { koreanSwitchboards } from './korean-switchboards';
+import { koreanWords } from './korean-words';
 
 // Moved over as-is from reference/breakdowns/korean-13-sentences.html ("Korean in 13 Sentences"),
 // renamed "The Korean Dozen" to match the other Sets. Intended changes only: site-wide colours,
@@ -26,7 +28,11 @@ export const korean: Language = {
     informal: { rule: "-아 after ㅏ/ㅗ stems, -어 after the rest. On its own this is casual speech." },
     polite: { rule: "요 on the end makes it informal polite, the safe default with most people." },
   },
-  pronunciationSystems: [{ id: 'rom', label: 'Romanization' }],
+  pronunciationSystems: [
+    { id: 'rom', label: 'Romanization' },
+    { id: 'rr', label: 'Revised Romanization' },
+    { id: 'ipa', label: 'IPA' },
+  ],
   defaultPronunciation: 'rom',
   sets: [
     {
@@ -335,5 +341,6 @@ export const korean: Language = {
       ],
     },
   ],
-  switchboards: [],
+  words: koreanWords,
+  switchboards: koreanSwitchboards,
 };

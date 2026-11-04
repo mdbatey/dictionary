@@ -1,6 +1,6 @@
 import { h, inlineMarkdown } from './dom';
 import { piecesOf, type Content, type Language, type Sentence } from './model';
-import { pieceScript } from './render';
+import { pieceScript, pronOf } from './render';
 import { shownRole } from './roles';
 
 let dialog: HTMLDialogElement | undefined;
@@ -26,7 +26,7 @@ export function openPiecePanel(sentence: Sentence, index: number, language: Lang
   const role = shownRole(piece.role, language, content);
   const prev = pieces[index - 1];
   const next = pieces[index + 1];
-  const pron = piece.pron[language.defaultPronunciation];
+  const pron = pronOf(piece, language);
 
   const step = (to: number, label: string, target: typeof prev) => {
     const button = h('button', { class: 'sheet-step', type: 'button', ...(target ? {} : { disabled: '' }) }, [label]);

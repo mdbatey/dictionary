@@ -8,13 +8,25 @@ export function pieceScript(piece: Piece, language: Language, content: Content, 
   return h('span', { class: `piece-script style-${role.style} ${extraClass}`.trim(), lang: language.tag, '--role-color': `var(--role-${piece.role})` }, [piece.script]);
 }
 
+/** A Piece's pronunciation in the Language's default system, or else the first system it has. */
+export function pronOf(piece: { pron: Record<string, string> }, language: Language): string {
+  return piece.pron[language.defaultPronunciation] ?? Object.values(piece.pron)[0] ?? '';
+}
+
 function renderPiece(piece: Piece, index: number, language: Language, content: Content, onTap: (index: number) => void): HTMLElement {
   const role = shownRole(piece.role, language, content);
-  const label = `${piece.script}, ${piece.gloss ? `${piece.gloss}, ` : ''}${role.label}${piece.changed ? ', changed' : ''}`;
-  const button = h('button', { class: `piece${piece.changed ? ' is-changed' : ''}`, type: 'button', 'data-role': piece.role, 'aria-label': label }, [
+  const fuse = piece.fuse ? shownRole(piece.fuse, language, content) : undefined;
+  const label = [piece.script, piece.gloss, role.label, fuse && `with ${fuse.label}`, piece.dropped && 'left unsaid', piece.changed && 'changed'].filter(Boolean).join(', ');
+  const classes = ['piece', piece.changed && 'is-changed', piece.dropped && 'is-dropped'].filter(Boolean).join(' ');
+  const script = pieceScript(piece, language, content);
+  if (piece.fuse) {
+    script.classList.add('has-fuse');
+    script.style.setProperty('--fuse-color', `var(--role-${piece.fuse})`);
+  }
+  const button = h('button', { class: classes, type: 'button', 'data-role': piece.role, 'aria-label': label }, [
     h('span', { class: 'piece-gloss', 'aria-hidden': 'true' }, [piece.gloss]),
-    pieceScript(piece, language, content),
-    h('span', { class: 'piece-pron', 'aria-hidden': 'true' }, [piece.pron[language.defaultPronunciation] ?? '']),
+    script,
+    h('span', { class: 'piece-pron', 'aria-hidden': 'true' }, [pronOf(piece, language)]),
   ]);
   button.addEventListener('click', () => onTap(index));
   return button;
@@ -27,6 +39,17 @@ function renderPhrase(phrase: Phrase, firstIndex: number, language: Language, co
   ]);
 }
 
+/** A Sentence's Phrases and punctuation as one row. `onTap` receives the index of the tapped Piece (see piecesOf). */
+export function renderParts(parts: Sentence['parts'], language: Language, content: Content, onTap: (index: number) => void): HTMLElement {
+  let next = 0;
+  return h('div', { class: 'parts' }, parts.map((part) => {
+    if (!isPhrase(part)) return h('span', { class: 'punct', lang: language.tag }, [part]);
+    const el = renderPhrase(part, next, language, content, onTap);
+    next += part.pieces.length;
+    return el;
+  }));
+}
+
 /**
  * A Sentence card. `addressOf` gives the address of a Sentence in the same Set (for its own link and its
  * comparison link); `onTap` receives the index of the tapped Piece within the Sentence (see piecesOf).
@@ -35,18 +58,11 @@ export function renderSentence(
   sentence: Sentence, set: SentenceSet, language: Language, content: Content,
   addressOf: (sentenceId: string) => string, onTap: (index: number) => void,
 ): HTMLElement {
-  let next = 0;
-  const parts = sentence.parts.map((part) => {
-    if (!isPhrase(part)) return h('span', { class: 'punct', lang: language.tag }, [part]);
-    const el = renderPhrase(part, next, language, content, onTap);
-    next += part.pieces.length;
-    return el;
-  });
   const compared = sentence.compareWith ? set.sentences.find((s) => s.id === sentence.compareWith) : undefined;
   return h('article', { class: 'sentence', id: `sentence-${sentence.id}` }, [
     h('a', { class: 'sentence-number', href: addressOf(sentence.id) }, [`Sentence ${sentence.id}`]),
     h('p', { class: 'translation' }, [`“${sentence.translation}”`]),
-    h('div', { class: 'parts' }, parts),
+    renderParts(sentence.parts, language, content, onTap),
     h('p', { class: 'explanation' }, inlineMarkdown(sentence.explanation)),
     ...(compared ? [h('a', { class: 'compare-link', href: addressOf(compared.id) }, [
       h('span', {}, [`Compare with Sentence ${compared.id}: “${compared.translation}”`]),

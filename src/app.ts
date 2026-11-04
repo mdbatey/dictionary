@@ -6,6 +6,7 @@ import { openPiecePanel } from './panel';
 import { renderSentence, renderSentenceChips, renderSummary } from './render';
 import { resolveRoute, type Screen } from './route';
 import { readLastPlace, saveLastPlace } from './storage';
+import { renderSwitchboard } from './switchboard-screen';
 import { renderToolbar } from './toolbar';
 
 const SITE = 'Dictionary Layers';
@@ -73,9 +74,18 @@ function switchboardsScreen(language: Language): ScreenParts {
   if (language.switchboards.length === 0) {
     body.push(h('p', { class: 'empty' }, [`None yet. ${language.name} Switchboards are on the way.`]));
   } else {
-    body.push(h('ul', { class: 'switchboard-list' }, language.switchboards.map((sb) => h('li', {}, [sb.name]))));
+    body.push(h('ul', { class: 'language-list' }, language.switchboards.map((sb) =>
+      h('li', {}, [h('a', { class: 'language-card', href: `#/${language.id}/switchboards/${sb.id}` }, [h('span', { class: 'switchboard-name' }, [sb.name])])]))));
   }
   return { title: `${language.name} Switchboards · ${SITE}`, body };
+}
+
+function oneSwitchboardScreen(language: Language, switchboardId: string): ScreenParts {
+  const sb = language.switchboards.find((s) => s.id === switchboardId)!;
+  return {
+    title: `${sb.name} · ${SITE}`,
+    body: [h('h1', { class: 'page-title' }, [sb.name]), renderSwitchboard(sb, language)],
+  };
 }
 
 function notFoundScreen(): ScreenParts {
@@ -96,10 +106,11 @@ function refitAll(): void {
 
 function show(screen: Screen): void {
   const language = 'languageId' in screen ? content.languages.find((l) => l.id === screen.languageId) : undefined;
-  const view = screen.kind === 'breakdowns' || screen.kind === 'switchboards' ? screen.kind : undefined;
+  const view = screen.kind === 'breakdowns' ? 'breakdowns' : screen.kind === 'switchboards' || screen.kind === 'switchboard' ? 'switchboards' : undefined;
   const { title, body, extra } =
     screen.kind === 'breakdowns' ? breakdownsScreen(language!, screen.setId, screen.sentenceId)
     : screen.kind === 'switchboards' ? switchboardsScreen(language!)
+    : screen.kind === 'switchboard' ? oneSwitchboardScreen(language!, screen.switchboardId)
     : screen.kind === 'not-found' ? notFoundScreen()
     : pickerScreen();
 

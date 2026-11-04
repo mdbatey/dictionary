@@ -10,13 +10,17 @@ function language(id: string, name: string, setIds: string[], sentenceIds: strin
       id: setId, name: `${name} ${setId}`,
       sentences: sentenceIds.map((sid) => ({ id: sid, parts: [], translation: '', explanation: '' })),
     })),
+    words: [],
     switchboards: [],
   };
 }
 
+const korean = language('ko', 'Korean', ['dozen', 'more'], ['1', '2', '3']);
+korean.switchboards = [{ id: 'giving', name: 'Giving', frame: 'ko-giving', words: {}, switches: [], start: {} }];
+
 const content: Content = {
   roles: {},
-  languages: [language('ko', 'Korean', ['dozen', 'more'], ['1', '2', '3']), language('da', 'Danish', ['dozen'], ['1'])],
+  languages: [korean, language('da', 'Danish', ['dozen'], ['1'])],
 };
 
 describe('resolveRoute', () => {
@@ -71,5 +75,13 @@ describe('resolveRoute', () => {
 
   it('always shows the language picker at #/languages', () => {
     expect(resolveRoute('#/languages', content, '#/ko/breakdowns/more/2')).toEqual({ show: { kind: 'picker' } });
+  });
+
+  it('shows a Switchboard', () => {
+    expect(resolveRoute('#/ko/switchboards/giving', content, null)).toEqual({ show: { kind: 'switchboard', languageId: 'ko', switchboardId: 'giving' } });
+  });
+
+  it("sends a Switchboard that no longer exists to the Language's Switchboards", () => {
+    expect(resolveRoute('#/ko/switchboards/gone', content, null)).toEqual({ redirect: '#/ko/switchboards' });
   });
 });
