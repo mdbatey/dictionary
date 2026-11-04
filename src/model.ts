@@ -57,6 +57,12 @@ export interface SentenceSet {
   sentences: Sentence[];
 }
 
+/** The Switchboards a Language offers. Filled in from #10 onwards. */
+export interface SwitchboardSummary {
+  id: string;
+  name: string;
+}
+
 export interface PronunciationSystem {
   id: string;
   label: string;
@@ -75,6 +81,7 @@ export interface Language {
   pronunciationSystems: PronunciationSystem[];
   defaultPronunciation: string;
   sets: SentenceSet[];
+  switchboards: SwitchboardSummary[];
 }
 
 export interface Content {

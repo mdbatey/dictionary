@@ -18,8 +18,9 @@ function renderPhrase(phrase: Phrase, language: Language, content: Content): HTM
   ]);
 }
 
-export function renderSentence(sentence: Sentence, language: Language, content: Content): HTMLElement {
-  return h('article', { class: 'sentence' }, [
+export function renderSentence(sentence: Sentence, language: Language, content: Content, address: string): HTMLElement {
+  return h('article', { class: 'sentence', id: `sentence-${sentence.id}` }, [
+    h('a', { class: 'sentence-number', href: address }, [`Sentence ${sentence.id}`]),
     h('p', { class: 'translation' }, [`“${sentence.translation}”`]),
     h('div', { class: 'parts' }, sentence.parts.map((part) =>
       isPhrase(part) ? renderPhrase(part, language, content) : h('span', { class: 'punct', lang: language.tag }, [part]),
