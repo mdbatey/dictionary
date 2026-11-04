@@ -113,6 +113,17 @@ function refitAll(): void {
   fitted.forEach((f) => f.refit());
 }
 
+let headerObserver: ResizeObserver | undefined;
+
+/** Keeps --header-h equal to the sticky header's real height, so docked elements sit right under it. */
+function watchHeaderHeight(el: HTMLElement): void {
+  headerObserver?.disconnect();
+  const update = () => document.documentElement.style.setProperty('--header-h', `${Math.round(el.getBoundingClientRect().height)}px`);
+  update();
+  headerObserver = new ResizeObserver(update);
+  headerObserver.observe(el);
+}
+
 function show(screen: Screen): void {
   shown = screen;
   const language = 'languageId' in screen ? content.languages.find((l) => l.id === screen.languageId) : undefined;
@@ -126,7 +137,9 @@ function show(screen: Screen): void {
 
   fitted.forEach((f) => f.stop());
   const app = document.querySelector<HTMLElement>('#app')!;
-  app.replaceChildren(header(language, view, extra), h('main', {}, body), footer());
+  const siteHeader = header(language, view, extra);
+  app.replaceChildren(siteHeader, h('main', {}, body), footer());
+  watchHeaderHeight(siteHeader);
   document.title = title;
   fitted = [...app.querySelectorAll<HTMLElement>('.parts')].map(fitToOneLine);
 

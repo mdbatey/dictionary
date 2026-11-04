@@ -55,7 +55,7 @@ main {
 }
 .page-title, .set-title { margin: 0 0 12px; font-size: 20px; font-weight: 700; }
 .sentences { display: flex; flex-direction: column; gap: var(--space-3); }
-.sentence { scroll-margin-top: 168px; }
+.sentence { scroll-margin-top: calc(var(--header-h, 160px) + var(--space-2)); }
 .sentence.is-target { border-color: var(--ink); }
 .sentence-number { align-self: flex-start; font-size: 13px; font-weight: 600; color: var(--muted); text-decoration: none; }
 .empty { color: var(--muted); font-size: 15px; line-height: 1.5; }
@@ -210,7 +210,7 @@ main {
   color: var(--ink);
   font-family: var(--font-ui);
 }
-.sheet::backdrop { background: rgb(0 0 0 / 0.45); }
+.sheet::backdrop { background: var(--backdrop); }
 .sheet[open] { animation: sheet-up 0.2s ease-out; }
 @keyframes sheet-up { from { transform: translateY(24px); opacity: 0; } }
 @media (min-width: 720px) {
@@ -320,7 +320,14 @@ main {
 
 /* Switchboard */
 .switchboard { display: flex; flex-direction: column; gap: var(--space-4); }
-.switchboard-sentence { position: sticky; top: 112px; z-index: 5; }
+.switchboard-sentence {
+  position: sticky;
+  top: var(--header-h, 101px); /* docked directly under the header while scrolling */
+  z-index: 5;
+  box-shadow: var(--shadow-dock);
+}
+.switches-head { display: flex; align-items: center; justify-content: space-between; gap: var(--space-3); }
+.switches-title { margin: 0; font-size: 15px; font-weight: 600; }
 .switchboard-name { font-size: 17px; font-weight: 600; }
 .switches { display: flex; flex-direction: column; gap: var(--space-3); }
 .switch { display: flex; flex-direction: column; gap: 6px; }
