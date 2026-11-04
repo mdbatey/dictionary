@@ -40,9 +40,9 @@ function usedBy(roleId: string): string {
   return names.length ? names.join(', ') : 'Not used yet';
 }
 
-function rolesPanel(theme: 'light' | 'dark'): HTMLElement {
-  return h('section', { class: `panel theme-${theme}` }, [
-    h('h2', {}, [theme === 'light' ? 'Roles · light mode' : 'Roles · dark mode']),
+function rolesPanel(): HTMLElement {
+  return h('section', { class: 'panel' }, [
+    h('h2', {}, ['Roles']),
     h('div', { class: 'role-grid' }, Object.entries(content.roles).map(([id, role]) =>
       h('div', { class: 'role-row' }, [
         h('span', { class: `piece-script style-${role.style}`, '--role-color': `var(--role-${id})` }, [samples[id] ?? '·']),
@@ -55,9 +55,9 @@ function rolesPanel(theme: 'light' | 'dark'): HTMLElement {
   ]);
 }
 
-function phrasePanel(theme: 'light' | 'dark'): HTMLElement {
-  return h('section', { class: `panel theme-${theme}` }, [
-    h('h2', {}, [`Phrase Types · ${theme} mode`]),
+function phrasePanel(): HTMLElement {
+  return h('section', { class: 'panel' }, [
+    h('h2', {}, ['Phrase Types']),
     h('div', { class: 'phrase-grid' }, phraseTypes.map((p) =>
       h('div', { class: 'phrase', '--phrase-color': `var(--phrase-${p.type})` }, [
         h('span', { class: 'phrase-caption' }, [p.note ? `${p.label} (${p.note.toLowerCase()})` : p.label]),
@@ -67,9 +67,9 @@ function phrasePanel(theme: 'light' | 'dark'): HTMLElement {
   ]);
 }
 
-function tonePanel(theme: 'light' | 'dark'): HTMLElement {
-  return h('section', { class: `panel theme-${theme}` }, [
-    h('h2', {}, [`Tones · ${theme} mode`]),
+function tonePanel(): HTMLElement {
+  return h('section', { class: 'panel' }, [
+    h('h2', {}, ['Tones']),
     h('div', { class: 'tone-grid' }, tones.map((t) =>
       h('div', { class: 'tone' }, [
         h('span', { class: 'tone-label' }, [t.label]),
@@ -85,10 +85,10 @@ document.querySelector('#app')!.append(
   h('header', { class: 'site-header' }, [h('a', { class: 'site-title', href: './' }, ['Dictionary Layers'])]),
   h('main', { class: 'colors-page' }, [
     h('h1', { class: 'set-title' }, ['Color key']),
-    h('p', { class: 'lead' }, ['Every color is a named token in src/styles/tokens.css, with its light and dark value side by side. Change a token once and it changes everywhere.']),
-    h('div', { class: 'pair' }, [rolesPanel('light'), rolesPanel('dark')]),
-    h('div', { class: 'pair' }, [phrasePanel('light'), phrasePanel('dark')]),
-    h('div', { class: 'pair' }, [tonePanel('light'), tonePanel('dark')]),
+    h('p', { class: 'lead' }, ['Colors are shown for the mode your device is in, light or dark, the same as the rest of the site.']),
+    rolesPanel(),
+    phrasePanel(),
+    tonePanel(),
     h('section', { class: 'panel' }, [
       h('h2', {}, ['Temporary emphasis']),
       h('p', { class: 'panel-note' }, [

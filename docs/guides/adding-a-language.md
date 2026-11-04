@@ -38,7 +38,7 @@ The `Language` object holds:
    - Chip colours need 4.5:1 against `--chip-ink`.
    - Pick a colour that differs from its neighbours in the same Language.
 3. Add a sample character to `samples` in `src/colors.ts`.
-4. **Ask the owner to approve the colour** on the colour key page (`/dictionary/colors.html`). They approved the palette in #3, and any addition is theirs to accept.
+4. **Ask the owner to approve the colour** on the colour key page (`/dictionary/colors.html`). They approved the palette in #3, and any addition is theirs to accept. The page shows only the device's current mode, so check it once in light mode and once in dark.
 
 ## 4. Pronunciation converters (only for derived systems)
 
