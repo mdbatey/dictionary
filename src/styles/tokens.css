@@ -1,0 +1,50 @@
+/* Design tokens: every colour the site uses is defined here, once, with a light and a dark value.
+   Starting palette from the mockup review (see issue #3). */
+:root {
+  --bg: #F3F5F8;
+  --surface: #FFFFFF;
+  --ink: #171B24;
+  --muted: #5A6272;
+  --line: #D6DBE4;
+  --chip-ink: #141821;
+
+  --role-pronoun: #DDE3EC;
+  --role-noun: #B5EE9C;
+  --role-topic: #FFF3B0;
+  --role-object: #FFC9B8;
+  --role-recipient: #FFB870;
+  --role-stem: #7DEFD3;
+  --role-polite: #0B7285;
+
+  --phrase-subject: #E0182D;
+  --phrase-object: #2447D6;
+  --phrase-recipient: #C25400;
+  --phrase-verb-phrase: #7A2BD9;
+  --phrase-modifier: #1F7A45;
+  --phrase-question: #0C6E82;
+
+  --font-ui: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-script: 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', system-ui, sans-serif;
+  --radius-card: 16px;
+  --radius-chip: 7px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #11141A;
+    --surface: #1A1F28;
+    --ink: #E8ECF3;
+    --muted: #9BA4B4;
+    --line: #2E3644;
+
+    --role-pronoun: #FFFFFF;
+    --role-polite: #66D9E8;
+
+    --phrase-subject: #FF4D5E;
+    --phrase-object: #6F8BFF;
+    --phrase-recipient: #FF8A3D;
+    --phrase-verb-phrase: #B07BFF;
+    --phrase-modifier: #4CCB83;
+    --phrase-question: #3BC9DB;
+  }
+}

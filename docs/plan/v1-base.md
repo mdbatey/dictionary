@@ -25,7 +25,7 @@ The site is titled **Dictionary Layers**. Each ticket is built on its own branch
 | 2. Design tokens and colour review | [#3](https://github.com/mdbatey/dictionary/issues/3) | #2 |
 | 3. Getting around: language picker, header and addresses | [#4](https://github.com/mdbatey/dictionary/issues/4) | #2 |
 | 4. Piece detail panel, colour-key filter and layer toggles | [#5](https://github.com/mdbatey/dictionary/issues/5) | #2 |
-| 5. Korean in 13 Sentences as the first Korean Set | [#6](https://github.com/mdbatey/dictionary/issues/6) | #2, #3 |
+| 5. The Korean Dozen as the first Korean Set | [#6](https://github.com/mdbatey/dictionary/issues/6) | #2, #3 |
 | 6. The Mandarin Dozen, the sound picker and tone colours | [#7](https://github.com/mdbatey/dictionary/issues/7) | #6 |
 | 7. The Cantonese Dozen with Jyutping, Yale and IPA | [#8](https://github.com/mdbatey/dictionary/issues/8) | #7 |
 | 8. The Danish Dozen | [#9](https://github.com/mdbatey/dictionary/issues/9) | #6 |
