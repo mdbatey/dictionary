@@ -138,6 +138,8 @@ main {
 .hide-phrases .phrase { border-color: transparent; }
 .hide-phrases .phrase-caption { visibility: hidden; }
 .piece-gloss { font-size: calc(11px * var(--fit, 1)); color: var(--muted); white-space: nowrap; }
+/* Keep each layer's line even when it's empty (e.g. 고 has no gloss), so all script stays on one line. */
+.piece-gloss, .piece-pron { min-height: 1lh; }
 .piece-pron { font-size: calc(12px * var(--fit, 1)); color: var(--muted); white-space: nowrap; }
 .piece-script {
   font-family: var(--font-script);
