@@ -29,7 +29,8 @@ export const cantonese: Language = {
     { id: "yale", label: "Yale", derive: { from: "jyutping", rule: "jyutping-to-yale" } },
     { id: "ipa", label: "IPA", derive: { from: "jyutping", rule: "jyutping-to-ipa" } },
   ],
-  defaultPronunciation: "jyutping",
+  // Yale by default (owner's preference); the old Dozen page showed Jyutping. Yale is worked out from the stored Jyutping.
+  defaultPronunciation: "yale",
   sets: [
     {
       id: "cantonese-dozen",

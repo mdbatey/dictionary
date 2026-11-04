@@ -49,7 +49,8 @@ export function checkContent(content: Content): Problem[] {
           if (!isPhrase(part)) continue;
           for (const piece of part.pieces) {
             const defaultSystem = language.pronunciationSystems.find((ps) => ps.id === language.defaultPronunciation);
-            if (!piece.pron[language.defaultPronunciation]) {
+            // A derived default (e.g. Yale) needs its source stored; bad source text is reported by the derivation check below.
+            if (!piece.pron[defaultSystem?.derive?.from ?? language.defaultPronunciation]) {
               problems.push({
                 where: `${language.name} › ${set.name} › Sentence ${sentence.id} › ${piece.script}`,
                 message: `Missing a pronunciation in ${defaultSystem?.label ?? language.defaultPronunciation}, ${language.name}'s default`,
