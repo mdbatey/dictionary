@@ -1,3 +1,4 @@
+import { cantoneseGiving } from './cantonese-giving';
 import { koreanGiving } from './korean-giving';
 import { mandarinGiving } from './mandarin-giving';
 import type { Frame } from './types';
@@ -6,4 +7,5 @@ import type { Frame } from './types';
 export const frames: Record<string, Frame> = {
   [koreanGiving.id]: koreanGiving,
   [mandarinGiving.id]: mandarinGiving,
+  [cantoneseGiving.id]: cantoneseGiving,
 };

@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { content } from './content';
 import samples from './fixtures/korean-giving-samples.json';
 import zhSamples from './fixtures/mandarin-giving-samples.json';
+import yueSamples from './fixtures/cantonese-giving-samples.json';
 import { isPhrase } from './model';
 import { allSettings, applyChoice, disabledOptions, optionsFor, showSwitchboard, type SwitchboardView } from './switchboard';
 
@@ -99,5 +100,51 @@ describe('showSwitchboard: Mandarin giving', () => {
     expect(disabledOptions(zhGiving, mandarin, negated)).toEqual({});
     expect(disabledOptions(zhGiving, mandarin, { ...zhGiving.start, type: 'a-not-a' })).toEqual({ negate: { not: "An A-not-A question can't also be negative." } });
     expect(applyChoice(zhGiving, mandarin, negated, 'type', 'a-not-a')).toEqual({ ...zhGiving.start, type: 'a-not-a', negate: 'none' });
+  });
+});
+
+const cantonese = content.languages.find((l) => l.id === 'yue')!;
+const yueGiving = cantonese.switchboards.find((s) => s.id === 'giving')!;
+
+/** Each Piece as [script, Jyutping, gloss, Role]. */
+function yueRows(view: SwitchboardView): string[][] {
+  return view.parts.flatMap((part) => (isPhrase(part) ? part.pieces.map((p) => [p.script, p.pron['jyutping'] ?? '', p.gloss, p.role]) : []));
+}
+
+describe('showSwitchboard: Cantonese giving', () => {
+  it('matches the old page at the starting settings', () => {
+    const expected = yueSamples.samples[0]!;
+    expect(expected.settings).toEqual(yueGiving.start);
+    const view = showSwitchboard(yueGiving, cantonese, yueGiving.start);
+    expect(yueRows(view)).toEqual(expected.pieces);
+    expect(view.parts.at(-1)).toBe(expected.punctuation);
+    expect(view.translation).toBe(expected.translation);
+  });
+
+  it.each(yueSamples.samples.map((s, i) => [i, s] as const))('matches the old page for sample %i', (_i, sample) => {
+    const view = showSwitchboard(yueGiving, cantonese, sample.settings);
+    expect(yueRows(view)).toEqual(sample.pieces);
+    expect(view.parts.at(-1)).toBe(sample.punctuation);
+    expect(view.translation).toBe(sample.translation);
+  });
+
+  it('offers the six pronouns', () => {
+    expect(optionsFor(yueGiving.switches[0]!, yueGiving, cantonese).map((o) => o.label)).toEqual(['I', 'You', 'He/she', 'We', 'You all', 'They']);
+  });
+
+  it('builds exactly the 1,200 combinations the old page allowed', () => {
+    const every = allSettings(yueGiving, cantonese);
+    expect(every).toHaveLength(1200);
+    for (const settings of every) expect(showSwitchboard(yueGiving, cantonese, settings).translation, JSON.stringify(settings)).toMatch(/^[A-Z].*[.?]$/);
+  });
+
+  it('disables endings and Not where they do not fit, and resets them when a choice blocks them', () => {
+    const start = yueGiving.start;
+    expect(disabledOptions(yueGiving, cantonese, { ...start, type: 'maa' })).toEqual({
+      ending: { gaa: 'Ending particles here are for statements.', laa: 'Ending particles here are for statements.' },
+    });
+    expect(disabledOptions(yueGiving, cantonese, { ...start, time: 'gwo' })).toEqual({ ending: { laa: "喇 doesn't sound natural with this combination." } });
+    expect(applyChoice(yueGiving, cantonese, { ...start, ending: 'gaa' }, 'type', 'a-not-a')).toEqual({ ...start, type: 'a-not-a', ending: 'plain' });
+    expect(applyChoice(yueGiving, cantonese, { ...start, ending: 'laa' }, 'time', 'gwo')).toEqual({ ...start, time: 'gwo', ending: 'plain' });
   });
 });
