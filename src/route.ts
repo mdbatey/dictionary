@@ -5,6 +5,7 @@ export type Screen =
   | { kind: 'picker' }
   | { kind: 'breakdowns'; languageId: string; setId: string; sentenceId?: string }
   | { kind: 'switchboards'; languageId: string }
+  | { kind: 'switchboard'; languageId: string; switchboardId: string }
   | { kind: 'not-found' };
 
 /** What an address resolves to: a screen to show, or another address to go to instead. */
@@ -28,7 +29,11 @@ export function resolveRoute(hash: string, content: Content, lastPlace: string |
   const base = `#/${language.id}`;
 
   if (!view) return { redirect: `${base}/breakdowns` };
-  if (view === 'switchboards') return { show: { kind: 'switchboards', languageId: language.id } };
+  if (view === 'switchboards') {
+    if (!setId) return { show: { kind: 'switchboards', languageId: language.id } };
+    const sb = language.switchboards.find((s) => s.id === setId);
+    return sb ? { show: { kind: 'switchboard', languageId: language.id, switchboardId: sb.id } } : { redirect: `${base}/switchboards` };
+  }
   if (view !== 'breakdowns') return notFound;
 
   if (!setId) {

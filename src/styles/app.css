@@ -313,3 +313,33 @@ main {
 .summary li { font-size: 15px; line-height: 1.5; }
 .summary-links { display: flex; flex-wrap: wrap; gap: 4px 12px; margin-top: 2px; }
 .summary-links a { color: var(--muted); font-size: 13px; font-weight: 600; min-height: 32px; display: inline-flex; align-items: center; }
+
+/* Fused Roles (e.g. past 었 inside 줬) and dropped Pieces (e.g. "you" in polite Korean) */
+.piece-script.has-fuse { text-decoration: underline 3px var(--fuse-color); text-underline-offset: 4px; }
+.piece.is-dropped .piece-script { opacity: 0.55; border: 1px dashed var(--muted); font-style: italic; }
+
+/* Switchboard */
+.switchboard { display: flex; flex-direction: column; gap: var(--space-4); }
+.switchboard-sentence { position: sticky; top: 112px; z-index: 5; }
+.switchboard-name { font-size: 17px; font-weight: 600; }
+.switches { display: flex; flex-direction: column; gap: var(--space-3); }
+.switch { display: flex; flex-direction: column; gap: 6px; }
+.switch-label { font-size: 13px; font-weight: 600; color: var(--muted); }
+.switch-options { display: flex; flex-wrap: wrap; gap: 6px; }
+.switch-option {
+  min-height: 44px;
+  padding: 0 14px;
+  border-radius: 22px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--ink);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.switch-option[aria-pressed='true'] { background: var(--ink); border-color: var(--ink); color: var(--bg); }
+.switch-sub { font-family: var(--font-script); font-weight: 500; opacity: 0.75; }

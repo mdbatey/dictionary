@@ -45,4 +45,50 @@ describe('checkContent', () => {
       { where: 'Korean › The Korean Dozen › Summary point 1', message: 'Links to Sentence 42, which is not in this Set' },
     ]);
   });
+
+  it('reports a Switchboard that names a Frame that does not exist', () => {
+    const broken = structuredClone(content);
+    broken.languages[0]!.switchboards[0]!.frame = 'ko-gving';
+    expect(checkContent(broken)).toEqual([
+      { where: 'Korean › Switchboard "giving"', message: 'Frame "ko-gving" does not exist' },
+    ]);
+  });
+
+  it('reports a Switchboard that names a Word that does not exist', () => {
+    const broken = structuredClone(content);
+    broken.languages[0]!.switchboards[0]!.words['thing'] = 'banana';
+    expect(checkContent(broken)).toEqual([
+      { where: 'Korean › Switchboard "giving"', message: 'Word "banana" (slot "thing") is not in the Korean word list' },
+    ]);
+  });
+
+  it('reports starting settings for an unknown Switch or an Option a Switch does not offer', () => {
+    const broken = structuredClone(content);
+    broken.languages[0]!.switchboards[0]!.start['speed'] = 'fast';
+    broken.languages[0]!.switchboards[0]!.start['to'] = 'apple';
+    expect(checkContent(broken)).toEqual([
+      { where: 'Korean › Switchboard "giving"', message: 'Starts the "to" Switch on "apple", which it does not offer' },
+      { where: 'Korean › Switchboard "giving"', message: 'Starts a Switch "speed" that it does not have' },
+    ]);
+  });
+
+  it('reports a Word missing a Form or grammar fact its Frame needs', () => {
+    const broken = structuredClone(content);
+    const words = broken.languages[0]!.words;
+    delete words.find((w) => w.id === 'give-honorific')!.forms!['fut'];
+    delete words.find((w) => w.id === 'they')!.facts!.number;
+    expect(checkContent(broken)).toEqual([
+      { where: 'Korean › Switchboard "giving"', message: 'Word "they" (slot "who") is missing the grammar fact "number" that Frame "ko-giving" needs' },
+      { where: 'Korean › Switchboard "giving"', message: 'Word "give-honorific" (slot "verb") is missing the Form "fut" that Frame "ko-giving" needs' },
+    ]);
+  });
+
+  it('reports a Word Switch whose slot no Word fits', () => {
+    const broken = structuredClone(content);
+    for (const w of broken.languages[0]!.words) w.tags = w.tags?.filter((t) => t !== 'person');
+    expect(checkContent(broken)).toEqual([
+      { where: 'Korean › Switchboard "giving"', message: 'Starts the "to" Switch on "minho", which it does not offer' },
+      { where: 'Korean › Switchboard "giving"', message: 'No Word in the Korean word list fits the "to" slot' },
+    ]);
+  });
 });

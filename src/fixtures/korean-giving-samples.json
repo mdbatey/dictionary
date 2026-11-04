@@ -1,0 +1,2805 @@
+{
+ "source": "reference/switchboards/korean-switchboard.html, recorded by running its grammar code",
+ "samples": [
+  {
+   "settings": {
+    "who": "i",
+    "level": "polite",
+    "tense": "present",
+    "negate": "none",
+    "type": "statement",
+    "to": "minho"
+   },
+   "pieces": [
+    [
+     "저",
+     "jeo",
+     "tɕʌ",
+     "I (humble)",
+     "pronoun"
+    ],
+    [
+     "는",
+     "neun",
+     "nɯn",
+     "topic",
+     "topic"
+    ],
+    [
+     "민호",
+     "minho",
+     "minɦo",
+     "Minho",
+     "noun"
+    ],
+    [
+     "에게",
+     "ege",
+     "eɡe",
+     "to",
+     "recipient"
+    ],
+    [
+     "사과",
+     "sagwa",
+     "saɡwa",
+     "apple",
+     "noun"
+    ],
+    [
+     "를",
+     "reul",
+     "ɾɯl",
+     "d.o.",
+     "object"
+    ],
+    [
+     "줘",
+     "jwo",
+     "tɕwʌ",
+     "give",
+     "verb"
+    ],
+    [
+     "요",
+     "yo",
+     "jo",
+     "pol",
+     "polite"
+    ]
+   ],
+   "punctuation": ".",
+   "translation": "I give Minho the apple."
+  },
+  {
+   "settings": {
+    "who": "i",
+    "level": "casual",
+    "tense": "past",
+    "negate": "none",
+    "type": "statement",
+    "to": "minho"
+   },
+   "pieces": [
+    [
+     "나",
+     "na",
+     "na",
+     "I",
+     "pronoun"
+    ],
+    [
+     "는",
+     "neun",
+     "nɯn",
+     "topic",
+     "topic"
+    ],
+    [
+     "민호",
+     "minho",
+     "minɦo",
+     "Minho",
+     "noun"
+    ],
+    [
+     "에게",
+     "ege",
+     "eɡe",
+     "to",
+     "recipient"
+    ],
+    [
+     "사과",
+     "sagwa",
+     "saɡwa",
+     "apple",
+     "noun"
+    ],
+    [
+     "를",
+     "reul",
+     "ɾɯl",
+     "d.o.",
+     "object"
+    ],
+    [
+     "줬",
+     "jwoss",
+     "tɕwʌs͈",
+     "gave",
+     "verb"
+    ],
+    [
+     "어",
+     "eo",
+     "ʌ",
+     "",
+     "informal"
+    ]
+   ],
+   "punctuation": ".",
+   "translation": "I gave Minho the apple."
+  },
+  {
+   "settings": {
+    "who": "you",
+    "level": "casual",
+    "tense": "past",
+    "negate": "dont",
+    "type": "question",
+    "to": "minho"
+   },
+   "pieces": [
+    [
+     "너",
+     "neo",
+     "nʌ",
+     "you",
+     "pronoun"
+    ],
+    [
+     "는",
+     "neun",
+     "nɯn",
+     "topic",
+     "topic"
+    ],
+    [
+     "민호",
+     "minho",
+     "minɦo",
+     "Minho",
+     "noun"
+    ],
+    [
+     "에게",
+     "ege",
+     "eɡe",
+     "to",
+     "recipient"
+    ],
+    [
+     "사과",
+     "sagwa",
+     "saɡwa",
+     "apple",
+     "noun"
+    ],
+    [
+     "를",
+     "reul",
+     "ɾɯl",
+     "d.o.",
+     "object"
+    ],
+    [
+     "안",
+     "an",
+     "an",
+     "not",
+     "negation"
+    ],
+    [
+     "줬",
+     "jwoss",
+     "dʑwʌs͈",
+     "gave",
+     "verb"
+    ],
+    [
+     "어",
+     "eo",
+     "ʌ",
+     "",
+     "informal"
+    ]
+   ],
+   "punctuation": "?",
+   "translation": "Didn't you give Minho the apple?"
+  },
+  {
+   "settings": {
+    "who": "he",
+    "level": "casual",
+    "tense": "past",
+    "negate": "cant",
+    "type": "statement",
+    "to": "grandma"
+   },
+   "pieces": [
+    [
+     "그",
+     "geu",
+     "kɯ",
+     "he",
+     "pronoun"
+    ],
+    [
+     "는",
+     "neun",
+     "nɯn",
+     "topic",
+     "topic"
+    ],
+    [
+     "할머니",
+     "halmeoni",
+     "halmʌni",
+     "grandma",
+     "noun"
+    ],
+    [
+     "께",
+     "kke",
+     "k͈e",
+     "to (hon.)",
+     "recipient"
+    ],
+    [
+     "사과",
+     "sagwa",
+     "saɡwa",
+     "apple",
+     "noun"
+    ],
+    [
+     "를",
+     "reul",
+     "ɾɯl",
+     "d.o.",
+     "object"
+    ],
+    [
+     "못",
+     "mot",
+     "mot̚",
+     "can't",
+     "negation"
+    ],
+    [
+     "드렸",
+     "deuryeoss",
+     "t͈ɯɾjʌs͈",
+     "gave",
+     "verb"
+    ],
+    [
+     "어",
+     "eo",
+     "ʌ",
+     "",
+     "informal"
+    ]
+   ],
+   "punctuation": ".",
+   "translation": "He couldn't give Grandma the apple."
+  },
+  {
+   "settings": {
+    "who": "she",
+    "level": "casual",
+    "tense": "present",
+    "negate": "none",
+    "type": "question",
+    "to": "grandma"
+   },
+   "pieces": [
+    [
+     "그녀",
+     "geunyeo",
+     "kɯnjʌ",
+     "she",
+     "pronoun"
+    ],
+    [
+     "는",
+     "neun",
+     "nɯn",
+     "topic",
+     "topic"
+    ],
+    [
+     "할머니",
+     "halmeoni",
+     "halmʌni",
+     "grandma",
+     "noun"
+    ],
+    [
+     "께",
+     "kke",
+     "k͈e",
+     "to (hon.)",
+     "recipient"
+    ],
+    [
+     "사과",
+     "sagwa",
+     "saɡwa",
+     "apple",
+     "noun"
+    ],
+    [
+     "를",
+     "reul",
+     "ɾɯl",
+     "d.o.",
+     "object"
+    ],
+    [
+     "드려",
+     "deuryeo",
+     "tɯɾjʌ",
+     "give",
+     "verb"
+    ]
+   ],
+   "punctuation": "?",
+   "translation": "Does she give Grandma the apple?"
+  },
+  {
+   "settings": {
+    "who": "we",
+    "level": "casual",
+    "tense": "present",
+    "negate": "dont",
+    "type": "statement",
+    "to": "minho"
+   },
+   "pieces": [
+    [
+     "우리",
+     "uri",
+     "uɾi",
+     "we",
+     "pronoun"
+    ],
+    [
+     "는",
+     "neun",
+     "nɯn",
+     "topic",
+     "topic"
+    ],
+    [
+     "민호",
+     "minho",
+     "minɦo",
+     "Minho",
+     "noun"
+    ],
+    [
+     "에게",
+     "ege",
+     "eɡe",
+     "to",
+     "recipient"
+    ],
+    [
+     "사과",
+     "sagwa",
+     "saɡwa",
+     "apple",
+     "noun"
+    ],
+    [
+     "를",
+     "reul",
+     "ɾɯl",
+     "d.o.",
+     "object"
+    ],
+    [
+     "안",
+     "an",
+     "an",
+     "not",
+     "negation"
+    ],
+    [
+     "줘",
+     "jwo",
+     "dʑwʌ",
+     "give",
+     "verb"
+    ]
+   ],
+   "punctuation": ".",
+   "translation": "We don't give Minho the apple."
+  },
+  {
+   "settings": {
+    "who": "they",
+    "level": "casual",
+    "tense": "present",
+    "negate": "cant",
+    "type": "question",
+    "to": "minho"
+   },
+   "pieces": [
+    [
+     "그들",
+     "geudeur",
+     "kɯdɯɾ",
+     "they",
+     "pronoun"
+    ],
+    [
+     "은",
+     "eun",
+     "ɯn",
+     "topic",
+     "topic"
+    ],
+    [
+     "민호",
+     "minho",
+     "minɦo",
+     "Minho",
+     "noun"
+    ],
+    [
+     "에게",
+     "ege",
+     "eɡe",
+     "to",
+     "recipient"
+    ],
+    [
+     "사과",
+     "sagwa",
+     "saɡwa",
+     "apple",
+     "noun"
+    ],
+    [
+     "를",
+     "reul",
+     "ɾɯl",
+     "d.o.",
+     "object"
+    ],
+    [
+     "못",
+     "mot",
+     "mot̚",
+     "can't",
+     "negation"
+    ],
+    [
+     "줘",
+     "jwo",
+     "t͈ɕwʌ",
+     "give",
+     "verb"
+    ]
+   ],
+   "punctuation": "?",
+   "translation": "Can't they give Minho the apple?"
+  },
+  {
+   "settings": {
+    "who": "i",
+    "level": "casual",
+    "tense": "future",
+    "negate": "none",
+    "type": "statement",
+    "to": "grandma"
+   },
+   "pieces": [
+    [
+     "나",
+     "na",
+     "na",
+     "I",
+     "pronoun"
+    ],
+    [
+     "는",
+     "neun",
+     "nɯn",
+     "topic",
+     "topic"
+    ],
+    [
+     "할머니",
+     "halmeoni",
+     "halmʌni",
+     "grandma",
+     "noun"
+    ],
+    [
+     "께",
+     "kke",
+     "k͈e",
+     "to (hon.)",
+     "recipient"
+    ],
+    [
+     "사과",
+     "sagwa",
+     "saɡwa",
+     "apple",
+     "noun"
+    ],
+    [
+     "를",
+     "reul",
+     "ɾɯl",
+     "d.o.",
+     "object"
+    ],
+    [
+     "드릴",
+     "deuril",
+     "tɯɾil",
+     "give",
+     "verb"
+    ],
+    [
+     "거",
+     "geo",
+     "k͈ʌ",
+     "thing",
+     "tense"
+    ],
+    [
+     "야",
+     "ya",
+     "ja",
+     "is",
+     "copula"
+    ]
+   ],
+   "punctuation": ".",
+   "translation": "I will give Grandma the apple."
+  },
+  {
+   "settings": {
+    "who": "you",
+    "level": "casual",
+    "tense": "future",
+    "negate": "dont",
+    "type": "question",
+    "to": "grandma"
+   },
+   "pieces": [
+    [
+     "너",
+     "neo",
+     "nʌ",
+     "you",
+     "pronoun"
+    ],
+    [
+     "는",
+     "neun",
+     "nɯn",
+     "topic",
+     "topic"
+    ],
+    [
+     "할머니",
+     "halmeoni",
+     "halmʌni",
+     "grandma",
+     "noun"
+    ],
+    [
+     "께",
+     "kke",
+     "k͈e",
+     "to (hon.)",
+     "recipient"
+    ],
+    [
+     "사과",
+     "sagwa",
+     "saɡwa",
+     "apple",
+     "noun"
+    ],
+    [
+     "를",
+     "reul",
+     "ɾɯl",
+     "d.o.",
+     "object"
+    ],
+    [
+     "안",
+     "an",
+     "an",
+     "not",
+     "negation"
+    ],
+    [
+     "드릴",
+     "deuril",
+     "dɯɾil",
+     "give",
+     "verb"
+    ],
+    [
+     "거",
+     "geo",
+     "k͈ʌ",
+     "thing",
+     "tense"
+    ],
+    [
+     "야",
+     "ya",
+     "ja",
+     "is",
+     "copula"
+    ]
+   ],
+   "punctuation": "?",
+   "translation": "Won't you give Grandma the apple?"
+  },
+  {
+   "settings": {
+    "who": "he",
+    "level": "casual",
+    "tense": "future",
+    "negate": "cant",
+    "type": "statement",
+    "to": "minho"
+   },
+   "pieces": [
+    [
+     "그",
+     "geu",
+     "kɯ",
+     "he",
+     "pronoun"
+    ],
+    [
+     "는",
+     "neun",
+     "nɯn",
+     "topic",
+     "topic"
+    ],
+    [
+     "민호",
+     "minho",
+     "minɦo",
+     "Minho",
+     "noun"
+    ],
+    [
+     "에게",
+     "ege",
+     "eɡe",
+     "to",
+     "recipient"
+    ],
+    [
+     "사과",
+     "sagwa",
+     "saɡwa",
+     "apple",
+     "noun"
+    ],
+    [
+     "를",
+     "reul",
+     "ɾɯl",
+     "d.o.",
+     "object"
+    ],
+    [
+     "못",
+     "mot",
+     "mot̚",
+     "can't",
+     "negation"
+    ],
+    [
+     "줄",
+     "jul",
+     "t͈ɕul",
+     "give",
+     "verb"
+    ],
+    [
+     "거",
+     "geo",
+     "k͈ʌ",
+     "thing",
+     "tense"
+    ],
+    [
+     "야",
+     "ya",
+     "ja",
+     "is",
+     "copula"
+    ]
+   ],
+   "punctuation": ".",
+   "translation": "He won't be able to give Minho the apple."
+  },
+  {
+   "settings": {
+    "who": "she",
+    "level": "polite",
+    "tense": "past",
+    "negate": "none",
+    "type": "question",
+    "to": "minho"
+   },
+   "pieces": [
+    [
+     "그녀",
+     "geunyeo",
+     "kɯnjʌ",
+     "she",
+     "pronoun"
+    ],
+    [
+     "는",
+     "neun",
+     "nɯn",
+     "topic",
+     "topic"
+    ],
+    [
+     "민호",
+     "minho",
+     "minɦo",
+     "Minho",
+     "noun"
+    ],
+    [
+     "에게",
+     "ege",
+     "eɡe",
+     "to",
+     "recipient"
+    ],
+    [
+     "사과",
+     "sagwa",
+     "saɡwa",
+     "apple",
+     "noun"
+    ],
+    [
+     "를",
+     "reul",
+     "ɾɯl",
+     "d.o.",
+     "object"
+    ],
+    [
+     "줬",
+     "jwoss",
+     "tɕwʌs͈",
+     "gave",
+     "verb"
+    ],
+    [
+     "어",
+     "eo",
+     "ʌ",
+     "",
+     "informal"
+    ],
+    [
+     "요",
+     "yo",
+     "jo",
+     "pol",
+     "polite"
+    ]
+   ],
+   "punctuation": "?",
+   "translation": "Did she give Minho the apple?"
+  },
+  {
+   "settings": {
+    "who": "we",
+    "level": "polite",
+    "tense": "past",
+    "negate": "dont",
+    "type": "statement",
+    "to": "grandma"
+   },
+   "pieces": [
+    [
+     "저희",
+     "jeohui",
+     "tɕʌi",
+     "we (humble)",
+     "pronoun"
+    ],
+    [
+     "는",
+     "neun",
+     "nɯn",
+     "topic",
+     "topic"
+    ],
+    [
+     "할머니",
+     "halmeoni",
+     "halmʌni",
+     "grandma",
+     "noun"
+    ],
+    [
+     "께",
+     "kke",
+     "k͈e",
+     "to (hon.)",
+     "recipient"
+    ],
+    [
+     "사과",
+     "sagwa",
+     "saɡwa",
+     "apple",
+     "noun"
+    ],
+    [
+     "를",
+     "reul",
+     "ɾɯl",
+     "d.o.",
+     "object"
+    ],
+    [
+     "안",
+     "an",
+     "an",
+     "not",
+     "negation"
+    ],
+    [
+     "드렸",
+     "deuryeoss",
+     "dɯɾjʌs͈",
+     "gave",
+     "verb"
+    ],
+    [
+     "어",
+     "eo",
+     "ʌ",
+     "",
+     "informal"
+    ],
+    [
+     "요",
+     "yo",
+     "jo",
+     "pol",
+     "polite"
+    ]
+   ],
+   "punctuation": ".",
+   "translation": "We didn't give Grandma the apple."
+  },
+  {
+   "settings": {
+    "who": "they",
+    "level": "polite",
+    "tense": "past",
+    "negate": "cant",
+    "type": "question",
+    "to": "grandma"
+   },
+   "pieces": [
+    [
+     "그들",
+     "geudeur",
+     "kɯdɯɾ",
+     "they",
+     "pronoun"
+    ],
+    [
+     "은",
+     "eun",
+     "ɯn",
+     "topic",
+     "topic"
+    ],
+    [
+     "할머니",
+     "halmeoni",
+     "halmʌni",
+     "grandma",
+     "noun"
+    ],
+    [
+     "께",
+     "kke",
+     "k͈e",
+     "to (hon.)",
+     "recipient"
+    ],
+    [
+     "사과",
+     "sagwa",
+     "saɡwa",
+     "apple",
+     "noun"
+    ],
+    [
+     "를",
+     "reul",
+     "ɾɯl",
+     "d.o.",
+     "object"
+    ],
+    [
+     "못",
+     "mot",
+     "mot̚",
+     "can't",
+     "negation"
+    ],
+    [
+     "드렸",
+     "deuryeoss",
+     "t͈ɯɾjʌs͈",
+     "gave",
+     "verb"
+    ],
+    [
+     "어",
+     "eo",
+     "ʌ",
+     "",
+     "informal"
+    ],
+    [
+     "요",
+     "yo",
+     "jo",
+     "pol",
+     "polite"
+    ]
+   ],
+   "punctuation": "?",
+   "translation": "Couldn't they give Grandma the apple?"
+  },
+  {
+   "settings": {
+    "who": "i",
+    "level": "polite",
+    "tense": "present",
+    "negate": "none",
+    "type": "statement",
+    "to": "minho"
+   },
+   "pieces": [
+    [
+     "저",
+     "jeo",
+     "tɕʌ",
+     "I (humble)",
+     "pronoun"
+    ],
+    [
+     "는",
+     "neun",
+     "nɯn",
+     "topic",
+     "topic"
+    ],
+    [
+     "민호",
+     "minho",
+     "minɦo",
+     "Minho",
+     "noun"
+    ],
+    [
+     "에게",
+     "ege",
+     "eɡe",
+     "to",
+     "recipient"
+    ],
+    [
+     "사과",
+     "sagwa",
+     "saɡwa",
+     "apple",
+     "noun"
+    ],
+    [
+     "를",
+     "reul",
+     "ɾɯl",
+     "d.o.",
+     "object"
+    ],
+    [
+     "줘",
+     "jwo",
+     "tɕwʌ",
+     "give",
+     "verb"
+    ],
+    [
+     "요",
+     "yo",
+     "jo",
+     "pol",
+     "polite"
+    ]
+   ],
+   "punctuation": ".",
+   "translation": "I give Minho the apple."
+  },
+  {
+   "settings": {
+    "who": "you",
+    "level": "polite",
+    "tense": "present",
+    "negate": "dont",
+    "type": "question",
+    "to": "minho"
+   },
+   "pieces": [
+    [
+     "(you)",
+     "—",
+     "—",
+     "dropped",
+     "pronoun"
+    ],
+    [
+     "민호",
+     "minho",
+     "minɦo",
+     "Minho",
+     "noun"
+    ],
+    [
+     "에게",
+     "ege",
+     "eɡe",
+     "to",
+     "recipient"
+    ],
+    [
+     "사과",
+     "sagwa",
+     "saɡwa",
+     "apple",
+     "noun"
+    ],
+    [
+     "를",
+     "reul",
+     "ɾɯl",
+     "d.o.",
+     "object"
+    ],
+    [
+     "안",
+     "an",
+     "an",
+     "not",
+     "negation"
+    ],
+    [
+     "줘",
+     "jwo",
+     "dʑwʌ",
+     "give",
+     "verb"
+    ],
+    [
+     "요",
+     "yo",
+     "jo",
+     "pol",
+     "polite"
+    ]
+   ],
+   "punctuation": "?",
+   "translation": "Don't you give Minho the apple?"
+  },
+  {
+   "settings": {
+    "who": "he",
+    "level": "polite",
+    "tense": "present",
+    "negate": "cant",
+    "type": "statement",
+    "to": "grandma"
+   },
+   "pieces": [
+    [
+     "그",
+     "geu",
+     "kɯ",
+     "he",
+     "pronoun"
+    ],
+    [
+     "는",
+     "neun",
+     "nɯn",
+     "topic",
+     "topic"
+    ],
+    [
+     "할머니",
+     "halmeoni",
+     "halmʌni",
+     "grandma",
+     "noun"
+    ],
+    [
+     "께",
+     "kke",
+     "k͈e",
+     "to (hon.)",
+     "recipient"
+    ],
+    [
+     "사과",
+     "sagwa",
+     "saɡwa",
+     "apple",
+     "noun"
+    ],
+    [
+     "를",
+     "reul",
+     "ɾɯl",
+     "d.o.",
+     "object"
+    ],
+    [
+     "못",
+     "mot",
+     "mot̚",
+     "can't",
+     "negation"
+    ],
+    [
+     "드려",
+     "deuryeo",
+     "t͈ɯɾjʌ",
+     "give",
+     "verb"
+    ],
+    [
+     "요",
+     "yo",
+     "jo",
+     "pol",
+     "polite"
+    ]
+   ],
+   "punctuation": ".",
+   "translation": "He can't give Grandma the apple."
+  },
+  {
+   "settings": {
+    "who": "she",
+    "level": "polite",
+    "tense": "future",
+    "negate": "none",
+    "type": "question",
+    "to": "grandma"
+   },
+   "pieces": [
+    [
+     "그녀",
+     "geunyeo",
+     "kɯnjʌ",
+     "she",
+     "pronoun"
+    ],
+    [
+     "는",
+     "neun",
+     "nɯn",
+     "topic",
+     "topic"
+    ],
+    [
+     "할머니",
+     "halmeoni",
+     "halmʌni",
+     "grandma",
+     "noun"
+    ],
+    [
+     "께",
+     "kke",
+     "k͈e",
+     "to (hon.)",
+     "recipient"
+    ],
+    [
+     "사과",
+     "sagwa",
+     "saɡwa",
+     "apple",
+     "noun"
+    ],
+    [
+     "를",
+     "reul",
+     "ɾɯl",
+     "d.o.",
+     "object"
+    ],
+    [
+     "드릴",
+     "deuril",
+     "tɯɾil",
+     "give",
+     "verb"
+    ],
+    [
+     "거",
+     "geo",
+     "k͈ʌ",
+     "thing",
+     "tense"
+    ],
+    [
+     "예요",
+     "yeyo",
+     "jejo",
+     "is",
+     "copula"
+    ]
+   ],
+   "punctuation": "?",
+   "translation": "Will she give Grandma the apple?"
+  },
+  {
+   "settings": {
+    "who": "we",
+    "level": "polite",
+    "tense": "future",
+    "negate": "dont",
+    "type": "statement",
+    "to": "minho"
+   },
+   "pieces": [
+    [
+     "저희",
+     "jeohui",
+     "tɕʌi",
+     "we (humble)",
+     "pronoun"
+    ],
+    [
+     "는",
+     "neun",
+     "nɯn",
+     "topic",
+     "topic"
+    ],
+    [
+     "민호",
+     "minho",
+     "minɦo",
+     "Minho",
+     "noun"
+    ],
+    [
+     "에게",
+     "ege",
+     "eɡe",
+     "to",
+     "recipient"
+    ],
+    [
+     "사과",
+     "sagwa",
+     "saɡwa",
+     "apple",
+     "noun"
+    ],
+    [
+     "를",
+     "reul",
+     "ɾɯl",
+     "d.o.",
+     "object"
+    ],
+    [
+     "안",
+     "an",
+     "an",
+     "not",
+     "negation"
+    ],
+    [
+     "줄",
+     "jul",
+     "dʑul",
+     "give",
+     "verb"
+    ],
+    [
+     "거",
+     "geo",
+     "k͈ʌ",
+     "thing",
+     "tense"
+    ],
+    [
+     "예요",
+     "yeyo",
+     "jejo",
+     "is",
+     "copula"
+    ]
+   ],
+   "punctuation": ".",
+   "translation": "We won't give Minho the apple."
+  },
+  {
+   "settings": {
+    "who": "they",
+    "level": "polite",
+    "tense": "future",
+    "negate": "cant",
+    "type": "question",
+    "to": "minho"
+   },
+   "pieces": [
+    [
+     "그들",
+     "geudeur",
+     "kɯdɯɾ",
+     "they",
+     "pronoun"
+    ],
+    [
+     "은",
+     "eun",
+     "ɯn",
+     "topic",
+     "topic"
+    ],
+    [
+     "민호",
+     "minho",
+     "minɦo",
+     "Minho",
+     "noun"
+    ],
+    [
+     "에게",
+     "ege",
+     "eɡe",
+     "to",
+     "recipient"
+    ],
+    [
+     "사과",
+     "sagwa",
+     "saɡwa",
+     "apple",
+     "noun"
+    ],
+    [
+     "를",
+     "reul",
+     "ɾɯl",
+     "d.o.",
+     "object"
+    ],
+    [
+     "못",
+     "mot",
+     "mot̚",
+     "can't",
+     "negation"
+    ],
+    [
+     "줄",
+     "jul",
+     "t͈ɕul",
+     "give",
+     "verb"
+    ],
+    [
+     "거",
+     "geo",
+     "k͈ʌ",
+     "thing",
+     "tense"
+    ],
+    [
+     "예요",
+     "yeyo",
+     "jejo",
+     "is",
+     "copula"
+    ]
+   ],
+   "punctuation": "?",
+   "translation": "Won't they be able to give Minho the apple?"
+  },
+  {
+   "settings": {
+    "who": "i",
+    "level": "formal",
+    "tense": "past",
+    "negate": "none",
+    "type": "statement",
+    "to": "grandma"
+   },
+   "pieces": [
+    [
+     "저",
+     "jeo",
+     "tɕʌ",
+     "I (humble)",
+     "pronoun"
+    ],
+    [
+     "는",
+     "neun",
+     "nɯn",
+     "topic",
+     "topic"
+    ],
+    [
+     "할머니",
+     "halmeoni",
+     "halmʌni",
+     "grandma",
+     "noun"
+    ],
+    [
+     "께",
+     "kke",
+     "k͈e",
+     "to (hon.)",
+     "recipient"
+    ],
+    [
+     "사과",
+     "sagwa",
+     "saɡwa",
+     "apple",
+     "noun"
+    ],
+    [
+     "를",
+     "reul",
+     "ɾɯl",
+     "d.o.",
+     "object"
+    ],
+    [
+     "드렸",
+     "deuryeot",
+     "tɯɾjʌt̚",
+     "gave",
+     "verb"
+    ],
+    [
+     "습니다",
+     "seumnida",
+     "s͈ɯmnida",
+     "fml",
+     "polite"
+    ]
+   ],
+   "punctuation": ".",
+   "translation": "I gave Grandma the apple."
+  },
+  {
+   "settings": {
+    "who": "you",
+    "level": "formal",
+    "tense": "past",
+    "negate": "dont",
+    "type": "question",
+    "to": "grandma"
+   },
+   "pieces": [
+    [
+     "(you)",
+     "—",
+     "—",
+     "dropped",
+     "pronoun"
+    ],
+    [
+     "할머니",
+     "halmeoni",
+     "halmʌni",
+     "grandma",
+     "noun"
+    ],
+    [
+     "께",
+     "kke",
+     "k͈e",
+     "to (hon.)",
+     "recipient"
+    ],
+    [
+     "사과",
+     "sagwa",
+     "saɡwa",
+     "apple",
+     "noun"
+    ],
+    [
+     "를",
+     "reul",
+     "ɾɯl",
+     "d.o.",
+     "object"
+    ],
+    [
+     "안",
+     "an",
+     "an",
+     "not",
+     "negation"
+    ],
+    [
+     "드렸",
+     "deuryeot",
+     "dɯɾjʌt̚",
+     "gave",
+     "verb"
+    ],
+    [
+     "습니까",
+     "seumnikka",
+     "s͈ɯmnik͈a",
+     "?(fml)",
+     "polite"
+    ]
+   ],
+   "punctuation": "?",
+   "translation": "Didn't you give Grandma the apple?"
+  },
+  {
+   "settings": {
+    "who": "he",
+    "level": "formal",
+    "tense": "past",
+    "negate": "cant",
+    "type": "statement",
+    "to": "minho"
+   },
+   "pieces": [
+    [
+     "그",
+     "geu",
+     "kɯ",
+     "he",
+     "pronoun"
+    ],
+    [
+     "는",
+     "neun",
+     "nɯn",
+     "topic",
+     "topic"
+    ],
+    [
+     "민호",
+     "minho",
+     "minɦo",
+     "Minho",
+     "noun"
+    ],
+    [
+     "에게",
+     "ege",
+     "eɡe",
+     "to",
+     "recipient"
+    ],
+    [
+     "사과",
+     "sagwa",
+     "saɡwa",
+     "apple",
+     "noun"
+    ],
+    [
+     "를",
+     "reul",
+     "ɾɯl",
+     "d.o.",
+     "object"
+    ],
+    [
+     "못",
+     "mot",
+     "mot̚",
+     "can't",
+     "negation"
+    ],
+    [
+     "줬",
+     "jwot",
+     "t͈ɕwʌt̚",
+     "gave",
+     "verb"
+    ],
+    [
+     "습니다",
+     "seumnida",
+     "s͈ɯmnida",
+     "fml",
+     "polite"
+    ]
+   ],
+   "punctuation": ".",
+   "translation": "He couldn't give Minho the apple."
+  },
+  {
+   "settings": {
+    "who": "she",
+    "level": "formal",
+    "tense": "present",
+    "negate": "none",
+    "type": "question",
+    "to": "minho"
+   },
+   "pieces": [
+    [
+     "그녀",
+     "geunyeo",
+     "kɯnjʌ",
+     "she",
+     "pronoun"
+    ],
+    [
+     "는",
+     "neun",
+     "nɯn",
+     "topic",
+     "topic"
+    ],
+    [
+     "민호",
+     "minho",
+     "minɦo",
+     "Minho",
+     "noun"
+    ],
+    [
+     "에게",
+     "ege",
+     "eɡe",
+     "to",
+     "recipient"
+    ],
+    [
+     "사과",
+     "sagwa",
+     "saɡwa",
+     "apple",
+     "noun"
+    ],
+    [
+     "를",
+     "reul",
+     "ɾɯl",
+     "d.o.",
+     "object"
+    ],
+    [
+     "줍",
+     "jum",
+     "tɕum",
+     "give",
+     "verb"
+    ],
+    [
+     "니까",
+     "nikka",
+     "nik͈a",
+     "?(fml)",
+     "polite"
+    ]
+   ],
+   "punctuation": "?",
+   "translation": "Does she give Minho the apple?"
+  },
+  {
+   "settings": {
+    "who": "we",
+    "level": "formal",
+    "tense": "present",
+    "negate": "dont",
+    "type": "statement",
+    "to": "grandma"
+   },
+   "pieces": [
+    [
+     "저희",
+     "jeohui",
+     "tɕʌi",
+     "we (humble)",
+     "pronoun"
+    ],
+    [
+     "는",
+     "neun",
+     "nɯn",
+     "topic",
+     "topic"
+    ],
+    [
+     "할머니",
+     "halmeoni",
+     "halmʌni",
+     "grandma",
+     "noun"
+    ],
+    [
+     "께",
+     "kke",
+     "k͈e",
+     "to (hon.)",
+     "recipient"
+    ],
+    [
+     "사과",
+     "sagwa",
+     "saɡwa",
+     "apple",
+     "noun"
+    ],
+    [
+     "를",
+     "reul",
+     "ɾɯl",
+     "d.o.",
+     "object"
+    ],
+    [
+     "안",
+     "an",
+     "an",
+     "not",
+     "negation"
+    ],
+    [
+     "드립",
+     "deurim",
+     "dɯɾim",
+     "give",
+     "verb"
+    ],
+    [
+     "니다",
+     "nida",
+     "nida",
+     "fml",
+     "polite"
+    ]
+   ],
+   "punctuation": ".",
+   "translation": "We don't give Grandma the apple."
+  },
+  {
+   "settings": {
+    "who": "they",
+    "level": "formal",
+    "tense": "present",
+    "negate": "cant",
+    "type": "question",
+    "to": "grandma"
+   },
+   "pieces": [
+    [
+     "그들",
+     "geudeur",
+     "kɯdɯɾ",
+     "they",
+     "pronoun"
+    ],
+    [
+     "은",
+     "eun",
+     "ɯn",
+     "topic",
+     "topic"
+    ],
+    [
+     "할머니",
+     "halmeoni",
+     "halmʌni",
+     "grandma",
+     "noun"
+    ],
+    [
+     "께",
+     "kke",
+     "k͈e",
+     "to (hon.)",
+     "recipient"
+    ],
+    [
+     "사과",
+     "sagwa",
+     "saɡwa",
+     "apple",
+     "noun"
+    ],
+    [
+     "를",
+     "reul",
+     "ɾɯl",
+     "d.o.",
+     "object"
+    ],
+    [
+     "못",
+     "mot",
+     "mot̚",
+     "can't",
+     "negation"
+    ],
+    [
+     "드립",
+     "deurim",
+     "t͈ɯɾim",
+     "give",
+     "verb"
+    ],
+    [
+     "니까",
+     "nikka",
+     "nik͈a",
+     "?(fml)",
+     "polite"
+    ]
+   ],
+   "punctuation": "?",
+   "translation": "Can't they give Grandma the apple?"
+  },
+  {
+   "settings": {
+    "who": "i",
+    "level": "formal",
+    "tense": "future",
+    "negate": "none",
+    "type": "statement",
+    "to": "minho"
+   },
+   "pieces": [
+    [
+     "저",
+     "jeo",
+     "tɕʌ",
+     "I (humble)",
+     "pronoun"
+    ],
+    [
+     "는",
+     "neun",
+     "nɯn",
+     "topic",
+     "topic"
+    ],
+    [
+     "민호",
+     "minho",
+     "minɦo",
+     "Minho",
+     "noun"
+    ],
+    [
+     "에게",
+     "ege",
+     "eɡe",
+     "to",
+     "recipient"
+    ],
+    [
+     "사과",
+     "sagwa",
+     "saɡwa",
+     "apple",
+     "noun"
+    ],
+    [
+     "를",
+     "reul",
+     "ɾɯl",
+     "d.o.",
+     "object"
+    ],
+    [
+     "줄",
+     "jul",
+     "tɕul",
+     "give",
+     "verb"
+    ],
+    [
+     "겁니다",
+     "geomnida",
+     "k͈ʌmnida",
+     "thing+is",
+     "copula"
+    ]
+   ],
+   "punctuation": ".",
+   "translation": "I will give Minho the apple."
+  },
+  {
+   "settings": {
+    "who": "you",
+    "level": "formal",
+    "tense": "future",
+    "negate": "dont",
+    "type": "question",
+    "to": "minho"
+   },
+   "pieces": [
+    [
+     "(you)",
+     "—",
+     "—",
+     "dropped",
+     "pronoun"
+    ],
+    [
+     "민호",
+     "minho",
+     "minɦo",
+     "Minho",
+     "noun"
+    ],
+    [
+     "에게",
+     "ege",
+     "eɡe",
+     "to",
+     "recipient"
+    ],
+    [
+     "사과",
+     "sagwa",
+     "saɡwa",
+     "apple",
+     "noun"
+    ],
+    [
+     "를",
+     "reul",
+     "ɾɯl",
+     "d.o.",
+     "object"
+    ],
+    [
+     "안",
+     "an",
+     "an",
+     "not",
+     "negation"
+    ],
+    [
+     "줄",
+     "jul",
+     "dʑul",
+     "give",
+     "verb"
+    ],
+    [
+     "겁니까",
+     "geomnikka",
+     "k͈ʌmnik͈a",
+     "thing+is?",
+     "copula"
+    ]
+   ],
+   "punctuation": "?",
+   "translation": "Won't you give Minho the apple?"
+  },
+  {
+   "settings": {
+    "who": "he",
+    "level": "formal",
+    "tense": "future",
+    "negate": "cant",
+    "type": "statement",
+    "to": "grandma"
+   },
+   "pieces": [
+    [
+     "그",
+     "geu",
+     "kɯ",
+     "he",
+     "pronoun"
+    ],
+    [
+     "는",
+     "neun",
+     "nɯn",
+     "topic",
+     "topic"
+    ],
+    [
+     "할머니",
+     "halmeoni",
+     "halmʌni",
+     "grandma",
+     "noun"
+    ],
+    [
+     "께",
+     "kke",
+     "k͈e",
+     "to (hon.)",
+     "recipient"
+    ],
+    [
+     "사과",
+     "sagwa",
+     "saɡwa",
+     "apple",
+     "noun"
+    ],
+    [
+     "를",
+     "reul",
+     "ɾɯl",
+     "d.o.",
+     "object"
+    ],
+    [
+     "못",
+     "mot",
+     "mot̚",
+     "can't",
+     "negation"
+    ],
+    [
+     "드릴",
+     "deuril",
+     "t͈ɯɾil",
+     "give",
+     "verb"
+    ],
+    [
+     "겁니다",
+     "geomnida",
+     "k͈ʌmnida",
+     "thing+is",
+     "copula"
+    ]
+   ],
+   "punctuation": ".",
+   "translation": "He won't be able to give Grandma the apple."
+  },
+  {
+   "settings": {
+    "who": "she",
+    "level": "plain",
+    "tense": "past",
+    "negate": "none",
+    "type": "question",
+    "to": "grandma"
+   },
+   "pieces": [
+    [
+     "그녀",
+     "geunyeo",
+     "kɯnjʌ",
+     "she",
+     "pronoun"
+    ],
+    [
+     "는",
+     "neun",
+     "nɯn",
+     "topic",
+     "topic"
+    ],
+    [
+     "할머니",
+     "halmeoni",
+     "halmʌni",
+     "grandma",
+     "noun"
+    ],
+    [
+     "께",
+     "kke",
+     "k͈e",
+     "to (hon.)",
+     "recipient"
+    ],
+    [
+     "사과",
+     "sagwa",
+     "saɡwa",
+     "apple",
+     "noun"
+    ],
+    [
+     "를",
+     "reul",
+     "ɾɯl",
+     "d.o.",
+     "object"
+    ],
+    [
+     "드렸",
+     "deuryeon",
+     "tɯɾjʌn",
+     "gave",
+     "verb"
+    ],
+    [
+     "니",
+     "ni",
+     "ni",
+     "?",
+     "informal"
+    ]
+   ],
+   "punctuation": "?",
+   "translation": "Did she give Grandma the apple?"
+  },
+  {
+   "settings": {
+    "who": "we",
+    "level": "plain",
+    "tense": "past",
+    "negate": "dont",
+    "type": "statement",
+    "to": "minho"
+   },
+   "pieces": [
+    [
+     "우리",
+     "uri",
+     "uɾi",
+     "we",
+     "pronoun"
+    ],
+    [
+     "는",
+     "neun",
+     "nɯn",
+     "topic",
+     "topic"
+    ],
+    [
+     "민호",
+     "minho",
+     "minɦo",
+     "Minho",
+     "noun"
+    ],
+    [
+     "에게",
+     "ege",
+     "eɡe",
+     "to",
+     "recipient"
+    ],
+    [
+     "사과",
+     "sagwa",
+     "saɡwa",
+     "apple",
+     "noun"
+    ],
+    [
+     "를",
+     "reul",
+     "ɾɯl",
+     "d.o.",
+     "object"
+    ],
+    [
+     "안",
+     "an",
+     "an",
+     "not",
+     "negation"
+    ],
+    [
+     "줬",
+     "jwot",
+     "dʑwʌt̚",
+     "gave",
+     "verb"
+    ],
+    [
+     "다",
+     "da",
+     "t͈a",
+     "plain",
+     "informal"
+    ]
+   ],
+   "punctuation": ".",
+   "translation": "We didn't give Minho the apple."
+  },
+  {
+   "settings": {
+    "who": "they",
+    "level": "plain",
+    "tense": "past",
+    "negate": "cant",
+    "type": "question",
+    "to": "minho"
+   },
+   "pieces": [
+    [
+     "그들",
+     "geudeur",
+     "kɯdɯɾ",
+     "they",
+     "pronoun"
+    ],
+    [
+     "은",
+     "eun",
+     "ɯn",
+     "topic",
+     "topic"
+    ],
+    [
+     "민호",
+     "minho",
+     "minɦo",
+     "Minho",
+     "noun"
+    ],
+    [
+     "에게",
+     "ege",
+     "eɡe",
+     "to",
+     "recipient"
+    ],
+    [
+     "사과",
+     "sagwa",
+     "saɡwa",
+     "apple",
+     "noun"
+    ],
+    [
+     "를",
+     "reul",
+     "ɾɯl",
+     "d.o.",
+     "object"
+    ],
+    [
+     "못",
+     "mot",
+     "mot̚",
+     "can't",
+     "negation"
+    ],
+    [
+     "줬",
+     "jwon",
+     "t͈ɕwʌn",
+     "gave",
+     "verb"
+    ],
+    [
+     "니",
+     "ni",
+     "ni",
+     "?",
+     "informal"
+    ]
+   ],
+   "punctuation": "?",
+   "translation": "Couldn't they give Minho the apple?"
+  },
+  {
+   "settings": {
+    "who": "i",
+    "level": "plain",
+    "tense": "present",
+    "negate": "none",
+    "type": "statement",
+    "to": "grandma"
+   },
+   "pieces": [
+    [
+     "나",
+     "na",
+     "na",
+     "I",
+     "pronoun"
+    ],
+    [
+     "는",
+     "neun",
+     "nɯn",
+     "topic",
+     "topic"
+    ],
+    [
+     "할머니",
+     "halmeoni",
+     "halmʌni",
+     "grandma",
+     "noun"
+    ],
+    [
+     "께",
+     "kke",
+     "k͈e",
+     "to (hon.)",
+     "recipient"
+    ],
+    [
+     "사과",
+     "sagwa",
+     "saɡwa",
+     "apple",
+     "noun"
+    ],
+    [
+     "를",
+     "reul",
+     "ɾɯl",
+     "d.o.",
+     "object"
+    ],
+    [
+     "드린",
+     "deurin",
+     "tɯɾin",
+     "give",
+     "verb"
+    ],
+    [
+     "다",
+     "da",
+     "da",
+     "plain",
+     "informal"
+    ]
+   ],
+   "punctuation": ".",
+   "translation": "I give Grandma the apple."
+  },
+  {
+   "settings": {
+    "who": "you",
+    "level": "plain",
+    "tense": "present",
+    "negate": "dont",
+    "type": "question",
+    "to": "grandma"
+   },
+   "pieces": [
+    [
+     "너",
+     "neo",
+     "nʌ",
+     "you",
+     "pronoun"
+    ],
+    [
+     "는",
+     "neun",
+     "nɯn",
+     "topic",
+     "topic"
+    ],
+    [
+     "할머니",
+     "halmeoni",
+     "halmʌni",
+     "grandma",
+     "noun"
+    ],
+    [
+     "께",
+     "kke",
+     "k͈e",
+     "to (hon.)",
+     "recipient"
+    ],
+    [
+     "사과",
+     "sagwa",
+     "saɡwa",
+     "apple",
+     "noun"
+    ],
+    [
+     "를",
+     "reul",
+     "ɾɯl",
+     "d.o.",
+     "object"
+    ],
+    [
+     "안",
+     "an",
+     "an",
+     "not",
+     "negation"
+    ],
+    [
+     "드리",
+     "deuri",
+     "dɯɾi",
+     "give",
+     "verb"
+    ],
+    [
+     "니",
+     "ni",
+     "ni",
+     "?",
+     "informal"
+    ]
+   ],
+   "punctuation": "?",
+   "translation": "Don't you give Grandma the apple?"
+  },
+  {
+   "settings": {
+    "who": "he",
+    "level": "plain",
+    "tense": "present",
+    "negate": "cant",
+    "type": "statement",
+    "to": "minho"
+   },
+   "pieces": [
+    [
+     "그",
+     "geu",
+     "kɯ",
+     "he",
+     "pronoun"
+    ],
+    [
+     "는",
+     "neun",
+     "nɯn",
+     "topic",
+     "topic"
+    ],
+    [
+     "민호",
+     "minho",
+     "minɦo",
+     "Minho",
+     "noun"
+    ],
+    [
+     "에게",
+     "ege",
+     "eɡe",
+     "to",
+     "recipient"
+    ],
+    [
+     "사과",
+     "sagwa",
+     "saɡwa",
+     "apple",
+     "noun"
+    ],
+    [
+     "를",
+     "reul",
+     "ɾɯl",
+     "d.o.",
+     "object"
+    ],
+    [
+     "못",
+     "mot",
+     "mot̚",
+     "can't",
+     "negation"
+    ],
+    [
+     "준",
+     "jun",
+     "t͈ɕun",
+     "give",
+     "verb"
+    ],
+    [
+     "다",
+     "da",
+     "da",
+     "plain",
+     "informal"
+    ]
+   ],
+   "punctuation": ".",
+   "translation": "He can't give Minho the apple."
+  },
+  {
+   "settings": {
+    "who": "she",
+    "level": "plain",
+    "tense": "future",
+    "negate": "none",
+    "type": "question",
+    "to": "minho"
+   },
+   "pieces": [
+    [
+     "그녀",
+     "geunyeo",
+     "kɯnjʌ",
+     "she",
+     "pronoun"
+    ],
+    [
+     "는",
+     "neun",
+     "nɯn",
+     "topic",
+     "topic"
+    ],
+    [
+     "민호",
+     "minho",
+     "minɦo",
+     "Minho",
+     "noun"
+    ],
+    [
+     "에게",
+     "ege",
+     "eɡe",
+     "to",
+     "recipient"
+    ],
+    [
+     "사과",
+     "sagwa",
+     "saɡwa",
+     "apple",
+     "noun"
+    ],
+    [
+     "를",
+     "reul",
+     "ɾɯl",
+     "d.o.",
+     "object"
+    ],
+    [
+     "줄",
+     "jul",
+     "tɕul",
+     "give",
+     "verb"
+    ],
+    [
+     "거",
+     "geo",
+     "k͈ʌ",
+     "thing",
+     "tense"
+    ],
+    [
+     "니",
+     "ni",
+     "ni",
+     "?",
+     "informal"
+    ]
+   ],
+   "punctuation": "?",
+   "translation": "Will she give Minho the apple?"
+  },
+  {
+   "settings": {
+    "who": "we",
+    "level": "plain",
+    "tense": "future",
+    "negate": "dont",
+    "type": "statement",
+    "to": "grandma"
+   },
+   "pieces": [
+    [
+     "우리",
+     "uri",
+     "uɾi",
+     "we",
+     "pronoun"
+    ],
+    [
+     "는",
+     "neun",
+     "nɯn",
+     "topic",
+     "topic"
+    ],
+    [
+     "할머니",
+     "halmeoni",
+     "halmʌni",
+     "grandma",
+     "noun"
+    ],
+    [
+     "께",
+     "kke",
+     "k͈e",
+     "to (hon.)",
+     "recipient"
+    ],
+    [
+     "사과",
+     "sagwa",
+     "saɡwa",
+     "apple",
+     "noun"
+    ],
+    [
+     "를",
+     "reul",
+     "ɾɯl",
+     "d.o.",
+     "object"
+    ],
+    [
+     "안",
+     "an",
+     "an",
+     "not",
+     "negation"
+    ],
+    [
+     "드릴",
+     "deuril",
+     "dɯɾil",
+     "give",
+     "verb"
+    ],
+    [
+     "것",
+     "geos",
+     "k͈ʌɕ",
+     "thing",
+     "tense"
+    ],
+    [
+     "이다",
+     "ida",
+     "ida",
+     "is",
+     "copula"
+    ]
+   ],
+   "punctuation": ".",
+   "translation": "We won't give Grandma the apple."
+  },
+  {
+   "settings": {
+    "who": "they",
+    "level": "plain",
+    "tense": "future",
+    "negate": "cant",
+    "type": "question",
+    "to": "grandma"
+   },
+   "pieces": [
+    [
+     "그들",
+     "geudeur",
+     "kɯdɯɾ",
+     "they",
+     "pronoun"
+    ],
+    [
+     "은",
+     "eun",
+     "ɯn",
+     "topic",
+     "topic"
+    ],
+    [
+     "할머니",
+     "halmeoni",
+     "halmʌni",
+     "grandma",
+     "noun"
+    ],
+    [
+     "께",
+     "kke",
+     "k͈e",
+     "to (hon.)",
+     "recipient"
+    ],
+    [
+     "사과",
+     "sagwa",
+     "saɡwa",
+     "apple",
+     "noun"
+    ],
+    [
+     "를",
+     "reul",
+     "ɾɯl",
+     "d.o.",
+     "object"
+    ],
+    [
+     "못",
+     "mot",
+     "mot̚",
+     "can't",
+     "negation"
+    ],
+    [
+     "드릴",
+     "deuril",
+     "t͈ɯɾil",
+     "give",
+     "verb"
+    ],
+    [
+     "거",
+     "geo",
+     "k͈ʌ",
+     "thing",
+     "tense"
+    ],
+    [
+     "니",
+     "ni",
+     "ni",
+     "?",
+     "informal"
+    ]
+   ],
+   "punctuation": "?",
+   "translation": "Won't they be able to give Grandma the apple?"
+  }
+ ]
+}
