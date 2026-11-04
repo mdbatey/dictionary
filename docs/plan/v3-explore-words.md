@@ -13,7 +13,7 @@
 | A page for each Word | — | Shows all its Forms (e.g. go · goes · went · gone · going) and its links (e.g. 드리다 ↔ 주다). |
 | Tapping a Breakdown Piece shows its Word | — | Breakdown Pieces get linked to the Word they come from. |
 | Word search | Word page, Piece → Word links | Type "sleep" → 자다, with its Forms, the Sentences using it, and the Switchboards it fits. |
-| Home page | Word search | Something to show beyond the language picker. |
+| Home page | Word search | Something to show beyond the language picker. Should include a link to the color key page (`colors.html`). |
 
 ## Already decided (from the v1 grilling)
 
@@ -28,5 +28,5 @@
 - How do Breakdown Pieces get linked to Words: added by hand when content is written, or matched automatically with a manual override?
 - Does search cover all Languages at once or only the current one?
 - Should a Word page list every Form, including rule-made ones, or only the common ones, with the rest expandable?
-- What goes on the home page: Language tiles, a search box, recently viewed items, "word of the day"?
+- What goes on the home page: Language tiles, a search box, recently viewed items, "word of the day"? (Already wanted: a link to the color key.)
 - Should Words get example Sentences of their own, or only show the Sentences that already use them?
