@@ -62,7 +62,7 @@ function breakdownsScreen(language: Language, setId: string, sentenceId?: string
     extra: renderSentenceChips(set, addressOf, sentenceId),
     body: [
       h('h1', { class: 'page-title' }, [set.name]),
-      renderToolbar(sentences, set.sentences.flatMap(piecesOf), language, content, refitAll),
+      renderToolbar(sentences, set.sentences.flatMap(piecesOf), language, content, refitAll, redraw),
       sentences,
       ...(summary ? [summary] : []),
     ],
@@ -99,12 +99,22 @@ function notFoundScreen(): ScreenParts {
 }
 
 let fitted: { refit: () => void; stop: () => void }[] = [];
+let shown: Screen | undefined;
+
+/** Draws the current screen again (e.g. after the Sound picker changes), keeping the scroll position. */
+function redraw(): void {
+  if (!shown) return;
+  const y = window.scrollY;
+  show(shown);
+  window.scrollTo(0, y);
+}
 
 function refitAll(): void {
   fitted.forEach((f) => f.refit());
 }
 
 function show(screen: Screen): void {
+  shown = screen;
   const language = 'languageId' in screen ? content.languages.find((l) => l.id === screen.languageId) : undefined;
   const view = screen.kind === 'breakdowns' ? 'breakdowns' : screen.kind === 'switchboards' || screen.kind === 'switchboard' ? 'switchboards' : undefined;
   const { title, body, extra } =

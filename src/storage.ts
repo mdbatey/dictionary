@@ -48,3 +48,24 @@ export function saveLayers(layers: Layers): void {
     // Layer choices are a convenience; the defaults are used next time.
   }
 }
+
+const PRON = 'dictionary-layers:pron:';
+const TONES = 'dictionary-layers:tones';
+
+/** The Pronunciation System chosen for a Language, if any. */
+export function readPronChoice(languageId: string): string | null {
+  try { return localStorage.getItem(PRON + languageId); } catch { return null; }
+}
+
+export function savePronChoice(languageId: string, system: string): void {
+  try { localStorage.setItem(PRON + languageId, system); } catch { /* a convenience only */ }
+}
+
+/** Whether tone colours are on (tonal Languages only). */
+export function readTones(): boolean {
+  try { return localStorage.getItem(TONES) === 'on'; } catch { return false; }
+}
+
+export function saveTones(on: boolean): void {
+  try { localStorage.setItem(TONES, on ? 'on' : 'off'); } catch { /* a convenience only */ }
+}

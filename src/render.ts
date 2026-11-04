@@ -1,16 +1,43 @@
 import { h, inlineMarkdown } from './dom';
 import { isPhrase, type Content, type Language, type Phrase, type Piece, type Sentence, type SentenceSet } from './model';
 import { shownRole } from './roles';
+import { readPronChoice } from './storage';
+import { splitSyllables, syllableCharacters, toneOf } from './tones';
 
-/** The coloured script of a Piece, drawn in its Role's style. */
-export function pieceScript(piece: Piece, language: Language, content: Content, extraClass = ''): HTMLElement {
-  const role = shownRole(piece.role, language, content);
-  return h('span', { class: `piece-script style-${role.style} ${extraClass}`.trim(), lang: language.tag, '--role-color': `var(--role-${piece.role})` }, [piece.script]);
+/** For tonal Languages: each character of a Piece with the tone of its syllable, or null if they don't line up. */
+function tonesOf(piece: Pick<Piece, 'script' | 'pron'>, language: Language): { chars: string[]; syllables: string[]; tones: number[] } | null {
+  if (!language.tones) return null;
+  const chars = syllableCharacters(piece.script);
+  const syllables = chars.length ? splitSyllables(piece.pron[language.tones.system] ?? '', chars.length, language.tones.style) : null;
+  return syllables ? { chars, syllables, tones: syllables.map((s) => toneOf(s, language.tones!.style)) } : null;
 }
 
-/** A Piece's pronunciation in the Language's default system, or else the first system it has. */
+/** The coloured script of a Piece, drawn in its Role's style. Tonal characters carry their tone for tone colours. */
+export function pieceScript(piece: Piece, language: Language, content: Content, extraClass = ''): HTMLElement {
+  const role = shownRole(piece.role, language, content);
+  const t = tonesOf(piece, language);
+  let i = 0;
+  const children = t ? [...piece.script].map((c) => (/\p{Script=Han}/u.test(c) ? h('span', { 'data-tone': String(t.tones[i++]) }, [c]) : c)) : [piece.script];
+  return h('span', { class: `piece-script style-${role.style} ${extraClass}`.trim(), lang: language.tag, '--role-color': `var(--role-${piece.role})` }, children);
+}
+
+/** The Pronunciation System to show: the learner's choice for this Language, else the default. */
+export function pronSystem(language: Language): string {
+  const chosen = readPronChoice(language.id);
+  return chosen && language.pronunciationSystems.some((p) => p.id === chosen) ? chosen : language.defaultPronunciation;
+}
+
+/** A Piece's pronunciation in the chosen (or default) system, or else the first system it has. */
 export function pronOf(piece: { pron: Record<string, string> }, language: Language): string {
-  return piece.pron[language.defaultPronunciation] ?? Object.values(piece.pron)[0] ?? '';
+  return piece.pron[pronSystem(language)] ?? piece.pron[language.defaultPronunciation] ?? Object.values(piece.pron)[0] ?? '';
+}
+
+/** A Piece's pronunciation as text, with each syllable carrying its tone when it's the tone-bearing system. */
+function pronElement(piece: Piece, language: Language): (Node | string)[] {
+  const t = tonesOf(piece, language);
+  if (!t || !piece.pron[pronSystem(language)] || pronSystem(language) !== language.tones?.system) return [pronOf(piece, language)];
+  const sep = language.tones.style === 'numbers' ? ' ' : '';
+  return t.syllables.flatMap((s, i) => [...(i && sep ? [sep] : []), h('span', { 'data-tone': String(t.tones[i]) }, [s])]);
 }
 
 function renderPiece(piece: Piece, index: number, language: Language, content: Content, onTap: (index: number) => void): HTMLElement {
@@ -26,7 +53,7 @@ function renderPiece(piece: Piece, index: number, language: Language, content: C
   const button = h('button', { class: classes, type: 'button', 'data-role': piece.role, 'aria-label': label }, [
     h('span', { class: 'piece-gloss', 'aria-hidden': 'true' }, [piece.gloss]),
     script,
-    h('span', { class: 'piece-pron', 'aria-hidden': 'true' }, [pronOf(piece, language)]),
+    h('span', { class: 'piece-pron', 'aria-hidden': 'true' }, pronElement(piece, language)),
   ]);
   button.addEventListener('click', () => onTap(index));
   return button;
@@ -63,7 +90,7 @@ export function renderSentence(
     h('a', { class: 'sentence-number', href: addressOf(sentence.id) }, [`Sentence ${sentence.id}`]),
     h('p', { class: 'translation' }, [`“${sentence.translation}”`]),
     renderParts(sentence.parts, language, content, onTap),
-    h('p', { class: 'explanation' }, inlineMarkdown(sentence.explanation)),
+    h('p', { class: 'explanation' }, inlineMarkdown(sentence.explanation, addressOf)),
     ...(compared ? [h('a', { class: 'compare-link', href: addressOf(compared.id) }, [
       h('span', {}, [`Compare with Sentence ${compared.id}: “${compared.translation}”`]),
       h('span', { class: 'compare-hint' }, ['Changed Pieces are outlined']),
@@ -84,8 +111,8 @@ export function renderSummary(set: SentenceSet, addressOf: (sentenceId: string) 
     h('h2', { id: 'summary-title' }, ['Summary']),
     h('ul', {}, set.summary.map((point) =>
       h('li', {}, [
-        h('span', {}, inlineMarkdown(point.text)),
-        h('span', { class: 'summary-links' }, point.sentences.map((id) => h('a', { href: addressOf(id) }, [`Sentence ${id}`]))),
+        h('span', {}, inlineMarkdown(point.text, addressOf)),
+        ...(point.sentences?.length ? [h('span', { class: 'summary-links' }, point.sentences.map((id) => h('a', { href: addressOf(id) }, [`Sentence ${id}`])))] : []),
       ]))),
   ]);
 }

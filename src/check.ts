@@ -1,11 +1,17 @@
 import { frames } from './frames';
 import { optionsFor, wordsForSlot } from './switchboard';
+import { splitSyllables, syllableCharacters } from './tones';
 import { isPhrase, type Content, type Language } from './model';
 
 /** One thing wrong with the content, with where it is. */
 export interface Problem {
   where: string;
   message: string;
+}
+
+/** The Sentence ids a Markdown text links to with [text](sentence:N). */
+function sentenceLinks(markdown: string): string[] {
+  return [...markdown.matchAll(/\]\(sentence:([^)\s]+)\)/g)].map((m) => m[1]!);
 }
 
 /** "Is the content valid?": returns every problem found; an empty list means the content is valid. */
@@ -20,7 +26,7 @@ export function checkContent(content: Content): Problem[] {
     for (const set of language.sets) {
       const sentenceIds = new Set(set.sentences.map((s) => s.id));
       (set.summary ?? []).forEach((point, i) => {
-        for (const id of point.sentences.filter((id) => !sentenceIds.has(id))) {
+        for (const id of [...(point.sentences ?? []), ...sentenceLinks(point.text)].filter((id) => !sentenceIds.has(id))) {
           problems.push({
             where: `${language.name} › ${set.name} › Summary point ${i + 1}`,
             message: `Links to Sentence ${id}, which is not in this Set`,
@@ -28,6 +34,10 @@ export function checkContent(content: Content): Problem[] {
         }
       });
       for (const sentence of set.sentences) {
+        const notes = sentence.parts.flatMap((p) => (isPhrase(p) ? p.pieces.map((pc) => pc.note ?? '') : []));
+        for (const id of [sentence.explanation, ...notes].flatMap(sentenceLinks).filter((id) => !sentenceIds.has(id))) {
+          problems.push({ where: `${language.name} › ${set.name} › Sentence ${sentence.id}`, message: `Links to Sentence ${id}, which is not in this Set` });
+        }
         if (sentence.compareWith !== undefined && !sentenceIds.has(sentence.compareWith)) {
           problems.push({
             where: `${language.name} › ${set.name} › Sentence ${sentence.id}`,
@@ -37,6 +47,24 @@ export function checkContent(content: Content): Problem[] {
         for (const part of sentence.parts) {
           if (!isPhrase(part)) continue;
           for (const piece of part.pieces) {
+            const defaultSystem = language.pronunciationSystems.find((ps) => ps.id === language.defaultPronunciation);
+            if (!piece.pron[language.defaultPronunciation]) {
+              problems.push({
+                where: `${language.name} › ${set.name} › Sentence ${sentence.id} › ${piece.script}`,
+                message: `Missing a pronunciation in ${defaultSystem?.label ?? language.defaultPronunciation}, ${language.name}'s default`,
+              });
+            }
+            if (language.tones) {
+              const characters = syllableCharacters(piece.script);
+              const spoken = piece.pron[language.tones.system] ?? '';
+              if (characters.length > 0 && !splitSyllables(spoken, characters.length, language.tones.style)) {
+                const systemLabel = language.pronunciationSystems.find((ps) => ps.id === language.tones!.system)?.label ?? language.tones.system;
+                problems.push({
+                  where: `${language.name} › ${set.name} › Sentence ${sentence.id} › ${piece.script}`,
+                  message: `${systemLabel} "${spoken}" does not split into one syllable for each of its ${characters.length} characters`,
+                });
+              }
+            }
             if (!Object.hasOwn(language.roles, piece.role)) {
               problems.push({
                 where: `${language.name} › ${set.name} › Sentence ${sentence.id} › ${piece.script}`,
