@@ -91,8 +91,13 @@ export function renderToolbar(
     ? h('div', { class: 'sound-picker', role: 'group', 'aria-label': 'Sound' }, [
       h('span', { class: 'sound-label' }, ['Sound']),
       ...systems.map((ps) => {
-        const button = h('button', { class: 'toggle', type: 'button', 'aria-pressed': String(ps.id === current) }, [ps.label]);
-        button.addEventListener('click', () => { savePronChoice(language.id, ps.id); onRedraw(); });
+        const button = h('button', { class: 'toggle', type: 'button', 'aria-pressed': String(ps.id === current), 'data-system': ps.id }, [ps.label]);
+        button.addEventListener('click', () => {
+          savePronChoice(language.id, ps.id);
+          // Mark the choice here: a Switchboard redraws only its Sentence, not the toolbar.
+          button.parentElement!.querySelectorAll<HTMLElement>('button[data-system]').forEach((b) => b.setAttribute('aria-pressed', String(b === button)));
+          onRedraw();
+        });
         return button;
       }),
     ])
