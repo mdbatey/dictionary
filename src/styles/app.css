@@ -358,3 +358,6 @@ main {
 [data-tone='6'] { --tone-color: var(--tone-6); }
 [data-tone='0'] { --tone-color: var(--tone-neutral); }
 .show-tones [data-tone], .tone-key [data-tone] { color: var(--tone-color); }
+
+.switch-option:disabled { opacity: 0.4; cursor: not-allowed; }
+.switch-reason { margin: 0; font-size: 13px; color: var(--muted); }

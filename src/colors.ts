@@ -9,7 +9,7 @@ import type { PhraseType, RoleStyle } from './model';
 const samples: Record<string, string> = {
   pronoun: '나', noun: '사과', verb: '줘', adjective: 'rød', demonstrative: '这', time: '내일',
   subject: '가', topic: '는', object: '를', recipient: '에게', possessive: '의', copula: '예요',
-  connect: '고', measure: '个', ba: '把', modal: 'vil', 'final-particle': '喇',
+  connect: '고', measure: '个', number: '两', ba: '把', modal: 'vil', 'final-particle': '喇',
   tense: '었', polite: '요', informal: '어', plural: '们', adverb: '就', question: '吗',
   potential: '到', definite: '-et', preposition: 'til', negation: '안',
 };

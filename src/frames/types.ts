@@ -18,6 +18,11 @@ export interface Frame {
   slots: Record<string, FrameSlot>;
   /** The Grammar Switch ids the Frame understands. */
   grammar: string[];
+  /**
+   * Options that can't be chosen with the current Grammar Options, as { switchId: { optionId: reason } }.
+   * Leave out when every combination is allowed.
+   */
+  disallowed?(grammar: Record<string, string>): Record<string, Record<string, string>>;
   /** Builds the Sentence for one choice of Words (by slot) and Grammar Options (by Grammar Switch id). */
   build(words: Record<string, Word>, grammar: Record<string, string>, language: Language): { parts: (Phrase | string)[]; translation: string };
 }

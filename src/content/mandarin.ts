@@ -1,4 +1,6 @@
 import type { Language } from '../model';
+import { mandarinSwitchboards } from './mandarin-switchboards';
+import { mandarinWords } from './mandarin-words';
 
 // Moved over as-is from reference/breakdowns/mandarin-dozen.html ("The Mandarin Dozen").
 // Intended changes only: site-wide colours, and Markdown instead of HTML.
@@ -21,6 +23,9 @@ export const mandarin: Language = {
     measure: { label: "个 · measure word", rule: "Chinese requires a measure word between a demonstrative or number and most nouns. 个 is the general-purpose one, used when a more specific measure word isn't needed." },
     time: { rule: "Time expressions like 明天 (tomorrow) usually come right after the subject, before the verb — there's no future-tense verb ending to do this job instead." },
     adverb: { rule: "Short adverbs like 就 sit between the subject/time word and the verb, adding shades of meaning (immediacy, sequence, emphasis)." },
+    // From reference/switchboards/mandarin-switchboard.html (used by the giving Switchboard):
+    tense: { label: "Aspect marker", rule: "了 (completed), 过 (experienced) and 在 (in progress) show how the action unfolds, not when it happens." },
+    number: { label: "Number", rule: "一 and 两 come before the measure word, never directly before the noun." },
     plural: { rule: "们 pluralizes a pronoun or person noun (我→我们). 些 does similar work after a demonstrative (这→这些). Ordinary nouns like 苹果 never change form themselves." },
   },
   pronunciationSystems: [{ id: "pinyin", label: "Pinyin" }],
@@ -272,6 +277,6 @@ export const mandarin: Language = {
       ],
     },
   ],
-  words: [],
-  switchboards: [],
+  words: mandarinWords,
+  switchboards: mandarinSwitchboards,
 };
