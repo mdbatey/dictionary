@@ -1,0 +1,1556 @@
+{
+ "source": "reference/switchboards/mandarin-switchboard.html, recorded by running its grammar code",
+ "samples": [
+  {
+   "settings": {
+    "who": "i",
+    "time": "habit",
+    "negate": "none",
+    "type": "statement",
+    "object": "one"
+   },
+   "pieces": [
+    [
+     "我",
+     "wǒ",
+     "I",
+     "pronoun"
+    ],
+    [
+     "给",
+     "gěi",
+     "give",
+     "verb"
+    ],
+    [
+     "小明",
+     "Xiǎo Míng",
+     "Xiao Ming",
+     "noun"
+    ],
+    [
+     "一",
+     "yí",
+     "one",
+     "number"
+    ],
+    [
+     "个",
+     "gè",
+     "(mw)",
+     "measure"
+    ],
+    [
+     "苹果",
+     "píng guǒ",
+     "apple",
+     "noun"
+    ]
+   ],
+   "punctuation": "。",
+   "translation": "I give Xiao Ming an apple."
+  },
+  {
+   "settings": {
+    "who": "i",
+    "time": "habit",
+    "negate": "none",
+    "type": "statement",
+    "object": "one"
+   },
+   "pieces": [
+    [
+     "我",
+     "wǒ",
+     "I",
+     "pronoun"
+    ],
+    [
+     "给",
+     "gěi",
+     "give",
+     "verb"
+    ],
+    [
+     "小明",
+     "Xiǎo Míng",
+     "Xiao Ming",
+     "noun"
+    ],
+    [
+     "一",
+     "yí",
+     "one",
+     "number"
+    ],
+    [
+     "个",
+     "gè",
+     "(mw)",
+     "measure"
+    ],
+    [
+     "苹果",
+     "píng guǒ",
+     "apple",
+     "noun"
+    ]
+   ],
+   "punctuation": "。",
+   "translation": "I give Xiao Ming an apple."
+  },
+  {
+   "settings": {
+    "who": "you",
+    "time": "habit",
+    "negate": "not",
+    "type": "statement",
+    "object": "this"
+   },
+   "pieces": [
+    [
+     "你",
+     "nǐ",
+     "you",
+     "pronoun"
+    ],
+    [
+     "不",
+     "bù",
+     "not",
+     "negation"
+    ],
+    [
+     "给",
+     "gěi",
+     "give",
+     "verb"
+    ],
+    [
+     "小明",
+     "Xiǎo Míng",
+     "Xiao Ming",
+     "noun"
+    ],
+    [
+     "这",
+     "zhè",
+     "this",
+     "demonstrative"
+    ],
+    [
+     "个",
+     "ge",
+     "(mw)",
+     "measure"
+    ],
+    [
+     "苹果",
+     "píng guǒ",
+     "apple",
+     "noun"
+    ]
+   ],
+   "punctuation": "。",
+   "translation": "You don't give Xiao Ming this apple."
+  },
+  {
+   "settings": {
+    "who": "you-polite",
+    "time": "habit",
+    "negate": "none",
+    "type": "ma",
+    "object": "that"
+   },
+   "pieces": [
+    [
+     "您",
+     "nín",
+     "you (polite)",
+     "pronoun"
+    ],
+    [
+     "给",
+     "gěi",
+     "give",
+     "verb"
+    ],
+    [
+     "小明",
+     "Xiǎo Míng",
+     "Xiao Ming",
+     "noun"
+    ],
+    [
+     "那",
+     "nà",
+     "that",
+     "demonstrative"
+    ],
+    [
+     "个",
+     "ge",
+     "(mw)",
+     "measure"
+    ],
+    [
+     "苹果",
+     "píng guǒ",
+     "apple",
+     "noun"
+    ],
+    [
+     "吗",
+     "ma",
+     "?",
+     "question"
+    ]
+   ],
+   "punctuation": "？",
+   "translation": "Do you give Xiao Ming that apple?"
+  },
+  {
+   "settings": {
+    "who": "he",
+    "time": "habit",
+    "negate": "not",
+    "type": "ma",
+    "object": "two"
+   },
+   "pieces": [
+    [
+     "他",
+     "tā",
+     "he",
+     "pronoun"
+    ],
+    [
+     "不",
+     "bù",
+     "not",
+     "negation"
+    ],
+    [
+     "给",
+     "gěi",
+     "give",
+     "verb"
+    ],
+    [
+     "小明",
+     "Xiǎo Míng",
+     "Xiao Ming",
+     "noun"
+    ],
+    [
+     "两",
+     "liǎng",
+     "two",
+     "number"
+    ],
+    [
+     "个",
+     "ge",
+     "(mw)",
+     "measure"
+    ],
+    [
+     "苹果",
+     "píng guǒ",
+     "apple",
+     "noun"
+    ],
+    [
+     "吗",
+     "ma",
+     "?",
+     "question"
+    ]
+   ],
+   "punctuation": "？",
+   "translation": "Doesn't he give Xiao Ming two apples?"
+  },
+  {
+   "settings": {
+    "who": "she",
+    "time": "habit",
+    "negate": "none",
+    "type": "a-not-a",
+    "object": "bare"
+   },
+   "pieces": [
+    [
+     "她",
+     "tā",
+     "she",
+     "pronoun"
+    ],
+    [
+     "给",
+     "gěi",
+     "give",
+     "verb"
+    ],
+    [
+     "不",
+     "bu",
+     "not",
+     "negation"
+    ],
+    [
+     "给",
+     "gěi",
+     "give",
+     "verb"
+    ],
+    [
+     "小明",
+     "Xiǎo Míng",
+     "Xiao Ming",
+     "noun"
+    ],
+    [
+     "苹果",
+     "píng guǒ",
+     "apple",
+     "noun"
+    ]
+   ],
+   "punctuation": "？",
+   "translation": "Does she give Xiao Ming apples?"
+  },
+  {
+   "settings": {
+    "who": "we",
+    "time": "le",
+    "negate": "none",
+    "type": "statement",
+    "object": "one"
+   },
+   "pieces": [
+    [
+     "我",
+     "wǒ",
+     "I",
+     "pronoun"
+    ],
+    [
+     "们",
+     "men",
+     "pl.",
+     "plural"
+    ],
+    [
+     "给",
+     "gěi",
+     "give",
+     "verb"
+    ],
+    [
+     "了",
+     "le",
+     "done",
+     "tense"
+    ],
+    [
+     "小明",
+     "Xiǎo Míng",
+     "Xiao Ming",
+     "noun"
+    ],
+    [
+     "一",
+     "yí",
+     "one",
+     "number"
+    ],
+    [
+     "个",
+     "gè",
+     "(mw)",
+     "measure"
+    ],
+    [
+     "苹果",
+     "píng guǒ",
+     "apple",
+     "noun"
+    ]
+   ],
+   "punctuation": "。",
+   "translation": "We gave Xiao Ming an apple."
+  },
+  {
+   "settings": {
+    "who": "they",
+    "time": "le",
+    "negate": "not",
+    "type": "statement",
+    "object": "this"
+   },
+   "pieces": [
+    [
+     "他",
+     "tā",
+     "he",
+     "pronoun"
+    ],
+    [
+     "们",
+     "men",
+     "pl.",
+     "plural"
+    ],
+    [
+     "没",
+     "méi",
+     "not",
+     "negation"
+    ],
+    [
+     "给",
+     "gěi",
+     "give",
+     "verb"
+    ],
+    [
+     "小明",
+     "Xiǎo Míng",
+     "Xiao Ming",
+     "noun"
+    ],
+    [
+     "这",
+     "zhè",
+     "this",
+     "demonstrative"
+    ],
+    [
+     "个",
+     "ge",
+     "(mw)",
+     "measure"
+    ],
+    [
+     "苹果",
+     "píng guǒ",
+     "apple",
+     "noun"
+    ]
+   ],
+   "punctuation": "。",
+   "translation": "They didn't give Xiao Ming this apple."
+  },
+  {
+   "settings": {
+    "who": "i",
+    "time": "le",
+    "negate": "none",
+    "type": "ma",
+    "object": "that"
+   },
+   "pieces": [
+    [
+     "我",
+     "wǒ",
+     "I",
+     "pronoun"
+    ],
+    [
+     "给",
+     "gěi",
+     "give",
+     "verb"
+    ],
+    [
+     "了",
+     "le",
+     "done",
+     "tense"
+    ],
+    [
+     "小明",
+     "Xiǎo Míng",
+     "Xiao Ming",
+     "noun"
+    ],
+    [
+     "那",
+     "nà",
+     "that",
+     "demonstrative"
+    ],
+    [
+     "个",
+     "ge",
+     "(mw)",
+     "measure"
+    ],
+    [
+     "苹果",
+     "píng guǒ",
+     "apple",
+     "noun"
+    ],
+    [
+     "吗",
+     "ma",
+     "?",
+     "question"
+    ]
+   ],
+   "punctuation": "？",
+   "translation": "Did I give Xiao Ming that apple?"
+  },
+  {
+   "settings": {
+    "who": "you",
+    "time": "le",
+    "negate": "not",
+    "type": "ma",
+    "object": "two"
+   },
+   "pieces": [
+    [
+     "你",
+     "nǐ",
+     "you",
+     "pronoun"
+    ],
+    [
+     "没",
+     "méi",
+     "not",
+     "negation"
+    ],
+    [
+     "给",
+     "gěi",
+     "give",
+     "verb"
+    ],
+    [
+     "小明",
+     "Xiǎo Míng",
+     "Xiao Ming",
+     "noun"
+    ],
+    [
+     "两",
+     "liǎng",
+     "two",
+     "number"
+    ],
+    [
+     "个",
+     "ge",
+     "(mw)",
+     "measure"
+    ],
+    [
+     "苹果",
+     "píng guǒ",
+     "apple",
+     "noun"
+    ],
+    [
+     "吗",
+     "ma",
+     "?",
+     "question"
+    ]
+   ],
+   "punctuation": "？",
+   "translation": "Didn't you give Xiao Ming two apples?"
+  },
+  {
+   "settings": {
+    "who": "you-polite",
+    "time": "le",
+    "negate": "none",
+    "type": "a-not-a",
+    "object": "bare"
+   },
+   "pieces": [
+    [
+     "您",
+     "nín",
+     "you (polite)",
+     "pronoun"
+    ],
+    [
+     "有",
+     "yǒu",
+     "have",
+     "modal"
+    ],
+    [
+     "没",
+     "méi",
+     "not",
+     "negation"
+    ],
+    [
+     "有",
+     "yǒu",
+     "have",
+     "modal"
+    ],
+    [
+     "给",
+     "gěi",
+     "give",
+     "verb"
+    ],
+    [
+     "小明",
+     "Xiǎo Míng",
+     "Xiao Ming",
+     "noun"
+    ],
+    [
+     "苹果",
+     "píng guǒ",
+     "apple",
+     "noun"
+    ]
+   ],
+   "punctuation": "？",
+   "translation": "Did you give Xiao Ming apples?"
+  },
+  {
+   "settings": {
+    "who": "he",
+    "time": "guo",
+    "negate": "none",
+    "type": "statement",
+    "object": "one"
+   },
+   "pieces": [
+    [
+     "他",
+     "tā",
+     "he",
+     "pronoun"
+    ],
+    [
+     "给",
+     "gěi",
+     "give",
+     "verb"
+    ],
+    [
+     "过",
+     "guo",
+     "ever",
+     "tense"
+    ],
+    [
+     "小明",
+     "Xiǎo Míng",
+     "Xiao Ming",
+     "noun"
+    ],
+    [
+     "一",
+     "yí",
+     "one",
+     "number"
+    ],
+    [
+     "个",
+     "gè",
+     "(mw)",
+     "measure"
+    ],
+    [
+     "苹果",
+     "píng guǒ",
+     "apple",
+     "noun"
+    ]
+   ],
+   "punctuation": "。",
+   "translation": "He has given Xiao Ming an apple before."
+  },
+  {
+   "settings": {
+    "who": "she",
+    "time": "guo",
+    "negate": "not",
+    "type": "statement",
+    "object": "this"
+   },
+   "pieces": [
+    [
+     "她",
+     "tā",
+     "she",
+     "pronoun"
+    ],
+    [
+     "没",
+     "méi",
+     "not",
+     "negation"
+    ],
+    [
+     "给",
+     "gěi",
+     "give",
+     "verb"
+    ],
+    [
+     "过",
+     "guo",
+     "ever",
+     "tense"
+    ],
+    [
+     "小明",
+     "Xiǎo Míng",
+     "Xiao Ming",
+     "noun"
+    ],
+    [
+     "这",
+     "zhè",
+     "this",
+     "demonstrative"
+    ],
+    [
+     "个",
+     "ge",
+     "(mw)",
+     "measure"
+    ],
+    [
+     "苹果",
+     "píng guǒ",
+     "apple",
+     "noun"
+    ]
+   ],
+   "punctuation": "。",
+   "translation": "She has never given Xiao Ming this apple."
+  },
+  {
+   "settings": {
+    "who": "we",
+    "time": "guo",
+    "negate": "none",
+    "type": "ma",
+    "object": "that"
+   },
+   "pieces": [
+    [
+     "我",
+     "wǒ",
+     "I",
+     "pronoun"
+    ],
+    [
+     "们",
+     "men",
+     "pl.",
+     "plural"
+    ],
+    [
+     "给",
+     "gěi",
+     "give",
+     "verb"
+    ],
+    [
+     "过",
+     "guo",
+     "ever",
+     "tense"
+    ],
+    [
+     "小明",
+     "Xiǎo Míng",
+     "Xiao Ming",
+     "noun"
+    ],
+    [
+     "那",
+     "nà",
+     "that",
+     "demonstrative"
+    ],
+    [
+     "个",
+     "ge",
+     "(mw)",
+     "measure"
+    ],
+    [
+     "苹果",
+     "píng guǒ",
+     "apple",
+     "noun"
+    ],
+    [
+     "吗",
+     "ma",
+     "?",
+     "question"
+    ]
+   ],
+   "punctuation": "？",
+   "translation": "Have we ever given Xiao Ming that apple?"
+  },
+  {
+   "settings": {
+    "who": "they",
+    "time": "guo",
+    "negate": "not",
+    "type": "ma",
+    "object": "two"
+   },
+   "pieces": [
+    [
+     "他",
+     "tā",
+     "he",
+     "pronoun"
+    ],
+    [
+     "们",
+     "men",
+     "pl.",
+     "plural"
+    ],
+    [
+     "没",
+     "méi",
+     "not",
+     "negation"
+    ],
+    [
+     "给",
+     "gěi",
+     "give",
+     "verb"
+    ],
+    [
+     "过",
+     "guo",
+     "ever",
+     "tense"
+    ],
+    [
+     "小明",
+     "Xiǎo Míng",
+     "Xiao Ming",
+     "noun"
+    ],
+    [
+     "两",
+     "liǎng",
+     "two",
+     "number"
+    ],
+    [
+     "个",
+     "ge",
+     "(mw)",
+     "measure"
+    ],
+    [
+     "苹果",
+     "píng guǒ",
+     "apple",
+     "noun"
+    ],
+    [
+     "吗",
+     "ma",
+     "?",
+     "question"
+    ]
+   ],
+   "punctuation": "？",
+   "translation": "Haven't they ever given Xiao Ming two apples?"
+  },
+  {
+   "settings": {
+    "who": "i",
+    "time": "guo",
+    "negate": "none",
+    "type": "a-not-a",
+    "object": "bare"
+   },
+   "pieces": [
+    [
+     "我",
+     "wǒ",
+     "I",
+     "pronoun"
+    ],
+    [
+     "有",
+     "yǒu",
+     "have",
+     "modal"
+    ],
+    [
+     "没",
+     "méi",
+     "not",
+     "negation"
+    ],
+    [
+     "有",
+     "yǒu",
+     "have",
+     "modal"
+    ],
+    [
+     "给",
+     "gěi",
+     "give",
+     "verb"
+    ],
+    [
+     "过",
+     "guo",
+     "ever",
+     "tense"
+    ],
+    [
+     "小明",
+     "Xiǎo Míng",
+     "Xiao Ming",
+     "noun"
+    ],
+    [
+     "苹果",
+     "píng guǒ",
+     "apple",
+     "noun"
+    ]
+   ],
+   "punctuation": "？",
+   "translation": "Have I ever given Xiao Ming apples?"
+  },
+  {
+   "settings": {
+    "who": "you",
+    "time": "zai",
+    "negate": "none",
+    "type": "statement",
+    "object": "one"
+   },
+   "pieces": [
+    [
+     "你",
+     "nǐ",
+     "you",
+     "pronoun"
+    ],
+    [
+     "在",
+     "zài",
+     "-ing",
+     "tense"
+    ],
+    [
+     "给",
+     "gěi",
+     "give",
+     "verb"
+    ],
+    [
+     "小明",
+     "Xiǎo Míng",
+     "Xiao Ming",
+     "noun"
+    ],
+    [
+     "一",
+     "yí",
+     "one",
+     "number"
+    ],
+    [
+     "个",
+     "gè",
+     "(mw)",
+     "measure"
+    ],
+    [
+     "苹果",
+     "píng guǒ",
+     "apple",
+     "noun"
+    ]
+   ],
+   "punctuation": "。",
+   "translation": "You are giving Xiao Ming an apple."
+  },
+  {
+   "settings": {
+    "who": "you-polite",
+    "time": "zai",
+    "negate": "not",
+    "type": "statement",
+    "object": "this"
+   },
+   "pieces": [
+    [
+     "您",
+     "nín",
+     "you (polite)",
+     "pronoun"
+    ],
+    [
+     "没",
+     "méi",
+     "not",
+     "negation"
+    ],
+    [
+     "在",
+     "zài",
+     "-ing",
+     "tense"
+    ],
+    [
+     "给",
+     "gěi",
+     "give",
+     "verb"
+    ],
+    [
+     "小明",
+     "Xiǎo Míng",
+     "Xiao Ming",
+     "noun"
+    ],
+    [
+     "这",
+     "zhè",
+     "this",
+     "demonstrative"
+    ],
+    [
+     "个",
+     "ge",
+     "(mw)",
+     "measure"
+    ],
+    [
+     "苹果",
+     "píng guǒ",
+     "apple",
+     "noun"
+    ]
+   ],
+   "punctuation": "。",
+   "translation": "You are not giving Xiao Ming this apple."
+  },
+  {
+   "settings": {
+    "who": "he",
+    "time": "zai",
+    "negate": "none",
+    "type": "ma",
+    "object": "that"
+   },
+   "pieces": [
+    [
+     "他",
+     "tā",
+     "he",
+     "pronoun"
+    ],
+    [
+     "在",
+     "zài",
+     "-ing",
+     "tense"
+    ],
+    [
+     "给",
+     "gěi",
+     "give",
+     "verb"
+    ],
+    [
+     "小明",
+     "Xiǎo Míng",
+     "Xiao Ming",
+     "noun"
+    ],
+    [
+     "那",
+     "nà",
+     "that",
+     "demonstrative"
+    ],
+    [
+     "个",
+     "ge",
+     "(mw)",
+     "measure"
+    ],
+    [
+     "苹果",
+     "píng guǒ",
+     "apple",
+     "noun"
+    ],
+    [
+     "吗",
+     "ma",
+     "?",
+     "question"
+    ]
+   ],
+   "punctuation": "？",
+   "translation": "Is he giving Xiao Ming that apple?"
+  },
+  {
+   "settings": {
+    "who": "she",
+    "time": "zai",
+    "negate": "not",
+    "type": "ma",
+    "object": "two"
+   },
+   "pieces": [
+    [
+     "她",
+     "tā",
+     "she",
+     "pronoun"
+    ],
+    [
+     "没",
+     "méi",
+     "not",
+     "negation"
+    ],
+    [
+     "在",
+     "zài",
+     "-ing",
+     "tense"
+    ],
+    [
+     "给",
+     "gěi",
+     "give",
+     "verb"
+    ],
+    [
+     "小明",
+     "Xiǎo Míng",
+     "Xiao Ming",
+     "noun"
+    ],
+    [
+     "两",
+     "liǎng",
+     "two",
+     "number"
+    ],
+    [
+     "个",
+     "ge",
+     "(mw)",
+     "measure"
+    ],
+    [
+     "苹果",
+     "píng guǒ",
+     "apple",
+     "noun"
+    ],
+    [
+     "吗",
+     "ma",
+     "?",
+     "question"
+    ]
+   ],
+   "punctuation": "？",
+   "translation": "Isn't she giving Xiao Ming two apples?"
+  },
+  {
+   "settings": {
+    "who": "we",
+    "time": "zai",
+    "negate": "none",
+    "type": "a-not-a",
+    "object": "bare"
+   },
+   "pieces": [
+    [
+     "我",
+     "wǒ",
+     "I",
+     "pronoun"
+    ],
+    [
+     "们",
+     "men",
+     "pl.",
+     "plural"
+    ],
+    [
+     "是",
+     "shì",
+     "is",
+     "modal"
+    ],
+    [
+     "不",
+     "bu",
+     "not",
+     "negation"
+    ],
+    [
+     "是",
+     "shì",
+     "is",
+     "modal"
+    ],
+    [
+     "在",
+     "zài",
+     "-ing",
+     "tense"
+    ],
+    [
+     "给",
+     "gěi",
+     "give",
+     "verb"
+    ],
+    [
+     "小明",
+     "Xiǎo Míng",
+     "Xiao Ming",
+     "noun"
+    ],
+    [
+     "苹果",
+     "píng guǒ",
+     "apple",
+     "noun"
+    ]
+   ],
+   "punctuation": "？",
+   "translation": "Are we giving Xiao Ming apples?"
+  },
+  {
+   "settings": {
+    "who": "they",
+    "time": "hui",
+    "negate": "none",
+    "type": "statement",
+    "object": "one"
+   },
+   "pieces": [
+    [
+     "他",
+     "tā",
+     "he",
+     "pronoun"
+    ],
+    [
+     "们",
+     "men",
+     "pl.",
+     "plural"
+    ],
+    [
+     "会",
+     "huì",
+     "will",
+     "modal"
+    ],
+    [
+     "给",
+     "gěi",
+     "give",
+     "verb"
+    ],
+    [
+     "小明",
+     "Xiǎo Míng",
+     "Xiao Ming",
+     "noun"
+    ],
+    [
+     "一",
+     "yí",
+     "one",
+     "number"
+    ],
+    [
+     "个",
+     "gè",
+     "(mw)",
+     "measure"
+    ],
+    [
+     "苹果",
+     "píng guǒ",
+     "apple",
+     "noun"
+    ]
+   ],
+   "punctuation": "。",
+   "translation": "They will give Xiao Ming an apple."
+  },
+  {
+   "settings": {
+    "who": "i",
+    "time": "hui",
+    "negate": "not",
+    "type": "statement",
+    "object": "this"
+   },
+   "pieces": [
+    [
+     "我",
+     "wǒ",
+     "I",
+     "pronoun"
+    ],
+    [
+     "不",
+     "bú",
+     "not",
+     "negation"
+    ],
+    [
+     "会",
+     "huì",
+     "will",
+     "modal"
+    ],
+    [
+     "给",
+     "gěi",
+     "give",
+     "verb"
+    ],
+    [
+     "小明",
+     "Xiǎo Míng",
+     "Xiao Ming",
+     "noun"
+    ],
+    [
+     "这",
+     "zhè",
+     "this",
+     "demonstrative"
+    ],
+    [
+     "个",
+     "ge",
+     "(mw)",
+     "measure"
+    ],
+    [
+     "苹果",
+     "píng guǒ",
+     "apple",
+     "noun"
+    ]
+   ],
+   "punctuation": "。",
+   "translation": "I won't give Xiao Ming this apple."
+  },
+  {
+   "settings": {
+    "who": "you",
+    "time": "hui",
+    "negate": "none",
+    "type": "ma",
+    "object": "that"
+   },
+   "pieces": [
+    [
+     "你",
+     "nǐ",
+     "you",
+     "pronoun"
+    ],
+    [
+     "会",
+     "huì",
+     "will",
+     "modal"
+    ],
+    [
+     "给",
+     "gěi",
+     "give",
+     "verb"
+    ],
+    [
+     "小明",
+     "Xiǎo Míng",
+     "Xiao Ming",
+     "noun"
+    ],
+    [
+     "那",
+     "nà",
+     "that",
+     "demonstrative"
+    ],
+    [
+     "个",
+     "ge",
+     "(mw)",
+     "measure"
+    ],
+    [
+     "苹果",
+     "píng guǒ",
+     "apple",
+     "noun"
+    ],
+    [
+     "吗",
+     "ma",
+     "?",
+     "question"
+    ]
+   ],
+   "punctuation": "？",
+   "translation": "Will you give Xiao Ming that apple?"
+  },
+  {
+   "settings": {
+    "who": "you-polite",
+    "time": "hui",
+    "negate": "not",
+    "type": "ma",
+    "object": "two"
+   },
+   "pieces": [
+    [
+     "您",
+     "nín",
+     "you (polite)",
+     "pronoun"
+    ],
+    [
+     "不",
+     "bú",
+     "not",
+     "negation"
+    ],
+    [
+     "会",
+     "huì",
+     "will",
+     "modal"
+    ],
+    [
+     "给",
+     "gěi",
+     "give",
+     "verb"
+    ],
+    [
+     "小明",
+     "Xiǎo Míng",
+     "Xiao Ming",
+     "noun"
+    ],
+    [
+     "两",
+     "liǎng",
+     "two",
+     "number"
+    ],
+    [
+     "个",
+     "ge",
+     "(mw)",
+     "measure"
+    ],
+    [
+     "苹果",
+     "píng guǒ",
+     "apple",
+     "noun"
+    ],
+    [
+     "吗",
+     "ma",
+     "?",
+     "question"
+    ]
+   ],
+   "punctuation": "？",
+   "translation": "Won't you give Xiao Ming two apples?"
+  },
+  {
+   "settings": {
+    "who": "he",
+    "time": "hui",
+    "negate": "none",
+    "type": "a-not-a",
+    "object": "bare"
+   },
+   "pieces": [
+    [
+     "他",
+     "tā",
+     "he",
+     "pronoun"
+    ],
+    [
+     "会",
+     "huì",
+     "will",
+     "modal"
+    ],
+    [
+     "不",
+     "bu",
+     "not",
+     "negation"
+    ],
+    [
+     "会",
+     "huì",
+     "will",
+     "modal"
+    ],
+    [
+     "给",
+     "gěi",
+     "give",
+     "verb"
+    ],
+    [
+     "小明",
+     "Xiǎo Míng",
+     "Xiao Ming",
+     "noun"
+    ],
+    [
+     "苹果",
+     "píng guǒ",
+     "apple",
+     "noun"
+    ]
+   ],
+   "punctuation": "？",
+   "translation": "Will he give Xiao Ming apples?"
+  }
+ ],
+ "roleNote": "Old 'Number / this, that' Pieces map to Number (一, 两) and Demonstrative (这, 那), matching the Mandarin Dozen."
+}

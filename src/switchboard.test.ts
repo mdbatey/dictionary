@@ -1,8 +1,9 @@
 import { describe, expect, it } from 'vitest';
 import { content } from './content';
 import samples from './fixtures/korean-giving-samples.json';
+import zhSamples from './fixtures/mandarin-giving-samples.json';
 import { isPhrase } from './model';
-import { allSettings, optionsFor, showSwitchboard, type SwitchboardView } from './switchboard';
+import { allSettings, applyChoice, disabledOptions, optionsFor, showSwitchboard, type SwitchboardView } from './switchboard';
 
 const korean = content.languages.find((l) => l.id === 'ko')!;
 const giving = korean.switchboards.find((s) => s.id === 'giving')!;
@@ -53,5 +54,50 @@ describe('showSwitchboard: Korean giving', () => {
     expect(changedAfter({ to: 'grandma' })).toEqual(['할머니', '께', '드려']);
     expect(changedAfter({ negate: 'dont' })).toEqual(['안']);
     expect(changedAfter({})).toEqual([]);
+  });
+});
+
+const mandarin = content.languages.find((l) => l.id === 'zh')!;
+const zhGiving = mandarin.switchboards.find((s) => s.id === 'giving')!;
+
+/** Each Piece as [script, Pinyin, gloss, Role]. */
+function zhRows(view: SwitchboardView): string[][] {
+  return view.parts.flatMap((part) => (isPhrase(part) ? part.pieces.map((p) => [p.script, p.pron['pinyin'] ?? '', p.gloss, p.role]) : []));
+}
+
+describe('showSwitchboard: Mandarin giving', () => {
+  it('matches the old page at the starting settings', () => {
+    const expected = zhSamples.samples[0]!;
+    expect(expected.settings).toEqual(zhGiving.start);
+    const view = showSwitchboard(zhGiving, mandarin, zhGiving.start);
+    expect(zhRows(view)).toEqual(expected.pieces);
+    expect(view.parts.at(-1)).toBe(expected.punctuation);
+    expect(view.translation).toBe(expected.translation);
+  });
+
+  it.each(zhSamples.samples.map((s, i) => [i, s] as const))('matches the old page for sample %i', (_i, sample) => {
+    const view = showSwitchboard(zhGiving, mandarin, sample.settings);
+    expect(zhRows(view)).toEqual(sample.pieces);
+    expect(view.parts.at(-1)).toBe(sample.punctuation);
+    expect(view.translation).toBe(sample.translation);
+  });
+
+  it('offers the seven pronouns, with 您 marked honorific', () => {
+    expect(optionsFor(zhGiving.switches[0]!, zhGiving, mandarin).map((o) => o.label)).toEqual(['I', 'You', 'You (polite)', 'He', 'She', 'We', 'They']);
+    expect(mandarin.words.find((w) => w.script === '您')!.facts?.honorific).toBe(true);
+  });
+
+  it('leaves out combinations that are not allowed, and builds every allowed one', () => {
+    const every = allSettings(zhGiving, mandarin);
+    expect(every).toHaveLength(7 * 5 * 2 * 3 * 5 - 7 * 5 * 5);
+    expect(every.some((s) => s['type'] === 'a-not-a' && s['negate'] === 'not')).toBe(false);
+    for (const settings of every) expect(showSwitchboard(zhGiving, mandarin, settings).translation, JSON.stringify(settings)).toMatch(/^[A-Z].*[.?]$/);
+  });
+
+  it('disables Not during an A-not-A question, with a reason, and switches it off when A-not-A is chosen', () => {
+    const negated = { ...zhGiving.start, negate: 'not' };
+    expect(disabledOptions(zhGiving, mandarin, negated)).toEqual({});
+    expect(disabledOptions(zhGiving, mandarin, { ...zhGiving.start, type: 'a-not-a' })).toEqual({ negate: { not: "An A-not-A question can't also be negative." } });
+    expect(applyChoice(zhGiving, mandarin, negated, 'type', 'a-not-a')).toEqual({ ...zhGiving.start, type: 'a-not-a', negate: 'none' });
   });
 });

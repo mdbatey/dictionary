@@ -21,6 +21,7 @@ export const roles: Record<string, Role> = {
   ba: { label: '把 · disposal marker', style: 'chip' },
   modal: { label: 'Modal / helper verb', style: 'chip' },
   'final-particle': { label: 'Sentence-final particle', style: 'chip' },
+  number: { label: 'Number', style: 'chip' },
   // Coloured text: endings and small grammar words
   tense: { label: 'Tense marker', style: 'text' },
   polite: { label: 'Polite suffix', style: 'text' },

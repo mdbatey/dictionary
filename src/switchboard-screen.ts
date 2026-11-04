@@ -4,7 +4,7 @@ import { fitToOneLine } from './fit';
 import type { Language, Switchboard } from './model';
 import { openPiecePanel } from './panel';
 import { renderParts } from './render';
-import { optionsFor, showSwitchboard } from './switchboard';
+import { applyChoice, disabledOptions, optionsFor, showSwitchboard } from './switchboard';
 
 /**
  * The Switchboard screen: the Sentence, and its Switches. Flipping a Switch rebuilds the Sentence with
@@ -25,23 +25,28 @@ export function renderSwitchboard(switchboard: Switchboard, language: Language):
     stopFit?.();
     stopFit = fitToOneLine(row).stop;
 
+    const disabled = disabledOptions(switchboard, language, settings);
     switchesArea.replaceChildren(...switchboard.switches.map((sw) => {
       const options = optionsFor(sw, switchboard, language);
+      const reasons = disabled[sw.id] ?? {};
       return h('div', { class: 'switch', role: 'group', 'aria-label': sw.label }, [
         h('span', { class: 'switch-label' }, [sw.label]),
         h('div', { class: 'switch-options' }, options.map((o) => {
           const on = settings[sw.id] === o.id;
-          const button = h('button', { class: 'switch-option', type: 'button', 'aria-pressed': String(on) }, [
-            o.label, ...(o.sub ? [h('span', { class: 'switch-sub', lang: language.tag }, [o.sub])] : []),
-          ]);
+          const reason = reasons[o.id];
+          const button = h('button', {
+            class: 'switch-option', type: 'button', 'aria-pressed': String(on),
+            ...(reason ? { disabled: '', title: reason, 'aria-description': reason } : {}),
+          }, [o.label, ...(o.sub ? [h('span', { class: 'switch-sub', lang: language.tag }, [o.sub])] : [])]);
           button.addEventListener('click', () => {
-            if (on) return;
+            if (on || reason) return;
             previous = settings;
-            settings = { ...settings, [sw.id]: o.id };
+            settings = applyChoice(switchboard, language, settings, sw.id, o.id);
             draw();
           });
           return button;
         })),
+        ...Object.values(reasons).map((r) => h('p', { class: 'switch-reason' }, [r])),
       ]);
     }));
   };

@@ -34,6 +34,7 @@
   --role-ba: #FFA8A8;
   --role-modal: #FFEC99;
   --role-final-particle: #E5DBFF;
+  --role-number: #C5F6FA; /* added in #12 for Mandarin 一 / 两 */
 
   /* Roles drawn as coloured text */
   --role-tense: light-dark(#C2255C, #FF8FB1);

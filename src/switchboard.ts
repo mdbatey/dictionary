@@ -80,8 +80,40 @@ export function optionsFor(sw: SwitchDef, switchboard: Switchboard, language: La
 
 /** Every combination of settings a Switchboard allows (each Switch's Options, Word Switches included). */
 export function allSettings(switchboard: Switchboard, language: Language): Record<string, string>[] {
-  return switchboard.switches.reduce<Record<string, string>[]>(
+  const every = switchboard.switches.reduce<Record<string, string>[]>(
     (combos, sw) => combos.flatMap((combo) => optionsFor(sw, switchboard, language).map((o) => ({ ...combo, [sw.id]: o.id }))),
     [{}],
   );
+  return every.filter((settings) => !isBlocked(switchboard, language, settings));
+}
+
+function grammarOf(switchboard: Switchboard, settings: Record<string, string>): Record<string, string> {
+  return Object.fromEntries(switchboard.switches.filter((sw) => sw.kind === 'grammar').map((sw) => [sw.id, settings[sw.id] ?? switchboard.start[sw.id]!]));
+}
+
+/** Options that can't be chosen with the current settings, as { switchId: { optionId: reason } }. */
+export function disabledOptions(switchboard: Switchboard, _language: Language, settings: Record<string, string>): Record<string, Record<string, string>> {
+  return frames[switchboard.frame]?.disallowed?.(grammarOf(switchboard, settings)) ?? {};
+}
+
+function isBlocked(switchboard: Switchboard, language: Language, settings: Record<string, string>): boolean {
+  const disabled = disabledOptions(switchboard, language, settings);
+  return Object.entries(disabled).some(([switchId, options]) => settings[switchId] !== undefined && settings[switchId]! in options);
+}
+
+/**
+ * The settings after choosing one Option. If that makes another Switch's current Option disallowed
+ * (e.g. choosing an A-not-A question while Negate is on), that Switch moves to its first allowed Option.
+ */
+export function applyChoice(
+  switchboard: Switchboard, language: Language, settings: Record<string, string>, switchId: string, optionId: string,
+): Record<string, string> {
+  const next = { ...settings, [switchId]: optionId };
+  const disabled = disabledOptions(switchboard, language, next);
+  for (const sw of switchboard.switches) {
+    if (sw.id === switchId || !(next[sw.id]! in (disabled[sw.id] ?? {}))) continue;
+    const allowed = optionsFor(sw, switchboard, language).find((o) => !(o.id in (disabled[sw.id] ?? {})));
+    if (allowed) next[sw.id] = allowed.id;
+  }
+  return next;
 }

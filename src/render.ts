@@ -36,7 +36,8 @@ export function pronOf(piece: { pron: Record<string, string> }, language: Langua
 function pronElement(piece: Piece, language: Language): (Node | string)[] {
   const t = tonesOf(piece, language);
   if (!t || !piece.pron[pronSystem(language)] || pronSystem(language) !== language.tones?.system) return [pronOf(piece, language)];
-  const sep = language.tones.style === 'numbers' ? ' ' : '';
+  // Keep the spacing the pronunciation was written with ("píngguǒ" vs "píng guǒ"); numbered tones are always spaced.
+  const sep = language.tones.style === 'numbers' || /\s/.test(pronOf(piece, language)) ? ' ' : '';
   return t.syllables.flatMap((s, i) => [...(i && sep ? [sep] : []), h('span', { 'data-tone': String(t.tones[i]) }, [s])]);
 }
 
