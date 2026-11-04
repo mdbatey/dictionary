@@ -10,7 +10,7 @@ A new Language is new content, not new features. The screens, toolbar, Sound pic
 |---|---|
 | Where does the content come from? | An old page in `reference/` (import it), or written from scratch (who checks accuracy?) |
 | Ids and names | `id: 'da'`, `name: 'Danish'`, `nativeName: 'Dansk'`, `tag: 'da'` (the BCP 47 tag for the `lang` attribute) |
-| Pronunciation Systems: which are **stored**, and which are **derived** (worked out from a stored one)? Which is shown first? | Cantonese stores Jyutping and derives Yale and IPA, showing Yale first. Korean stores Romanization (Dozen) and RR + IPA (Switchboard). |
+| Pronunciation Systems: which are **stored**, and which are **derived** (worked out from a stored one)? Which is shown first? | Cantonese stores Jyutping and derives Yale and IPA, showing Yale first. Korean stores Romanization (Dozen) and Revised Romanization + IPA (Switchboard); both romanizations are labelled "Romanization" so the Language uses one name. |
 | Is it tonal? How are tones written? | `tones: { system: 'pinyin', style: 'marks' }` or `{ system: 'jyutping', style: 'numbers' }` |
 | Which Roles does it use? Does it need Roles the site doesn't have yet? | Danish uses `definite` and `preposition`, which already exist |
 | The first Set of Sentences | See [adding-a-set.md](adding-a-set.md) |
