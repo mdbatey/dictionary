@@ -17,8 +17,8 @@ A group of adjacent Pieces that belong together as one unit of meaning, such as 
 _Avoid_: Word box, chunk, word (when you mean the group)
 
 **Phrase Type**:
-What a Phrase does in its Sentence (subject, object, verb phrase, modifier, question). It is shown as the color of the Phrase's outline.
-_Avoid_: Box color, category
+What a Phrase does in its Sentence: subject, object, indirect object, verb phrase, modifier or question. It is shown as the color of the Phrase's outline. The indirect object is who receives something ("John" in "I give John the apple"); the object is the thing itself.
+_Avoid_: Box color, category, recipient (for the Phrase Type; "Recipient marker" is the Role of a particle such as 에게)
 
 **Piece**:
 The smallest tappable unit of a Sentence: one morpheme or word, in its original script, with a Pronunciation, a Gloss, a Role and a Note.

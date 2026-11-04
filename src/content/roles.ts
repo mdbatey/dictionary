@@ -1,13 +1,36 @@
 import type { Role } from '../model';
 
-// The site-wide Role list. Each Role's colour is the design token `--role-<id>` (see src/styles/tokens.css).
-// Rules are taken from reference/breakdowns/korean-13-sentences.html.
+// The site-wide Role list. Each Role's colour is the design token `--role-<id>` in src/styles/tokens.css.
+// Each Language lists the Roles it uses, with its own general rule (see the Language files).
 export const roles: Record<string, Role> = {
-  pronoun: { label: 'Pronoun', style: 'chip', rule: 'I, he, she, it. Korean drops these whenever context makes them clear.' },
-  noun: { label: 'Noun', style: 'chip', rule: 'A thing, person or place. Particles attach right after it.' },
-  topic: { label: 'Topic marker', style: 'chip', rule: 'Marks what the sentence is about. 는 after a vowel, 은 after a consonant.' },
-  object: { label: 'Object marker', style: 'chip', rule: 'Marks the direct object (the thing given, eaten). 를 after a vowel, 을 after a consonant.' },
-  recipient: { label: 'Recipient marker', style: 'chip', rule: "에게 means 'to' a person or animal. 한테 is the casual spoken version." },
-  stem: { label: 'Verb / adjective stem', style: 'chip', rule: "The dictionary form with -다 removed. Adjectives like 'red' conjugate exactly like verbs." },
-  polite: { label: 'Polite suffix', style: 'text', rule: '요 on the end makes it informal polite, the safe default with most people.' },
+  // Chips: words and particles
+  pronoun: { label: 'Pronoun', style: 'chip' },
+  noun: { label: 'Noun', style: 'chip' },
+  verb: { label: 'Verb', style: 'chip' },
+  adjective: { label: 'Adjective', style: 'chip' },
+  demonstrative: { label: 'Demonstrative', style: 'chip' },
+  time: { label: 'Time word', style: 'chip' },
+  subject: { label: 'Subject marker', style: 'chip' },
+  topic: { label: 'Topic marker', style: 'chip' },
+  object: { label: 'Object marker', style: 'chip' },
+  recipient: { label: 'Recipient marker', style: 'chip' },
+  possessive: { label: 'Possessive', style: 'chip' },
+  copula: { label: 'Copula "to be"', style: 'chip' },
+  connect: { label: 'Connecting ending', style: 'chip' },
+  measure: { label: 'Measure word', style: 'chip' },
+  ba: { label: '把 · disposal marker', style: 'chip' },
+  modal: { label: 'Modal / helper verb', style: 'chip' },
+  'final-particle': { label: 'Sentence-final particle', style: 'chip' },
+  // Coloured text: endings and small grammar words
+  tense: { label: 'Tense marker', style: 'text' },
+  polite: { label: 'Polite suffix', style: 'text' },
+  informal: { label: 'Informal ending', style: 'text' },
+  plural: { label: 'Plural marker', style: 'text' },
+  adverb: { label: 'Adverb', style: 'text' },
+  question: { label: 'Question particle', style: 'text' },
+  potential: { label: 'Potential complement', style: 'text' },
+  definite: { label: 'Definite suffix ("the")', style: 'text' },
+  preposition: { label: 'Preposition', style: 'text' },
+  // Inverted
+  negation: { label: 'Negation', style: 'inverted' },
 };

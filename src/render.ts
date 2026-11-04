@@ -3,9 +3,10 @@ import { isPhrase, type Content, type Language, type Phrase, type Piece, type Se
 
 function renderPiece(piece: Piece, language: Language, content: Content): HTMLElement {
   const role = content.roles[piece.role];
+  const label = language.roles[piece.role]?.label ?? role?.label ?? piece.role;
   return h('span', { class: 'piece' }, [
     h('span', { class: 'piece-gloss' }, [piece.gloss]),
-    h('span', { class: `piece-script style-${role?.style ?? 'chip'}`, lang: language.tag, '--role-color': `var(--role-${piece.role})`, title: role?.label ?? piece.role }, [piece.script]),
+    h('span', { class: `piece-script style-${role?.style ?? 'chip'}`, lang: language.tag, '--role-color': `var(--role-${piece.role})`, title: label }, [piece.script]),
     h('span', { class: 'piece-pron' }, [piece.pron[language.defaultPronunciation] ?? '']),
   ]);
 }

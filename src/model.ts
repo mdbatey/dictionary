@@ -3,15 +3,24 @@
 /** How a Role is drawn: a filled chip, coloured text, or inverted (dark chip, light text). */
 export type RoleStyle = 'chip' | 'text' | 'inverted';
 
-/** The grammatical job a Piece does. Each Role has one fixed colour across the whole site. */
+/**
+ * The grammatical job a Piece does. Each Role has one fixed colour (the design token `--role-<id>`)
+ * and display style across the whole site.
+ */
 export interface Role {
   label: string;
   style: RoleStyle;
-  /** The general rule for this Role, shown in the detail panel. */
-  rule: string;
 }
 
-export type PhraseType = 'subject' | 'object' | 'recipient' | 'verb-phrase' | 'modifier' | 'question';
+/** How one Language uses a Role: its general rule in that Language, and optionally its own label. */
+export interface LanguageRole {
+  /** The general rule for this Role in this Language, shown in the detail panel. */
+  rule: string;
+  /** A Language-specific label, e.g. "的 · possessive / descriptive". Defaults to the Role's label. */
+  label?: string;
+}
+
+export type PhraseType = 'subject' | 'object' | 'indirect-object' | 'verb-phrase' | 'modifier' | 'question';
 
 /** One morpheme or word in a Sentence. */
 export interface Piece {
@@ -61,8 +70,8 @@ export interface Language {
   name: string;
   /** BCP 47 tag for the lang attribute, e.g. "ko". */
   tag: string;
-  /** The Role ids this Language uses. */
-  roles: string[];
+  /** The Roles this Language uses, keyed by Role id. */
+  roles: Record<string, LanguageRole>;
   pronunciationSystems: PronunciationSystem[];
   defaultPronunciation: string;
   sets: SentenceSet[];
