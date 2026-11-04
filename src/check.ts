@@ -16,7 +16,22 @@ export function checkContent(content: Content): Problem[] {
       }
     }
     for (const set of language.sets) {
+      const sentenceIds = new Set(set.sentences.map((s) => s.id));
+      (set.summary ?? []).forEach((point, i) => {
+        for (const id of point.sentences.filter((id) => !sentenceIds.has(id))) {
+          problems.push({
+            where: `${language.name} › ${set.name} › Summary point ${i + 1}`,
+            message: `Links to Sentence ${id}, which is not in this Set`,
+          });
+        }
+      });
       for (const sentence of set.sentences) {
+        if (sentence.compareWith !== undefined && !sentenceIds.has(sentence.compareWith)) {
+          problems.push({
+            where: `${language.name} › ${set.name} › Sentence ${sentence.id}`,
+            message: `Compares with Sentence ${sentence.compareWith}, which is not in this Set`,
+          });
+        }
         for (const part of sentence.parts) {
           if (!isPhrase(part)) continue;
           for (const piece of part.pieces) {

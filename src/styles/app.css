@@ -55,7 +55,7 @@ main {
 }
 .page-title, .set-title { margin: 0 0 12px; font-size: 20px; font-weight: 700; }
 .sentences { display: flex; flex-direction: column; gap: var(--space-3); }
-.sentence { scroll-margin-top: 112px; }
+.sentence { scroll-margin-top: 168px; }
 .sentence.is-target { border-color: var(--ink); }
 .sentence-number { align-self: flex-start; font-size: 13px; font-weight: 600; color: var(--muted); text-decoration: none; }
 .empty { color: var(--muted); font-size: 15px; line-height: 1.5; }
@@ -259,3 +259,55 @@ main {
   cursor: pointer;
 }
 .sheet-step:disabled { opacity: 0.4; cursor: default; }
+
+/* Numbered Sentence chips (in the sticky header on Breakdowns) */
+.sentence-chips {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding: var(--space-2) 0;
+  margin-top: 2px;
+}
+.sentence-chips::-webkit-scrollbar { display: none; }
+.chip {
+  flex: none;
+  min-width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--ink);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+}
+.chip[aria-current] { background: var(--ink); border-color: var(--ink); color: var(--bg); }
+
+/* Comparison: changed Pieces use the temporary-emphasis outline */
+.piece.is-changed .piece-script { outline: 2px dashed var(--focus); outline-offset: 2px; }
+.compare-link {
+  align-self: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-height: 44px;
+  justify-content: center;
+  color: var(--ink);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+}
+.compare-link span:first-child { text-decoration: underline; text-underline-offset: 3px; }
+.compare-hint { font-size: 12px; font-weight: 500; color: var(--muted); }
+
+/* Set summary */
+.summary { margin-top: var(--space-4); background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-card); padding: var(--space-4); }
+.summary h2 { margin: 0 0 var(--space-2); font-size: 18px; }
+.summary ul { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: var(--space-3); }
+.summary li { font-size: 15px; line-height: 1.5; }
+.summary-links { display: flex; flex-wrap: wrap; gap: 4px 12px; margin-top: 2px; }
+.summary-links a { color: var(--muted); font-size: 13px; font-weight: 600; min-height: 32px; display: inline-flex; align-items: center; }

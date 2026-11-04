@@ -17,8 +17,8 @@ describe('checkContent', () => {
   });
 
   it('reports a Piece whose Role its Language does not use', () => {
-    expect(checkContent(withFirstKoreanPieceRole('tense'))).toEqual([
-      { where: 'Korean › The Korean Dozen › Sentence 3 › 나', message: 'Role "tense" is not one of Korean\'s Roles' },
+    expect(checkContent(withFirstKoreanPieceRole('measure'))).toEqual([
+      { where: 'Korean › The Korean Dozen › Sentence 1 › 사과', message: 'Role "measure" is not one of Korean\'s Roles' },
     ]);
   });
 
@@ -27,6 +27,22 @@ describe('checkContent', () => {
     broken.languages[0]!.roles['topik'] = { rule: 'A misspelt Role.' };
     expect(checkContent(broken)).toEqual([
       { where: 'Korean', message: 'Role "topik" is not in the site-wide Role list' },
+    ]);
+  });
+
+  it('reports a comparison link to a Sentence that does not exist', () => {
+    const broken = structuredClone(content);
+    broken.languages[0]!.sets[0]!.sentences[0]!.compareWith = '99';
+    expect(checkContent(broken)).toEqual([
+      { where: 'Korean › The Korean Dozen › Sentence 1', message: 'Compares with Sentence 99, which is not in this Set' },
+    ]);
+  });
+
+  it('reports a Set summary point linking to a Sentence that does not exist', () => {
+    const broken = structuredClone(content);
+    broken.languages[0]!.sets[0]!.summary = [{ text: 'Word order is subject, object, verb.', sentences: ['1', '42'] }];
+    expect(checkContent(broken)).toEqual([
+      { where: 'Korean › The Korean Dozen › Summary point 1', message: 'Links to Sentence 42, which is not in this Set' },
     ]);
   });
 });

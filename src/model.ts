@@ -32,6 +32,8 @@ export interface Piece {
   role: string;
   /** What this Piece is doing in this particular Sentence. */
   note?: string;
+  /** True when this Piece differs from the Sentence this one is compared with. */
+  changed?: boolean;
 }
 
 /** A group of adjacent Pieces forming one unit of meaning, outlined in its Phrase Type's colour. */
@@ -48,6 +50,16 @@ export interface Sentence {
   translation: string;
   /** Markdown. */
   explanation: string;
+  /** The id of another Sentence in the same Set that this one is meant to be compared with. */
+  compareWith?: string;
+}
+
+/** One point of a Set's closing summary, with the Sentences that show it. */
+export interface SummaryPoint {
+  /** Markdown. */
+  text: string;
+  /** Ids of Sentences in the same Set. */
+  sentences: string[];
 }
 
 /** A named, ordered group of Sentences in one Language. */
@@ -55,6 +67,7 @@ export interface SentenceSet {
   id: string;
   name: string;
   sentences: Sentence[];
+  summary?: SummaryPoint[];
 }
 
 /** The Switchboards a Language offers. Filled in from #10 onwards. */
