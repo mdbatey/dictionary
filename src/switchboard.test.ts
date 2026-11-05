@@ -83,14 +83,13 @@ describe('showSwitchboard: Mandarin giving', () => {
     expect(view.translation).toBe(sample.translation);
   });
 
-  it('offers the seven pronouns, with 您 marked honorific', () => {
-    expect(optionsFor(zhGiving.switches[0]!, zhGiving, mandarin).map((o) => o.label)).toEqual(['I', 'You', 'You (polite)', 'He', 'She', 'We', 'They']);
-    expect(mandarin.words.find((w) => w.script === '您')!.facts?.honorific).toBe(true);
+  it('offers the six pronouns (the polite 您 was removed at the owner\'s request)', () => {
+    expect(optionsFor(zhGiving.switches[0]!, zhGiving, mandarin).map((o) => o.label)).toEqual(['I', 'You', 'He', 'She', 'We', 'They']);
   });
 
   it('leaves out combinations that are not allowed, and builds every allowed one', () => {
     const every = allSettings(zhGiving, mandarin);
-    expect(every).toHaveLength(7 * 5 * 2 * 3 * 5 - 7 * 5 * 5);
+    expect(every).toHaveLength(6 * 5 * 2 * 3 * 5 - 6 * 5 * 5);
     expect(every.some((s) => s['type'] === 'a-not-a' && s['negate'] === 'not')).toBe(false);
     for (const settings of every) expect(showSwitchboard(zhGiving, mandarin, settings).translation, JSON.stringify(settings)).toMatch(/^[A-Z].*[.?]$/);
   });
