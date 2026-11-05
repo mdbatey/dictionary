@@ -56,7 +56,7 @@ export function renderSwitchboard(switchboard: Switchboard, language: Language):
     }));
   };
   // The Sound picker only needs the current Sentence (every Piece here has the same Pronunciation Systems).
-  // The colour key lists every Role the Switchboard can show; that's worked out when the key is first
+  // The highlight key lists every Role the Switchboard can show; that's worked out when the key is first
   // opened, then remembered, so opening a Switchboard never waits for it.
   const current = showSwitchboard(switchboard, language, settings).parts.flatMap((part) => (isPhrase(part) ? part.pieces : []));
   const toolbar = renderToolbar(board, current, language, content, () => fit?.refit(), draw, () => everyPiece(switchboard, language));
