@@ -16,10 +16,10 @@ export function applyHighlight(scope: HTMLElement): void {
 }
 
 /**
- * The layer toggles and the color key for one screen. Layers hide or show the gloss, pronunciation and
- * Phrase outlines on `scope`; tapping a Role in the color key highlights its Pieces and dims the rest.
+ * The layer toggles and the highlight key for one screen. Layers hide or show the gloss, pronunciation and
+ * Phrase outlines on `scope`; tapping a Role in the highlight key highlights its Pieces and dims the rest.
  * `onLayout` runs after anything that changes how wide a Sentence is. `keyPieces`, if given, supplies the
- * Pieces for the colour key only when it's first opened (Switchboards use it to avoid building every
+ * Pieces for the highlight key only when it's first opened (Switchboards use it to avoid building every
  * combination up front).
  */
 export function renderToolbar(
@@ -104,7 +104,7 @@ export function renderToolbar(
     : null;
 
   const colorKey = h('details', { class: 'color-key' }, [
-    h('summary', {}, ['Color key']),
+    h('summary', {}, ['Highlight key']),
     h('p', { class: 'key-hint' }, ['Tap a Role to highlight it.']),
     keyRoles,
   ]);
