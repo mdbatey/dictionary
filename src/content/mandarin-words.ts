@@ -5,10 +5,6 @@ import type { Word } from '../model';
 export const mandarinWords: Word[] = [
   { id: 'i', script: '我', meaning: 'I', wordClass: 'pronoun', facts: { person: 1, number: 'singular' }, forms: { plain: { script: '我', pron: { pinyin: 'wǒ' }, gloss: 'I' } } },
   { id: 'you', script: '你', meaning: 'you', wordClass: 'pronoun', facts: { person: 2, number: 'singular' }, forms: { plain: { script: '你', pron: { pinyin: 'nǐ' }, gloss: 'you', note: '你 is the everyday \'you\' for friends and equals.' } } },
-  {
-    id: 'you-polite', script: '您', meaning: 'you (polite)', wordClass: 'pronoun', facts: { person: 2, number: 'singular', honorific: true },
-    forms: { plain: { script: '您', pron: { pinyin: 'nín' }, gloss: 'you (polite)', note: '您 is the respectful \'you\' for elders, teachers and customers. Mandarin has no polite verb forms. Only the pronoun changes.' } },
-  },
   { id: 'he', script: '他', meaning: 'he', wordClass: 'pronoun', facts: { person: 3, number: 'singular' }, forms: { plain: { script: '他', pron: { pinyin: 'tā' }, gloss: 'he', note: '他 (he) and 她 (she) sound identical: tā. Only the written character differs.' } } },
   { id: 'she', script: '她', meaning: 'she', wordClass: 'pronoun', facts: { person: 3, number: 'singular' }, forms: { plain: { script: '她', pron: { pinyin: 'tā' }, gloss: 'she', note: '她 and 他 are both pronounced tā. You can only tell them apart in writing.' } } },
   {
